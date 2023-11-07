@@ -6,10 +6,11 @@
 
         <title>Laravel</title>
 
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
         
     </head>
     <body>
+        @include('layouts.navigation')
         <h1>Hello</h1>
     </body>
 </html>
