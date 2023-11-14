@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('image');
             $table->decimal('price');
+            $table->integer('stock')->default(0);
         });
     }
 
