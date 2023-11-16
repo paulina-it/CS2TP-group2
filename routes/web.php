@@ -23,6 +23,7 @@ Route::get('/books/create', [BookController::class, 'create'])->name('books.crea
 Route::post('/books', [BookController::class, 'store'])->name('books.store');
 Route::get('/books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
 Route::post('/books/{id}', [BookController::class, 'save'])->name('books.save');
+Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
 
 Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
 

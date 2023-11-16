@@ -23,6 +23,10 @@
                 <input type="number" value="{{ $book->stock }}" name="stock">
                 <input type="submit" value="submit">
             </form>
+            <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Delete">
         </main>
     </body>
 </html>

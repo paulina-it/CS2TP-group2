@@ -55,4 +55,10 @@ class BookController extends Controller
         $book->save();
         return view('books/show', ['book' => $book]);
     }
+
+    public function destroy($id) {
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('books.index');
+    }
 }
