@@ -9,7 +9,7 @@
         @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
         
     </head>
-    <body>
+    <body style="color: aliceblue">
         @include('layouts.navigation')
         <form action="{{ route('books.index') }}" method="GET" class="card mb-3">
             <div class="card-body">
@@ -23,8 +23,8 @@
                     </label>
                 </div>
                 @if(!empty($search))
-                <label>Search results for {{ $search }}</label><br>
-                <a href="{{ route('books.index') }}">Clear Search</a>
+                <label style="color: aliceblue">Search results for {{ $search }}</label><br>
+                <a  style="color: aliceblue" href="{{ route('books.index') }}">Clear Search</a>
                 @endif
             </div>
         </form>

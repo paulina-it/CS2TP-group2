@@ -16,7 +16,8 @@ class BookController extends Controller
             $books = Book::where(request('searchBy'), 'LIKE', '%'.$search.'%')->get();
         }
         return view('books/index', [
-            'books' => $books
+            'books' => $books,
+            'search' => $search
         ]);
     }
     public function show($id) {
