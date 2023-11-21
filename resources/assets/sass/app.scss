@@ -1,8 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+// general
 @import './variables';
+@import './components/typograpgy';
+// pages and blocks
+@import './components/navbar';
+@import './components/bookPage';
 
 body {
     background-color: $mainColour;
 }
+
