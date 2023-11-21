@@ -1,0 +1,25 @@
+.book {
+    .book-cover {
+        
+    }
+
+    .book-price {
+        font-size: 28px;
+    }
+}
+
+.book-cover {
+    box-shadow: 5px 5px 8px #0d0d0d3d;
+}
+
+.book-small {
+    margin-right: 3em;
+    .book-cover {
+        width: 12em;
+    }
+}
+
+.category-title {
+    text-align: center;
+    margin-bottom: 2em;
+}
