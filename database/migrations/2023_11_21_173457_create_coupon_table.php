@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('price', function($table) {
-            $table->index('book_id');
+        Schema::create('coupon', function (Blueprint $table) {
+            $table->id('coupon_id');
+            $table->string('coupon_name');
+            $table->integer('discount');
+            $table->timestamps();
         });
     }
 
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('coupon');
     }
 };

@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('price', function (Blueprint $table) {
-            $table->bigInteger('book_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+        Schema::table('books', function (Blueprint $table) {
+            $table->unique('ISBN');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('books', function (Blueprint $table) {
+            $table->dropForeign('books_ISBN_unique');
+        });
     }
 };
