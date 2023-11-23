@@ -3,7 +3,8 @@
     <head>
         <meta charset ="utf-8">
         <title>About us</title>
-        <link rel="stylesheet" href="aboutUs.css">
+        <link rel="stylesheet" href="https://github.com/paulina-it/CS2TP-group2/tree/mubtasim/resources/assets/css/aboutUs.css">
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
         <header class="aboutUs">About us - flippinpages</header>
