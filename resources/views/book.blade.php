@@ -53,11 +53,11 @@
             <h2 class="text-2xl category-title">Genres</h2>
             <div class="genres flex justify-around">
                 <div
-                    class="genre w-40 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
+                    class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
                     Novel in Verse
                 </div>
                 <div
-                    class="genre w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex justify-center m-4">
+                    class="genre w-32 text-white font-bold py-2 px-4 rounded-full flex justify-center m-4">
                     Sonnet
                 </div>
             </div>
