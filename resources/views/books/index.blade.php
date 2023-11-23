@@ -22,6 +22,12 @@
                         Name
                     </label>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="searchBy" value="genre" id="genre">
+                    <label class="form-check-label" for="genre">
+                        Genre
+                    </label>
+                </div>
                 @if(!empty($search))
                 <label style="color: aliceblue">Search results for {{ $search }}</label><br>
                 <a  style="color: aliceblue" href="{{ route('books.index') }}">Clear Search</a>
