@@ -9,9 +9,15 @@ use App\Models\Book;
 class BookController extends Controller
 {
     public function index() {
-        $books = Book::all();
+        $search = request('search');
+        if (empty($search)) {
+            $books = Book::all();
+        } else {
+            $books = Book::where(request('searchBy'), 'LIKE', '%'.$search.'%')->get();
+        }
         return view('books/index', [
-            'books' => $books
+            'books' => $books,
+            'search' => $search
         ]);
     }
     public function show($id) {
@@ -54,5 +60,11 @@ class BookController extends Controller
         $book->stock = request('stock');
         $book->save();
         return view('books/show', ['book' => $book]);
+    }
+
+    public function destroy($id) {
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }
