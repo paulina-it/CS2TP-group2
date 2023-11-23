@@ -1,0 +1,92 @@
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+.book {
+    .book-cover {
+        max-height: 25em;
+        max-width: 20em;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-right: 2em;
+    }
+
+    .book-price {
+        font-size: 28px;
+        font-weight: 500;
+    }
+    .book-btns {
+        color: white;
+        font-weight: 600;
+        .addToCartBtn {
+            background-color: $btn1;
+            transition: 0.3s;
+            &:hover {
+                background-color: $btn1hover;
+            }
+        }
+    
+        .addToWishlistBtn {
+            background-color: $btn2;
+            transition: 0.3s;
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+
+}
+.book-desc-div {
+    margin-top: 5em;
+
+    .book-desc {
+        // width: 75%;
+        margin: auto;
+        padding: 1em;
+        background-color: rgb(198, 213, 182);
+        border-radius: 1em;
+    }
+}
+
+.book-cover {
+    box-shadow: 5px 5px 8px #0d0d0d3d;
+}
+
+.book-small {
+    margin-right: 3em;
+
+    .last {
+        margin-right: 0;
+    }
+
+    .book-cover {
+        min-width: 10em;
+        border-radius: 5px;
+    }
+}
+
+.category-title {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.genre {
+    background-color: $btn1;
+    transition: 0.3s;
+            &:hover {
+                background-color: $btn1hover;
+            }
+}
+
+.similar-books-list {
+    overflow: scroll;
+
+    .book-title {
+        font-weight: 600;
+    }
+
+    .book-price {
+        font-weight: 500;
+    }
+}
