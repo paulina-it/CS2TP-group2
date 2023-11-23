@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 20px 0;
+    font-size: 30px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.mission {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.team {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.project-members {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-members li {
+    margin-bottom: 10px;
+}
+
+.contact-form {
+    padding: 20px;
+    border: 1px solid grey;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+  
