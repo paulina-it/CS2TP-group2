@@ -1,10 +1,46 @@
+.content {
+    width: 75%;
+    margin: auto;
+}
+
 .book {
     .book-cover {
-        
+        max-height: 25em;
+        max-width: 20em;
+        overflow: hidden;
     }
 
     .book-price {
         font-size: 28px;
+        font-weight: 500;
+    }
+    .book-btns {
+        color: white;
+        font-weight: 600;
+        .addToCartBtn {
+            background-color: $btn1;
+            transition: 0.3s;
+            &:hover {
+                background-color: $btn1hover;
+            }
+        }
+    
+        .addToWishlistBtn {
+            background-color: $btn2;
+            transition: 0.3s;
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+
+}
+.book-desc-div {
+    margin-top: 5em;
+    
+    .book-desc {
+        // width: 75%;
+        margin: auto;
     }
 }
 
@@ -14,6 +50,11 @@
 
 .book-small {
     margin-right: 3em;
+
+    .last {
+        margin-right: 0;
+    }
+
     .book-cover {
         width: 12em;
     }
@@ -23,3 +64,4 @@
     text-align: center;
     margin-bottom: 2em;
 }
+
