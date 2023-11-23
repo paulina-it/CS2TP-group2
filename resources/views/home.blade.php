@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" /> 
+    @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+  @include('layouts.navigation')
     <div class="container-fluid border">
-
         <!-- First Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar1">
+        {{-- <nav class="navbar navbar-expand-lg navbar-dark custom-navbar1"> --}}
             <div class="container-fluid">
               <a class="navbar-brand" href="home.html">
                 <img src="/Images/logo.png" alt="" width="200" height="70" class="d-inline-block align-text-top">
@@ -91,7 +92,7 @@
           <!--  End of Search Tab -->
 
           <!-- Game station Banner -->
-        <video loop autoplay muted class="video">
+          <video loop autoplay muted class="video">
             <source src="Videos/GameStationWebsite2.mp4" type="video/mp4">
             <!-- <source src="movie.ogg" type="video/ogg"> -->
             Your browser does not support the video tag.
