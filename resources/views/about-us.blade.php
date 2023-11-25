@@ -3,7 +3,7 @@
     <head>
         <meta charset ="utf-8">
         <title>About us</title>
-        <link rel="stylesheet" href="https://github.com/paulina-it/CS2TP-group2/tree/mubtasim/resources/assets/css/aboutUs.css">
+        <link rel="stylesheet" href="https://github.com/paulina-it/CS2TP-group2/tree/mubtasim/resources/assets/sass/components/_aboutUs.scss">
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
