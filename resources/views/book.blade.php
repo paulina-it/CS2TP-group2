@@ -8,33 +8,58 @@
     <title>flippinpages</title>
 
     @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
-
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </head>
 
 <body>
     @include('layouts.navigation')
     <div class="content">
-        <div class="book flex flex-col w-2/3 justify-around m-auto">
-            <div class="book-main-info-div flex m-5 justify-around">
-                <img src="https://m.media-amazon.com/images/I/61nLnUT0wtL._AC_UF894,1000_QL80_.jpg" alt=""
-                    class="book-cover">
+        <div class="book flex flex-col m-auto">
+            <!-- Book main information -->
+            <div class="book-main-info-div flex m-5">
+                <!-- Book cover and previews -->
+                <div class="flex book-img-div">
+                    <div class="book-previews-div flex flex-col">
+                        <!-- Book previews -->
+                        <img onclick="changePreview(this)" class="opened-preview book-img-mini"
+                            src="https://i.postimg.cc/j56YwyRW/Eugene-Onegin.jpg" alt="">
+                        <img onclick="changePreview(this)" class="book-img-mini"
+                            src="https://i.postimg.cc/tCGjhhDC/EO-page-1.jpg" alt="">
+                        <img onclick="changePreview(this)" class="book-img-mini"
+                            src="https://i.postimg.cc/65VNzy1V/EO-page-2.jpg" alt="">
+                        <img onclick="changePreview(this)" class="book-img-mini"
+                            src="https://i.postimg.cc/tCGjhhDC/EO-page-1.jpg" alt="">
+                    </div>
+                    <img src="https://i.postimg.cc/j56YwyRW/Eugene-Onegin.jpg" alt="" class="book-cover">
+                </div>
+                <!-- Book information and buttons -->
                 <div class="book-info-div flex flex-col justify-around">
                     <div class="book-info">
+                        <!-- Book title, author, language, and price -->
                         <h2 class="book-title">Eugene Onegin</h2>
-                        {{-- <h3 class="book-orig-title text-xl">Евгений Онегин</h3> --}}
                         <h4 class="book-author">Alexander Pushkin</h4>
                         <p class="book-language">Russian</p>
                         <p class="book-price mt-10">£12.90</p>
                     </div>
-                    <div class="book-btns mb-10">
-                        <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">Add
-                            to Cart</button>
-                        <button id="addToCartBtn" class="py-2 px-4 rounded btn addToWishlistBtn">Add
-                            to Wishlist</button>
+                    <div class="book-btns mb-10 flex flex-col">
+                        <!-- Quantity input and buttons -->
+                        <div class="cart flex mb-2">
+                            <div class="qty-input">
+                                <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                <input class="product-qty" type="number" name="product-qty" min="0"
+                                    max="10" value="1">
+                                <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                            </div>
+                            <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">Add
+                                to Cart</button>
+                        </div>
+                        <button id="addToCartBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                            Add to Wishlist</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Book description -->
             <div class="book-desc-div">
                 <p class="book-desc">
                     "Eugene Onegin" is Alexander Pushkin's classic Russian novel in verse, a tale of love, pride, and
