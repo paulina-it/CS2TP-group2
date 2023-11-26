@@ -45,10 +45,10 @@
                         <!-- Quantity input and buttons -->
                         <div class="cart flex mb-2">
                             <div class="qty-input">
-                                <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                <button class="qty-count qty-count--minus" onclick="decreaseQty()" type="button">-</button>
                                 <input class="product-qty" type="number" name="product-qty" min="0"
                                     max="10" value="1">
-                                <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                <button class="qty-count qty-count--add" onclick="increaseQty()" type="button">+</button>
                             </div>
                             <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">Add
                                 to Cart</button>
@@ -196,6 +196,18 @@
                     window.clearInterval(slideTimer);
                 }
             }, speed);
+        }
+
+        // quantity input
+        function increaseQty() {
+            let qtySelector = document.querySelector('.product-qty');
+            qtySelector.value++;
+        }
+
+        function decreaseQty() {
+            let qtySelector = document.querySelector('.product-qty');
+            if (qtySelector.value > 1) {
+            qtySelector.value--;}
         }
     </script>
 </body>
