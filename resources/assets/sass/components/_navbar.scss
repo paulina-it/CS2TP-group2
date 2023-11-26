@@ -1,8 +1,10 @@
 nav {
     background-color: $navColour;
     box-shadow: 5px 5px 8px #0d0d0d1e;
+    padding: 1em
+
     p {
-        color: $navTextColour;
+        // color: $navTextColour;
     }
 
     .nav-icon {

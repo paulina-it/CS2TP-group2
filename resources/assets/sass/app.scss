@@ -6,9 +6,11 @@
 @import './components/typograpgy';
 // pages and blocks
 @import './components/navbar';
+@import './components/footer';
 @import './components/bookPage';
 @import './components/home';
 
 body {
     background-color: $mainColour;
+    color: $textColour;
 }
