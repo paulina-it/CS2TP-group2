@@ -1,12 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+// general
 @import './variables';
+@import './components/typograpgy';
+// pages and blocks
+@import './components/navbar';
+@import './components/footer';
+@import './components/bookPage';
+@import './components/home';
 
 body {
-    background-color: aqua;
-}
-
-h1 {
-    color: aqua;
+    background-color: $mainColour;
+    color: $textColour;
 }
