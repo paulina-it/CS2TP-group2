@@ -74,63 +74,130 @@
             </div>
 
         </div>
-        <div class="book-genres flex flex-col w-2/3 justify-around m-auto mt-20">
+        <!-- Book genres -->
+        <div class="book-genres section flex flex-col w-2/3 justify-around m-auto mt-20">
+            <span class="text-line"></span>
             <h2 class="text-2xl category-title">Genres</h2>
             <div class="genres flex justify-around">
                 <div
                     class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
                     Novel in Verse
                 </div>
-                <div
-                    class="genre w-32 text-white font-bold py-2 px-4 rounded-full flex justify-center m-4">
+                <div class="genre w-32 text-white font-bold py-2 px-4 rounded-full flex justify-center m-4">
                     Sonnet
                 </div>
             </div>
         </div>
-        <div class="similar flex flex-col w-2/3 justify-around m-auto mt-20">
+        <!-- Similar books -->
+        <div class="similar section flex flex-col justify-around m-auto mt-20">
+            <span class="text-line"></span>
             <h2 class="text-2xl category-title">Similar books</h2>
-            <div class="similar-books-list flex justify-between">
-                <div class="book-small">
-                    <img class="book-cover"
-                        src="https://www.thoughtco.com/thmb/QjDehTJSAXp8Zl2yM5iJxextIL4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/anna-karenina-59ce5f876f53ba001172c6c8.jpg"
-                        alt="">
-                    <p class="book-title">Anna Karenina</p>
-                    <p class="book-author">Leo Tolstoy</p>
-                    <p class="book-price">£14.90</p>
-                </div>
-                <div class="book-small">
-                    <img class="book-cover" src="https://book-assets.openroadmedia.com/9781504061452.jpg"
-                        alt="">
-                    <p class="book-title">The Brotheres Karamazov</p>
-                    <p class="book-author">Fyodor Dostoyevsky</p>
-                    <p class="book-price">£13.90</p>
-                </div>
-                <div class="book-small">
-                    <img class="book-cover"
-                        src="https://www.thoughtco.com/thmb/QjDehTJSAXp8Zl2yM5iJxextIL4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/anna-karenina-59ce5f876f53ba001172c6c8.jpg"
-                        alt="">
-                    <p class="book-title">Anna Karenina</p>
-                    <p class="book-author">Leo Tolstoy</p>
-                    <p class="book-price">£14.90</p>
-                </div>
-                <div class="book-small">
-                    <img class="book-cover" src="https://book-assets.openroadmedia.com/9781504061452.jpg"
-                        alt="">
-                    <p class="book-title">The Brotheres Karamazov</p>
-                    <p class="book-author">Fyodor Dostoyevsky</p>
-                    <p class="book-price">£13.90</p>
-                </div>
-                <div class="book-small last">
-                    <img class="book-cover"
-                        src="https://www.thoughtco.com/thmb/QjDehTJSAXp8Zl2yM5iJxextIL4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/anna-karenina-59ce5f876f53ba001172c6c8.jpg"
-                        alt="">
-                    <p class="book-title">Anna Karenina</p>
-                    <p class="book-author">Leo Tolstoy</p>
-                    <p class="book-price">£14.90</p>
-                </div>
-            </div>
+            <button onclick="sideScroll('similar-books-list', 'left')"
+                class="scroll-btn back bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
+                < </button>
+                    <button onclick="sideScroll('similar-books-list', 'right')"
+                        class="scroll-btn forward bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
+                        > </button>
+                    <div class="similar-books-list flex justify-between">
+                        <!-- Book cards -->
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">Leo Tolstoy</p>
+                                <p class="book-title">Anna Karenina</p>
+                                <p class="book-price">£14.90</p>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">Leo Tolstoy</p>
+                                <p class="book-title">Anna Karenina</p>
+                                <p class="book-price">£14.90</p>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">Leo Tolstoy</p>
+                                <p class="book-title">Anna Karenina</p>
+                                <p class="book-price">£14.90</p>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">Leo Tolstoy</p>
+                                <p class="book-title">Anna Karenina</p>
+                                <p class="book-price">£14.90</p>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">Leo Tolstoy</p>
+                                <p class="book-title">Anna Karenina</p>
+                                <p class="book-price">£14.90</p>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
+    @include('layouts.footer')
+
+    <script>
+        //change book preview on click
+        function changePreview(element) {
+            if (!element.classList.contains('opened-preview')) {
+                let previews = document.querySelectorAll('.book-img-mini');
+                let main = document.querySelector('.book-cover');
+                let toRemove = main.src;
+                previews.forEach(prev => {
+                    if (prev.src == toRemove) {
+                        prev.classList.toggle('opened-preview');
+                    }
+                    main.src = element.src;
+                    element.classList.add('opened-preview');
+
+                });
+            }
+        }
+
+        // scroll through similar books
+        function sideScroll(id, direction) {
+            scrollAmount = 0;
+            let element = document.querySelector("." + id);
+            let speed = 15;
+            let distance = 300;
+            let step = 10;
+            let slideTimer = setInterval(function() {
+                if (direction == 'left') {
+                    element.scrollLeft -= step;
+                } else {
+                    element.scrollLeft += step;
+                }
+                scrollAmount += step;
+                if (scrollAmount >= distance) {
+                    window.clearInterval(slideTimer);
+                }
+            }, speed);
+        }
+    </script>
 </body>
 
 </html>
