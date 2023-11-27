@@ -24,11 +24,11 @@
                     @guest
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                             {{-- <p>Account</p> --}}
-                            <p class="auth-btn login">Login</p> 
+                            <p class="auth-btn login">Login</p>
                         </x-nav-link>
                         <x-nav-link class="" :href="route('login')" :active="request()->routeIs('login')">
                             {{-- <p>Account</p> --}}
-                            <p class="auth-btn signup">Signup</p> 
+                            <p class="auth-btn signup">Signup</p>
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('profile.edit')">
@@ -86,13 +86,37 @@
                 </a>
             </div>
             <button id="toggleButton"
-                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                <svg id="icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 
+                dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                <svg class="hidden h-6 w-6" id="iconClose"  viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: none;
+                                    stroke: #3f3f3f;
+                                    stroke-linecap: round;
+                                    stroke-linejoin: round;
+                                    stroke-width: 2px;
+                                }
+                            </style>
+                        </defs>
+                        <title></title>
+                        <g id="cross">
+                            <line class="cls-1" x1="7" x2="25" y1="7" y2="25"></line>
+                            <line class="cls-1" x1="7" x2="25" y1="25" y2="7"></line>
+                        </g>
+                    </g>
+                </svg>
+                <svg id="iconOpen" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path id="path1" class="inline-flex" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     <path id="path2" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M6 18L18 6M6 6l12 12" />
                 </svg>
+
             </button>
             <div class="nav-search">
                 <form>
@@ -133,13 +157,15 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const toggleButton = document.getElementById('toggleButton');
-        const icon = document.getElementById('icon');
+        const iconOpen = document.getElementById('iconOpen');
+        const iconClose = document.getElementById('iconClose');
         const menu = document.getElementById('menu');
 
         toggleButton.addEventListener('click', function() {
             menu.classList.toggle('hidden');
-            icon.classList.toggle('hidden');
-            icon.classList.toggle('inline-flex');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+            iconOpen.classList.toggle('inline-flex');
         });
     });
 </script>
