@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('image');
             $table->integer('stock')->default(0);
             $table->bigInteger('book_price')->unsigned();
-            $table->foreign('book_price')->references('book_price_id')->on('price')->onDelete('cascade');
         });
     }
 

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('books', function($table) {
-            $table->primary('id');
+        Schema::table('books', function (Blueprint $table) {
+            $table->string('ISBN')->change();
         });
     }
 
@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };
