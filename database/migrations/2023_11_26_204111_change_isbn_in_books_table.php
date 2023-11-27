@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('books', function($table)
-        {
-            $table->dropForeign('books_book_price_foreign');
+        Schema::table('books', function (Blueprint $table) {
+            $table->string('ISBN')->change();
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };
