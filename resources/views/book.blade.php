@@ -14,9 +14,9 @@
 <body>
     @include('layouts.navigation')
     <div class="content">
-        <div class="book flex flex-col m-auto">
+        <div class="book">
             <!-- Book main information -->
-            <div class="book-main-info-div flex m-5">
+            <div class="book-main-info-div m-5">
                 <!-- Book cover and previews -->
                 <div class="flex book-img-div">
                     <div class="book-previews-div flex flex-col">
@@ -41,7 +41,7 @@
                         <p class="book-language">Russian</p>
                         <p class="book-price mt-10">£12.90</p>
                     </div>
-                    <div class="book-btns mb-10 flex flex-col">
+                    <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
                         <div class="cart flex mb-2">
                             <div class="qty-input">
