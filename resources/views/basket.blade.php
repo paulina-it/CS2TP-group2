@@ -10,16 +10,24 @@
         
     </head>
     <body>
+        @php
+            $total = 0;
+        @endphp 
         @include('layouts.navigation')
         @for ($i = 0; $i < count($books); $i++)
-        <p>{{ $books[$i][0]['book_name'] }}</p>
-        <p>{{ $books[$i][0]['description'] }}</p>
-        <p>{{ $books[$i][0]['author'] }}</p>
-        <form action="{{ route('basket.destroy', $books[$i][0]['id']) }}" method="POST">
-            @csrf
-            @method('delete')
-            <input type="submit" value="Remove"/>
-        </form>
+            <p>{{ $books[$i][0]['book_name'] }}</p>
+            <p>{{ $books[$i][0]['description'] }}</p>
+            <p>{{ $books[$i][0]['author'] }}</p>
+            <p>{{ $prices[$i] }}</p>
+            <form action="{{ route('basket.destroy', $books[$i][0]['id']) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" value="Remove"/>
+            </form>
+            @php
+            $total += $prices[$i];
+            @endphp   
         @endfor
+        <p>Total: £{{$total}}</p>
     </body>
 </html>
