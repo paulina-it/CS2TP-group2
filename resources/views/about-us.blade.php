@@ -4,7 +4,7 @@
         <meta charset ="utf-8">
         <title>About us</title>
         <link rel="stylesheet" href="\CS2TP-group2\resources\assets\sass\components\_aboutUs.scss">
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     </head>
     <body>
         <header class="aboutUs">About us - flippinpages</header>
