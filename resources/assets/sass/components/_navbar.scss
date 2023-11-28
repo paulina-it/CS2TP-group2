@@ -1,17 +1,56 @@
+@import './screens/navMedia';
+
 nav {
-    background-color: $navColour;
     box-shadow: 5px 5px 8px #0d0d0d1e;
-    padding: 1em
+    position: relative;
+    z-index: 10;
+    color: $textColour;
 
     p {
-        // color: $navTextColour;
+        color: $navTextColour;
     }
 
-    .nav-icon {
-        width: 2.2em;
+    input {
+        border: none;
+        background-color: white;
     }
 
-    #nav-logo {
-        width: 3.5em;
+    .top-bar {
+        background-color: $navTopColour;
+    }
+
+    .nav-links {
+        background-color: $navColour;
+        text-align: center;
+
+        display: flex;
+        justify-content: space-between;
+    }
+    .auth-btn {
+        padding: 1em;
+        // width: 6em;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: 600;
+
+        // &.login {
+        //     // background-color: $loginBtn;
+        //     transition: 0.3s;
+
+        //     &:hover {
+        //         background-color: $loginBtnhover;
+        //     }
+        // }
+
+        &.signup {
+            opacity: 0.5;
+        //     background-color: $signupBtn;
+            transition: 0.3s;
+
+            &:hover {
+                // background-color: $signupBtnhover;
+                opacity: 1;
+            }
+        }
     }
 }
