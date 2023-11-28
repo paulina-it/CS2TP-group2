@@ -7,8 +7,7 @@
     <link rel="shortcut icon" href="/images/No text white logo.png" type="image/png">
     <title>flippinpages</title>
 
-    @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
 </head>
 
 <body>
@@ -21,13 +20,13 @@
                 <div class="flex book-img-div">
                     <div class="book-previews-div flex flex-col">
                         <!-- Book previews -->
-                        <img onclick="changePreview(this)" class="opened-preview book-img-mini"
+                        <img  class="opened-preview book-img-mini"
                             src="https://i.postimg.cc/j56YwyRW/Eugene-Onegin.jpg" alt="">
-                        <img onclick="changePreview(this)" class="book-img-mini"
+                        <img class="book-img-mini"
                             src="https://i.postimg.cc/tCGjhhDC/EO-page-1.jpg" alt="">
-                        <img onclick="changePreview(this)" class="book-img-mini"
+                        <img class="book-img-mini"
                             src="https://i.postimg.cc/65VNzy1V/EO-page-2.jpg" alt="">
-                        <img onclick="changePreview(this)" class="book-img-mini"
+                        <img  class="book-img-mini"
                             src="https://i.postimg.cc/tCGjhhDC/EO-page-1.jpg" alt="">
                     </div>
                     <img src="https://i.postimg.cc/j56YwyRW/Eugene-Onegin.jpg" alt="" class="book-cover">
@@ -45,10 +44,10 @@
                         <!-- Quantity input and buttons -->
                         <div class="cart flex mb-2">
                             <div class="qty-input">
-                                <button class="qty-count qty-count--minus" onclick="decreaseQty()" type="button">-</button>
+                                <button class="qty-count qty-count--minus" type="button">-</button>
                                 <input class="product-qty" type="number" name="product-qty" min="0"
                                     max="10" value="1">
-                                <button class="qty-count qty-count--add" onclick="increaseQty()" type="button">+</button>
+                                <button class="qty-count qty-count--add" type="button">+</button>
                             </div>
                             <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">Add
                                 to Cart</button>
@@ -92,11 +91,10 @@
         <div class="similar section flex flex-col justify-around m-auto mt-20">
             <span class="text-line"></span>
             <h2 class="text-2xl category-title">Similar books</h2>
-            <button onclick="sideScroll('similar-books-list', 'left')"
+            <button id="scrollLeftBtn"
                 class="scroll-btn back bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
                 < </button>
-                    <button onclick="sideScroll('similar-books-list', 'right')"
-                        class="scroll-btn forward bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
+                    <button  id="scrollRightBtn"class="scroll-btn forward bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
                         > </button>
                     <div class="similar-books-list flex justify-between">
                         <!-- Book cards -->
@@ -161,54 +159,54 @@
     @include('layouts.footer')
 
     <script>
-        //change book preview on click
-        function changePreview(element) {
-            if (!element.classList.contains('opened-preview')) {
-                let previews = document.querySelectorAll('.book-img-mini');
-                let main = document.querySelector('.book-cover');
-                let toRemove = main.src;
-                previews.forEach(prev => {
-                    if (prev.src == toRemove) {
-                        prev.classList.toggle('opened-preview');
-                    }
-                    main.src = element.src;
-                    element.classList.add('opened-preview');
+        // //change book preview on click
+        // function changePreview(element) {
+        //     if (!element.classList.contains('opened-preview')) {
+        //         let previews = document.querySelectorAll('.book-img-mini');
+        //         let main = document.querySelector('.book-cover');
+        //         let toRemove = main.src;
+        //         previews.forEach(prev => {
+        //             if (prev.src == toRemove) {
+        //                 prev.classList.toggle('opened-preview');
+        //             }
+        //             main.src = element.src;
+        //             element.classList.add('opened-preview');
 
-                });
-            }
-        }
+        //         });
+        //     }
+        // }
 
-        // scroll through similar books
-        function sideScroll(id, direction) {
-            scrollAmount = 0;
-            let element = document.querySelector("." + id);
-            let speed = 15;
-            let distance = 300;
-            let step = 10;
-            let slideTimer = setInterval(function() {
-                if (direction == 'left') {
-                    element.scrollLeft -= step;
-                } else {
-                    element.scrollLeft += step;
-                }
-                scrollAmount += step;
-                if (scrollAmount >= distance) {
-                    window.clearInterval(slideTimer);
-                }
-            }, speed);
-        }
+        // // scroll through similar books
+        // function sideScroll(id, direction) {
+        //     scrollAmount = 0;
+        //     let element = document.querySelector("." + id);
+        //     let speed = 15;
+        //     let distance = 300;
+        //     let step = 10;
+        //     let slideTimer = setInterval(function() {
+        //         if (direction == 'left') {
+        //             element.scrollLeft -= step;
+        //         } else {
+        //             element.scrollLeft += step;
+        //         }
+        //         scrollAmount += step;
+        //         if (scrollAmount >= distance) {
+        //             window.clearInterval(slideTimer);
+        //         }
+        //     }, speed);
+        // }
 
-        // quantity input
-        function increaseQty() {
-            let qtySelector = document.querySelector('.product-qty');
-            qtySelector.value++;
-        }
+        // // quantity input
+        // function increaseQty() {
+        //     let qtySelector = document.querySelector('.product-qty');
+        //     qtySelector.value++;
+        // }
 
-        function decreaseQty() {
-            let qtySelector = document.querySelector('.product-qty');
-            if (qtySelector.value > 1) {
-            qtySelector.value--;}
-        }
+        // function decreaseQty() {
+        //     let qtySelector = document.querySelector('.product-qty');
+        //     if (qtySelector.value > 1) {
+        //     qtySelector.value--;}
+        // }
     </script>
 </body>
 
