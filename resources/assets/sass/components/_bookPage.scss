@@ -130,6 +130,8 @@
 .genre {
     background-color: $btn1;
     transition: 0.4s;
+    text-align: center;
+    margin: auto;
 
     &:hover {
         background-color: $btn1hover;
