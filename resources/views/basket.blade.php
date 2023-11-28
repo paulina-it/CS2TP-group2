@@ -15,6 +15,11 @@
         <p>{{ $books[$i][0]['book_name'] }}</p>
         <p>{{ $books[$i][0]['description'] }}</p>
         <p>{{ $books[$i][0]['author'] }}</p>
+        <form action="{{ route('basket.destroy', $books[$i][0]['id']) }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Remove"/>
+        </form>
         @endfor
     </body>
 </html>

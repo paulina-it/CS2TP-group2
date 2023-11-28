@@ -12,11 +12,14 @@
     <body>
         @include('layouts.navigation')
         <main>
-            <img src="{{ URL("/img/{$book->image}") }}" />
             <p>{{ $book['name'] }}</p>
             <p>{{ $book['description'] }}</p>
             <p>{{ $book['author'] }}</p>
             <p>£{{ $book['price'] }}</p>
+            <form action="{{ route('basket.store', $book['id']) }}" method="POST">
+                @csrf
+                <input type="submit" value="Add to basket"/>
+            </form>
         </main>
     </body>
 </html>
