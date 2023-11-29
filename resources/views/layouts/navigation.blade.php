@@ -12,12 +12,12 @@
                     </a>
                 </div>
                 <div class="account-nav flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{-- <p>Wishlist</p> --}}
                         <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="" class="nav-icon">
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{-- <p>Cart</p> --}}
+                    <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
+                        {{-- <p>Basket</p> --}}
                         <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt=""
                             class="nav-icon">
                     </x-nav-link>
@@ -26,7 +26,7 @@
                             {{-- <p>Account</p> --}}
                             <p class="auth-btn login">Login</p>
                         </x-nav-link>
-                        <x-nav-link class="" :href="route('login')" :active="request()->routeIs('login')">
+                        <x-nav-link class="" :href="route('register')" :active="request()->routeIs('register')">
                             {{-- <p>Account</p> --}}
                             <p class="auth-btn signup">Signup</p>
                         </x-nav-link>
@@ -46,15 +46,15 @@
                         <p class="nav-link-text">Home</p>
                         {{-- <img src="https://www.svgrepo.com/show/361198/home.svg" alt="" class="nav-icon"> --}}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')">
+                    <x-nav-link :href="route('languages')">
                         <p>Languages</p>
                         {{-- <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon"> --}}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')">
+                    <x-nav-link :href="route('about')">
                         <p>About Us</p>
                         {{-- <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon"> --}}
                     </x-nav-link>
-                    <x-nav-link :href="route('contact')">
+                    <x-nav-link :href="route('contact.show')">
                         <p>Contact Us</p>
                         {{-- <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon"> --}}
                     </x-nav-link>
