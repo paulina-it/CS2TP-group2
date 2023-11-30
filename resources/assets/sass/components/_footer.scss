@@ -1,23 +1,12 @@
+@import './screens/footerMedia';
+
 footer {
-    max-height: 20em;
     background-color: $footerColour;
     margin-top: 5em;
     color: whitesmoke;
 
     .footer-title {
         color: $btn1;
-        font-size: 18px;
-        margin-bottom: 1em;
-    }
-    .footer-logo {
-        width: 15em;
-        margin: 1em;
-    }
-    .footer-section {
-        // margin: auto;
-        margin-top: 3em;
-        margin-right: 3em;
-        // height: 100%;
     }
 
     a {

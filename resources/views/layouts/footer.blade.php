@@ -3,20 +3,20 @@
     <div class="footer-info flex">
         <div class="footer-discovery footer-section flex flex-col">
             <h3 class="footer-title">Discovery</h3>
-            <a href="">New books</a>
-            <a href="">New languages</a>
-            <a href="">Most selled</a>
+            <a href="{{ route('home') }}">New books</a>
+            <a href="{{ route('languages') }}">New languages</a>
+            <a href="{{ route('home') }}">Most sold</a>
         </div>
         <div class="footer-about footer-section flex flex-col">
             <h3 class="footer-title">About</h3>
-            <a href="">About company</a>
-            <a href="">Contact us</a>
+            <a href="{{ route('about') }}">About company</a>
+            <a href="{{ route('contact.show') }}">Contact us</a>
         </div>
-        <div class="footer-info footer-section flex flex-col">
+        {{-- <div class="footer-info footer-section flex flex-col">
             <h3 class="footer-title">Info</h3>
             <a href="">Help</a>
             <a href="">Shipping</a>
             <a href="">Terms & Conditions</a>
-        </div>
+        </div> --}}
     </div>
 </footer>
