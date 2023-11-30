@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->integer('quantity')->default(1);
+        Schema::table('cart', function (Blueprint $table) {
+            $table->dropColumn('ebook');
+            $table->dropColumn('hardcover');
+            $table->dropColumn('paperback');
         });
     }
 
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('quantity');
+        Schema::table('cart', function (Blueprint $table) {
+            $table->string('ebook');
+            $table->string('hardcover');
+            $table->string('paperback');
         });
     }
 };

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->integer('quantity')->default(1);
+            $table->enum('type', ['ebook', 'hardcover', 'paperback']);
+            $table->float('price', 5, 2);
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('quantity');
+            $table->dropColumn('type');
+            $table->dropColumn('price');
         });
     }
 };
