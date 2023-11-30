@@ -15,14 +15,16 @@ class BasketController extends Controller
 {
     public function index() {
         $user_id = Auth::id();
-        $basket_id = cart::where('user_id', $user_id)->get('cart_id');
-        $basket_items = cart_item::where('cart_id', $basket_id[0]['cart_id'])->get();
         $books = collect();
         $prices = array();
-        foreach ($basket_items as $book) {
-            $books->push(Book::where('id', $book['book_id'])->get());  
-            $price = Price::where('book_id', $book['book_id'])->get('hardcover');
-            array_push($prices, $price[0]['hardcover']);  
+        $basket_id = cart::where('user_id', $user_id)->get('cart_id');
+        if (count($basket_id) > 0) {
+            $basket_items = cart_item::where('cart_id', $basket_id[0]['cart_id'])->get();
+            foreach ($basket_items as $book) {
+                $books->push(Book::where('id', $book['book_id'])->get());  
+                $price = Price::where('book_id', $book['book_id'])->get('hardcover');
+                array_push($prices, $price[0]['hardcover']);  
+            }
         }
         return view('/basket', ['books' => $books, 'prices' => $prices]);
     }
@@ -30,6 +32,13 @@ class BasketController extends Controller
     public function store($book_id) {
         $user_id = Auth::id();
         $basket_id = cart::where('user_id', $user_id)->get('cart_id');
+        if (count($basket_id) == 0) {
+            $cart = new cart;
+            $cart->user_id = $user_id;
+            $cart->save();
+            $basket_id = cart::where('user_id', $user_id)->get('cart_id');
+        }
+        
         $basket_id = $basket_id[0]['cart_id'];
 
         $cart_item = new cart_item;
