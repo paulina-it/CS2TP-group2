@@ -34,14 +34,24 @@
                 @endif
             </div>
         </form>
+        
         @foreach ($books as $book)
+            <?php 
+                $otherImages = json_decode($book['otherImages'])
+                
+            ?>
             <a href="{{ route('books.show', $book['id']) }}">
                 <div style="color:black;" class="bg-darkWhite text-center p-4">
                     <p>{{ $book['name'] }}</p>
                     <p>{{ $book['description'] }}</p>
                     <p>{{ $book['author'] }}</p>
+                    <img style="width: 50px" src="{{ asset('storage/'.$book['mainImage']) }}">
+                    @foreach ($otherImages as $otherImage)
+                    <img style="width: 50px" src="{{ asset('storage/'.$otherImage) }}">
+                    @endforeach
                 </div>
             </a>
         @endforeach
+        
     </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 
 class BookController extends Controller
@@ -29,15 +30,23 @@ class BookController extends Controller
     public function create() {
         return view('books/create');
     }
-    public function store() {
+    public function store(Request $request) {
+        $image = $request->file('mainImage');
+        $imageName = $image->getClientOriginalName();
+        $request->file('mainImage')->storeAs('public', $imageName);
+        $otherImageNames = array();
+        foreach(request('otherImages') as $otherImage) {
+            $otherImage->storeAs('public', $otherImage->getClientOriginalName());
+            array_push($otherImageNames, $otherImage->getClientOriginalName());
+        }
         $book = new Book();
-        $book->name = request('name');
+        $book->book_name = request('name');
         $book->genre = request('genre');
         $book->description = request('description');
         $book->author = request('author');
-        $book->image = request('image');
-        $book->price = request('price');
-        $book->stock = request('stock');
+        $book->mainImage = $imageName;
+        $book->otherImages = json_encode($otherImageNames);
+        $book->ISBN = request('isbn');
         $book->save();
         return redirect('books');
     }
