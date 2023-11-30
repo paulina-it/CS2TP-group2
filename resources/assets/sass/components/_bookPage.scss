@@ -1,0 +1,235 @@
+@import './customQuantityInput';
+@import './screens/bookMobile';
+
+.content {
+    margin: auto;
+}
+.book {
+    margin-top: 5em;
+    z-index: 1;
+
+    .book-previews-div {
+        overflow: scroll;
+        padding: 0.5em;
+        padding-top: 0;
+
+        // remove scrollbar
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        .book-img-mini {
+            max-width: 5em;
+            // margin: auto;
+            margin-bottom: 0.3em;
+            border-radius: 5px;
+            box-shadow: 3px 2px 5px #0d0d0d3d;
+            opacity: 0.7;
+            transition: 0.3s;
+            &:hover {
+                opacity: 1;
+            }
+
+            &.opened-preview {
+                opacity: 1;
+            }
+        }
+    }
+
+    .book-cover {
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .book-info,
+    .book-btns {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .book-author {
+        font-weight: 500;
+    }
+
+    .book-price {
+        font-family: "Playfair Display";
+        font-weight: 600;
+    }
+
+    .book-btns {
+        color: white;
+        font-weight: 600;
+
+        span {
+            color: black;
+        }
+
+        .addToCartBtn {
+            background-color: $btn1;
+            transition: 0.3s;
+            height: 2.5em;
+
+            &:hover {
+                background-color: $btn1hover;
+            }
+        }
+
+        .addToWishlistBtn {
+            background-color: $btn2;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+
+}
+
+.book-desc-div {
+    margin-top: 5em;
+    .book-desc {
+        background-color: rgb(198, 213, 182);
+        border-radius: 1em;
+        margin: auto;
+        padding: 1em;
+    }
+}
+
+.book-cover {
+    box-shadow: 5px 5px 8px #0d0d0d3d;
+}
+
+.section {
+    position: relative;
+    width: 100%;
+
+    .text-line {
+        top: 1em;
+        // width: 0%;
+        height: 2px;
+        position: absolute;
+        right: 0;
+        left: 0;
+        background-color: $textColour;
+        opacity: 0.3;
+    }
+
+    .category-title {
+        background-color: $mainColour;
+        text-align: center;
+        margin-bottom: 2em;
+        z-index: 7;
+        width: 8rem;
+        align-self: center;
+    }
+}
+
+.genre {
+    background-color: $btn1;
+    transition: 0.4s;
+
+    &:hover {
+        background-color: $btn1hover;
+    }
+}
+
+.similar {
+    // width: 80%;
+    position: relative;
+
+    // overflow: scroll;
+    .category-title {
+        width: 12rem;
+    }
+
+    .scroll-btn {
+        width: 3em;
+        height: 3em;
+        text-align: center;
+
+        &.back {
+            margin-left: -2em;
+        }
+
+        &.forward {
+            right: 0;
+            margin-right: -2em;
+        }
+    }
+    .scroll-btn {
+        background-color: $btn2;
+        position: absolute;
+    }
+}
+
+.similar-books-list {
+    padding: 1em;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+
+
+    .book-title {
+        font-weight: 600;
+    }
+
+    .book-price {
+        font-weight: 500;
+    }
+}
+
+.book-card {
+    margin-right: 2em;
+    min-height: 25em;
+    min-width: 15em;
+
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px #0d0d0d17;
+    
+    .last {
+        margin-right: 0;
+    }
+
+    .book-card-cover {
+        padding: 1.5em;
+        width: 100%;
+        min-height: 64%;
+
+        background-color: $navColour;
+        border-radius: 5px;
+
+        .book-cover {
+            border-radius: 5px;
+                width: 80%;
+                margin: auto;
+        }
+    }
+    .book-card-info {
+        padding: 1.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .book-author {
+        font-size: 14px;
+    }
+
+    p {
+        padding: 0.2rem;
+    }
+}

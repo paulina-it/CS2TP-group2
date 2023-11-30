@@ -1,0 +1,56 @@
+@import './screens/navMedia';
+
+nav {
+    box-shadow: 5px 5px 8px #0d0d0d1e;
+    position: relative;
+    z-index: 10;
+    color: $textColour;
+
+    p {
+        color: $navTextColour;
+    }
+
+    input {
+        border: none;
+        background-color: white;
+    }
+
+    .top-bar {
+        background-color: $navTopColour;
+    }
+
+    .nav-links {
+        background-color: $navColour;
+        text-align: center;
+
+        display: flex;
+        justify-content: space-between;
+    }
+    .auth-btn {
+        padding: 1em;
+        // width: 6em;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: 600;
+
+        // &.login {
+        //     // background-color: $loginBtn;
+        //     transition: 0.3s;
+
+        //     &:hover {
+        //         background-color: $loginBtnhover;
+        //     }
+        // }
+
+        &.signup {
+            opacity: 0.5;
+        //     background-color: $signupBtn;
+            transition: 0.3s;
+
+            &:hover {
+                // background-color: $signupBtnhover;
+                opacity: 1;
+            }
+        }
+    }
+}
