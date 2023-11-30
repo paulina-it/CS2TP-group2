@@ -9,7 +9,7 @@
         @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
         
     </head>
-    <body style="color: aliceblue">
+    <body style="color: black">
         @include('layouts.navigation')
         <form action="{{ route('books.index') }}" method="GET" class="card mb-3">
             <div class="card-body">
@@ -29,21 +29,29 @@
                     </label>
                 </div>
                 @if(!empty($search))
-                <label style="color: aliceblue">Search results for {{ $search }}</label><br>
-                <a  style="color: aliceblue" href="{{ route('books.index') }}">Clear Search</a>
+                <label style="color: black">Search results for {{ $search }}</label><br>
+                <a  style="color: black" href="{{ route('books.index') }}">Clear Search</a>
                 @endif
             </div>
         </form>
+        
         @foreach ($books as $book)
+            <?php 
+                $otherImages = json_decode($book['otherImages'])
+                
+            ?>
             <a href="{{ route('books.show', $book['id']) }}">
-                <div class="bg-darkWhite text-center p-4">
-                    <img src="{{ URL("/img/{$book->image}") }}" />
+                <div style="color:black;" class="bg-darkWhite text-center p-4">
                     <p>{{ $book['name'] }}</p>
                     <p>{{ $book['description'] }}</p>
                     <p>{{ $book['author'] }}</p>
-                    <p>£{{ $book['price'] }}</p>
+                    <img style="width: 50px" src="{{ asset('storage/'.$book['mainImage']) }}">
+                    @foreach ($otherImages as $otherImage)
+                    <img style="width: 50px" src="{{ asset('storage/'.$otherImage) }}">
+                    @endforeach
                 </div>
             </a>
         @endforeach
+        
     </body>
 </html>
