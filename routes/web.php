@@ -19,6 +19,7 @@ use App\Http\Controllers\BookController;
 Route::get('/', function () {return view('home');})->name('home');
 Route::get('/book', function () {return view('book');})->name('book');
 Route::get('/about', function () {return view('about-us');})->name('about-us');
+Route::get('/cart', function () {return view('shopping-cart');})->name('shopping-cart');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
