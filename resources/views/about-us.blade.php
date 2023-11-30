@@ -14,9 +14,9 @@
         <h2 class="team">Our Team</h2>
         <p>Meet the small development team that have worked on the project for the creation of this platform</p>
         <ul class="project-members">
-        <li>Project Leader: Polina Bovykina</li>
-        <li>Front-end Developers: Gurvir Brar, Akash Bhatti, Mubtasim Bepari, Joel Campbell</li>
-        <li>Back-end Developers: Oliver Burnett-Kiernan, Sayira Begum, Nihar Priyadarshi</li>
+        <p>Project Leader: Polina Bovykina</p>
+        <p>Front-end Developers: Gurvir Brar, Akash Bhatti, Mubtasim Bepari, Joel Campbell</p>
+        <p>Back-end Developers: Oliver Burnett-Kiernan, Sayira Begum, Nihar Priyadarshi</p>
         </ul>
     </body>
     <h3>Contact Us</h3>
