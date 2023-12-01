@@ -155,18 +155,3 @@
 
 </nav>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleButton = document.getElementById('toggleButton');
-        const iconOpen = document.getElementById('iconOpen');
-        const iconClose = document.getElementById('iconClose');
-        const menu = document.getElementById('menu');
-
-        toggleButton.addEventListener('click', function() {
-            menu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-            iconOpen.classList.toggle('inline-flex');
-        });
-    });
-</script>
