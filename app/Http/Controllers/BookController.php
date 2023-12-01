@@ -23,9 +23,10 @@ class BookController extends Controller
     }
     public function show($id) {
         $book = Book::findOrFail($id);
+        $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->get();
         return view('books/show', [
             'book' => $book
-        ]);
+        ], compact('book', 'otherBooksInLanguage'));
     }
     public function create() {
         return view('books/create');
@@ -44,6 +45,9 @@ class BookController extends Controller
         $book->genre = request('genre');
         $book->description = request('description');
         $book->author = request('author');
+        $book->language = request('language');
+        $book->price = request('price');
+        $book->quantity = request('stock');
         $book->mainImage = $imageName;
         $book->otherImages = json_encode($otherImageNames);
         $book->ISBN = request('isbn');

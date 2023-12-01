@@ -1,2 +1,3 @@
 import './bootstrap';
-import './bookPage';
+// import './bookPage';
+import './navbar';

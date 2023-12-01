@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/assets/scss/app.css',
                 'resources/assets/js/app.js',
                 'resources/assets/js/bookPage.js',
+                'resources/assets/js/navbar.js',
             ],
             refresh: true,
         }),
