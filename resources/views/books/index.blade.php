@@ -43,7 +43,7 @@
                         <div class="book-card-info">
                             <p class="book-author">{{ $book['author'] }}</p>
                             <p class="book-title">{{ $book['book_name'] }}</p>
-                            <p class="book-price">{{ $book['price'] }}</p>
+                            <p class="book-price">£{{ number_format((float) $book['price'], 2, '.', '') }}</p>
                         </div>
                     </div>
                 </a>
