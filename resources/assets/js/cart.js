@@ -51,11 +51,49 @@ function initApp() {
         newDiv.innerHTML = `
             <img src ="image/${value.image}"/>
             <div class= "title">${value.name}</div>
-            <div class= "price">${value.price.toLocalString()}</div>
-             <button onClick= "addToCard(${key})">Add to card</button>
+            <div class= "price">${value.price.toLocaleString()}</div>
+            <button onClick= "addToCard(${key})">Add to card</button>
         `;
+
         list.appendChild(newDiv);
     })
 }
 
 initApp();
+function addToCard(key) {
+    if(listCards[key] == null) {
+        listCards[key] = products[key];
+        listCards[key].quantity = 1;
+    }
+
+    reloadCard();
+}
+
+function reloadCard() {
+    listCard.innerHTML = '';
+    let count = 0;
+    let totalPrice = 0;
+    listCards.forEach((value, key) => {
+        totalPrice = totalPrice + value.price;
+        count = count + value.quantity;
+
+        if(value != null) {
+            let newDiv = document.createElement('li');
+            newDiv.innerHTML = `
+                <div><img src = "image/${value.image}"/></div>
+                <div>${value.name}</div>
+                <div>${value.price.toLocaleString}</div>
+                <div>${value.quantity}</div>
+                <div>
+                    <button onClick = "changeQuantity(${key}, ${value.quantity - 1})">-</button>
+                    <div class="count">${value.quantity}</div>
+                    <button onClick = "changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                </div>
+            `;
+            listCard.appendChild(newDiv);
+        }
+    })
+    
+    total.innerText = totalPrice.toLocaleString();
+    quantity.innerText = count;
+}
