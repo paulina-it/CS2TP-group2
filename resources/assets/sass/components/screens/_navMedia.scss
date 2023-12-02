@@ -43,7 +43,7 @@
     }
 }
 
-@media screen and (min-width: 841px) and (max-width: 1599px) {
+@media screen and (min-width: 769px) and (max-width: 1599px) {
     nav {
         width: 100%;
         margin: 0;
@@ -94,7 +94,7 @@
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 840px) {
+@media screen and (min-width: 0px) and (max-width: 768px) {
     nav {
         .desktop-nav {
             display: none;

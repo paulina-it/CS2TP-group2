@@ -45,6 +45,7 @@
 
     .book-info,
     .book-btns {
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -56,6 +57,12 @@
     .book-price {
         font-family: "Playfair Display";
         font-weight: 600;
+    }
+
+    .book-type {
+        margin-top: 1em;
+        color: $complTextColour;
+        font-size: 12px;
     }
 
     .book-btns {
@@ -122,7 +129,7 @@
         text-align: center;
         margin-bottom: 2em;
         z-index: 7;
-        width: 8rem;
+        min-width: 8rem;
         align-self: center;
     }
 }
@@ -130,6 +137,8 @@
 .genre {
     background-color: $btn1;
     transition: 0.4s;
+    text-align: center;
+    margin: auto;
 
     &:hover {
         background-color: $btn1hover;
@@ -142,7 +151,9 @@
 
     // overflow: scroll;
     .category-title {
-        width: 12rem;
+        // min-width: 12rem;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     .scroll-btn {
@@ -177,7 +188,12 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
 
+.book-card {
+    margin-right: 2em;
+    min-height: 26em;
+    min-width: 15.5em;
 
     .book-title {
         font-weight: 600;
@@ -186,20 +202,19 @@
     .book-price {
         font-weight: 500;
     }
-}
-
-.book-card {
-    margin-right: 2em;
-    min-height: 25em;
-    min-width: 15em;
-
     display: flex;
     flex-direction: column;
     // justify-content: space-between;
 
     border-radius: 5px;
     box-shadow: 5px 5px 8px #0d0d0d17;
+    transition: 0.4s;
     
+    &:hover {
+        min-width: 16em;
+        box-shadow: 2px 2px 8px #0d0d0d3e;
+    }
+
     .last {
         margin-right: 0;
     }
