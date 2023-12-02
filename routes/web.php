@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\BasketController;
 
 /*
@@ -18,7 +19,9 @@ use App\Http\Controllers\BasketController;
 
 
 Route::get('/', function () {return view('home');})->name('home');
-Route::get('/book', function () {return view('book');})->name('book');
+Route::get('/book', function () {return view('book');})->name('book'); //temp
+Route::get('/about', function () {return view('about');})->name('about'); 
+Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
@@ -35,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/contact', [ContactFormController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactFormController::class, 'submit'])->name('contact.submit');
 
 Route::get('/books/create', [BookController::class, 'create'])->middleware('role:admin')->name('books.create');
 Route::get('/books/edit/{id}', [BookController::class, 'edit'])->middleware('role:admin')->name('books.edit');
