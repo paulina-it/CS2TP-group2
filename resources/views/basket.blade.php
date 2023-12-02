@@ -29,5 +29,9 @@
             @endphp   
         @endfor
         <p>Total: £{{$total}}</p>
+        <form action="{{route('order.create')}}" method="POST">
+            @csrf
+            <input type="submit" value="Order">
+        </form>
     </body>
 </html>
