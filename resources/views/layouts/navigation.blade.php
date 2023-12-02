@@ -60,10 +60,10 @@
                     </x-nav-link>
                 </div>
                 <div class="nav-search">
-                    <form>
+                    <form action="{{ route('books.index') }}" method="GET">
                         <label for="default-search" class="sr-only">Search</label>
                         <div class="relative mt-0">
-                            <input type="search" id="default-search"
+                            <input name="search" type="search" id="default-search"
                                 class="block w-full text-sm text-gray-400 rounded-lg" placeholder="Search for books..."
                                 required>
                             <button type="submit"
@@ -72,8 +72,12 @@
                                     class="nav-icon">
                             </button>
                         </div>
+                        {{-- @if (!empty($search))
+                            <label style="color: black">Search results for {{ $search }}</label><br>
+                            <a style="color: black" href="{{ route('books.index') }}">Clear Search</a>
+                        @endif --}}
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
 
@@ -120,16 +124,22 @@
 
             </button>
             <div class="nav-search">
-                <form>
+                <form action="{{ route('books.index') }}" method="GET">
                     <label for="default-search" class="sr-only">Search</label>
                     <div class="relative mt-0">
-                        <input type="search" id="default-search" class="block w-full text-sm text-gray-400 rounded-lg"
-                            placeholder="Search for books..." required>
+                        <input name="search" type="search" id="default-search"
+                            class="block w-full text-sm text-gray-400 rounded-lg" placeholder="Search for books..."
+                            required>
                         <button type="submit"
                             class="search-btn text-white absolute bg-white font-medium rounded-lg text-sm px-2">
-                            <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon">
+                            <img src="https://www.svgrepo.com/show/532555/search.svg" alt=""
+                                class="nav-icon">
                         </button>
                     </div>
+                    @if (!empty($search))
+                        <label style="color: black">Search results for {{ $search }}</label><br>
+                        <a style="color: black" href="{{ route('books.index') }}">Clear Search</a>
+                    @endif
                 </form>
             </div>
             <x-nav-link :href="route('profile.edit')">
@@ -154,4 +164,3 @@
     </div>
 
 </nav>
-
