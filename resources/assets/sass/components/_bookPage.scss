@@ -1,25 +1,17 @@
 @import './customQuantityInput';
+@import './screens/bookMobile';
 
 .content {
-    width: 60%;
     margin: auto;
 }
-
 .book {
     margin-top: 5em;
-    // width: 80%;
-
-    .book-img-div,
-    .book-info-div {
-        width: 50%;
-    }
+    z-index: 1;
 
     .book-previews-div {
+        overflow: scroll;
         padding: 0.5em;
         padding-top: 0;
-        margin-right: 2em;
-        max-height: 25em;
-        overflow: scroll;
 
         // remove scrollbar
         &::-webkit-scrollbar {
@@ -42,20 +34,18 @@
 
             &.opened-preview {
                 opacity: 1;
-                // max-width: 5.4em;
             }
         }
     }
 
     .book-cover {
-        max-height: 25em;
-        max-width: 20em;
         overflow: hidden;
         border-radius: 10px;
     }
 
     .book-info,
     .book-btns {
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -65,9 +55,14 @@
     }
 
     .book-price {
-        font-size: 32px;
         font-family: "Playfair Display";
         font-weight: 600;
+    }
+
+    .book-type {
+        margin-top: 1em;
+        color: $complTextColour;
+        font-size: 12px;
     }
 
     .book-btns {
@@ -75,7 +70,6 @@
         font-weight: 600;
 
         span {
-            font-size: 30px;
             color: black;
         }
 
@@ -103,13 +97,11 @@
 
 .book-desc-div {
     margin-top: 5em;
-
     .book-desc {
-        // width: 75%;
-        margin: auto;
-        padding: 1em;
         background-color: rgb(198, 213, 182);
         border-radius: 1em;
+        margin: auto;
+        padding: 1em;
     }
 }
 
@@ -117,37 +109,36 @@
     box-shadow: 5px 5px 8px #0d0d0d3d;
 }
 
-
-
 .section {
     position: relative;
     width: 100%;
 
     .text-line {
-        position: absolute;
-        right: 0;
-        left: 0;
         top: 1em;
         // width: 0%;
         height: 2px;
+        position: absolute;
+        right: 0;
+        left: 0;
         background-color: $textColour;
         opacity: 0.3;
     }
 
     .category-title {
+        background-color: $mainColour;
         text-align: center;
         margin-bottom: 2em;
-        z-index: 10;
-        width: 8rem;
+        z-index: 7;
+        min-width: 8rem;
         align-self: center;
-        
-        background-color: $mainColour;
     }
 }
 
 .genre {
     background-color: $btn1;
     transition: 0.4s;
+    text-align: center;
+    margin: auto;
 
     &:hover {
         background-color: $btn1hover;
@@ -157,15 +148,15 @@
 .similar {
     // width: 80%;
     position: relative;
+
     // overflow: scroll;
     .category-title {
-        width: 12rem;
+        // min-width: 12rem;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     .scroll-btn {
-        background-color: $btn2;
-        position: absolute;
-        // margin-top: 2%;
         width: 3em;
         height: 3em;
         text-align: center;
@@ -175,17 +166,19 @@
         }
 
         &.forward {
-            // margin-left: 71%;
             right: 0;
             margin-right: -2em;
         }
+    }
+    .scroll-btn {
+        background-color: $btn2;
+        position: absolute;
     }
 }
 
 .similar-books-list {
     padding: 1em;
     overflow: scroll;
-
 
     &::-webkit-scrollbar {
         display: none;
@@ -195,7 +188,12 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
 
+.book-card {
+    margin-right: 2em;
+    min-height: 26em;
+    min-width: 15.5em;
 
     .book-title {
         font-weight: 600;
@@ -204,19 +202,18 @@
     .book-price {
         font-weight: 500;
     }
-}
-
-.book-card {
-    margin-right: 2em;
-    // padding: 1.5em;
-    border-radius: 5px;
-    min-height: 25em;
-    min-width: 15em;
-    box-shadow: 5px 5px 8px #0d0d0d17;
-
     display: flex;
     flex-direction: column;
     // justify-content: space-between;
+
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px #0d0d0d17;
+    transition: 0.4s;
+    
+    &:hover {
+        min-width: 16em;
+        box-shadow: 2px 2px 8px #0d0d0d3e;
+    }
 
     .last {
         margin-right: 0;
@@ -226,17 +223,16 @@
         padding: 1.5em;
         width: 100%;
         min-height: 64%;
+
         background-color: $navColour;
         border-radius: 5px;
 
         .book-cover {
-            width: 80%;
-            margin: auto;
             border-radius: 5px;
+                width: 80%;
+                margin: auto;
         }
     }
-
-
     .book-card-info {
         padding: 1.5em;
         display: flex;

@@ -5,8 +5,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
+                'resources/assets/scss/app.css',
+                'resources/assets/js/app.js',
+                'resources/assets/js/bookPage.js',
+                'resources/assets/js/navbar.js',
             ],
             refresh: true,
         }),
