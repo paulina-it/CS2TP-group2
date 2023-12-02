@@ -18,14 +18,14 @@
             <p>{{ $books[$i][0]['book_name'] }}</p>
             <p>{{ $books[$i][0]['description'] }}</p>
             <p>{{ $books[$i][0]['author'] }}</p>
-            <p>{{ $prices[$i] }}</p>
+            <p>{{ $books[$i][0]['price'] }}</p>
             <form action="{{ route('basket.destroy', $books[$i][0]['id']) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" value="Remove"/>
             </form>
             @php
-            $total += $prices[$i];
+            $total += $books[$i][0]['price'];
             @endphp   
         @endfor
         <p>Total: £{{$total}}</p>

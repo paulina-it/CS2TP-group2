@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\cart;
-use App\Models\cart_item;
 use App\Models\Book;
 use App\Models\Price;
 use Illuminate\Support\Facades\Auth;
@@ -15,44 +14,40 @@ class BasketController extends Controller
 {
     public function index() {
         $user_id = Auth::id();
+        $basket = cart::where('user_id', $user_id)->get();
         $books = collect();
-        $prices = array();
-        $basket_id = cart::where('user_id', $user_id)->get('cart_id');
-        if (count($basket_id) > 0) {
-            $basket_items = cart_item::where('cart_id', $basket_id[0]['cart_id'])->get();
-            foreach ($basket_items as $book) {
-                $books->push(Book::where('id', $book['book_id'])->get());  
-                $price = Price::where('book_id', $book['book_id'])->get('hardcover');
-                array_push($prices, $price[0]['hardcover']);  
-            }
+        //$amounts = array();
+        foreach ($basket as $elem) {
+            $books->push(Book::where('id', $elem['book_id'])->get());
+            //array_push($amounts, $elem['Amount']);     
         }
-        return view('/basket', ['books' => $books, 'prices' => $prices]);
+        return view('/basket', [
+            'books' => $books,
+            //'amounts' => $amounts,
+        ]);
     }
 
     public function store($book_id) {
         $user_id = Auth::id();
-        $basket_id = cart::where('user_id', $user_id)->get('cart_id');
-        if (count($basket_id) == 0) {
-            $cart = new cart;
-            $cart->user_id = $user_id;
-            $cart->save();
-            $basket_id = cart::where('user_id', $user_id)->get('cart_id');
-        }
-        
-        $basket_id = $basket_id[0]['cart_id'];
 
-        $cart_item = new cart_item;
-        $cart_item->cart_id = $basket_id;
-        $cart_item->book_id = $book_id;
+        /*$Amount = cart::where('book_id', $book_id)->where('user_id', $user_id)->get('Amount');
+        if ($Amount != "[]") {
+            $basket = cart::where('book_id', $book_id)->where('user_id', $user_id)->get();
+            $basket[0]->Amount = $Amount[0]->Amount + 1;
+            $basket[0]->update();
+        } else {*/
+            $basket = new cart;
+            $basket->user_id = $user_id;
+            $basket->book_id = $book_id;
+            //$basket->Amount = 1;
+            $basket->save();
+        //}
 
-        $cart_item->save();
         return redirect('basket');
     }
     public function destroy($book_id) {
         $user_id = Auth::id();
-        $basket_id = cart::where('user_id', $user_id)->get('cart_id');
-        $basket_id = $basket_id[0]['cart_id'];
-        $item = cart_item::where('book_id', $book_id)->where('cart_id', $basket_id)->delete();;
+        $item = cart::where('book_id', $book_id)->where('user_id', $user_id)->delete();;
         return redirect('basket');
     }
 }

@@ -16,9 +16,11 @@
                         <!-- Book previews -->
                         <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book['mainImage']) }}"
                             alt="{{ $book['book_name'] }}">
+                        @if ($otherImages != NULL)
                         @foreach ($otherImages as $otherImage)
                             <img class="book-img-mini" src="{{ asset('storage/' . $otherImage) }}" alt="">
                         @endforeach
+                        @endif
                     </div>
                     <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
                         class="book-cover">
@@ -42,8 +44,10 @@
                                     value="1">
                                 <button class="qty-count qty-count--add" type="button">+</button>
                             </div>
-                            <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">Add
-                                to Cart</button>
+                            <form action="{{ route('basket.store', $book['id']) }}" method="POST">
+                                @csrf
+                            <input type="submit" value="Add to Cart" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">
+                            </form>
                         </div>
                         <button id="addToCartBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
                             Add to Wishlist</button>
