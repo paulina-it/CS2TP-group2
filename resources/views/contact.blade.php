@@ -69,14 +69,14 @@
                 </svg>
             </a>
         </div>
-        <form action="{{ route('contact.submit') }}" method="POST" class="rounded">
+        <form action="{{ route('contact.store') }}" method="POST" class="rounded">
             @if (session('success') != null) 
                 <p class="success-message ">{{ session('success')}}</p> 
             
             @endif
             <h2>Get in Touch</h2>
             @csrf
-            {{-- @guest --}}
+            @guest
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>
                 <label for="last-name" id="ln-label">Last Name</label>
@@ -85,17 +85,27 @@
             </div>
             <label for="email">Email</label>
             <input type="email" name="email" id="">
-            {{-- @endguest --}}
+            @else
+            <div class="names">
+                <label for="first-name" id="fn-label">First Name</label>
+                <label for="last-name" id="ln-label">Last Name</label>
+                {{-- fix after register --}}
+                <input type="text" name="first-name" id="fn-input" value="{{Auth::user()->name}}">
+                <input type="text" name="last-name" id="ln-input" value="{{Auth::user()->name}}">
+            </div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="" value="{{Auth::user()->email}}">
+            @endguest
             <label for="query-type">Type of query</label>
-            <select name="" id="">
-                <option value="order">Book request</option>
-                <option value="order">Order issue</option>
-                <option value="payment">Payment issue</option>
-                <option value="account">Account access</option>
+            <select name="query-type" id="">
+                <option value="book request">Book request</option>
+                <option value="order issue">Order issue</option>
+                <option value="payment issue">Payment issue</option>
+                <option value="account access">Account access</option>
                 <option value="other">Other</option>
             </select>
             <label for="message">Message</label>
-            <textarea id="message" rows="4" name="text" placeholder="Write your thoughts here..."></textarea>
+            <textarea id="message" rows="4" name="message" placeholder="Write your thoughts here..."></textarea>
             <button id="contact-submit-btn" type="submit" class="text-white py-2 px-4 rounded">Send</button>
         </form>
     </div>

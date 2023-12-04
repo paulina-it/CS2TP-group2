@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_query', function (Blueprint $table) {
+        Schema::create('customer_queries', function (Blueprint $table) {
             $table->id('query_id');
             $table->string('forename');
             $table->string('surname');
             $table->string('email');
-            $table->enum('query_type', ['book request', 'order_issue', 'payment_issue', 'account_access', 'other']);
+            $table->enum('query_type', ['book request', 'order issue', 'payment issue', 'account access', 'other']);
             $table->longText('message');
             $table->timestamps();
         });
