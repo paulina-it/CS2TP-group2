@@ -1,13 +1,21 @@
 @extends('layouts.app')
 
 @section('main')
-    <div class="main">
+    <div class="main m-auto">
         @if ($search != null)
-            <h2 class="m-5">Search results:</h2>
+            @if (count($books) == 0)
+                <h2 class="m-9 text-center">No books were found</h2>
+            @elseif (count($books) == 1)
+                <script>
+                    window.location = "/books/" + {{ $books[0]->id }};
+                </script>
+            @else
+                <h2 class="m-5">Search results:</h2>
+            @endif
         @else
-            <h2 class="m-5">List of all books</h2>
+            <h2 class="m-9 text-center">List of all books</h2>
         @endif
-        <div class="books-list flex">
+        <div class="books-list flex justify-around">
             @foreach ($books as $book)
                 <a href="{{ route('books.show', $book['id']) }}">
                     <div class="book-card">
