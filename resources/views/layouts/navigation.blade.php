@@ -31,7 +31,7 @@
                             <p class="auth-btn signup">Signup</p>
                         </x-nav-link>
                     @else
-                        <x-nav-link :href="route('profile.edit')">
+                        <x-nav-link :href="route('profile.edit')"  :active="request()->routeIs('edit')">
                             {{-- {{ __('Profile') }} --}}
                             <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
                         </x-nav-link>
