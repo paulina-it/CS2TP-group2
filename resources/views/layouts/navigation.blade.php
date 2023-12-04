@@ -46,10 +46,9 @@
                         <p class="nav-link-text">Home</p>
                         {{-- <img src="https://www.svgrepo.com/show/361198/home.svg" alt="" class="nav-icon"> --}}
                     </x-nav-link>
-                    <x-nav-link :href="route('languages')">
+                    {{-- <x-nav-link :href="route('languages')">
                         <p>Languages</p>
-                        {{-- <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon"> --}}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     <x-nav-link :href="route('about')">
                         <p>About Us</p>
                         {{-- <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon"> --}}
