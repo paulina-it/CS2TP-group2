@@ -17,7 +17,8 @@ class BookController extends Controller
             $books = Book::where(function ($query) use($search) {
                 $query->where('book_name', 'like', '%' . $search . '%')
                 ->orWhere('author', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%');
+                ->orWhere('description', 'like', '%' . $search . '%')
+                ->orWhere('genre', 'like', '%' . $search . '%');
             })->get();
         }
         return view('books/index', [
@@ -69,13 +70,16 @@ class BookController extends Controller
 
     public function save($id) {
         $book = Book::findOrFail($id);
-        $book->name = request('name');
+        $book->book_name = request('name');
         $book->genre = request('genre');
         $book->description = request('description');
         $book->author = request('author');
-        $book->image = request('image');
+        $book->language = request('language');
+        $book->type = request('type');
         $book->price = request('price');
-        $book->stock = request('stock');
+        $book->quantity = request('stock');
+        //add image
+        $book->ISBN = request('isbn');
         $book->save();
         return view('books/show', ['book' => $book]);
     }
