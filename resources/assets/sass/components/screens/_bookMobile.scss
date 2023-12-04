@@ -1,4 +1,56 @@
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1600px) {
+    .content {
+        width: 50%;
+    }
+
+    .book {
+        .book-main-info-div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .book-img-div,
+        .book-info-div {
+            width: 60%;
+        }
+        
+        .book-img-div {
+            margin-right: 1em;
+        }
+
+        .book-previews-div {
+            margin-right: 2em;
+            max-height: 24em;
+        }
+
+        .book-cover {
+            max-height: 24em;
+            max-width: 20em;
+        }
+
+        .book-price {
+            font-size: 32px;
+        }
+
+        .book-btns {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                font-size: 30px;
+            }
+
+            .cart {
+                display: flex;
+            }
+            .addToCartBtn {
+                width: 80%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1599px) {
     .content {
         width: 67%;
     }
@@ -14,14 +66,18 @@
             width: 60%;
         }
 
+        .book-img-div {
+            margin-right: 1em;
+        }
+
         .book-previews-div {
             margin-right: 2em;
-            max-height: 22em;
+            max-height: 24em;
         }
 
         .book-cover {
-            height: 22em;
-            max-width: 20em;
+            height: 24em;
+            min-width: 18em;
         }
 
         .book-price {
@@ -74,11 +130,11 @@
 
         .book-previews-div {
             margin-right: 1em;
-            max-height: 25em;
+            max-height: 26.5em;
         }
 
         .book-cover {
-            max-height: 25em;
+            height: 26.5em;
             max-width: 20em;
         }
 

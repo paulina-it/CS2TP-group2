@@ -17,7 +17,6 @@ body {
     background-color: $mainColour;
     color: $textColour;
     z-index: auto;
-    // width: 100vw;
 }
 html,body
 {
@@ -26,4 +25,8 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+}
+
+.main {
+    min-height: 80vh;
 }
