@@ -78,10 +78,10 @@
             @csrf
             {{-- @guest --}}
             <div class="names">
-                <label for="first-name">First Name</label>
-                <label for="last-name">Last Name</label>
-                <input type="text" name="first-name" id="">
-                <input type="text" name="last-name" id="">
+                <label for="first-name" id="fn-label">First Name</label>
+                <label for="last-name" id="ln-label">Last Name</label>
+                <input type="text" name="first-name" id="fn-input">
+                <input type="text" name="last-name" id="ln-input">
             </div>
             <label for="email">Email</label>
             <input type="email" name="email" id="">
