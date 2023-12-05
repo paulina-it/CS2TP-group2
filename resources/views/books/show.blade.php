@@ -16,9 +16,11 @@
                         <!-- Book previews -->
                         <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book['mainImage']) }}"
                             alt="{{ $book['book_name'] }}">
+                        @if ($otherImages != NULL)
                         @foreach ($otherImages as $otherImage)
                             <img class="book-img-mini" src="{{ asset('storage/' . $otherImage) }}" alt="">
                         @endforeach
+                        @endif
                     </div>
                     <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
                         class="book-cover">
@@ -62,7 +64,8 @@
                     </div>
                     <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
-                        <form action="/" method="POST">
+                        <form action="{{ route('basket.store', $book['id']) }}" method="POST">
+                        @csrf
                             <div class="cart flex mb-2">
                                 <div class="qty-input">
                                     <button class="qty-count qty-count--minus" type="button">-</button>
@@ -70,12 +73,13 @@
                                         max="10" value="1">
                                     <button class="qty-count qty-count--add" type="button">+</button>
                                 </div>
-                                <button id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn" value="cart">Add
+                                <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"  value="Add to Cart">Add
                                     to Cart</button>
                             </div>
-                            <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn" value="wishlist">
-                                Add to Wishlist</button>
-                        </form>
+                            </form>
+                        </div>
+                        <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                            Add to Wishlist</button>
                     </div>
                 </div>
             </div>

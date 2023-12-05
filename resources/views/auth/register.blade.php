@@ -3,10 +3,23 @@
         @csrf
 
         <!-- Name -->
+        <!--FirstName, lastname, phone-->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="firstName" :value="__('First Name')" />
+            <x-text-input id="firstName" class="block mt-1 w-full" type="text" name="firstName" :value="old('firstName')" required autofocus autocomplete="firstName" />
+            <x-input-error :messages="$errors->get('firstName')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="lastName" :value="__('Last Name')" />
+            <x-text-input id="lastName" class="block mt-1 w-full" type="text" name="lastName" :value="old('lastName')" required autofocus autocomplete="lastName" />
+            <x-input-error :messages="$errors->get('lastName')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Phone Number')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
