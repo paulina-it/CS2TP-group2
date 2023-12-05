@@ -20,7 +20,6 @@ use App\Http\Controllers\OrderController;
 
 
 Route::get('/', function () {return view('home');})->name('home');
-Route::get('/book', function () {return view('book');})->name('book'); //temp
 Route::get('/about', function () {return view('about');})->name('about'); 
 Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
 

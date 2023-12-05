@@ -90,8 +90,8 @@
                 <label for="first-name" id="fn-label">First Name</label>
                 <label for="last-name" id="ln-label">Last Name</label>
                 {{-- fix after register --}}
-                <input type="text" name="first-name" id="fn-input" value="{{Auth::user()->name}}">
-                <input type="text" name="last-name" id="ln-input" value="{{Auth::user()->name}}">
+                <input type="text" name="first-name" id="fn-input" value="{{Auth::user()->firstName}}">
+                <input type="text" name="last-name" id="ln-input" value="{{Auth::user()->lastName}}">
             </div>
             <label for="email">Email</label>
             <input type="email" name="email" id="" value="{{Auth::user()->email}}">

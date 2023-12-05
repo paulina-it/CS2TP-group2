@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('customer_queries', function (Blueprint $table) {
             $table->id('query_id');
-            $table->string('forename');
-            $table->string('surname');
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('email');
             $table->enum('query_type', ['book request', 'order issue', 'payment issue', 'account access', 'other']);
             $table->longText('message');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_query');
+        Schema::dropIfExists('customer_queries');
     }
 };

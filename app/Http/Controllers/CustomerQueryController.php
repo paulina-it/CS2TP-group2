@@ -17,8 +17,8 @@ class CustomerQueryController extends Controller
         ]);
 
         $customerQuery = new CustomerQuery();
-        $customerQuery->forename = request('first-name');
-        $customerQuery->surname = request('last-name');
+        $customerQuery->firstName = request('first-name');
+        $customerQuery->lastName = request('last-name');
         $customerQuery->email = request('email');
         $customerQuery->query_type = request('query-type');
         $customerQuery->message = request('message');
