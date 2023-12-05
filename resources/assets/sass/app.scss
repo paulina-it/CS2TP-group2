@@ -11,6 +11,7 @@
 @import './components/booksIndex';
 @import './components/booksCreate';
 @import './components/home';
+@import './components/homepage';
 @import './components/contact';
 
 body {
@@ -29,4 +30,6 @@ html,body
 
 .main {
     min-height: 80vh;
+    width: 80vw;
+    margin: auto;
 }
