@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerQueryController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+'
 Route::post('/basket/{id}', [BasketController::class, 'store'])->middleware('auth')->name('basket.store');
 Route::get('/basket', [BasketController::class, 'index'])->middleware('auth')->name('basket');
 Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->middleware('auth')->name('basket.destroy');
+
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 
 Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
 

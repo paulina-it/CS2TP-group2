@@ -35,6 +35,12 @@
                             {{-- {{ __('Profile') }} --}}
                             <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
                         </x-nav-link>
+                        <form method="POST" action="{{ route('logout') }}" class="m-0 ">
+                            @csrf
+                            <x-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="mt-2.5 pb-2.5">
+                                <img src="https://www.svgrepo.com/show/502760/logout.svg" alt="" class="nav-icon">
+                            </x-nav-link>
+                        </form>
                     @endguest
                 </div>
             </div>
