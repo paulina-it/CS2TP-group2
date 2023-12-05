@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href=C:\Users\bepar\OneDrive\Documents\GitHub\CS2TP-group2\resources\assets\sass\components\_shoppingCart.scss>
-
+    <link rel="stylesheet" href="\CS2TP-group2\resources\assets\sass\components\_shoppingCart.scss">
+    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/cart.js'])
 </head>
 <body>
     <div class="container">

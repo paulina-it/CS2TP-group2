@@ -123,3 +123,25 @@ header .shopping span {
     padding: 10px;
     width: 100%;
 }
+
+.listCardli {
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    color: #fff;
+    row-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.listCard li div{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.listCard li img{
+    width: 90%;
+}
+
+.listCard button {
+    width: auto;
+}
