@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 11:58 AM
+-- Generation Time: Dec 05, 2023 at 12:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,13 +34,13 @@ CREATE TABLE `books` (
   `genre` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `ISBN` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `language` enum('polish','romanian','punjabi','urdu','spanish','latin','russian') NOT NULL DEFAULT 'russian',
+  `language` enum('latin','polish','punjabi','romanian','russian','spanish','urdu') NOT NULL,
   `image` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 1,
   `type` enum('ebook','hardcover','paperback') NOT NULL,
-  `price` double(5,2) NOT NULL
+  `price` double(5,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -52,9 +52,9 @@ CREATE TABLE `books` (
 CREATE TABLE `cart` (
   `cart_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `book_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `book_id` bigint(20) UNSIGNED NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -138,45 +138,17 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_11_15_174629_create_books_table', 1),
-(6, '2023_11_19_134842_update_books_table', 1),
-(7, '2023_11_19_151218_update_books_table', 1),
-(8, '2023_11_19_152521_update_books_table', 1),
-(9, '2023_11_19_153856_remove_image_and_stock_from_books_table', 1),
-(10, '2023_11_19_154511_create_quantity_table', 1),
-(11, '2023_11_19_155650_create_book_image_table', 1),
-(12, '2023_11_21_104336_create_b_language_table', 1),
-(13, '2023_11_21_104742_create_language_table', 1),
-(14, '2023_11_21_104958_add_foreign_key_b_language', 1),
-(15, '2023_11_21_113951_create_cart_table', 1),
-(16, '2023_11_21_114224_create_cart_item_table', 1),
-(17, '2023_11_21_171829_create_guest_table', 1),
-(18, '2023_11_21_172713_update_isbn_in_books_table', 1),
-(19, '2023_11_21_173457_create_coupon_table', 1),
-(20, '2023_11_21_175157_create_price_table', 1),
-(21, '2023_11_21_180430_update_quantity_table', 1),
-(22, '2023_11_21_181147_update_book_image_table', 1),
-(23, '2023_11_21_182835_create_wishlist_table', 1),
-(24, '2023_11_21_183030_create_wish_table', 1),
-(25, '2023_11_21_185755_create_payment_table', 1),
-(26, '2023_11_21_193748_create_order_table', 1),
-(27, '2023_11_21_195354_create_order_status_table', 1),
-(28, '2023_11_21_200435_create_website_rating_table', 1),
-(29, '2023_11_21_201611_create_product_rating_table', 1),
-(30, '2023_11_26_204111_change_isbn_in_books_table', 1),
-(31, '2023_11_28_113936_drop_b_language_table', 1),
-(32, '2023_11_28_114111_drop_language_table', 1),
-(33, '2023_11_28_114211_insert_column_in_books_table', 1),
-(34, '2023_11_29_160649_drop_book_image_table', 1),
-(35, '2023_11_29_161743_insert_column_in_books_table', 1),
-(36, '2023_11_29_163530_drop_cart_item_table', 1),
-(37, '2023_11_29_163707_insert_column_into_cart_table', 1),
-(38, '2023_11_30_174104_drop_quantity_table', 1),
-(39, '2023_11_30_174937_insert_column_into_books_table', 1),
-(40, '2023_11_30_201915_update_cart_table', 1),
-(41, '2023_11_30_204305_drop_price_table', 1),
-(42, '2023_11_30_205052_insert_columns_in_books_table', 1),
-(43, '2023_12_02_162321_alter_lang_column_in_books_table', 1),
-(44, '2023_12_02_164221_create_customer_query_table', 1);
+(6, '2023_11_21_113951_create_cart_table', 1),
+(7, '2023_11_21_171829_create_guest_table', 1),
+(8, '2023_11_21_173457_create_coupon_table', 1),
+(9, '2023_11_21_182835_create_wishlist_table', 1),
+(10, '2023_11_21_183030_create_wish_table', 1),
+(11, '2023_11_21_185755_create_payment_table', 1),
+(12, '2023_11_21_193748_create_order_table', 1),
+(13, '2023_11_21_195354_create_order_status_table', 1),
+(14, '2023_11_21_200435_create_website_rating_table', 1),
+(15, '2023_11_21_201611_create_product_rating_table', 1),
+(16, '2023_12_02_164221_create_customer_query_table', 1);
 
 -- --------------------------------------------------------
 
@@ -498,7 +470,7 @@ ALTER TABLE `guest`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `order`
