@@ -32,11 +32,12 @@
     text-align: center;
     color: rgb(241, 241, 241);
     text-decoration: none;
+    transition: 0.4s;
 
   }
   .category a:hover{
     text-align: center;
-    color: rgb(0, 238, 255);
+    color: $btn2;
     text-decoration: none;
   }
 
@@ -96,9 +97,9 @@
 
 
   .category_block_header h2{
-    background: linear-gradient( rgb(0, 0, 0),aliceblue);
+    // background: linear-gradient( rgb(0, 0, 0),aliceblue);
     text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-top: 2px;
     font-size: xx-large;
     padding: 10px;
@@ -119,7 +120,7 @@
   .category_block{
     text-align: center;
     background-color: #000000;
-    background: linear-gradient(black, rgb(229, 224, 224));
+    // background: linear-gradient(black, rgb(229, 224, 224));
     padding: 20px;
   }
   .category_block ul{
@@ -191,7 +192,7 @@
   .trend-card img{
     max-height: 350px;
     object-fit: cover;
-    border: 2px solid gray;
+    // border: 2px solid gray;
     margin-top: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-out;  
@@ -206,7 +207,7 @@
   .card.h-100 .card-body a{
     background-color: black;
     color:  rgb(25, 102, 217);
-    border: 1px solid rgb(25, 102, 217);
+    // border: 1px solid rgb(25, 102, 217);
 
   }
   .card.h-100 .card-body a:hover{

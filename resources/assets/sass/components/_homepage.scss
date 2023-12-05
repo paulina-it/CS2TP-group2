@@ -21,8 +21,6 @@
 
   }
 
-
-
   .categories li{
     display: inline-block;
     list-style-type: none;
@@ -31,8 +29,8 @@
     padding-top: 20px;
 
     padding: 10px;
-    height: 250px;
-    width: 250px;
+    height: 10em;
+    width: 10em;
     /* background-color: black; */
     border-radius: 50%;
     /* margin-top: 20px;
@@ -55,8 +53,8 @@
     list-style-type: none;
     /* margin: 20px; */
     /* padding: 1px; */
-    height: 200px;
-    width: 200px;
+    height: 8em;
+    width: 8em;
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
     /* border: 3px; */
@@ -66,8 +64,8 @@
     /* justify-content: first baseline; */
     object-fit: cover;
     z-index: -100;
-    border: 3px solid transparent;
-    box-shadow: 0 0 10px 10px rgba(26, 25, 25, 0.5); 
+    // border: 3px solid transparent;
+    box-shadow: 5px 5px 8px #0d0d0d17;
     transition: transform 0.2s ease-out;
   }
   .categories img:hover{
@@ -78,10 +76,11 @@
 
 
   .category_block_header h2{
-    background: linear-gradient( rgb(174, 159, 159),rgb(255, 255, 255));
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-top: 0px;
+    margin-top: 3em;
+    // background: linear-gradient( rgb(174, 159, 159),rgb(255, 255, 255));
+    text-align: start;
+    // font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    // margin-top: 0px;
     font-size: xx-large;
     padding: 10px;
   }
@@ -122,9 +121,9 @@
   }*/
 
   .book-card{
-    margin: 10px;
-    margin-top: 10px;
-    text-align: center;
+    // margin: 10px;
+    // margin-top: 10px;
+    // text-align: center;
   }
 
 /*@media (max-width: 991px) {
@@ -144,35 +143,24 @@
 /* Center the book cards and equal spacing */
 .trending_block_header {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px; /* Adjust the gap as needed */
   justify-content: center; /* Center horizontally */
   margin: 50; /* Center the grid on the page */
+
+  padding: 1em;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-.book-card {
-  border: 20px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center; /* Center the content in each book card */
-  margin: 50; /* Center the grid on the page */ 
-}
-
-.book-card-cover img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ccc; /* Optional: Add a border between cover and info */
-  margin: 50; /* Center the grid on the page */
-}
-
-.book-card-info {
-  padding: 10px;
-}
-
-/* Add additional styling as needed */
-
-
-/* Add additional styling as needed */
 
 .slideshow-container {
   max-width: 800px; /* Adjust the maximum width as needed */
@@ -243,3 +231,14 @@
 }
 
 
+.languages-div {
+  grid-area: "languages";
+}
+.genres-div {
+  grid-area: "genres";
+}
+
+.grid-categories {
+  display: grid;
+  grid-template-areas: "languages genres";
+}
