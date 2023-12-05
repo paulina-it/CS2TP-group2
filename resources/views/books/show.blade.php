@@ -16,10 +16,10 @@
                         <!-- Book previews -->
                         <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book['mainImage']) }}"
                             alt="{{ $book['book_name'] }}">
-                        @if ($otherImages != NULL)
-                        @foreach ($otherImages as $otherImage)
-                            <img class="book-img-mini" src="{{ asset('storage/' . $otherImage) }}" alt="">
-                        @endforeach
+                        @if ($otherImages != null)
+                            @foreach ($otherImages as $otherImage)
+                                <img class="book-img-mini" src="{{ asset('storage/' . $otherImage) }}" alt="">
+                            @endforeach
                         @endif
                     </div>
                     <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
@@ -65,7 +65,7 @@
                     <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
                         <form action="{{ route('basket.store', $book['id']) }}" method="POST">
-                        @csrf
+                            @csrf
                             <div class="cart flex mb-2">
                                 <div class="qty-input">
                                     <button class="qty-count qty-count--minus" type="button">-</button>
@@ -73,25 +73,28 @@
                                         max="10" value="1">
                                     <button class="qty-count qty-count--add" type="button">+</button>
                                 </div>
-                                <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"  value="Add to Cart">Add
+                                <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"
+                                    value="Add to Cart">Add
                                     to Cart</button>
                             </div>
-                            </form>
-                        </div>
-                        <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
-                            Add to Wishlist</button>
+                        </form>
+                        <form action="" method="post">
+                            <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                                Add to Wishlist
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <!-- Book description -->
-            <div class="book-desc-div">
-                <p class="book-desc">
-                    {{ $book['description'] }}
-                </p>
-            </div>
-
         </div>
+
+        <!-- Book description -->
+        <div class="book-desc-div">
+            <p class="book-desc">
+                {{ $book['description'] }}
+            </p>
+        </div>
+
         <!-- Book genres -->
         <div class="book-genres section flex flex-col w-2/3 justify-around m-auto mt-20">
             <span class="text-line"></span>

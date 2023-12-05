@@ -11,6 +11,7 @@
 @import './components/booksIndex';
 @import './components/booksCreate';
 @import './components/home';
+// @import './components/homepage';
 @import './components/contact';
 
 body {
@@ -29,4 +30,24 @@ html,body
 
 .main {
     min-height: 80vh;
+}
+
+.auth-div {
+    background-color: $navColour;
+}
+
+.auth-form {
+    background-color: $navTopColour;
+
+    .auth-btn {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+    }
 }
