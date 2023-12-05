@@ -8,7 +8,7 @@
     @vite(['resources/assets/sass/app.scss', 'resources/assets/js/cart.js'])
 </head>
 <body>
-@include('layouts.navigation')
+    @include('layouts.navigation')
 
     <div class="container">
         <header>
@@ -29,7 +29,6 @@
             <div class="total">0</div>
             <div class="closeShopping">Close</div>
         </div>
-
     </div>
 
     <script src="app.js"></script>

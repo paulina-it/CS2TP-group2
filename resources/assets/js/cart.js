@@ -80,7 +80,7 @@ function reloadCard() {
         if(value != null) {
             let newDiv = document.createElement('li');
             newDiv.innerHTML = `
-                <div><img src = "CS2TP-group2/public/images/${value.image}"/></div>
+                <div><img src = "/images/${value.image}"/></div>
                 <div>${value.name}</div>
                 <div>${value.price.toLocaleString}</div>
                 <div>${value.quantity}</div>

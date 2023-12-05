@@ -7,7 +7,7 @@
         @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     </head>
     <body>
-    @include('layouts.navigation')
+      @include('layouts.navigation')
         <header class="aboutUs">About us - flippinpages</header>
         <p>Welcome to flippinpages, a site developed by a small team for our readers that have interests in books</p>
         <h2 class="mission">Our Mission</h2>
@@ -20,7 +20,7 @@
         <p>Back-end Developers: Oliver Burnett-Kiernan, Sayira Begum, Nihar Priyadarshi</p>
         </ul>
 
-        @include('layouts.footer')
+      @include('layouts.footer')
     </body>
     
 </html>
