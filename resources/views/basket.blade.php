@@ -14,6 +14,13 @@
             $total = 0;
         @endphp 
         @include('layouts.navigation')
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         @for ($i = 0; $i < count($books); $i++)
             <p>{{ $books[$i][0]['book_name'] }}</p>
             <p>{{ $books[$i][0]['description'] }}</p>
@@ -29,7 +36,7 @@
             @endphp   
         @endfor
         <p>Total: £{{$total}}</p>
-        <form action="{{route('order.create')}}" method="POST">
+        <form action="{{route('order.index')}}" method="GET">
             @csrf
             <input type="submit" value="Order">
         </form>

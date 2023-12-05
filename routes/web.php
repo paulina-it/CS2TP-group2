@@ -31,7 +31,8 @@ Route::post('/basket/{id}', [BasketController::class, 'store'])->middleware('aut
 Route::get('/basket', [BasketController::class, 'index'])->middleware('auth')->name('basket');
 Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->middleware('auth')->name('basket.destroy');
 
-Route::post('/basket', [OrderController::class, 'create'])->name('order.create');
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 
 Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
 
