@@ -49,7 +49,7 @@ function initApp() {
         let newDiv = document.createElement('div');
         newDiv.classList.add('item');
         newDiv.innerHTML = `
-            <img src ="CS2TP-group2\public\images${value.image}"/>
+            <img src ="/images/${value.image}"/>
             <div class= "title">${value.name}</div>
             <div class= "price">${value.price.toLocaleString()}</div>
             <button onClick= "addToCard(${key})">Add to card</button>

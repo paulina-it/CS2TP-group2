@@ -7,6 +7,7 @@
         @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
     </head>
     <body>
+    @include('layouts.navigation')
         <header class="aboutUs">About us - flippinpages</header>
         <p>Welcome to flippinpages, a site developed by a small team for our readers that have interests in books</p>
         <h2 class="mission">Our Mission</h2>
@@ -18,30 +19,8 @@
         <p>Front-end Developers: Gurvir Brar, Akash Bhatti, Mubtasim Bepari, Joel Campbell</p>
         <p>Back-end Developers: Oliver Burnett-Kiernan, Sayira Begum, Nihar Priyadarshi</p>
         </ul>
+
+        @include('layouts.footer')
     </body>
-    <h3>Contact Us</h3>
-    
-    
-<div class="contact-form">
-  <form>
-    <label for="fname">Fore Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name">
-
-    <label for="sname">Surname</label>
-    <input type="text" id="sname" name="lastname" placeholder="Your surname">
-
-    <label for="country">Contact Type</label>
-    <select id="contact" name="type">
-      <option value="email">Email</option>
-      <option value="post">Post</option>
-      <option value="sms">SMS</option>
-    </select>
-
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Enter your message" style="height:50px"></textarea>
-
-    <input type="submit" value="Submit">
-  </form>
-</div>
     
 </html>
