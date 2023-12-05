@@ -34,22 +34,51 @@
                         <p class="book-language">{{ ucfirst(trans($book['language'])) }}</p>
                         <p class="book-type" class="text-gray">{{ ucfirst(trans($book['type'])) }}</p>
                         <p class="book-price mt-10">£{{ number_format((float) $book['price'], 2, '.', '') }}</p>
+                        @if ($book['quantity'] > 0)
+                            <div class="book-stock">
+                                <svg class="stock-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <circle fill="#78B159" cx="18" cy="18" r="18"></circle>
+                                    </g>
+                                </svg>
+                                <p class="book-stock-text">In stock</p>
+                            </div>
+                        @else
+                            <div class="book-stock">
+                                <svg class="stock-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <circle fill="#b04545" cx="18" cy="18" r="18"></circle>
+                                    </g>
+                                </svg>
+                                <p class="book-stock-text" class="text-xs">Not in stock</p>
+                            </div>
+                        @endif
                     </div>
                     <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
-                        <div class="cart flex mb-2">
-                            <div class="qty-input">
-                                <button class="qty-count qty-count--minus" type="button">-</button>
-                                <input class="product-qty" type="number" name="product-qty" min="0" max="10"
-                                    value="1">
-                                <button class="qty-count qty-count--add" type="button">+</button>
+                        <form action="{{ route('basket.store', $book['id']) }}" method="POST">
+                        @csrf
+                            <div class="cart flex mb-2">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0"
+                                        max="10" value="1">
+                                    <button class="qty-count qty-count--add" type="button">+</button>
+                                </div>
+                                <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"  value="Add to Cart">Add
+                                    to Cart</button>
                             </div>
-                            <form action="{{ route('basket.store', $book['id']) }}" method="POST">
-                                @csrf
-                            <input type="submit" value="Add to Cart" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn">
                             </form>
                         </div>
-                        <button id="addToCartBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                        <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
                             Add to Wishlist</button>
                     </div>
                 </div>
@@ -93,19 +122,20 @@
                         <!-- Book cards -->
                         @for ($i = 0; $i < 3; $i++)
                             @foreach ($otherBooksInLanguage as $otherBook)
-                            <a href="{{ route('books.show', $otherBook['id']) }}">
-                                <div class="book-card">
-                                    <div class="book-card-cover">
-                                        <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
-                                            alt="">
+                                <a href="{{ route('books.show', $otherBook['id']) }}">
+                                    <div class="book-card">
+                                        <div class="book-card-cover">
+                                            <img class="book-cover"
+                                                src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
+                                        </div>
+                                        <div class="book-card-info">
+                                            <p class="book-author">{{ $otherBook['author'] }}</p>
+                                            <p class="book-title">{{ $otherBook['book_name'] }}</p>
+                                            <p class="book-price">£{{ number_format((float) $book['price'], 2, '.', '') }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="book-card-info">
-                                        <p class="book-author">{{ $otherBook['author'] }}</p>
-                                        <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                        <p class="book-price">£{{ number_format((float) $book['price'], 2, '.', '') }}</p>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
                             @endforeach
                         @endfor
 
