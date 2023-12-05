@@ -5,174 +5,145 @@
   @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
   @include('layouts.navigation')
 
+  <link rel="stylesheet" href="resources/assests/css/homepage.css">
 
-  <head>
-    <link rel="stylesheet" href="resources/assests/css/homepage.css" >
+  <!-- Include Bootstrap CSS -->
+  <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Include Bootstrap CSS -->
-    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <!-- Include Bootstrap JS -->
-    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
-  </head>
+  <!-- Include Bootstrap JS -->
+  <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
 
-<body>
 
-  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+
+  <!-- ADVERTISEMENT SLIDESHOW -->
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img src="Images/discover.png" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="2000">
-        <img src="images/Advertisement1.jpeg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src="Images/2.png" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src="Images/3.png" class="d-block w-100" alt="...">
-      </div>
+    <div class="mySlides fade">
+      <img src="Images/backtoschool.png" class="d-block w-100" alt="...">
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="mySlides fade">
+      <img src="Images/fallreading.png" class="d-block w-100" alt="...">
+    </div>
+
+    <!-- Navigation buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
 
- <!-- Book cards -->
- <div class="book-card">
-                            <div class="book-card-cover">
-                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
-                                    alt="">
-                            </div>
-                            <div class="book-card-info">
-                                <p class="book-author">Leo Tolstoy</p>
-                                <p class="book-title">Anna Karenina</p>
-                                <p class="book-price">£14.90</p>
-                            </div>
-                        </div>
-                        <div class="book-card">
-                            <div class="book-card-cover">
-                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
-                                    alt="">
-                            </div>
-                            <div class="book-card-info">
-                                <p class="book-author">Leo Tolstoy</p>
-                                <p class="book-title">Anna Karenina</p>
-                                <p class="book-price">£14.90</p>
-                            </div>
-                        </div>
-                        <div class="book-card">
-                            <div class="book-card-cover">
-                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
-                                    alt="">
-                            </div>
-                            <div class="book-card-info">
-                                <p class="book-author">Leo Tolstoy</p>
-                                <p class="book-title">Anna Karenina</p>
-                                <p class="book-price">£14.90</p>
-                            </div>
-                        </div>
-                        <div class="book-card">
-                            <div class="book-card-cover">
-                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
-                                    alt="">
-                            </div>
-                            <div class="book-card-info">
-                                <p class="book-author">Leo Tolstoy</p>
-                                <p class="book-title">Anna Karenina</p>
-                                <p class="book-price">£14.90</p>
-                            </div>
-                        </div>
-                        <div class="book-card">
-                            <div class="book-card-cover">
-                                <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg"
-                                    alt="">
-                            </div>
-                            <div class="book-card-info">
-                                <p class="book-author">Leo Tolstoy</p>
-                                <p class="book-title">Anna Karenina</p>
-                                <p class="book-price">£14.90</p>
-                            </div>
-                        </div>
-                    </div>
+  <script>
+    // Your existing JavaScript code
+    // ...
+
+    // Additional JavaScript for automatic slideshow
+    var slideIndex = 0;
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      slideIndex++;
+
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 4000); // Change slide every 4 seconds
+    }
+
+    function plusSlides(n) {
+      slideIndex += n;
+      showSlides();
+    }
+
+    // Call showSlides immediately to start the slideshow
+    window.onload = function () {
+      showSlides();
+    };
+
+    </script>
+  <!-- Book cards -->
+  <div class="category_block_header">
+  <h2>Trending Books</h2>
+  </div>
+  <div class="trending_block_header">
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  <div class="book-card">
+    <div class="book-card-cover">
+      <img class="book-cover" src="https://i.postimg.cc/2y2pTmbr/Anna-Karenina.jpg" alt="">
+    </div>
+    <div class="book-card-info">
+      <p class="book-author">Leo Tolstoy</p>
+      <p class="book-title">Anna Karenina</p>
+      <p class="book-price">£14.90</p>
+    </div>
+  </div>
+  </div>
 </body>
 
-</html>
-
-
-<!-- Trending  -->
-<div class="category_block_header">
-  <h2> Trending </h2>
-</div>
-<div class="row row-cols-2 row-cols-md-4 g-4 trend-card">
-  <div class="col">
-    <div class="card h-100">
-      <img src="Images/product1.jpg class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">1</h5>
-        <p class="card-text">2 <br>
-          2 <br>
-          3</p>
-        <a href="#" class="btn btn-primary">Buy Now</a>
+<div class="carousel-item" data-bs-interval="2000">
+        <img src="Images/LNL.png" class="d-block w-100" alt="...">
       </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="Images/product2.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">1</h5>
-        <p class="card-text">2<br>
-          2<br>
-          3</p>
-        <a href="#" class="btn btn-primary">5</a>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="Images/product3.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">1</h5>
-        <p class="card-text">2<br>
-          3<br>
-          4</p>
-        <a href="#" class="btn btn-primary">Buy Now</a>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="Images/44454_sm.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">1</h5>
-        <p class="card-text">2<br>
-          3 <br>
-          4</p>
-        <a href="#" class="btn btn-primary">Buy now</a>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Categories Image Links -->
 <div class="category_block_header">
@@ -182,41 +153,45 @@
   <ul class="categories">
     <li class="category">
       <a href="#">
-        <img src=Images/JK.jpeg" alt="">
-      Punjabi
+        <img src="Images/punjabinew.png" alt="">
+        Punjabi
       </a>
 
     </li>
     <li class="category">
       <a href="#">
-        <img src=Images/download.jpeg" alt="">
-      Polish
+        <img src="Images/polishnew.png" alt="">
+        Polish
       </a>
 
     </li>
     <li class="category">
       <a href="#">
-        <img src=Images/images.jpeg" alt="">
-      Romanian 
+        <img src="Images/Romainiannew.png" alt="">
+        Romanian
+      </a>
+
+    </li>
+    <li class="category">
+      <a href="#">
+        <img src="Images/Urdu.png" alt="">
+        Urdu
+      </a>
+
+    </li>
+    </li>
+    <li class="category">
+      <a href="#">
+        <img src="Images/Latin.png" alt="">
+        Latin
       </a>
     </li>
     <li class="category">
       <a href="#">
-        <img src=Images/OIP.jpeg" alt="">
-      Urdu
+        <img src="Images/Russian.png" alt="">
+        Russian
       </a>
-    </li>
-    <li class="category">
-      <a href="#">
-        <img src=Images/consol.jpg" alt="">
-      Latin
-      </a>
-    </li>
-    <li class="category">
-      <a href="#">
-        <img src=Images/consol.jpg" alt="">
-      
-      </a>
+
     </li>
   </ul>
 </div>
