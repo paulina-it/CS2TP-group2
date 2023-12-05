@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CustomerQueryController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 
 /*
@@ -19,7 +20,7 @@ use App\Http\Controllers\OrderController;
 */
 
 
-Route::get('/', function () {return view('home');})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function () {return view('about');})->name('about'); 
 Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
 
