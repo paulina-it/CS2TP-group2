@@ -33,3 +33,23 @@ html,body
     width: 80vw;
     margin: auto;
 }
+
+.auth-div {
+    background-color: $navColour;
+}
+
+.auth-form {
+    background-color: $navTopColour;
+
+    .auth-btn {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+  }
+}

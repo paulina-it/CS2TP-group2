@@ -211,10 +211,13 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+
+    .book-card {
+        margin-right: 2em;
+    }
 }
 
 .book-card {
-    margin-right: 2em;
     height: 26em;
     min-height: 26em;
     width: 15.5em;
