@@ -17,6 +17,10 @@
         @endfor
         <form action="{{route('order.create')}}" method="POST">
             @csrf
+            <label for="credit_card_no">Credit Card Number</label>
+            <input name="credit_card_no" type="number">
+            
+
             <input type="submit" value="Complete Order">
         </form>
     </body>

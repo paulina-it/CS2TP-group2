@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
 use App\Models\Order;
 use App\Models\Book;
+use App\Models\Payment;
 
 class OrderController extends Controller
 {
@@ -29,6 +30,14 @@ class OrderController extends Controller
     public function create() {
         $user_id = Auth::id();
         $books = cart::where('user_id', $user_id)->get('book_id');
+
+        $payment = new Payment;
+        $payment->credit_card_no = request('credit_card_no');
+        $payment->user_id = $user_id;
+        $payment->save();
+
+        //$order_status = new Order_Status;
+
         foreach($books as $book) {
             $book = $book['book_id'];
             $order = new Order;
