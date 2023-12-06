@@ -20,6 +20,7 @@
         <p>Back-end Developers: Oliver Burnett-Kiernan, Sayira Begum, Nihar Priyadarshi</p>
         </ul>
 
+        <script src="app.js"></script>
       @include('layouts.footer')
     </body>
     
