@@ -10,7 +10,7 @@
 <body>
     @include('layouts.navigation')
 
-    <h1>Shopping Cart</h1>
+    <h1 class="titlel">Shopping Cart</h1>
 
     <div class="small-container cart-page">
         <table>
@@ -22,20 +22,51 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src=public/images/Anna-Karenina.jpg>
+                        <img src="/images/Anna-Karenina.jpg">
                         <div>
                             <p>Anna Karenina</p>
                             <small>Price: £12.90</small>
+                            <br>
+                            <a href="">Remove</a>
                         </div>
                     </div>                
                 </td>
                 <td><input type="number" value="1"></td>
                 <td>£12.90</td>
             </tr>
+
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="/images/Eugene-Onegin.jpg">
+                        <div>
+                            <p>Eugene Onegin</p>
+                            <small>Price: £12.90</small>
+                            <br>
+                            <a href="">Remove</a>
+                        </div>
+                    </div>                
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>£12.90</td>
+            </tr>
+
         </table>
+        <div class="totalPrice">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td>£25.80</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 
+    
+
     <script src="app.js"></script>
+    <script src="cart.js"></script>
 
     @include('layouts.footer')
 
