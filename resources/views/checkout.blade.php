@@ -10,12 +10,11 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-        @for ($i = 0; $i < count($books); $i++)
-            <p>{{ $books[$i][0]['book_name'] }}</p>
-            <p>{{ $books[$i][0]['price'] }}</p>
-        @endfor
-        <form action="{{route('order.create')}}" method="POST">
-            @csrf
-            <input type="submit" value="Complete Order">
-        </form>
+    @include('layouts.navigation')
+
+
+
+
+
+    <script src="app.js"></script>
 @endsection

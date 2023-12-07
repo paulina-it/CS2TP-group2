@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <title>Laravel</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-        @vite(['resources/assets/sass/app.scss', 'resources/js/app.js'])
-        
-    </head>
-    <body>
-        @php
-            $total = 0;
-        @endphp 
-        @include('layouts.navigation')
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
+@section('main')
         @if (\Session::has('success'))
             <div class="alert alert-success">
                 <ul>
@@ -40,5 +36,4 @@
             @csrf
             <input type="submit" value="Order">
         </form>
-    </body>
-</html>
+@endsection
