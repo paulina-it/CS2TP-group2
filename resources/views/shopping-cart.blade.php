@@ -10,7 +10,7 @@
 <body>
     @include('layouts.navigation')
 
-    <h1 class="titlel">Shopping Cart</h1>
+    <h1 class="title">Shopping Cart</h1>
 
     <div class="small-container cart-page">
         <table>
@@ -55,15 +55,51 @@
         <div class="totalPrice">
             <table>
                 <tr>
+                    <td>Shipping</td>
+                    <td>£7.99</td>
                     <td>Total</td>
                     <td>£25.80</td>
+
                 </tr>
             </table>
         </div>
 
+        <div class="checkout-button">
+            <button onclick="">Go To Checkout</button> <!-- add function for going to checkout page in js -->
+        </div>
+
     </div>
 
-    
+    <div class="recommendedItems">
+        <h2 class="like-container">You may also like...</h2>
+        <div class="recommendedItems-container">
+            <div class="recommendedItem">
+                <img src="/images/Anna-Karenina.jpg" alt="Item 1">
+                <p>Anna Karenina</p>
+                <small>Price: £12.90</small>
+                <button>Add to Cart</button>
+            </div>
+            <div class="recommendedItem">
+                <img src="/images/Anna-Karenina.jpg" alt="Item 2">
+                <p>Anna Karenina</p>
+                <small>Price: £12.90</small>
+                <button>Add to Cart</button>
+            </div>
+            <div class="recommendedItem">
+                <img src="/images/Anna-Karenina.jpg" alt="Item 3">
+                <p>Anna Karenina</p>
+                <small>Price: £12.90</small>
+                <button>Add to Cart</button>
+            </div>
+            <div class="recommendedItem">
+                <img src="/images/Anna-Karenina.jpg" alt="Item 4">
+                <p>Anna Karenina</p>
+                <small>Price: £12.90</small>
+                <button>Add to Cart</button>
+            </div>
+
+        </div>
+    </div>
 
     <script src="app.js"></script>
     <script src="cart.js"></script>
