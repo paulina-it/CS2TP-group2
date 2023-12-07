@@ -23,9 +23,24 @@ class BookController extends Controller
         }
         return view('books/index', [
             'books' => $books,
-            'search' => $search
+            'search' => $search,
+            'category' => null
         ]);
     }
+
+    public function indexCategory($category_slug) {
+        $books = Book::where(function ($query) use($category_slug) {
+            $query->where('language', 'like', '%' . $category_slug . '%')
+            ->orWhere('genre', 'like', '%' . $category_slug . '%');
+        })->get();
+        
+        return view('books/index', [
+            'books' => $books,
+            'category' => $category_slug,
+            'search' => null
+        ]);
+    }
+
     public function show($id) {
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->get();

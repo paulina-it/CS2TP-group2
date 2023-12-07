@@ -10,7 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-        <section>
+        <section class="about-container">
           <div class="about-us">
             <h1>About Us</h1>
             <div class="container">

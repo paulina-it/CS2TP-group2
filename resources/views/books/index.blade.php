@@ -13,7 +13,11 @@
                 <h2 class="m-5">Search results:</h2>
             @endif
         @else
-            <h2 class="m-9 text-center">List of all books</h2>
+            <h2 class="m-9 text-center">List of all 
+                @if ($category != null)
+                {{ucfirst($category)}}
+                @endif
+                books</h2>
         @endif
         <div class="books-list">
             @for ($i = 0; $i < 2; $i++)

@@ -27,6 +27,8 @@ Route::get('/checkout', function () {return view('checkout');})->name('checkout'
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
+Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
+
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->middleware('auth')->name('basket.store');
 Route::get('/basket', [BasketController::class, 'index'])->middleware('auth')->name('basket');

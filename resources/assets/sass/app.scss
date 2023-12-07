@@ -14,13 +14,13 @@
 @import './components/aboutUs';
 @import './components/shoppingCart';
 @import './components/checkOut';
-@import './components/homepage';
 @import './components/contact';
 
 body {
     background-color: $mainColour;
     color: $textColour;
     z-index: auto;
+    position: relative;
 }
 html,body
 {
@@ -54,5 +54,5 @@ html,body
         &:hover {
             background-color: $btn2hover;
         }
-  }
+    }
 }

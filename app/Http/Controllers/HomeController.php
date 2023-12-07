@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
     public function index() {
-            $books = Book::all();
-        return view('home', [
+        $date = Carbon::now()->subWeek();
+            $books = Book::where(function ($query) use($date) {
+                $query->whereDate('created_at', '>', $date->toDateString());
+            })->get();
+        return view('index', [
             'books' => $books
         ]);
     }
