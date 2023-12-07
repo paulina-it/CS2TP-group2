@@ -15,7 +15,8 @@
         @else
             <h2 class="m-9 text-center">List of all books</h2>
         @endif
-        <div class="books-list flex justify-around">
+        <div class="books-list">
+            @for ($i = 0; $i < 2; $i++)
             @foreach ($books as $book)
                 <a href="{{ route('books.show', $book['id']) }}">
                     <div class="book-card">
@@ -35,6 +36,8 @@
                     </div>
                 </a>
             @endforeach
+                
+            @endfor
         </div>
     </div>
 @endsection
