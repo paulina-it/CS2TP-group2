@@ -1,54 +1,62 @@
-body {
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    line-height: 1.5;
     font-family: sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
-header {
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ccc;
+}
+
+.about-us {
+    width: 100%;
+}
+
+.about-us h1 {
     text-align: center;
-    background-color: #f2f2f2;
-    padding: 20px 0;
-    font-size: 30px;
+    font-size: 50px;
+    margin-top: 50px;
 }
 
-h1 {
-    font-size: 24px;
-    margin: 0;
+.about-us h1::after {
+    content:"";
+    height: 5px;
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 60px;
+    margin: 60px auto;
 }
 
-main {
-    padding: 20px;
+.content {
+    width: 60%;
+    text-align: left;
+    padding: 0px 30px;
 }
 
-.mission {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.content h3 {
+    color: black;
+    letter-spacing: 1px;
 }
 
-.team {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.image-section {
+    width: 40%;
+    padding: 0px 30px;
 }
 
-.project-members {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.image-section img {
+    width: 100%;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.project-members li {
-    margin-bottom: 10px;
-}
-
-.contact-form {
-    padding: 20px;
-    border: 1px solid grey;
-}
-
-h3 {
-    font-size: 18px;
-    font-weight: bold;
-}
-  
