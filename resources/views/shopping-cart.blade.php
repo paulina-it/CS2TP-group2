@@ -55,11 +55,12 @@
         <div class="totalPrice">
             <table>
                 <tr>
-                    <td>Shipping</td>
-                    <td>£7.99</td>
                     <td>Total</td>
                     <td>£25.80</td>
-
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>£7.99</td>
                 </tr>
             </table>
         </div>

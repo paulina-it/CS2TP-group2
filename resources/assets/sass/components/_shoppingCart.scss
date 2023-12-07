@@ -7,7 +7,7 @@
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
 }
 
 table {
@@ -70,19 +70,19 @@ th:last-child {
 .totalPrice {
     display: flex;
     justify-content: center;
-    margin-right: -290px;
+    margin-right: -740px;
 }
 
 .totalPrice table {
     border-top: 3px solid #ff523b;
-    width: 100%;
+    width: 220px;
     max-width: 350px;
 }
 
 .checkout-button {
     text-align: center;
     margin-top: 20px;
-    margin-right: -460px;
+    margin-right: -790px;
 }
 
 .checkout-button button {
