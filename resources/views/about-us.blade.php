@@ -19,7 +19,7 @@
                 This allows you and others to be able to share and see others insights  of books, authors and the latest trends. We aim to have both classic and latest literature to cater to a diverse range of readers. </p>
               </div>
               <div class="image-section">
-                <img src="/images/about-us1.jpg" alt="">
+                <img src="/images/about-us1.jpg">
               </div>
             </div>
           </div>
