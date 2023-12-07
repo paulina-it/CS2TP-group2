@@ -20,8 +20,12 @@ class BookFactory extends Factory
             'book_name' => fake()->title(),
             'author' => fake()->name(),
             'genre' => fake()->word(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->sentence(),
             'ISBN' => fake()->unique()->numberBetween(1111111111111, 9999999999999),
+            'language' => 'polish',
+            'image' => fake()->word(),
+            'type' => 'ebook',
+            'price' => 1.99
         ];
     }
 }

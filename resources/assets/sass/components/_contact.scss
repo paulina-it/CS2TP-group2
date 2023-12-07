@@ -1,0 +1,119 @@
+@import './screens/contactMedia';
+
+.contact-form {
+    .contacts {
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+        margin: auto;
+        margin-top: 3em;
+        margin-bottom: 3em;
+
+        .contact-icon {
+            width: 3.5rem;
+            padding: 0.5em;
+            border-radius: 1em;
+            transition: 0.4s;
+            // stroke: black;
+
+            &:hover {
+                background-color: $btn2;
+                stroke: white;
+
+                #mail-svg,
+                #inst-svg,
+                #fb-svg,
+                #wa-svg {
+                    padding: 1em;
+                    stroke: white;
+
+                }
+
+                #wa-svg,
+                #inst-svg {
+                    fill: white;
+                }
+
+                #inst-svg {
+                    stroke: none;
+                }
+            }
+        }
+    }
+
+
+    form {
+        // width: 80%;
+        box-shadow: 1px 4px 10px #0d0d0d22;
+        margin: auto;
+        padding-top: 4em;
+        // padding-bottom: 2.5em;
+        margin-bottom: 8em;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        text-align: left;
+
+        h2 {
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .success-message {
+            position: absolute;
+            top: -1em;
+            left: 20%;
+            padding: 1em;
+            width: 60%;
+            text-align: center;
+            background-color: $btn1;
+            border-radius: 5px;
+            color: white;
+        }
+
+        #fn-label {
+            grid-area: fnlabel;
+        }
+        #ln-label {
+            grid-area: lnlabel;
+        }
+        #fn-input {
+            grid-area: fninput;
+        }
+        #ln-input {
+            grid-area: lninput;
+        }
+    }
+
+    
+
+    input,
+    select,
+    textarea {
+        border-radius: 5px;
+        border: none;
+        background-color: $navColour;
+        // width: 40%;
+    }
+
+    input,
+    label {
+        margin: 0.7em;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.3em;
+    }
+
+    button {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+    }
+}

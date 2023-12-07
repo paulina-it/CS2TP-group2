@@ -4,6 +4,7 @@
 .content {
     margin: auto;
 }
+
 .book {
     margin-top: 5em;
     z-index: 1;
@@ -17,6 +18,7 @@
         &::-webkit-scrollbar {
             display: none;
         }
+
         -ms-overflow-style: none;
         scrollbar-width: none;
 
@@ -28,6 +30,7 @@
             box-shadow: 3px 2px 5px #0d0d0d3d;
             opacity: 0.7;
             transition: 0.3s;
+
             &:hover {
                 opacity: 1;
             }
@@ -45,6 +48,7 @@
 
     .book-info,
     .book-btns {
+        width: 97%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -56,6 +60,23 @@
     .book-price {
         font-family: "Playfair Display";
         font-weight: 600;
+    }
+
+    .book-type {
+        margin-top: 1em;
+        color: $complTextColour;
+        font-size: 12px;
+    }
+
+    .book-stock {
+        display: flex;
+        margin-top: 0.5em;
+
+        .stock-icon {
+            width: 1em;
+            margin-right: 0.5em;
+        }
+
     }
 
     .book-btns {
@@ -78,6 +99,7 @@
 
         .addToWishlistBtn {
             background-color: $btn2;
+            width: 100%;
             transition: 0.3s;
 
             &:hover {
@@ -90,6 +112,7 @@
 
 .book-desc-div {
     margin-top: 5em;
+
     .book-desc {
         background-color: rgb(198, 213, 182);
         border-radius: 1em;
@@ -122,14 +145,22 @@
         text-align: center;
         margin-bottom: 2em;
         z-index: 7;
-        width: 8rem;
+        min-width: 8rem;
         align-self: center;
     }
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .genre {
     background-color: $btn1;
     transition: 0.4s;
+    text-align: center;
+    margin: auto;
 
     &:hover {
         background-color: $btn1hover;
@@ -142,7 +173,9 @@
 
     // overflow: scroll;
     .category-title {
-        width: 12rem;
+        // min-width: 12rem;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     .scroll-btn {
@@ -159,6 +192,7 @@
             margin-right: -2em;
         }
     }
+
     .scroll-btn {
         background-color: $btn2;
         position: absolute;
@@ -178,6 +212,15 @@
     scrollbar-width: none;
     /* Firefox */
 
+    .book-card {
+        margin-right: 2em;
+    }
+}
+
+.book-card {
+    height: 26em;
+    min-height: 26em;
+    width: 15.5em;
 
     .book-title {
         font-weight: 600;
@@ -186,12 +229,6 @@
     .book-price {
         font-weight: 500;
     }
-}
-
-.book-card {
-    margin-right: 2em;
-    min-height: 25em;
-    min-width: 15em;
 
     display: flex;
     flex-direction: column;
@@ -199,7 +236,9 @@
 
     border-radius: 5px;
     box-shadow: 5px 5px 8px #0d0d0d17;
-    
+    transition: 0.4s;
+
+
     .last {
         margin-right: 0;
     }
@@ -214,10 +253,20 @@
 
         .book-cover {
             border-radius: 5px;
-                width: 80%;
-                margin: auto;
+            width: 80%;
+            margin: auto;
+            transition: 0.4s;
         }
     }
+
+    &:hover {
+        .book-cover {
+            width: 85%;
+        }
+
+        box-shadow: 2px 2px 8px #0d0d0d3e;
+    }
+
     .book-card-info {
         padding: 1.5em;
         display: flex;

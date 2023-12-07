@@ -1,0 +1,160 @@
+@media screen and (min-width: 1200px) {
+    .contact-form {
+        width: 70vw;
+        margin: auto;
+        margin-top: 6em;
+        text-align: center;
+
+        form {
+            padding: 6em;
+        }
+
+        select,
+        textarea,
+        button {
+            width: 98%;
+            margin: auto;
+        }
+
+        button {
+            margin-top: 2em;
+        }
+
+        .names {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            // grid-template-columns: repeat(2, 1fr);
+            grid-template-areas: "fnlabel lnlabel"
+                "fninput lninput";
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    .contact-form {
+        width: 80vw;
+        margin: auto;
+        margin-top: 6em;
+        text-align: center;
+
+        form {
+            padding: 2em;
+        }
+
+        input,
+        label {
+            margin: 0.7em;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+
+        select,
+        textarea,
+        button {
+            width: 98%;
+            margin: auto;
+        }
+
+        button {
+            margin-top: 2em;
+        }
+
+        .names {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .contact-form {
+        width: 70vw;
+        margin: auto;
+        margin-top: 6em;
+        text-align: center;
+
+        form {
+            padding: 1.5em;
+        }
+
+        input,
+        label {
+            margin: 0.7em;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+
+        select,
+        textarea,
+        button {
+            width: 98%;
+            margin: auto;
+        }
+
+        button {
+            margin-top: 2em;
+        }
+
+        .names {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "fnlabel"
+                "fninput"
+                "lnlabel"
+                "lninput";
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .contact-form {
+        width: 70vw;
+        margin: auto;
+        margin-top: 6em;
+        text-align: center;
+
+        form {
+            padding: 1.5em;
+        }
+
+        input,
+        label {
+            margin: 0.7em;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+
+        select,
+        textarea,
+        button {
+            width: 98%;
+            margin: auto;
+        }
+
+        button {
+            margin-top: 2em;
+        }
+
+        .names {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "fnlabel"
+                "fninput"
+                "lnlabel"
+                "lninput";
+            width: 100%;
+        }
+    }
+}

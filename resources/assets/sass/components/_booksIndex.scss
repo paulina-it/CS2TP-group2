@@ -1,0 +1,13 @@
+.books-list {
+    width: 90%;
+    margin: auto;
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .book-card {
+        max-width: 15em;
+        margin-bottom: 2em;
+    }
+}

@@ -8,16 +8,19 @@
 @import './components/navbar';
 @import './components/footer';
 @import './components/bookPage';
+@import './components/booksIndex';
+@import './components/booksCreate';
 @import './components/home';
 @import './components/aboutUs';
 @import './components/shoppingCart';
 @import './components/checkOut';
+@import './components/homepage';
+@import './components/contact';
 
 body {
     background-color: $mainColour;
     color: $textColour;
     z-index: auto;
-    // width: 100vw;
 }
 html,body
 {
@@ -26,4 +29,30 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+}
+
+.main {
+    min-height: 80vh;
+    width: 80vw;
+    margin: auto;
+}
+
+.auth-div {
+    background-color: $navColour;
+}
+
+.auth-form {
+    background-color: $navTopColour;
+
+    .auth-btn {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+  }
 }
