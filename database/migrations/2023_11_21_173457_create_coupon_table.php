@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('coupon', function (Blueprint $table) {
-            $table->id('coupon_id');
+            $table->id();
             $table->string('coupon_name');
             $table->integer('discount');
             $table->timestamps();

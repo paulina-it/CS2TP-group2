@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_rating', function (Blueprint $table) {
-            $table->id('product_rating_id');
+            $table->id();
             $table->enum('score', ['1', '2', '3', '4', '5']);
             $table->string('review');
             $table->bigInteger('user_id')->unsigned();
