@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/images/No text white logo.png" type="image/png">
-    <title>flippinpages</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
-
-</head>
-
-<body>
-    @include('layouts.navigation')
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
+@section('main')
     <div class="contact-form">
         <h1>We'd Love to Hear From You</h1>
         <p class="mb-4">Whether you want to request a specific book, find out more about our services, or get support -
@@ -117,6 +114,4 @@
             if ()
         })
     </script>
-</body>
-
-</html>
+@endsection

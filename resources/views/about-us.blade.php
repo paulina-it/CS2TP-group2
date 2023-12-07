@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset ="utf-8">
-        <title>About us</title>
-        <link rel="stylesheet" href="\CS2TP-group2\resources\assets\sass\components\_aboutUs.scss">
-        @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
-    </head>
-    <body>
-      @include('layouts.navigation')
+@extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
+@section('main')
         <section>
           <div class="about-us">
             <h1>About Us</h1>
@@ -27,6 +29,4 @@
 
         <script src="app.js"></script>
       
-    </body>
-    @include('layouts.footer')
-</html>
+@endsection

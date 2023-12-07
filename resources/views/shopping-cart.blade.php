@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="\CS2TP-group2\resources\assets\sass\components\_shoppingCart.scss">
-    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/cart.js'])
-</head>
-<body>
-    @include('layouts.navigation')
+@extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
+@section('main')
     <h1 class="title">Shopping Cart</h1>
 
     <div class="small-container cart-page">
@@ -105,7 +105,4 @@
     <script src="app.js"></script>
     <script src="cart.js"></script>
 
-    @include('layouts.footer')
-
-</body>
-</html>
+@endsection
