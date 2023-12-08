@@ -1,5 +1,5 @@
 <footer class="flex w-100 justify-around content-center">
-    <img src="/images/Logo in colour white outline.png" alt="" class="footer-logo">
+    <img src="https://i.postimg.cc/ncnLCr7K/Logo-in-colour-white-outline.png" alt="" class="footer-logo">
     <div class="footer-info flex">
         <div class="footer-discovery footer-section flex flex-col">
             <h3 class="footer-title">Discovery</h3>

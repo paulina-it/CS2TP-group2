@@ -5,7 +5,7 @@
 @section('main')
     <div class="main home-container">
         <div class="banner">
-            <img src="images/main-banner.jpg" alt="">
+            <img src="https://i.postimg.cc/jS5d41ML/main-banner.jpg" alt="main banner">
         </div>
         <div class="spacer"></div>
         <div class="similar section flex flex-col justify-around m-auto mt-20">
@@ -68,18 +68,20 @@
                 <div class="genres-div">
                     <?php
                     $genres = ['romance', 'sci-fi', 'fiction', 'fantasy', 'novel', 'sonnet'];
-                    $i = 1;
+                    $genresBg = ['https://i.postimg.cc/SN4nCD0M/genre1.jpg', 'https://i.postimg.cc/P5rNFJ5f/genre2.jpg', 'https://i.postimg.cc/kXyBcK9h/genre3.jpg', 'https://i.postimg.cc/KcBK1CWb/genre4.jpg', 'https://i.postimg.cc/wBnvvkc3/genre5.jpg', 'https://i.postimg.cc/NMT0rrpD/genre6.jpg'];
+                    // $i = 1;
                     ?>
-                    @foreach ($genres as $genre)
+                    @foreach ($genres as $index => $genre)
                         <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
                             <div class="genre">
                                 <h4 class="genre-text">
                                     {{ $genre }}
                                 </h4>
-                                <img class="genre-bg" src="{{ '/images/genre' . $i . ".jpg"}}" alt="{{$genre}}">
+                                {{-- <img class="genre-bg" src="{{ '/images/genre' . $i . ".jpg"}}" alt="{{$genre}}"> --}}
+                                <img class="genre-bg" src="{{ $genresBg[$index] }}" alt="{{ $genre }}">
                             </div>
                         </a>
-                        <?php $i++; ?>
+                        {{-- ?php $i++; ?> --}}
                     @endforeach
                 </div>
             </div>
