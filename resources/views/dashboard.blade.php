@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 mb-10 h-full">
+    <div class="py-12 mb-10 main">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-amber-50 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">

@@ -15,6 +15,7 @@
 @import './components/shoppingCart';
 @import './components/checkOut';
 @import './components/contact';
+@import './components/screens/appMedia';
 
 body {
     background-color: $mainColour;
@@ -32,8 +33,7 @@ html,body
 }
 
 .main {
-    min-height: 80vh;
-    width: 80vw;
+    min-height: 70vh;
     margin: auto;
 }
 

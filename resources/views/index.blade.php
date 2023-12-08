@@ -67,7 +67,7 @@
                 <h2>Genres</h2>
                 <div class="genres-div">
                     <?php
-                    $genres = ['romamce', 'sci-fi', 'fiction', 'fantasy', 'novel', 'sonnet'];
+                    $genres = ['romance', 'sci-fi', 'fiction', 'fantasy', 'novel', 'sonnet'];
                     $i = 1;
                     ?>
                     @foreach ($genres as $genre)

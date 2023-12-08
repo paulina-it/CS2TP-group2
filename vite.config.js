@@ -5,7 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/assets/scss/app.css',
+                'resources/assets/sass/app.scss',
                 'resources/assets/js/app.js',
                 'resources/assets/js/bookPage.js',
                 'resources/assets/js/navbar.js',

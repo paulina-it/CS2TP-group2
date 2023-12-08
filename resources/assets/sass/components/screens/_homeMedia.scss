@@ -1,0 +1,132 @@
+@media screen and (min-width: 1600px) {
+    .home-container {
+
+        .banner {
+            top: 4em;
+
+            height: 45em;
+            overflow: hidden;
+        }
+
+        .spacer {
+            height: 25vw;
+        }
+
+        .spacer-smaller {
+            height: 20vh;
+        }
+
+        .categories {
+            margin-top: 3em;
+            grid-template-columns: 2fr 1.5fr;
+            grid-template-areas: "languages genres";
+        }
+    }
+
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1599px) {
+    .home-container {
+        width: 60%;
+
+        .banner {
+            top: 4em;
+
+            height: 27em;
+            overflow: hidden;
+        }
+
+        .spacer {
+            height: 25vw;
+        }
+
+        .spacer-smaller {
+            height: 30vh;
+        }
+        .categories {
+            margin-top: 3em;
+            grid-template-columns: 2fr 1.5fr;
+            grid-template-areas: "languages genres";
+        }
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    .home-container {
+        .banner {
+            top: 4em;
+
+            height: 27em;
+            overflow: hidden;
+        }
+
+        .spacer {
+            height: 25vw;
+        }
+
+        .spacer-smaller {
+            height: 30vh;
+        }
+
+        .categories {
+            margin-top: 3em;
+            grid-template-areas: "languages"
+            "genres";
+
+            .languages-div, .genres-div {
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .home-container {
+        .banner {
+            top: 4em;
+
+            height: 27em;
+            overflow: hidden;
+        }
+
+        .spacer {
+            height: 25vw;
+        }
+
+        .spacer-smaller {
+            height: 30vh;
+        }
+        .categories {
+            margin-top: 3em;
+            grid-template-areas: "languages"
+            "genres";
+        }
+    }
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .home-container {
+        .banner {
+            top: 4em;
+
+            height: 27em;
+            overflow: hidden;
+        }
+
+        .spacer {
+            height: 25vw;
+        }
+
+        .spacer-smaller {
+            height: 30vh;
+        }
+        .categories {
+            margin-top: 3em;
+            grid-template-columns: 2fr 1.5fr;
+            grid-template-areas: "languages"
+            "genres";
+        }
+    }
+}
