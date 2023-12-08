@@ -22,17 +22,12 @@ class BasketController extends Controller
             if ($request->session()->has('books')) {
                 $basket = $request->session()->get('books');
             } else {
-                $basket = collect();
+                $basket = [];
             }
         }
         $amounts = array();
-
         foreach ($basket as $elem) {
-            if (Auth::check()) {
-                $books->push(Book::where('id', $elem['book_id'])->get());
-            } else {
-                $books->push(Book::where('id', $elem)->get());
-            }
+            $books->push(Book::where('id', $elem['book_id'])->get());
             array_push($amounts, $elem['quantity']);     
         }
         return view('/basket', [
@@ -58,9 +53,25 @@ class BasketController extends Controller
             }
         } else {
             if ($request->session()->has('books')) {
-                $request->session()->push('books', $book_id);
+                $book_exists = false;
+                $i = 0;
+                $books = $request->session()->get('books');
+                foreach ($books as $book) {
+                    if ($book['book_id'] == $book_id) {
+                        array_splice($books, $i, 1);
+                        $book['quantity'] += request('product-qty');
+                        $book_exists = true;
+                        array_push($books, $book);
+                        $request->session()->put('books', $books);
+                    }
+                    $i++;
+                }
+                if (!$book_exists) {
+                    $request->session()->push('books', ["book_id" => $book_id, "quantity" => request('product-qty')]);
+                }
+                
             } else {
-                $request->session()->put('books', collect());
+                $request->session()->put('books', [["book_id" => $book_id, "quantity" => request('product-qty')]]);
             }
         }
 
@@ -71,10 +82,15 @@ class BasketController extends Controller
             $user_id = Auth::id();
             $item = cart::where('book_id', $book_id)->where('user_id', $user_id)->delete();;
         } else {
-            $basket = $request->session()->get('books');
-            $key = $basket->search($book_id);
-            $basket->forget($key);
-            $request->session()->put('books', $basket);
+            $i = 0;
+            $books = $request->session()->get('books');
+            foreach ($books as $book) {
+                if ($book['book_id'] == $book_id) {
+                    array_splice($books, $i, 1);
+                    $request->session()->put('books', $books);
+                }
+                $i++;
+            }
         }
         return redirect('basket');
     }

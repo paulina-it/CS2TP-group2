@@ -57,7 +57,7 @@
                     <x-nav-link :href="route('books.index')">
                         <p>Books</p>
                     </x-nav-link>
-                    <x-nav-link :href="route('about')">
+                    <x-nav-link :href="route('about-us')">
                         <p>About Us</p>
                     </x-nav-link>
                     <x-nav-link :href="route('contact.show')">
@@ -159,9 +159,9 @@
                 <ul class="lg:flex space-x-4">
                     <li class="mobile-nav-link"><a class="" href=" {{ route('home') }} "
                             :active="request() - > routeIs('home')">Home</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">Languages</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">About Us</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">Contact Us</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('books.index') }} ">Books</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('about-us') }} ">About Us</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('contact.show') }} ">Contact Us</a></li>
                 </ul>
             </div>
 
