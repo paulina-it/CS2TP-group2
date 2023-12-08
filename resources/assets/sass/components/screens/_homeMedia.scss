@@ -20,6 +20,24 @@
             margin-top: 3em;
             grid-template-columns: 2fr 1.5fr;
             grid-template-areas: "languages genres";
+
+            .languages-div {
+                grid-area: "languages";
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .language {
+                    margin: 2em;
+                    // margin: auto;
+                    margin-left: 0;
+                }
+            }
+
+            .genres-div {
+                grid-area: "genres";
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
 
@@ -43,10 +61,28 @@
         .spacer-smaller {
             height: 30vh;
         }
+
         .categories {
             margin-top: 3em;
             grid-template-columns: 2fr 1.5fr;
             grid-template-areas: "languages genres";
+
+            .languages-div {
+                grid-area: "languages";
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .language {
+                    margin: 2em;
+                    margin-left: 0;
+                }
+            }
+
+            .genres-div {
+                grid-area: "genres";
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
 }
@@ -71,11 +107,27 @@
         .categories {
             margin-top: 3em;
             grid-template-areas: "languages"
-            "genres";
+                "genres";
 
-            .languages-div, .genres-div {
-                display: flex;
+            .languages-div,
+            .genres-div {
+                display: grid;
                 justify-content: space-around;
+            }
+
+            .languages-div {
+                grid-area: "languages";
+                grid-template-columns: repeat(2, 1fr);
+
+                .language {
+                    margin: auto;
+                    margin-bottom: 2em;
+                }
+            }
+
+            .genres-div {
+                grid-area: "genres";
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     }
@@ -97,10 +149,30 @@
         .spacer-smaller {
             height: 30vh;
         }
+
         .categories {
             margin-top: 3em;
-            grid-template-areas: "languages"
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "languages"
             "genres";
+
+            .languages-div {
+                grid-area: "languages";
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .language {
+                    margin: auto;
+                    margin-bottom: 2em;
+                }
+            }
+
+            .genres-div {
+                grid-area: "genres";
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
 }
@@ -122,11 +194,30 @@
         .spacer-smaller {
             height: 30vh;
         }
+
         .categories {
             margin-top: 3em;
-            grid-template-columns: 2fr 1.5fr;
-            grid-template-areas: "languages"
-            "genres";
+            grid-template-columns: 1fr;
+            grid-template-areas: "languages" "genres";
+            text-align: center;
+
+
+            .languages-div {
+                grid-area: "languages";
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .language {
+                    margin: auto;
+                    margin-bottom: 2em;
+                }
+            }
+
+            .genres-div {
+                grid-area: "genres";
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     }
 }

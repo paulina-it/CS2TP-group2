@@ -67,8 +67,8 @@
                 <h2>Genres</h2>
                 <div class="genres-div">
                     <?php
-                    $genres = ['romance', 'sci-fi', 'fiction', 'fantasy', 'novel', 'sonnet'];
-                    $genresBg = ['https://i.postimg.cc/SN4nCD0M/genre1.jpg', 'https://i.postimg.cc/P5rNFJ5f/genre2.jpg', 'https://i.postimg.cc/kXyBcK9h/genre3.jpg', 'https://i.postimg.cc/KcBK1CWb/genre4.jpg', 'https://i.postimg.cc/wBnvvkc3/genre5.jpg', 'https://i.postimg.cc/NMT0rrpD/genre6.jpg'];
+                    $genres = ['romance', 'sci-fi', 'fiction', 'fantasy', 'novel', 'non-fiction'];
+                    $genresBg = ['https://i.postimg.cc/SN4nCD0M/genre1.jpg', 'https://i.postimg.cc/P5rNFJ5f/genre2.jpg', 'https://i.postimg.cc/kXyBcK9h/genre3.jpg', 'https://i.postimg.cc/KcBK1CWb/genre4.jpg', 'https://i.postimg.cc/wBnvvkc3/genre5.jpg', 'https://i.postimg.cc/NMT0rrpD/genre6.jpg', 'https://i.postimg.cc/xT1smRg1/genre7.jpg', 'https://i.postimg.cc/L6Qx310B/genre8.jpg'];
                     // $i = 1;
                     ?>
                     @foreach ($genres as $index => $genre)
@@ -84,6 +84,12 @@
                         {{-- ?php $i++; ?> --}}
                     @endforeach
                 </div>
+                <p class="block-of-text mt-10">Delve into the complexities of the human experience with our literary fiction, explore diverse
+                    non-fiction subjects, and stay updated with our constantly evolving database. We're committed to
+                    providing you with the latest releases, timeless classics, and hidden gems, ensuring an enriching
+                    reading experience. Whether you're a seasoned bookworm or just starting your literary journey, our
+                    online bookshop is your portal to a world of stories, ideas, and knowledge. Explore, discover, and
+                    embark on literary adventures with us!</p>
             </div>
         </div>
     </div>
