@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="/images/No text white logo.png" type="image/png">
+    <link rel="shortcut icon" href="https://i.postimg.cc/bvSyKtcP/No-text-white-logo.png" type="image/png">
 
     <title>{{ config('app.name', 'flippinpages') }}</title>
 

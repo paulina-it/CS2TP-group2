@@ -106,12 +106,4 @@
             <button id="contact-submit-btn" type="submit" class="text-white py-2 px-4 rounded">Send</button>
         </form>
     </div>
-
-    @include('layouts.footer')
-
-    <script>
-        document.querySelector('#contact-submit-btn').addEventListener('click', () => {
-            if ()
-        })
-    </script>
 @endsection

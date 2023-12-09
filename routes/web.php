@@ -21,12 +21,14 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function () {return view('about-us');})->name('about-us'); 
-Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
+// Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
 Route::get('/cart', function () {return view('shopping-cart');})->name('shopping-cart');
 Route::get('/checkout', function () {return view('checkout');})->name('checkout');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
+Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
+
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');

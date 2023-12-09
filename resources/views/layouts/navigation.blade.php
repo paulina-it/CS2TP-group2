@@ -7,7 +7,7 @@
             <div class="top-bar flex justify-between">
                 <div class="shrink-0 flex items-center flex">
                     <a href="{{ route('home') }}" class="flex">
-                        <img id="nav-logo" src="/images/No text black logo.png" alt="" class="mr-5">
+                        <img id="nav-logo" src="https://i.postimg.cc/2SKjcxtT/No-text-black-logo.png" alt="" class="mr-5">
                         <h2 class="text-black text-xl m-auto">flippinpages</h2>
                     </a>
                 </div>
