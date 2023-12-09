@@ -1,0 +1,29 @@
+{
+  "public/fonts/Mexa-Regular.ttf": {
+    "file": "assets/Mexa-Regular-bf641410.ttf",
+    "src": "public/fonts/Mexa-Regular.ttf"
+  },
+  "resources/assets/js/app.js": {
+    "file": "assets/app-ed5f05ff.js",
+    "imports": [
+      "resources/assets/js/navbar.js"
+    ],
+    "isEntry": true,
+    "src": "resources/assets/js/app.js"
+  },
+  "resources/assets/js/bookPage.js": {
+    "file": "assets/bookPage-17bd3ad8.js",
+    "isEntry": true,
+    "src": "resources/assets/js/bookPage.js"
+  },
+  "resources/assets/js/navbar.js": {
+    "file": "assets/navbar-04d3aad0.js",
+    "isEntry": true,
+    "src": "resources/assets/js/navbar.js"
+  },
+  "resources/assets/sass/app.scss": {
+    "file": "assets/app-74538721.css",
+    "isEntry": true,
+    "src": "resources/assets/sass/app.scss"
+  }
+}
