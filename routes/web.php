@@ -28,9 +28,9 @@ Route::get('/checkout', function () {return view('checkout');})->name('checkout'
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
 
-Route::post('/basket/{id}', [BasketController::class, 'store'])->middleware('auth')->name('basket.store');
-Route::get('/basket', [BasketController::class, 'index'])->middleware('auth')->name('basket');
-Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->middleware('auth')->name('basket.destroy');
+Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');
+Route::get('/basket', [BasketController::class, 'index'])->name('basket');
+Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
 
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order', [OrderController::class, 'create'])->name('order.create');

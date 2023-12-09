@@ -17,18 +17,22 @@
                 </ul>
             </div>
         @endif
+        @php
+            $total = 0;
+        @endphp 
         @for ($i = 0; $i < count($books); $i++)
             <p>{{ $books[$i][0]['book_name'] }}</p>
             <p>{{ $books[$i][0]['description'] }}</p>
             <p>{{ $books[$i][0]['author'] }}</p>
             <p>{{ $books[$i][0]['price'] }}</p>
+            <p>{{ $amounts[$i] }}</p>
             <form action="{{ route('basket.destroy', $books[$i][0]['id']) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" value="Remove"/>
             </form>
             @php
-            $total += $books[$i][0]['price'];
+            $total += $books[$i][0]['price'] * $amounts[$i];
             @endphp   
         @endfor
         <p>Total: £{{$total}}</p>
