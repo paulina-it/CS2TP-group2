@@ -11,17 +11,21 @@ Flippinpages is an e-commerce project that aims to provide a platform for foreig
  - [SVGrepo - svg icons](https://www.svgrepo.com/)
  - [Canva - image generation](https://www.canva.com/ai-image-generator/)
  - [MyBook - pages screenshots](https://mybook.ru/)
+ - [GoogleFonts](https://fonts.google.com/)
+ - [DigitalOcean - database hosting](https://cloud.digitalocean.com/admin_locked)
 
 
 ## 🚀 About Us
 
-This project is created by Team 2 for CS2TP, contributors are:
+This project is created by Team 2 for CS2TP, team members are:
 
 - Polina Bovykina (220168863) - full-stack developer and team-lead
 - Sayira Begum (220208996) - back-end developer
 - Oliver Burnett-Kiernan (220197139) - back-end developer
 - Nihar Priyadarshi (220405713) - back-end developer 
 - Mubtasim Bepari (220050904) - front-end developer
+- Joel Campbell (220088158) - front-end developer
+- Akash Bhatti (200112150) - front-end developer
 
 
 ## Screenshots
@@ -31,7 +35,7 @@ This project is created by Team 2 for CS2TP, contributors are:
 ![App Screenshot](https://i.postimg.cc/Fsg1YWPK/Screenshot-2023-12-09-at-16-30-28.jpg)
 
 ## Features
-
+### MVP | Released 10/12/2023
 - Display of products fetched from the database
 - Product search through prompt
 - Clicking on a category redirects user to the products page with solely that category
