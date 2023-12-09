@@ -26,6 +26,9 @@ class OrderController extends Controller
                 $basket = collect();
             }
         }
+        if (Count($basket) == 0) {
+            return redirect('basket');
+        }
         //$amounts = array();
 
         foreach ($basket as $elem) {
