@@ -89,11 +89,8 @@
                     @endforeach
                 </div>
                 <p class="block-of-text mt-10">Delve into the complexities of the human experience with our literary fiction, explore diverse
-                    non-fiction subjects, and stay updated with our constantly evolving database. We're committed to
-                    providing you with the latest releases, timeless classics, and hidden gems, ensuring an enriching
-                    reading experience. Whether you're a seasoned bookworm or just starting your literary journey, our
-                    online bookshop is your portal to a world of stories, ideas, and knowledge. Explore, discover, and
-                    embark on literary adventures with us!</p>
+                    non-fiction subjects, and stay updated with our constantly evolving database. Whether you're a seasoned bookworm or just starting your literary journey, our
+                    online bookshop is your portal to a world of stories, ideas, and knowledge.</p>
             </div>
         </div>
     </div>
