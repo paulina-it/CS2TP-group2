@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
+use App\Models\OrderItem;
 use App\Models\Order;
 use App\Models\Book;
 use App\Models\Payment;
@@ -55,22 +56,29 @@ class OrderController extends Controller
         } else {
             $books = $request->session()->get('books');
         }
-        
-        
-        //$order_status = new Order_Status;
-        
+        $order = new Order;
+        $order->status = "pending";
+        $order->ordered_date = "2023-12-09";
+        if (Auth::check()) {
+            $order->user_id = $user_id;
+        }
+        $order->save();
+
+        $order_id = $order->id;
+
         foreach($books as $book) {
             if (Auth::check()) {
                 $book = $book['book_id'];
             }
-            $order = new Order;
-            $order->book_id = $book;
-            $order->save();
+            $orderItem = new OrderItem;
+            $orderItem->book_id = $book;
+            $orderItem->order_id = $order_id;
+            $orderItem->save();
         }
         if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
         } else {
-            $request->session()->put('books', collect());
+            $request->session()->put('books', []);
         }
         return redirect('basket')->with('success', 'Order Complete');
     }
