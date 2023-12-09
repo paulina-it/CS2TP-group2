@@ -21,7 +21,7 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function () {return view('about-us');})->name('about-us'); 
-Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
+// Route::get('/languages', function () {return view('languages');})->name('languages'); //temp?
 Route::get('/cart', function () {return view('shopping-cart');})->name('shopping-cart');
 Route::get('/checkout', function () {return view('checkout');})->name('checkout');
 

@@ -10,7 +10,7 @@
                     window.location = "/books/" + {{ $books[0]->id }};
                 </script>
             @else
-                <h2 class="m-5">Search results:</h2>
+                <h2 class="m-5">Search results for "{{$search}}":</h2>
             @endif
         @else
             <h2 class="m-9 text-center">List of all 

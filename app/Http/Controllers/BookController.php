@@ -18,7 +18,8 @@ class BookController extends Controller
                 $query->where('book_name', 'like', '%' . $search . '%')
                 ->orWhere('author', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('genre', 'like', '%' . $search . '%');
+                ->orWhere('genre', 'like', '%' . $search . '%')
+                ->orWhere('language', 'like', '%' . $search . '%');
             })->get();
         }
         return view('books/index', [
