@@ -78,11 +78,11 @@
                                     to Cart</button>
                             </div>
                         </form>
-                        <form action="" method="post">
+                        {{-- <form action="" method="post">
                             <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
                                 Add to Wishlist
-                            </button>
-                        </form>
+                            </button> --}}
+                        {{-- </form> --}}
                     </div>
                 </div>
             </div>

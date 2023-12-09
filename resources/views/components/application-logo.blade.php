@@ -1,1 +1,2 @@
-<img src="/images/Logo black outline.png" alt="" class="w-40">
+<img src="https://i.postimg.cc/ZnxKwzky/Logo-black-outline.png" alt="" class="w-40">
+
