@@ -73,8 +73,13 @@
                                         max="10" value="1">
                                     <button class="qty-count qty-count--add" type="button">+</button>
                                 </div>
+                                @if ($book['quantity'] <= 0) 
+                                @php
+                                    $disabled = true;
+                                @endphp
+                                @endif
                                 <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"
-                                    value="Add to Cart">Add
+                                    value="Add to Cart" {{$disabled ?? false ? ' disabled' :''}}>Add
                                     to Cart</button>
                             </div>
                         </form>
@@ -134,7 +139,7 @@
                                         <div class="book-card-info">
                                             <p class="book-author">{{ $otherBook['author'] }}</p>
                                             <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <p class="book-price">£{{ number_format((float) $book['price'], 2, '.', '') }}
+                                            <p class="book-price">£{{ number_format((float) $otherBook['price'], 2, '.', '') }}
                                             </p>
                                         </div>
                                     </div>
