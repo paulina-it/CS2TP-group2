@@ -29,7 +29,7 @@ class OrderController extends Controller
         if (Count($basket) == 0) {
             return redirect('basket');
         }
-        //$amounts = array();
+        $amounts = array();
 
         foreach ($basket as $elem) {
             if (Auth::check()) {
@@ -37,11 +37,11 @@ class OrderController extends Controller
             } else {
                 $books->push(Book::where('id', $elem)->get());
             }
-            //array_push($amounts, $elem['Amount']);     
+            array_push($amounts, $elem['quantity']);     
         }
         return view('/order', [
             'books' => $books,
-            //'amounts' => $amounts,
+            'amounts' => $amounts,
         ]);
     }
 
@@ -64,7 +64,7 @@ class OrderController extends Controller
         $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
-        }
+        
         $order->save();
 
         $order_id = $order->id;
@@ -78,10 +78,12 @@ class OrderController extends Controller
             $orderItem->order_id = $order_id;
             $orderItem->save();
         }
-        if (Auth::check()) {
+        // if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
+        // } else {
+        //     $request->session()->put('books', []);
         } else {
-            $request->session()->put('books', []);
+            return redirect('login')->with('message', 'Please, login to place an order');
         }
         return redirect('basket')->with('success', 'Order Complete');
     }

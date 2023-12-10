@@ -29,7 +29,7 @@
                             <br>
                             <a href="">Remove</a>
                         </div>
-                    </div>                
+                    </div>
                 </td>
                 <td><input type="number" value="1"></td>
                 <td>£12.90</td>
@@ -45,7 +45,7 @@
                             <br>
                             <a href="">Remove</a>
                         </div>
-                    </div>                
+                    </div>
                 </td>
                 <td><input type="number" value="1"></td>
                 <td>£12.90</td>
@@ -74,7 +74,25 @@
     <div class="recommendedItems">
         <h2 class="like-container">You may also like...</h2>
         <div class="recommendedItems-container">
-            <div class="recommendedItem">
+            @for ($i = 0; $i < 3; $i++)
+                @foreach ($otherBooksInLanguage as $otherBook)
+                    <a href="{{ route('books.show', $otherBook['id']) }}">
+                        <div class="book-card">
+                            <div class="book-card-cover">
+                                <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
+                                    alt="">
+                            </div>
+                            <div class="book-card-info">
+                                <p class="book-author">{{ $otherBook['author'] }}</p>
+                                <p class="book-title">{{ $otherBook['book_name'] }}</p>
+                                <p class="book-price">£{{ number_format((float) $book['price'], 2, '.', '') }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            @endfor
+            {{-- <div class="recommendedItem">
                 <img src="/images/Anna-Karenina.jpg" alt="Item 1">
                 <p>Anna Karenina</p>
                 <small>Price: £12.90</small>
@@ -97,7 +115,7 @@
                 <p>Anna Karenina</p>
                 <small>Price: £12.90</small>
                 <button>Add to Cart</button>
-            </div>
+            </div> --}}
 
         </div>
     </div>

@@ -151,7 +151,7 @@
                 {{-- {{ __('Profile') }} --}}
                 <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
             </x-nav-link>
-            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+            <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                 {{-- <p>Cart</p> --}}
                 <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon">
             </x-nav-link>
