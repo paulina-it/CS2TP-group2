@@ -56,6 +56,7 @@ class BookController extends Controller
         $image = $request->file('mainImage');
         $imageName = $image->getClientOriginalName();
         $request->file('mainImage')->storeAs('public', $imageName);
+        
         $otherImageNames = array();
         foreach(request('otherImages') as $otherImage) {
             $otherImage->storeAs('public', $otherImage->getClientOriginalName());
@@ -84,7 +85,19 @@ class BookController extends Controller
         ]);
     }
 
-    public function save($id) {
+    public function save($id, Request $request) {
+        if ($request->file('mainImage') != null) {
+            $image = $request->file('mainImage');
+            $imageName = $image->getClientOriginalName();
+            $request->file('mainImage')->storeAs('public', $imageName);
+        }
+        if (request('otherImages') != null) {
+            $otherImageNames = array();
+            foreach(request('otherImages') as $otherImage) {
+                $otherImage->storeAs('public', $otherImage->getClientOriginalName());
+                array_push($otherImageNames, $otherImage->getClientOriginalName());
+            }
+        }
         $book = Book::findOrFail($id);
         $book->book_name = request('name');
         $book->genre = request('genre');
@@ -94,10 +107,15 @@ class BookController extends Controller
         $book->type = request('type');
         $book->price = request('price');
         $book->quantity = request('stock');
-        //add image
-        $book->ISBN = request('isbn');
+        if ($request->file('mainImage') != null) {
+            $book->mainImage = $imageName;
+        }
+        if (request('otherImages') != null) {
+            $book->otherImages = json_encode($otherImageNames);
+        }
+        $book->ISBN = request('ISBN');
         $book->save();
-        return view('books/show', ['book' => $book]);
+        return redirect('books');
     }
 
     public function destroy($id) {
