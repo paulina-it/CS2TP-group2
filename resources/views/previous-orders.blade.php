@@ -11,6 +11,9 @@
 @endsection
 @section('main')
     <div class="main">
-        <h1>Previous Orders</h1>
+        <h1 class="title">Previous Orders</h1>
+        <div class="prev-orders-list">
+            <h3 class="m-9 text-center">No previous orders</h2>
+        </div>
     </div>
 @endsection
