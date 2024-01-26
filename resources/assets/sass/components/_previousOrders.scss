@@ -1,13 +1,60 @@
 .title {
     text-align: center;
-    padding-top: 50px;
+    padding: 50px 0px 20px;
 }
 
 .prev-orders-list {
     width: 90%;
-    margin: auto;
+    margin: 20px auto;
     margin-top: 2em;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+}
+
+.prev-orders {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+}
+
+
+th {
+    text-align: left;
+    padding: 2px 15px 5px;
+    background: #633A31;
+    color: $mainColour;
+    font-weight: 100px;
+}
+
+td {
+    padding: 15px 10px;
+}
+
+td input {
+    height: 50px;
+    width: 60px;
+    padding: 10px;
+}
+
+td img {
+    margin-right: 10px;
+    width: 60px;
+    height: 80px;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+th:last-child {
+    text-align: right;
+}
+
+.book-img {
+    margin: 5px 0px;
 }
