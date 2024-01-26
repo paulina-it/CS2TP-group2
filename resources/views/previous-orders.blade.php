@@ -25,7 +25,7 @@
                         <div class="prev-order">
                             <img class="book-img" src="/images/Anna-Karenina.jpg">
                             <div>
-                                <p>Anna Karenina</p>
+                                <p class="name">Anna Karenina</p>
                                 <small>Price: £12.90</small>
                                 <br>
                             </div>
@@ -41,7 +41,7 @@
                         <div class="prev-order">
                             <img class="book-img" src="/images/Eugene-Onegin.jpg">
                             <div>
-                                <p>Eugene Onegin</p>
+                                <p class="name">Eugene Onegin</p>
                                 <small>Price: £12.90</small>
                                 <br>
                             </div>
