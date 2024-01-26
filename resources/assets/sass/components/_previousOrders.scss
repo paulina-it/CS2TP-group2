@@ -17,9 +17,10 @@ table {
     border-collapse: collapse;
 }
 
-.prev-orders {
+.prev-order {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 
@@ -33,12 +34,7 @@ th {
 
 td {
     padding: 15px 10px;
-}
-
-td input {
-    height: 50px;
-    width: 60px;
-    padding: 10px;
+    align-items: center;
 }
 
 td img {
@@ -47,14 +43,19 @@ td img {
     height: 80px;
 }
 
-td:first-child {
-    text-align: left;
+.book-img {
+    margin: 5px 10px 0px 5px;
+}
+
+td:nth-child(2) {
+    text-align: center;
+    padding-right: 50px;
+}
+
+td:last-child {
+    text-align: center;
 }
 
 th:last-child {
-    text-align: right;
-}
-
-.book-img {
-    margin: 5px 0px;
+    text-align: center;
 }

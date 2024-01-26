@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><input type="number" value="1"></td>
+                    <td><p>1</p></td>
                     <td>£12.90</td>
                     <td>2024-01-05</td>
                 </tr>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><input type="number" value="1"></td>
+                    <td><p>1</p></td>
                     <td>£12.90</td>
                     <td>2023-11-17</td>
                 </tr>
