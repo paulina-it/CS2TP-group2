@@ -17,7 +17,6 @@
                 <tr>
                     <th>Product</th>
                     <th>Stock</th>
-                    <th>Total</th>
                     <th></th>
                 </tr>
                 <tr>
@@ -32,7 +31,6 @@
                         </div>
                     </td>
                     <td><p>In-stock</p></td>
-                    <td>£12.90</td>
                     <td><button class="cart-button">Add to Cart</button></td>
                 </tr>
 
@@ -48,7 +46,6 @@
                         </div>
                     </td>
                     <td><p>In-stock</p></td>
-                    <td>£12.90</td>
                     <td><button class="cart-button">Add to Cart</button></td>
                 </tr>
             </table>
