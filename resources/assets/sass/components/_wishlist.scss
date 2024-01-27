@@ -2,3 +2,80 @@
     text-align: center;
     padding: 50px 0px 20px;
 }
+
+.wishlist {
+    width: 90%;
+    margin: 20px auto;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.prev-order {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+th {
+    text-align: left;
+    padding: 3px 15px 6px;
+    background: #633A31;
+    color: $mainColour;
+    font-weight:normal;
+}
+
+td {
+    padding: 15px 10px;
+    align-items: center;
+    background-color: $navColour;
+}
+
+td img {
+    margin-right: 10px;
+    width: 60px;
+    height: 80px;
+}
+
+.book-img {
+    margin: 5px 10px 0px 5px;
+}
+
+td:nth-child(2) {
+    text-align: left;
+    padding-left: 0px;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+th:last-child {
+    text-align: center;
+}
+
+.name {
+    font-weight: 500;
+}
+
+.cart-button {
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.cart-button:hover {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #873921;
+    color: $mainColour;
+    border: none;
+    font-size: 16px;
+}

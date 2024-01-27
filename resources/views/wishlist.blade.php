@@ -12,5 +12,47 @@
 @section('main')
     <div class="main">
         <h1 class="title">Wishlist</h1>
+        <div class="wishlist">
+        <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Stock</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="prev-order">
+                            <img class="book-img" src="/images/Anna-Karenina.jpg">
+                            <div>
+                                <p class="name">Anna Karenina</p>
+                                <small>Price: £12.90</small>
+                                <br>
+                            </div>
+                        </div>
+                    </td>
+                    <td><p>In-stock</p></td>
+                    <td>£12.90</td>
+                    <td><button class="cart-button">Add to Cart</button></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="prev-order">
+                            <img class="book-img" src="/images/Eugene-Onegin.jpg">
+                            <div>
+                                <p class="name">Eugene Onegin</p>
+                                <small>Price: £12.90</small>
+                                <br>
+                            </div>
+                        </div>
+                    </td>
+                    <td><p>In-stock</p></td>
+                    <td>£12.90</td>
+                    <td><button class="cart-button">Add to Cart</button></td>
+                </tr>
+            </table>
+        </div>
+        {{-- <h3 class="m-9 text-center">No wishes</h3> --}}
     </div>
 @endsection

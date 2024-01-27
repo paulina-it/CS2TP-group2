@@ -52,7 +52,7 @@
                     <td>2023-11-17</td>
                 </tr>
             </table>
+            {{-- <h3 class="m-9 text-center">No previous orders</h3> --}}
         </div>
-
-        {{-- <h3 class="m-9 text-center">No previous orders</h2> --}}
+    </div>
 @endsection
