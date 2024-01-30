@@ -55,12 +55,12 @@ class BookController extends Controller
     }
     public function store(Request $request) {
         $image = $request->file('mainImage');
-        $imageName = str_replace(' ', '', request('author').$image->getClientOriginalName().Carbon::now()->toDateString());
+        $imageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName());
         $request->file('mainImage')->storeAs('public', $imageName);
         $otherImageNames = array();
         foreach(request('otherImages') as $otherImage) {
-            $otherImage->storeAs('public', str_replace(' ', '', request('author').$otherImage->getClientOriginalName().Carbon::now()->toDateString()));
-            array_push($otherImageNames, str_replace(' ', '', request('author').$otherImage->getClientOriginalName().Carbon::now()->toDateString()));
+            $otherImage->storeAs('public', str_replace(' ', '', request('author').Carbon::now()->toDateString().$otherImage->getClientOriginalName()));
+            array_push($otherImageNames, str_replace(' ', '', request('author').Carbon::now()->toDateString().$otherImage->getClientOriginalName()));
         }
         $book = new Book();
         $book->book_name = request('name');
