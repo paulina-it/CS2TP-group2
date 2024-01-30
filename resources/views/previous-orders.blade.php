@@ -10,7 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-    <div class="main">
+    <div class="prev-orders-main">
         <h1 class="title">Previous Orders</h1>
         <div class="prev-orders-list">
             <table>

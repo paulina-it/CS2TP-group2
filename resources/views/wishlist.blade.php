@@ -10,7 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-    <div class="main">
+    <div class="wishlist-main">
         <h1 class="title">Wishlist</h1>
         <div class="wishlist">
         <table>
@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="prev-order">
+                        <div class="wish">
                             <img class="book-img" src="/images/Anna-Karenina.jpg">
                             <div>
                                 <p class="name">Anna Karenina</p>
@@ -36,7 +36,7 @@
 
                 <tr>
                     <td>
-                        <div class="prev-order">
+                        <div class="wish">
                             <img class="book-img" src="/images/Eugene-Onegin.jpg">
                             <div>
                                 <p class="name">Eugene Onegin</p>
