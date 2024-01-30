@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -54,12 +55,12 @@ class BookController extends Controller
     }
     public function store(Request $request) {
         $image = $request->file('mainImage');
-        $imageName = $image->getClientOriginalName();
+        $imageName = str_replace(' ', '', request('author').$image->getClientOriginalName().Carbon::now()->toDateString());
         $request->file('mainImage')->storeAs('public', $imageName);
         $otherImageNames = array();
         foreach(request('otherImages') as $otherImage) {
-            $otherImage->storeAs('public', $otherImage->getClientOriginalName());
-            array_push($otherImageNames, $otherImage->getClientOriginalName());
+            $otherImage->storeAs('public', str_replace(' ', '', request('author').$otherImage->getClientOriginalName().Carbon::now()->toDateString()));
+            array_push($otherImageNames, str_replace(' ', '', request('author').$otherImage->getClientOriginalName().Carbon::now()->toDateString()));
         }
         $book = new Book();
         $book->book_name = request('name');
