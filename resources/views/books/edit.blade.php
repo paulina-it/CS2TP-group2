@@ -23,5 +23,6 @@
             @csrf
             @method('DELETE')
             <input type="submit" value="Delete">
+        </form>
     </main>
 @endsection
