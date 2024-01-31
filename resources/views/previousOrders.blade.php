@@ -12,7 +12,11 @@
                     <p> {{ $book[1][0]['book_name'] }}</p>
                     {{-- <small>£{{ $books[$i][0]['price'] }}</small> --}}
                 </div>
-                <button>Return</button>
+                <form action="{{ route('order.return', $orders[$i]['order_id']) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Return">
+                </form>
             </div>
         @endif
     @endforeach

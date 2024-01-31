@@ -107,4 +107,10 @@ class OrderController extends Controller
             'orders' => $orders,
         ]);
     }
+
+    public function return($order_id) {
+        $order = Order::where('order_id', $order_id)->delete();
+        
+        return redirect(route('order.previous'));
+    }
 }
