@@ -83,11 +83,11 @@
                                     to Cart</button>
                             </div>
                         </form>
-                        {{-- <form action="" method="post">
+                        <form action="" method="post">
                             <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
                                 Add to Wishlist
-                            </button> --}}
-                        {{-- </form> --}}
+                            </button> 
+                        </form>
                     </div>
                 </div>
             </div>
@@ -109,10 +109,12 @@
                 $genres = explode(', ', $book['genre']);
                 ?>
                 @foreach ($genres as $genre)
+                <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
                     <div
                         class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
                         {{ ucfirst(trans($genre)) }}
                     </div>
+                </a>
                 @endforeach
             </div>
         </div>

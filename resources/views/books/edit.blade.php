@@ -2,7 +2,7 @@
 
 @section('main')
     <main>
-        <form action="{{ route('books.save', $book->id) }}" method="POST">
+        <form action="{{ route('books.save', $book->id) }}" method="POST" class="flex flex-col">
             @csrf
             <input type="text" value="{{ $book->book_name }}" name="name">
             <input type="text" value="{{ $book->genre }}" name="genre">
