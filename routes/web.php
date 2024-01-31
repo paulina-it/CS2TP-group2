@@ -25,6 +25,9 @@ Route::get('/about', function () {return view('about-us');})->name('about-us');
 Route::get('/cart', function () {return view('shopping-cart');})->name('shopping-cart');
 Route::get('/checkout', function () {return view('checkout');})->name('checkout');
 
+Route::get('/previous', function () {return view('previous-orders');})->name('previous-orders');
+Route::get('/wishlist', function() {return view('wishlist');})->name('wishlist');
+
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
 Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
