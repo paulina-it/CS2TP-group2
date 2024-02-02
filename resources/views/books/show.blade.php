@@ -83,11 +83,12 @@
                                     to Cart</button>
                             </div>
                         </form>
-                        {{-- <form action="" method="post">
-                            <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                        <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
+                            @csrf
+                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
                                 Add to Wishlist
-                            </button> --}}
-                        {{-- </form> --}}
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
