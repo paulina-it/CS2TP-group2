@@ -8,12 +8,12 @@
             <h1 class="text-center">Edit "{{$book->book_name}}"</h1>
             <label class="font-bold">Name</label>
             <input type="text" value="{{ $book->book_name }}" name="name">
+            <label class="font-bold">Author</label>
+            <input type="text" value="{{ $book->author }}" name="author">
             <label class="font-bold">Genre</label>
             <input type="text" value="{{ $book->genre }}" name="genre">
             <label class="font-bold">Description</label>
-            <input type="text" value="{{ $book->description }}" name="description">
-            <label class="font-bold">Author</label>
-            <input type="text" value="{{ $book->author }}" name="author">
+            <textarea rows="15" type="text" value="{{ $book->description }}" name="description">{{ $book->description }}</textarea>
             <label class="font-bold">Book type</label>
             <input type="text" value="{{ $book->type }}" name="type">
             <label class="font-bold">Language</label>
