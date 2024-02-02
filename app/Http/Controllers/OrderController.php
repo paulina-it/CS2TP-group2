@@ -87,4 +87,30 @@ class OrderController extends Controller
         }
         return redirect('basket')->with('success', 'Order Complete');
     }
+
+    public function previous() {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+        }
+        $orders = Order::where('user_id', $user_id)->get();
+        
+        $orderItems = array();
+        $books = array();
+        for ($i = 0; $i < count($orders); $i++) {
+            array_push($orderItems, OrderItem::where('order_id', $orders[$i]['order_id'])->get());
+            foreach($orderItems[$i] as $item) {
+                array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+            }
+        }
+        return view('previousOrders', [
+            'books' => $books,
+            'orders' => $orders,
+        ]);
+    }
+
+    public function return($order_id) {
+        $order = Order::where('order_id', $order_id)->delete();
+        
+        return redirect(route('order.previous'));
+    }
 }
