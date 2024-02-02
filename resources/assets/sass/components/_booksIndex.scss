@@ -1,13 +1,16 @@
+
+@import './screens/bookIndexMedia';
+
 .books-list {
-    width: 90%;
+    // width: 100%;
     margin: auto;
     margin-top: 2em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-column-gap: 10px;
 
     .book-card {
         max-width: 15em;
+        margin: auto;
         margin-bottom: 2em;
 
         &:hover {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-    <div class="main m-auto">
+    <div class="main-search m-auto">
         @if ($search != null)
             @if (count($books) == 0)
                 <h2 class="m-9 text-center">No books were found</h2>
@@ -20,7 +20,6 @@
                 books</h2>
         @endif
         <div class="books-list">
-            @for ($i = 0; $i < 2; $i++)
             @foreach ($books as $book)
                 <a href="{{ route('books.show', $book['id']) }}">
                     <div class="book-card">
@@ -40,8 +39,6 @@
                     </div>
                 </a>
             @endforeach
-                
-            @endfor
         </div>
     </div>
 @endsection

@@ -8,7 +8,7 @@
             <img src="https://i.postimg.cc/jS5d41ML/main-banner.jpg" alt="main banner">
         </div>
         <div class="spacer"></div>
-        <div class="similar section flex flex-col justify-around m-auto mt-20">
+        <div id="new-books" class="similar section flex flex-col justify-around m-auto mt-20">
             <h2 class="category-title">New books</h2>
             <button id="scrollLeftBtn"
                 class="scroll-btn back bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full">
@@ -49,7 +49,7 @@
         </div>
         <div class="spacer-smaller"></div>
         <div class="categories">
-            <div class="languages-container">
+            <div id="languages" class="languages-container">
                 <h2>Languages</h2>
                 <div class="languages-div">
                     <?php
