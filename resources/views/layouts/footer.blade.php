@@ -9,7 +9,7 @@
         </div>
         <div class="footer-about footer-section flex flex-col">
             <h3 class="footer-title">About</h3>
-            <a href="{{ route('about') }}">About company</a>
+            <a href="{{ route('about-us') }}">About company</a>
             <a href="{{ route('contact.show') }}">Contact us</a>
         </div>
         {{-- <div class="footer-info footer-section flex flex-col">

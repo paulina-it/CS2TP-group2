@@ -57,7 +57,7 @@
                     <x-nav-link :href="route('books.index')">
                         <p>Books</p>
                     </x-nav-link>
-                    <x-nav-link :href="route('about')">
+                    <x-nav-link :href="route('about-us')">
                         <p>About Us</p>
                     </x-nav-link>
                     <x-nav-link :href="route('contact.show')">
