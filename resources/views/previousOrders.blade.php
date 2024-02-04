@@ -1,27 +1,61 @@
 @extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
 @section('main')
-
-@for ($i = 0; $i < count($orders); $i++)
-    <div>
-    @foreach ($books as $book)
-        @if($book[0] == $i) 
-            <div class="cart-info flex checkout-book">
-                <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book[1][0]['mainImage']) }}"
-                    alt="{{ $book[1][0]['book_name'] }}">
-                <div>
-                    <p> {{ $book[1][0]['book_name'] }}</p>
-                    <small>£{{ $book[1][0]['price'] }}</small>
-                </div>
-            </div>
-        @endif
-    @endforeach
-    <label>{{ $orders[$i]['status'] }}</label>
-    <form action="{{ route('order.return', $orders[$i]['order_id']) }}" method="POST">
-        @csrf
-        @method('delete')
-        <input type="submit" value="Return">
-    </form>
+    <div class="prev-orders-main">
+        <h1 class="title">Previous Orders</h1>
+        <div class="prev-orders-list">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Return</th>
+                </tr>
+                @for ($i = 0; $i < count($orders); $i++)
+                <tr>
+                    @foreach ($books as $book)
+                        @if($book[0] == $i) 
+                            <tr>
+                            <td>
+                                <div class="prev-order">
+                                <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book[1][0]['mainImage']) }}"
+                                    alt="{{ $book[1][0]['book_name'] }}">
+                                <div>
+                                    <p class="name"> {{ $book[1][0]['book_name'] }}</p>
+                                    <small>£{{ $book[1][0]['price'] }}</small>
+                                    <br>
+                                </div>
+                            </td>
+                            <td><p>1</p></td>
+                            <td>£12.90</td>
+                            <td>2024-01-05</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                    <td>
+                    <label>{{ $orders[$i]['status'] }}</label>
+                    </td>
+                    <td>
+                    <form action="{{ route('order.return', $orders[$i]['order_id']) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="Return">
+                    </form>
+                    </td>
+                </tr>
+                @endfor
+            </table>
+        </div>
     </div>
-@endfor
-
 @endsection

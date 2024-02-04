@@ -57,7 +57,7 @@ class WishlistController extends Controller
             $user_id = Auth::id();
             $list = wishlist::where('user_id', $user_id)->get();
             $wish = wish::where('book_id', $book_id)->where('wishlist_id', $list[0]['id'])->delete();
-            
+
             $product_qty = 1;
             $user_id = Auth::id();
             $quantity = cart::where('book_id', $book_id)->where('user_id', $user_id)->get('quantity');

@@ -7,10 +7,10 @@
                 @csrf
                 <h1 class="text-center">Add a Book to Inventory</h1>
                 <input type="text" placeholder="Name" name="name" />
-                <input type="text" placeholder="Genre" name="genre" />
-                <textarea type="text" placeholder="Description" name="description"></textarea>
                 <input type="text" placeholder="Author" name="author" />
-                <select name="language" id="language">
+                <input type="text" placeholder="Genre" name="genre" />
+                <textarea rows="15" type="text" placeholder="Description" name="description"></textarea>
+                <select name="language" id="language" class="mt-2">
                     <option value="russian">Russian</option>
                     <option value="polish">Polish</option>
                     <option value="urdu">Urdu</option>
@@ -27,9 +27,9 @@
                     <option value="hardcover">Hardcover</option>
                 </select>
                 <input type="number" placeholder="Stock" name="stock" id="">
-                <label>Main image</label>
+                <label class="font-bold">Main image</label>
                 <input type="file" name="mainImage" id="mainImage">
-                <label>Other Images</label>
+                <label class="font-bold">Other Images</label>
                 <input type="file" name="otherImages[]" id="otherImages" multiple>
                 <button type="submit">Sumbit</button>
             </form>

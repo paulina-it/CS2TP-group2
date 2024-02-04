@@ -19,6 +19,8 @@
 @import './components/checkOut';
 @import './components/contact';
 @import './components/screens/appMedia';
+@import './components/previousOrders';
+@import './components/wishlist';
 
 body {
     background-color: $mainColour;
@@ -58,4 +60,8 @@ html,body
     &:hover {
         background-color: $btn2hover;
     }
+}
+
+#red-btn {
+    background-color: rgb(199, 27, 27);
 }

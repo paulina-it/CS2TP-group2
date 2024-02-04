@@ -12,10 +12,10 @@
                     </a>
                 </div>
                 <div class="account-nav flex">
-                    {{-- <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                        {{-- <p>Wishlist</p>
+                    <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                        {{-- <p>Wishlist</p> --}}
                         <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="" class="nav-icon">
-                    </x-nav-link> --}}
+                    </x-nav-link>
                     <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                         {{-- <p>Basket</p> --}}
                         <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt=""
