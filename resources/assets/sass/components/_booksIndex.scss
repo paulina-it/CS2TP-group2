@@ -13,6 +13,12 @@
         margin: auto;
         margin-bottom: 2em;
 
+        .book-language {
+            font-size: 12px;
+            font-weight: 500;
+            color: $btn1;
+        }
+
         &:hover {
             .dummy-book-cover {
             width: 85%;
