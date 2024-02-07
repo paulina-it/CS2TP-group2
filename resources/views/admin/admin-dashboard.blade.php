@@ -2,31 +2,19 @@
 
 @section('main')
     <div class="main">
-        <div class="admin-dashboard-div">
-            <h1 class="mt-5">Admin Dashboard</h1>
-            <div class="admin-section">
-                <h3>Book Inventory</h3>
-                <div class="admin-section-cards flex m-5 space-between">
-                    <a href="{{ route('books.create') }}" class="admin-card">
-                        <div>
-                            <h4>Add Books</h4>
-                        </div>
-                    </a>
-                    <a href="{{ route('admin-books') }}" class="admin-card">
-                        <div>
-                            <h4>Edit or Delete Books</h4>
-                        </div>
-                    </a>
+        <h1 class="mt-5">Admin Dashboard</h1>
+        <div class="admin-dashboard-wrapper">
+            @include('layouts.admin-sidebar')
+            <div class="admin-dashboard-div">
+                <div class="orders-stats">
+                    <h4>Unprocessed Queries:</h4>
+                    <p>{{ $queries }}</p>
                 </div>
-            </div>
-            <div class="admin-section">
-                <h3>User Management</h3>
-            </div>
-            <div class="admin-section">
-                <h3>Order Management</h3>
-            </div>
-            <div class="admin-section">
-                <h3>User Quieries</h3>
+                <div class="orders-stats">
+                    <h4>Books Out Of Stock:</h4>
+                    <p>{{ $outOfStock }}</p>
+                </div>
+                {{-- //add sales, graph with amount of books sold,  --}}
             </div>
         </div>
     </div>

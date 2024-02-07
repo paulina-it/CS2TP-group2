@@ -67,7 +67,7 @@ Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('ro
 Route::post('/books', [BookController::class, 'store'])->middleware('role:admin')->name('books.store');
 
 Route::middleware('role:admin')->group(function () {
-    Route::get('/admin', function () {return view('admin/admin-dashboard');})->name('admin-dashboard');
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
 });
 require __DIR__.'/auth.php';

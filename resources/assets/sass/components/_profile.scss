@@ -1,7 +1,56 @@
-.profile-edit {
+#profile-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
     color: $textColour;
+    height: 100%;
 
-    .profile-div {
-        background-color: $navTopColour;
+
+
+    .profile-edit {
+
+        .profile-div {
+            background-color: $navTopColour;
+        }
+    }
+}
+
+.sidebar {
+    // padding: 0em 2em;
+    margin: 2em 1em;
+    max-height: 16em;
+    background-color: $loginBtn;
+    border-radius: 10px;
+
+    li {
+        border-radius: 10px;
+        background-color: $loginBtn;
+
+        a {
+            padding: 1.5em;
+            display: flex;
+            flex-direction: row;
+
+            .sidebar-icon {
+                width: 1.5em;
+                margin-right: 0.5em;
+            }
+
+            #coupon-icon {
+                width: 3em;
+                margin: -0.7em;
+                margin-right: -0.2em;
+            }
+        }
+
+        .highlight {
+            border-radius: 10px;
+            background-color: $loginBtnhover;
+        }
+
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $loginBtnhover;
+        }
     }
 }

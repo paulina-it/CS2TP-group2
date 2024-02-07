@@ -10,14 +10,15 @@
                     window.location = "/books/" + {{ $books[0]->id }};
                 </script>
             @else
-                <h2 class="m-5">Search results for "{{$search}}":</h2>
+                <h2 class="m-5">Search results for "{{ $search }}":</h2>
             @endif
         @else
-            <h2 class="m-9 text-center">List of all 
+            <h2 class="m-9 text-center">List of all
                 @if ($category != null)
-                {{ucfirst($category)}}
+                    {{ ucfirst($category) }}
                 @endif
-                books</h2>
+                books
+            </h2>
         @endif
         <div class="books-list">
             @foreach ($books as $book)

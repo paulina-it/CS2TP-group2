@@ -1,5 +1,59 @@
+.admin-dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 6.5fr;
+
+    .sidebar {
+        max-height: 36em;
+        border-radius: 10px;
+
+        li {
+            border-radius: 10px;
+            background-color: $loginBtn;
+
+            a {
+                padding: 1.5em;
+                display: flex;
+                flex-direction: row;
+                // height: 5em;
+                border-bottom: 2px solid $loginBtnhover;
+
+                .sidebar-icon {
+                    width: 1.5em;
+                    margin-right: 0.5em;
+                }
+
+                #coupon-icon {
+                    width: 3em;
+                    margin: -0.7em;
+                    margin-right: -0.2em;
+                }
+            }
+
+            .highlight {
+                border-radius: 10px;
+                background-color: $loginBtnhover;
+            }
+
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $loginBtnhover;
+            }
+        }
+    }
+
+    .sub-list-item {
+        padding-left: 2em;
+        // margin-top: -1.5em;
+        // margin-bottom: -1em;
+        z-index: -1;
+    }
+}
+
 .admin-dashboard-div {
+    margin-top: 2em;
     border-radius: 10px;
+
     .admin-card {
         height: 10em;
         width: 15.5em;
@@ -84,6 +138,7 @@
                 text-transform: uppercase;
                 font-weight: 500;
             }
+
             #editBtn {
                 background-color: $btn1;
                 transition: 0.4s;
@@ -92,6 +147,7 @@
                     background-color: $btn1hover;
                 }
             }
+
             #deleteBtn {
                 background-color: $btn2;
                 transition: 0.4s;
