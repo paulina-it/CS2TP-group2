@@ -24,6 +24,9 @@
                 </tr>
                 @for ($i = 0; $i < count($orders); $i++)
                 <tr>
+                    <?php
+                    $count = 0
+                    ?>
                     @foreach ($books as $book)
                         @if($book[0] == $i) 
                             <tr>
@@ -37,9 +40,14 @@
                                     <br>
                                 </div>
                             </td>
-                            <td><p>1</p></td>
-                            <td>£12.90</td>
-                            <td>2024-01-05</td>
+                            <td>{{ $items[$i][$count]['quantity'] }}</td>
+                            <td> £{{$items[$i][$count]['quantity'] * $book[1][0]['price']}} </td>
+                            <?php
+                            $date = DATE($items[$i][$count]['created_at']);
+                            $dt = new DateTime($date);
+                            $count++
+                            ?>
+                            <td>{{ $dt->format('Y-m-d') }}</td>
                             </tr>
                         @endif
                     @endforeach
