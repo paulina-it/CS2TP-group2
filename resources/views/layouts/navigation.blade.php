@@ -47,6 +47,14 @@
 
             <!-- Navigation Links -->
             <div class="nav-links flex justify-between sm:hidden">
+                @guest
+                        @else
+                        @if (Auth::user()->role == 'admin')
+                            <x-nav-link :href="route('admin-dashboard')" id="admin-nav-link">
+                                <p>Admin Dashboard</p>
+                            </x-nav-link>
+                        @endif
+                    @endguest
                 <div class="nav-links-main">
                     <x-nav-link :href="route('home')">
                         <p class="nav-link-text">Home</p>
@@ -63,8 +71,9 @@
                     <x-nav-link :href="route('contact.show')">
                         <p>Contact Us</p>
                     </x-nav-link>
+                    
                 </div>
-                <div class="nav-search">
+                <div class="nav-search p-2">
                     <form action="{{ route('books.index') }}" method="GET">
                         <label for="default-search" class="sr-only">Search</label>
                         <div class="relative mt-0">

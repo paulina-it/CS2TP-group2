@@ -8,6 +8,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,8 @@ Route::post('/books/{id}', [BookController::class, 'save'])->middleware('role:ad
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('role:admin')->name('books.destroy');
 Route::post('/books', [BookController::class, 'store'])->middleware('role:admin')->name('books.store');
 
-
+Route::middleware('role:admin')->group(function () {
+    Route::get('/admin', function () {return view('admin/admin-dashboard');})->name('admin-dashboard');
+    Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
+});
 require __DIR__.'/auth.php';
