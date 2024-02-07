@@ -130,27 +130,24 @@
                         > </button>
                     <div class="similar-books-list flex justify-between">
                         <!-- Book cards -->
-                        @for ($i = 0; $i < 3; $i++)
-                            @foreach ($otherBooksInLanguage as $otherBook)
-                                <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card">
-                                        <div class="book-card-cover">
-                                            <img class="book-cover"
-                                                src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
-                                        </div>
-                                        <div class="book-card-info">
-                                            <p class="book-author">{{ $otherBook['author'] }}</p>
-                                            <p class="book-language">{{ ucfirst(trans($book['language'])) }}</p>
-                                            <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <p class="book-price">
-                                                £{{ number_format((float) $otherBook['price'], 2, '.', '') }}
-                                            </p>
-                                        </div>
+                        @foreach ($otherBooksInLanguage as $otherBook)
+                            <a href="{{ route('books.show', $otherBook['id']) }}">
+                                <div class="book-card">
+                                    <div class="book-card-cover">
+                                        <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
+                                            alt="{{ $otherBook['book_name']}}">
                                     </div>
-                                </a>
-                            @endforeach
-                        @endfor
-
+                                    <div class="book-card-info">
+                                        <p class="book-author">{{ $otherBook['author'] }}</p>
+                                        <p class="book-language">{{ ucfirst(trans($book['language'])) }}</p>
+                                        <p class="book-title">{{ $otherBook['book_name'] }}</p>
+                                        <p class="book-price">
+                                            £{{ number_format((float) $otherBook['price'], 2, '.', '') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
         </div>
     </div>
