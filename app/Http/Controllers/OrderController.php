@@ -48,7 +48,7 @@ class OrderController extends Controller
     public function create(Request $request) {
         if (Auth::check()) {
             $user_id = Auth::id();
-            $books = cart::where('user_id', $user_id)->get('book_id');
+            $books = cart::where('user_id', $user_id)->get();
             $payment = Payment::where('credit_card_no', request('credit_card_no'))->get();
             if (count($payment) == 0) {
                 $payment = new Payment;
@@ -64,21 +64,22 @@ class OrderController extends Controller
         $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
-        
+        }
         $order->save();
-
         $order_id = $order->id;
 
         foreach($books as $book) {
             if (Auth::check()) {
+                $quantity = $book['quantity'];
                 $book = $book['book_id'];
             }
             $orderItem = new OrderItem;
             $orderItem->book_id = $book;
             $orderItem->order_id = $order_id;
+            $orderItem->quantity = $quantity;
             $orderItem->save();
         }
-        // if (Auth::check()) {
+        if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
         // } else {
         //     $request->session()->put('books', []);
@@ -105,6 +106,7 @@ class OrderController extends Controller
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
+            'items' => $orderItems,
         ]);
     }
 

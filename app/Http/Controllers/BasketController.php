@@ -38,17 +38,21 @@ class BasketController extends Controller
 
     public function store($book_id, Request $request) {
         if (Auth::check()) {
+            $product_qty = request('product-qty');
+            if ($product_qty == null) {
+                $product_qty = 1;
+            }
             $user_id = Auth::id();
             $quantity = cart::where('book_id', $book_id)->where('user_id', $user_id)->get('quantity');
             if ($quantity != "[]") {
                 $basket = cart::where('book_id', $book_id)->where('user_id', $user_id)->get();
-                $basket[0]->quantity = $quantity[0]->quantity + request('product-qty');
+                $basket[0]->quantity = $quantity[0]->quantity + $product_qty;
                 $basket[0]->update();
             } else {
                 $basket = new cart;
                 $basket->user_id = $user_id;
                 $basket->book_id = $book_id;
-                $basket->quantity = request('product-qty');
+                $basket->quantity = $product_qty;
                 $basket->save();
             }
         } else {
@@ -59,7 +63,7 @@ class BasketController extends Controller
                 foreach ($books as $book) {
                     if ($book['book_id'] == $book_id) {
                         array_splice($books, $i, 1);
-                        $book['quantity'] += request('product-qty');
+                        $book['quantity'] += $product_qty;
                         $book_exists = true;
                         array_push($books, $book);
                         $request->session()->put('books', $books);
@@ -67,11 +71,11 @@ class BasketController extends Controller
                     $i++;
                 }
                 if (!$book_exists) {
-                    $request->session()->push('books', ["book_id" => $book_id, "quantity" => request('product-qty')]);
+                    $request->session()->push('books', ["book_id" => $book_id, "quantity" => $product_qty]);
                 }
                 
             } else {
-                $request->session()->put('books', [["book_id" => $book_id, "quantity" => request('product-qty')]]);
+                $request->session()->put('books', [["book_id" => $book_id, "quantity" => $product_qty]]);
             }
         }
 
