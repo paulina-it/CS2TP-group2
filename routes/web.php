@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerQueryController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -38,6 +39,11 @@ Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.st
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');
 Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
 
+Route::post('/wishlist/{id}', [WishlistController::class, 'store'])->name('wishlist.store');
+Route::post('/basket/wishlist/{id}', [WishlistController::class, 'basket'])->name('wishlist.basket');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
+
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 Route::get('/order/previous', [OrderController::class, 'previous'])->name('order.previous');
@@ -55,7 +61,7 @@ Route::get('/contact', [CustomerQueryController::class, 'show'])->name('contact.
 Route::post('/contact', [CustomerQueryController::class, 'store'])->name('contact.store');
 
 Route::get('/books/create', [BookController::class, 'create'])->middleware('role:admin')->name('books.create');
-Route::get('/books/edit/{id}', [BookController::class, 'edit'])->middleware('role:admin')->name('books.edit');
+Route::get('/books/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
 Route::post('/books/{id}', [BookController::class, 'save'])->middleware('role:admin')->name('books.save');
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('role:admin')->name('books.destroy');
 Route::post('/books', [BookController::class, 'store'])->middleware('role:admin')->name('books.store');
