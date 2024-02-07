@@ -25,7 +25,13 @@ nav {
 
         display: flex;
         justify-content: space-between;
+        box-sizing: border-box;
+
+        .nav-links-main {
+            box-sizing: border-box;
+        }
     }
+
     .auth-btn {
         padding: 1em;
         // width: 6em;
@@ -44,13 +50,26 @@ nav {
 
         &.signup {
             opacity: 0.5;
-        //     background-color: $signupBtn;
+            //     background-color: $signupBtn;
             transition: 0.3s;
 
             &:hover {
                 // background-color: $signupBtnhover;
                 opacity: 1;
             }
+        }
+    }
+
+    #admin-nav-link {
+        background-color: $btn2;
+        padding: 1.8em;
+        // margin-top: -4em;
+        box-sizing: border-box;
+        height: 3em;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $btn2hover;
         }
     }
 }
