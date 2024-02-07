@@ -21,6 +21,7 @@
 @import './components/screens/appMedia';
 @import './components/previousOrders';
 @import './components/wishlist';
+@import './components/adminDashboard';
 
 body {
     background-color: $mainColour;
@@ -35,6 +36,7 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+    scroll-behavior: smooth;
 }
 
 .main {
