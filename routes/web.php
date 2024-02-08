@@ -7,8 +7,8 @@ use App\Http\Controllers\CustomerQueryController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
