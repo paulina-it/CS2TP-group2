@@ -56,6 +56,10 @@ class WishlistController extends Controller
         if (Auth::check()) {
             $user_id = Auth::id();
             $list = wishlist::where('user_id', $user_id)->get();
+            $book = Book::where('id', $book_id)->get();
+            if ($book[0]['quantity'] <= 0) {
+                return back();
+            }
             $wish = wish::where('book_id', $book_id)->where('wishlist_id', $list[0]['id'])->delete();
 
             $product_qty = 1;
