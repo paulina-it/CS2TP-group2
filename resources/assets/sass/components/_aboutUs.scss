@@ -18,16 +18,16 @@ body {
 
 .about-us h1 {
     text-align: center;
-    font-size: 50px;
-    margin-top: 50px;
+    font-size: 36px;
+    margin-top: 20px;
 }
 
 .about-us h1::after {
     content:"";
-    height: 5px;
-    width: 200px;
+    height: 3px;
+    width: 100px;
     display: block;
-    margin: auto;
+    margin: 10px auto;
 }
 .container {
     display: flex;
@@ -35,12 +35,15 @@ body {
     align-items: center;
     padding: 0px 60px;
     margin: 60px auto;
+    flex-direction: column;
+    padding: 0px 20px;
+    margin: 20px auto;
 }
 
 .content {
-    width: 60%;
-    text-align: left;
-    padding: 0px 30px;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
 }
 
 .content h3 {
@@ -49,14 +52,15 @@ body {
 }
 
 .image-section {
-    width: 40%;
-    padding: 0px 30px;
+    width: 100%;
+    padding: 0px;
 }
 
 .image-section img {
     width: 100%;
     padding: 0px 30px;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
