@@ -9,6 +9,7 @@ use App\Models\cart;
 use App\Models\OrderItem;
 use App\Models\Order;
 use App\Models\Book;
+use App\Models\Guest;
 use App\Models\Payment;
 
 class OrderController extends Controller
@@ -57,6 +58,12 @@ class OrderController extends Controller
                 $payment->save();
             }
         } else {
+            $guest = new Guest;
+            $guest->firstName = request('fName');
+            $guest->lastName = request('lName');
+            $guest->phone = request('phone');
+            $guest->email = request('email');
+            $guest->save();
             $books = $request->session()->get('books');
         }
         $order = new Order;
@@ -64,14 +71,18 @@ class OrderController extends Controller
         $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
+        } else {
+            $order->guest_id = $guest->id;
         }
         $order->save();
         $order_id = $order->id;
-
         foreach($books as $book) {
             if (Auth::check()) {
                 $quantity = $book['quantity'];
                 $book = $book['book_id'];
+            } else {
+                $quantity = (int)$request->session()->get('books')[0]['quantity'];
+                $book = (int)$request->session()->get('books')[0]['book_id'];
             }
             $orderItem = new OrderItem;
             $orderItem->book_id = $book;
@@ -81,10 +92,8 @@ class OrderController extends Controller
         }
         if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
-        // } else {
-        //     $request->session()->put('books', []);
         } else {
-            return redirect('login')->with('message', 'Please, login to place an order');
+             $request->session()->put('books', []);
         }
         return redirect('basket')->with('success', 'Order Complete');
     }
