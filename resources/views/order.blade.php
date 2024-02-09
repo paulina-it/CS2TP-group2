@@ -39,6 +39,16 @@
         </div>
         <form action="{{ route('order.create') }}" method="POST" class="checkout">
             @csrf
+            @if (!Auth::check()) 
+                <label for="fName">First Name</label>
+                <input name="fName" type="text" required>
+                <label for="lName">Last Name</label>
+                <input name="lName" type="text" required>
+                <label for="phone">Phone Number</label>
+                <input name="phone" type="text" required>
+                <label for="email">Email</label>
+                <input name="email" type="text" required>
+            @endif
             <label for="credit_card_no">Credit Card Number</label>
             <input name="credit_card_no" type="number" required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
