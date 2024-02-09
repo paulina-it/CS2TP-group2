@@ -10,9 +10,9 @@
 @import './components/navbar';
 @import './components/footer';
 @import './components/profile';
-@import './components/bookPage';
-@import './components/booksIndex';
-@import './components/booksCreate';
+@import './components/book/bookPage';
+@import './components/book/booksIndex';
+@import './components/admin/booksCreate';
 @import './components/home';
 @import './components/aboutUs';
 @import './components/shoppingCart';
@@ -21,7 +21,8 @@
 @import './components/screens/appMedia';
 @import './components/previousOrders';
 @import './components/wishlist';
-@import './components/adminDashboard';
+@import './components/admin/adminDashboard';
+@import './components/admin/queries';
 
 body {
     background-color: $mainColour;

@@ -7,6 +7,7 @@
         .book-main-info-div {
             display: flex;
             flex-direction: row;
+            height: 35vh;
         }
 
         .book-img-div,
@@ -20,12 +21,12 @@
 
         .book-previews-div {
             margin-right: 2em;
-            max-height: 24em;
+            max-height: 31.5vh;
         }
 
         .book-cover {
             // max-height: 26em;
-            max-width: 20em;
+            max-width: 25em;
         }
 
         .book-price {
@@ -59,6 +60,7 @@
         .book-main-info-div {
             display: flex;
             flex-direction: row;
+            height: 32vh;
         }
 
         .book-img-div,
@@ -72,12 +74,12 @@
 
         .book-previews-div {
             margin-right: 2em;
-            max-height: 24em;
+            max-height: 29vh;
         }
 
         .book-cover {
             height: 24em;
-            min-width: 18em;
+            min-width: 20em;
         }
 
         .book-price {
@@ -111,11 +113,13 @@
         .book-main-info-div {
             display: flex;
             flex-direction: row;
+            height: 32vh;
         }
 
         .book-img-div,
         .book-info-div {
             width: 100%;
+            height: 100%;
         }
 
         .book-img-div {
@@ -131,12 +135,12 @@
 
         .book-previews-div {
             margin-right: 1em;
-            max-height: 26.5em;
+            max-height: 90%;
         }
 
         .book-cover {
             height: 26.5em;
-            max-width: 20em;
+            max-width: 22em;
         }
 
         .book-price {
@@ -191,13 +195,14 @@
             margin: auto;
             display: flex;
             flex-direction: row;
+            // height: 32vh;
         }
 
         .book-previews-div {
             // margin-left: 10%;
             margin-right: 1em;
             margin-bottom: 1em;
-            max-height: 20em;
+            max-height: 30em;
 
             display: flex;
             flex-direction: column;

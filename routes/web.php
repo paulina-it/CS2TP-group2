@@ -69,5 +69,6 @@ Route::post('/books', [BookController::class, 'store'])->middleware('role:admin'
 Route::middleware('role:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
+    Route::get('/admin/queries', [AdminController::class, 'queries'])->name('queries');
 });
 require __DIR__.'/auth.php';

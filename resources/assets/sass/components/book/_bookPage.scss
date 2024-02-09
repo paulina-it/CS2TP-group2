@@ -1,5 +1,5 @@
 @import './customQuantityInput';
-@import './screens/bookMobile';
+@import '../screens/bookMobile';
 
 .content {
     margin: auto;
@@ -258,14 +258,15 @@
     .book-card-cover {
         padding: 1.5em;
         width: 100%;
-        min-height: 54%;
+        min-height: 57%;
 
         background-color: $navColour;
         border-radius: 5px;
+        transition: 0.4s;
 
         .book-cover {
             border-radius: 5px;
-            width: 80%;
+            width: 75%;
             margin: auto;
             transition: 0.4s;
         }
@@ -273,7 +274,11 @@
 
     &:hover {
         .book-cover {
-            width: 85%;
+            width: 80%;
+        }
+        .book-card-cover {
+            min-height: 60%;
+
         }
 
         box-shadow: 2px 2px 8px #0d0d0d3e;

@@ -1,7 +1,7 @@
 <div class="sidebar">
     <ul>
         <li>
-            <a href="">
+            <a href="" class="disabled-link">
                 <img src="https://www.svgrepo.com/show/533406/book.svg" alt="Book Icon" class="sidebar-icon">
                 <p class="font-semibold">Book Inventory</p>
             </a>
@@ -34,8 +34,24 @@
                 <p class="font-semibold">Order Management</p>
             </a>
         </li>
+        <ul>
+            <li class="sub-list-item">
+                <a href="{{ route('books.create') }}" @if (Request::is('books.create')) class="highlight" @endif>
+                    <img src="https://www.svgrepo.com/show/383784/online-delivery.svg" alt="Add Icon"
+                        class="sidebar-icon">
+                    <p>Process Orders</p>
+                </a>
+            </li>
+            <li class="sub-list-item">
+                <a href="{{ route('admin-books') }}" @if (Request::is('admin-books')) class="highlight" @endif>
+                    <img src="https://www.svgrepo.com/show/453832/return.svg" alt="Add Icon"
+                        class="sidebar-icon">
+                    <p>Process Returns</p>
+                </a>
+            </li>
+        </ul>
         <li>
-            <a href="{{ route('wishlist') }}" @if (Request::is('wishlist')) class="highlight" @endif>
+            <a href="{{ route('queries') }}" @if (Request::is('queries')) class="highlight" @endif>
                 <img src="https://www.svgrepo.com/show/340875/query.svg" alt="Query Icon" class="sidebar-icon">
                 <p class="font-semibold">User Queries</p>
             </a>
