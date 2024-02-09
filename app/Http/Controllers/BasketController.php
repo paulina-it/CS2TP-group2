@@ -37,11 +37,11 @@ class BasketController extends Controller
     }
 
     public function store($book_id, Request $request) {
+        $product_qty = request('product-qty');
+        if ($product_qty == null) {
+            $product_qty = 1;
+        }
         if (Auth::check()) {
-            $product_qty = request('product-qty');
-            if ($product_qty == null) {
-                $product_qty = 1;
-            }
             $user_id = Auth::id();
             $quantity = cart::where('book_id', $book_id)->where('user_id', $user_id)->get('quantity');
             if ($quantity != "[]") {

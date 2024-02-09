@@ -48,10 +48,15 @@
                         @endif
                         </td>
                         <td>
+                        
                         <form action="{{ route('wishlist.basket', $books[$i][0]['id']) }}"
                             method="POST">
                             @csrf
+                            @if ($books[$i][0]['quantity'] > 0)
                             <button>Add to cart</button>
+                            @else
+                            <button disabled>Add to cart</button>
+                            @endif
                         </form>
                         <form action="{{ route('wishlist.destroy', $books[$i][0]['id']) }}"
                             method="POST">
