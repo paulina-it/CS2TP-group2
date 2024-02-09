@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -18,14 +19,30 @@ class BookController extends Controller
                 $query->where('book_name', 'like', '%' . $search . '%')
                 ->orWhere('author', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('genre', 'like', '%' . $search . '%');
+                ->orWhere('genre', 'like', '%' . $search . '%')
+                ->orWhere('language', 'like', '%' . $search . '%');
             })->get();
         }
         return view('books/index', [
             'books' => $books,
-            'search' => $search
+            'search' => $search,
+            'category' => null
         ]);
     }
+
+    public function indexCategory($category_slug) {
+        $books = Book::where(function ($query) use($category_slug) {
+            $query->where('language', 'like', '%' . $category_slug . '%')
+            ->orWhere('genre', 'like', '%' . $category_slug . '%');
+        })->get();
+        
+        return view('books/index', [
+            'books' => $books,
+            'category' => $category_slug,
+            'search' => null
+        ]);
+    }
+
     public function show($id) {
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->get();
@@ -38,12 +55,16 @@ class BookController extends Controller
     }
     public function store(Request $request) {
         $image = $request->file('mainImage');
-        $imageName = $image->getClientOriginalName();
+        $imageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName());
+        $dest = '../images';
         $request->file('mainImage')->storeAs('public', $imageName);
+        // $image->move(public_path($dest), $imageName);
         $otherImageNames = array();
         foreach(request('otherImages') as $otherImage) {
-            $otherImage->storeAs('public', $otherImage->getClientOriginalName());
-            array_push($otherImageNames, $otherImage->getClientOriginalName());
+        	$otherImageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$otherImage->getClientOriginalName());
+            $otherImage->storeAs('public', $otherImageName);
+            // $otherImage->move(public_path($dest), $otherImageName);
+            array_push($otherImageNames, $otherImageName);
         }
         $book = new Book();
         $book->book_name = request('name');
@@ -61,6 +82,35 @@ class BookController extends Controller
         return redirect('books');
     }
 
+    //hosted previous version 
+    // public function store(Request $request) {
+    //     $image = $request->file('mainImage');
+    //     $imageName = $image->getClientOriginalName();
+    //     $dest = '../images';
+    //     $image->storeAs('public', $imageName);
+    //     $image->move(public_path($dest), $imageName);
+    //     $otherImageNames = array();
+    //     foreach(request('otherImages') as $otherImage) {
+    //         $otherImage->storeAs('public', $otherImage->getClientOriginalName());
+    //         $otherImage->move(public_path($dest), $otherImage->getClientOriginalName());
+    //         array_push($otherImageNames, $otherImage->getClientOriginalName());
+    //     }
+    //     $book = new Book();
+    //     $book->book_name = request('name');
+    //     $book->genre = request('genre');
+    //     $book->description = request('description');
+    //     $book->author = request('author');
+    //     $book->language = request('language');
+    //     $book->type = request('type');
+    //     $book->price = request('price');
+    //     $book->quantity = request('stock');
+    //     $book->mainImage = $imageName;
+    //     $book->otherImages = json_encode($otherImageNames);
+    //     $book->ISBN = request('isbn');
+    //     $book->save();
+    //     return redirect('books');
+    // }
+
     public function edit($id) {
         $book = Book::findOrFail($id);
         return view('books/edit', [
@@ -68,7 +118,19 @@ class BookController extends Controller
         ]);
     }
 
-    public function save($id) {
+    public function save($id, Request $request) {
+        if ($request->file('mainImage') != null) {
+            $image = $request->file('mainImage');
+            $imageName = $image->getClientOriginalName();
+            $request->file('mainImage')->storeAs('public', $imageName);
+        }
+        if (request('otherImages') != null) {
+            $otherImageNames = array();
+            foreach(request('otherImages') as $otherImage) {
+                $otherImage->storeAs('public', $otherImage->getClientOriginalName());
+                array_push($otherImageNames, $otherImage->getClientOriginalName());
+            }
+        }
         $book = Book::findOrFail($id);
         $book->book_name = request('name');
         $book->genre = request('genre');
@@ -78,10 +140,15 @@ class BookController extends Controller
         $book->type = request('type');
         $book->price = request('price');
         $book->quantity = request('stock');
-        //add image
-        $book->ISBN = request('isbn');
+        if ($request->file('mainImage') != null) {
+            $book->mainImage = $imageName;
+        }
+        if (request('otherImages') != null) {
+            $book->otherImages = json_encode($otherImageNames);
+        }
+        $book->ISBN = request('ISBN');
         $book->save();
-        return view('books/show', ['book' => $book]);
+        return redirect('books');
     }
 
     public function destroy($id) {

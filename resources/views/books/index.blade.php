@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-    <div class="main m-auto">
+    <div class="main-search m-auto">
         @if ($search != null)
             @if (count($books) == 0)
                 <h2 class="m-9 text-center">No books were found</h2>
@@ -10,13 +10,16 @@
                     window.location = "/books/" + {{ $books[0]->id }};
                 </script>
             @else
-                <h2 class="m-5">Search results:</h2>
+                <h2 class="m-5">Search results for "{{$search}}":</h2>
             @endif
         @else
-            <h2 class="m-9 text-center">List of all books</h2>
+            <h2 class="m-9 text-center">List of all 
+                @if ($category != null)
+                {{ucfirst($category)}}
+                @endif
+                books</h2>
         @endif
         <div class="books-list">
-            @for ($i = 0; $i < 2; $i++)
             @foreach ($books as $book)
                 <a href="{{ route('books.show', $book['id']) }}">
                     <div class="book-card">
@@ -36,8 +39,6 @@
                     </div>
                 </a>
             @endforeach
-                
-            @endfor
         </div>
     </div>
 @endsection

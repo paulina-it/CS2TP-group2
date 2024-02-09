@@ -1,3 +1,5 @@
+@import './variables';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,7 @@
 // pages and blocks
 @import './components/navbar';
 @import './components/footer';
+@import './components/profile';
 @import './components/bookPage';
 @import './components/booksIndex';
 @import './components/booksCreate';
@@ -14,13 +17,17 @@
 @import './components/aboutUs';
 @import './components/shoppingCart';
 @import './components/checkOut';
-@import './components/homepage';
 @import './components/contact';
+@import './components/screens/appMedia';
+@import './components/previousOrders';
+@import './components/wishlist';
+@import './components/adminDashboard';
 
 body {
     background-color: $mainColour;
     color: $textColour;
     z-index: auto;
+    position: relative;
 }
 html,body
 {
@@ -29,11 +36,11 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+    scroll-behavior: smooth;
 }
 
 .main {
-    min-height: 80vh;
-    width: 80vw;
+    min-height: 70vh;
     margin: auto;
 }
 
@@ -43,16 +50,20 @@ html,body
 
 .auth-form {
     background-color: $navTopColour;
+}
 
-    .auth-btn {
-        background-color: $btn2;
-        transition: 0.4s;
-        font-weight: 600;
-        text-transform: uppercase;
-        border-radius: 5px;
+.blade-btn {
+    background-color: $btn2;
+    transition: 0.4s;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 5px;
 
-        &:hover {
-            background-color: $btn2hover;
-        }
-  }
+    &:hover {
+        background-color: $btn2hover;
+    }
+}
+
+#red-btn {
+    background-color: rgb(199, 27, 27);
 }

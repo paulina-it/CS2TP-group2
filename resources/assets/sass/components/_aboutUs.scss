@@ -1,66 +1,70 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    line-height: 1.5;
-    font-family: sans-serif;
-}
+.about-container {
+    height: 70vh;
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        line-height: 1.5;
+        // font-family: sans-serif;
+    }
 
-body {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #ccc;
-}
+    body {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #ccc;
+    }
 
-.about-us {
-    width: 100%;
-}
+    .about-us {
+        width: 100%;
+    }
 
-.about-us h1 {
-    text-align: center;
-    font-size: 36px;
-    margin-top: 20px;
-}
+    .about-us h1 {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 20px;
+    }
 
-.about-us h1::after {
-    content:"";
-    height: 3px;
-    width: 100px;
-    display: block;
-    margin: 10px auto;
-}
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 60px;
-    margin: 60px auto;
+    .about-us h1::after {
+        content: "";
+        height: 3px;
+        width: 100px;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 60px;
+        margin: 60px auto;
     flex-direction: column;
     padding: 0px 20px;
     margin: 20px auto;
-}
+    }
 
-.content {
-    width: 100%;
-    text-align: center;
-    padding: 0px;
-}
+    .content {
+        width: 100%;
+        text-align: center;
+        padding: 0px;
+    }
 
-.content h3 {
-    color: black;
-    letter-spacing: 1px;
-}
+    .content h3 {
+        color: black;
+        letter-spacing: 1px;
+    }
 
-.image-section {
-    width: 100%;
-    padding: 0px;
-}
+    .image-section {
+        width: 100%;
+        padding: 0px;
+    }
 
-.image-section img {
-    width: 100%;
-    padding: 0px 30px;
-    display: block;
-    justify-content: center;
-    align-items: center;
+    .image-section img {
+        width: 100%;
+        padding: 0px 30px;
+        display: block;
+        justify-content: center;
+        align-items: center;
     margin: 0 auto;
+    }
 }

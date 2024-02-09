@@ -7,12 +7,12 @@
             <div class="top-bar flex justify-between">
                 <div class="shrink-0 flex items-center flex">
                     <a href="{{ route('home') }}" class="flex">
-                        <img id="nav-logo" src="/images/No text black logo.png" alt="" class="mr-5">
+                        <img id="nav-logo" src="https://i.postimg.cc/2SKjcxtT/No-text-black-logo.png" alt="" class="mr-5">
                         <h2 class="text-black text-xl m-auto">flippinpages</h2>
                     </a>
                 </div>
                 <div class="account-nav flex">
-                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
                         {{-- <p>Wishlist</p> --}}
                         <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="" class="nav-icon">
                     </x-nav-link>
@@ -47,6 +47,14 @@
 
             <!-- Navigation Links -->
             <div class="nav-links flex justify-between sm:hidden">
+                @guest
+                        @else
+                        @if (Auth::user()->role == 'admin')
+                            <x-nav-link :href="route('admin-dashboard')" id="admin-nav-link">
+                                <p>Admin Dashboard</p>
+                            </x-nav-link>
+                        @endif
+                    @endguest
                 <div class="nav-links-main">
                     <x-nav-link :href="route('home')">
                         <p class="nav-link-text">Home</p>
@@ -63,8 +71,9 @@
                     <x-nav-link :href="route('contact.show')">
                         <p>Contact Us</p>
                     </x-nav-link>
+                    
                 </div>
-                <div class="nav-search">
+                <div class="nav-search p-2">
                     <form action="{{ route('books.index') }}" method="GET">
                         <label for="default-search" class="sr-only">Search</label>
                         <div class="relative mt-0">
@@ -151,7 +160,7 @@
                 {{-- {{ __('Profile') }} --}}
                 <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
             </x-nav-link>
-            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+            <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                 {{-- <p>Cart</p> --}}
                 <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon">
             </x-nav-link>
@@ -159,9 +168,9 @@
                 <ul class="lg:flex space-x-4">
                     <li class="mobile-nav-link"><a class="" href=" {{ route('home') }} "
                             :active="request() - > routeIs('home')">Home</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">Languages</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">About Us</a></li>
-                    <li class="mobile-nav-link"><a class="" href="#">Contact Us</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('books.index') }} ">Books</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('about-us') }} ">About Us</a></li>
+                    <li class="mobile-nav-link"><a class="" href=" {{ route('contact.show') }} ">Contact Us</a></li>
                 </ul>
             </div>
 

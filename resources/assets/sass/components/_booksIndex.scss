@@ -1,13 +1,37 @@
+
+@import './screens/bookIndexMedia';
+
 .books-list {
-    width: 90%;
+    // width: 100%;
     margin: auto;
     margin-top: 2em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-column-gap: 10px;
 
     .book-card {
         max-width: 15em;
+        margin: auto;
         margin-bottom: 2em;
+
+        &:hover {
+            .dummy-book-cover {
+            width: 85%;
+            }
+        }
+    }
+}
+
+.dummy-book-cover {
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: $dummyBook;
+    color: $complTextColour;
+    text-transform: uppercase;
+
+    p {
+        padding-top: 45%;
     }
 }

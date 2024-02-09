@@ -10,20 +10,24 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('order', function (Blueprint $table) {
-            $table->id('order_id');
-            $table->bigInteger('book_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('orders', function (Blueprint $table) {
+        $table->id('order_id');
+        $table->enum('status', ['pending', 'processed', 'completed', 'shipped', 'cancelled', 'refunded']);
+        $table->date('ordered_date');
+        $table->bigInteger('user_id')->unsigned()->nullable();
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        // $table->bigInteger('payment_id')->unsigned();
+        // $table->foreign('payment_id')->references('id')->on('payment')->onDelete('cascade');
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('order_status');
     }
 };

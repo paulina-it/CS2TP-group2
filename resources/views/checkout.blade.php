@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\CS2TP-group2\resources\assets\sass\components\checkOut.scss">
-    @vite(['resources/assets/sass/app.scss', 'resources/assets/js/app.js'])
-    <title>Checkout</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('localVite')
+    <!-- Include Bootstrap CSS -->
+    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+@endsection
+@section('main')
     @include('layouts.navigation')
 
 
@@ -15,6 +17,4 @@
 
 
     <script src="app.js"></script>
-</body>
-@include('layouts.footer')
-</html>
+@endsection

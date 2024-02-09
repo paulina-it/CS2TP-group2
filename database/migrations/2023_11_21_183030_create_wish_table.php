@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wish', function (Blueprint $table) {
-            $table->id('wish_id');
+            $table->id();
             $table->bigInteger('book_id')->unsigned();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->bigInteger('wishlist_id')->unsigned();
-            $table->foreign('wishlist_id')->references('wishlist_id')->on('wishlist')->onDelete('cascade');
+            $table->foreign('wishlist_id')->references('id')->on('wishlist')->onDelete('cascade');
             $table->timestamps();
         });
     }
