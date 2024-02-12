@@ -30,6 +30,45 @@
           </div>
         </section>
 
+        <section class="about-container">
+          <div class="about-us">
+            <div class="container">
+            <div class="image-section">
+                <img src="/images/about-us2.jpg" alt="">
+              </div>
+              <div class="content">
+              <h3>Our Vision</h3>
+                <p>Our vision for flippinpages is to allow you to experience an online community where book enthusiasts like you and others can engage with each other in meaningful discussions, explore new books and connect with like-minded people. </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="about-container">
+          <div class="about-us">
+            <div class="container">
+              <div class="content">
+              <h3>The Founders</h3>
+                <p>Meet the people who have created this platform: <br>
+                <br>
+                Polina Bovykina - Project Leader<br>
+                Joel Campbell - Front-end Developer<br>
+                Mubtasim Bepari - Front-end Developer<br>
+                Nihar Priyadarshi - Back-end Developer<br>
+                Oliver Burnett-Kiernan - Back-end Developer<br>
+                Saiya Begum - Back-end Developer<br>
+                <br>
+                With our combined experiences in literature and technology, we have brought you flippinpages with the goal of changing the way you discover new books and find other book enthusiasts like you.
+              </p>
+              </div>
+              <div class="image-section">
+                <img src="/images/about-us3.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </section>
+
         <script src="app.js"></script>
       
 @endsection

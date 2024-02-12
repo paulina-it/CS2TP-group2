@@ -14,20 +14,20 @@
         background-color: #ccc;
     }
 
-    .about-us {
+    .about-us .vision .founders{
         width: 100%;
     }
 
     .about-us h1 {
         text-align: center;
-        font-size: 32px;
-        margin-top: 20px;
+        font-size: 2em;
+        margin-top: 2vh;
     }
 
     .about-us h1::after {
         content: "";
-        height: 5px;
-        width: 200px;
+        height: 0.2em;
+        width: 20%;
         display: block;
         margin: auto;
     }
@@ -39,8 +39,8 @@
         padding: 0px 60px;
         margin: 60px auto;
         flex-direction: column;
-        padding: 0 20px;
-        margin: 20px auto;
+        padding: 0 5vh;
+        margin: 5vh auto;
     }
 
     .content {
