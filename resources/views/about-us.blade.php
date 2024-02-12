@@ -59,7 +59,7 @@
                 Oliver Burnett-Kiernan - Back-end Developer<br>
                 Saiya Begum - Back-end Developer<br>
                 <br>
-                With our combined experiences in literature and technology, we have brought you flippinpages with the goal of changing the way you discover new books and find other book enthusiasts like you.
+                With our combined experiences in literature and technology, we have brought you flippinpages, with the goal of changing the way you discover new books and find other book enthusiasts like you.
               </p>
               </div>
               <div class="image-section">
