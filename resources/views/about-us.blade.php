@@ -10,6 +10,9 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
+        <head>
+          <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        </head>
         <section class="about-container">
           <div class="about-us">
             <h1>About Us</h1>
