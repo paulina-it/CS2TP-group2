@@ -5,7 +5,6 @@ addEventListener("load", (event) => {
 });
 
 toggleButton.addEventListener('click', function () {
-    console.log(1);
     let iconOpen = document.getElementById('iconOpen');
     let iconClose = document.getElementById('iconClose');
     let menu = document.getElementById('menu');

@@ -70,3 +70,12 @@
         width: 8em;
     }
 }
+
+.form-with-sidebar {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr;
+
+    .sidebar {
+        max-height: 40em;
+    }
+}
