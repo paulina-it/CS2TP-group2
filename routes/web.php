@@ -66,8 +66,10 @@ Route::post('/books/{id}', [BookController::class, 'save'])->middleware('role:ad
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('role:admin')->name('books.destroy');
 Route::post('/books', [BookController::class, 'store'])->middleware('role:admin')->name('books.store');
 
-Route::middleware('role:admin')->group(function () {
+//Route::middleware('role:admin')->group(function () {
     Route::get('/admin', function () {return view('admin/admin-dashboard');})->name('admin-dashboard');
     Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
-});
+    Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
+    Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
+//});
 require __DIR__.'/auth.php';
