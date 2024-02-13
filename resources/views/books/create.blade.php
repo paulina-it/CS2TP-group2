@@ -4,8 +4,8 @@
 @endsection
 @section('main')
     <div class="main">
-        <div class="create-book-wrapper form-with-sidebar">
-            @include('layouts.admin-sidebar')
+        <div class="create-book-wrapper -with-sidebar">
+            {{-- @include('layouts.admin-sidebar') --}}
             <div class="add-book-div flex flex-col p-4">
                 <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
                     @csrf

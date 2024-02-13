@@ -123,11 +123,11 @@
             text-align: left;
             background-color: $btn1;
             color: white;
+            cursor: pointer;
 
             .with-svg {
                 display: flex;
                 justify-content: space-between;
-                cursor: pointer;
 
                 .sort-icon {
                     width: 1.5em;
@@ -139,6 +139,10 @@
             background-color: #f9f9f9;
         }
 
+        .attention-needed {
+            background-color: #fce7e1!important;
+        }
+        
         #book-table-img {
             display: flex;
             justify-content: center;
