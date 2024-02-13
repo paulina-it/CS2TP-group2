@@ -23,6 +23,7 @@
 @import './components/wishlist';
 @import './components/admin/adminDashboard';
 @import './components/admin/queries';
+@import './components/admin/booksInventory';
 
 body {
     background-color: $mainColour;
