@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('guest', function (Blueprint $table) {
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('phone')->unique();
-            $table->string('email')->unique();
+        Schema::table('product_rating', function (Blueprint $table) {
+            $table->string('review')->nullable()->change();
         });
     }
 
@@ -24,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('guest', function (Blueprint $table) {
-                $table->dropColumn(['firstName', 'lastName', 'phone', 'email']);
+        Schema::table('product_rating', function (Blueprint $table) {
+            $table->string('review')->nullable(false)->change();
         });
     }
 };
