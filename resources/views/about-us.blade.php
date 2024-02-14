@@ -69,6 +69,36 @@
             </div>
           </div>
         </section>
+
+
+
+        <section class="about-container">
+          <div class="about-us">
+            <div class="container">
+              <div class="content">
+              <h3>Find Us</h3>
+                <p>Address:</p> <br>
+                <br>
+                WHSmith<br>
+                Steelhouse Ln, Birmingham<br>
+                B4 6NH<br>
+                <br>
+              </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-container">
+          <div class="about-us">
+            <div class="container">
+              <div class="content">
+              <div class="image-section">
+                <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9718.706562870428!2d-1.912077069282534!3d52.48499024451066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bde61d75f16b%3A0xf002564bfd828e35!2sWHSmith!5e0!3m2!1sen!2suk!4v1707905131077!5m2!1sen!2suk" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+              </div>
+            </div>
+          </div>
+        </section>
 </div>
 
       

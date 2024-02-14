@@ -25,7 +25,7 @@ table {
 th {
     text-align: left;
     padding: 2px;
-    background: #633A31;
+    background: #763514;
     color: #fff;
     font-weight: 500px;
 }
@@ -76,7 +76,7 @@ th:last-child {
 }
 
 .totalPrice table {
-    border-top: 3px solid #ff523b;
+    border-top: 3px solid #64ad52;
     width: 220px;
     max-width: 350px;
 }
@@ -91,7 +91,7 @@ th:last-child {
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #873921;
+    background-color: #46a41a;
     color: #fff;
     transition: background-color 0.3s;
     border: none;
@@ -99,7 +99,7 @@ th:last-child {
 }
 
 .checkout-button button:hover {
-    background-color: #6b2816;
+    background-color: #16276b;
 }
 
 .recommendedItems {
