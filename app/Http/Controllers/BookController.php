@@ -79,7 +79,7 @@ class BookController extends Controller
         $book->otherImages = json_encode($otherImageNames);
         $book->ISBN = request('isbn');
         $book->save();
-        return redirect('books');
+        return redirect('admin/');
     }
 
     //hosted previous version 
@@ -148,12 +148,12 @@ class BookController extends Controller
         }
         $book->ISBN = request('ISBN');
         $book->save();
-        return redirect('books');
+        return redirect('admin/books');
     }
 
     public function destroy($id) {
         $book = Book::findOrFail($id);
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('admin-books');
     }
 }

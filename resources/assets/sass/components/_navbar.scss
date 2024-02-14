@@ -39,15 +39,6 @@ nav {
         text-align: center;
         font-weight: 600;
 
-        // &.login {
-        //     // background-color: $loginBtn;
-        //     transition: 0.3s;
-
-        //     &:hover {
-        //         background-color: $loginBtnhover;
-        //     }
-        // }
-
         &.signup {
             opacity: 0.5;
             //     background-color: $signupBtn;
@@ -60,16 +51,35 @@ nav {
         }
     }
 
-    #admin-nav-link {
-        background-color: $btn2;
+    #admin-nav-link,
+    #customer-nav-link {
         padding: 1.8em;
         // margin-top: -4em;
         box-sizing: border-box;
         height: 3em;
         transition: 0.4s;
+    }
+
+    #admin-nav-link {
+        background-color: $btn2;
 
         &:hover {
             background-color: $btn2hover;
         }
+    }
+
+    #customer-nav-link {
+        background-color: $btn1;
+
+        &:hover {
+            background-color: $btn1hover;
+        }
+    }
+
+    #admin-navbar {
+        background-color: $adminNavColour;
+    }
+    #admin-top-navbar {
+        background-color: $adminNavTopColour;
     }
 }

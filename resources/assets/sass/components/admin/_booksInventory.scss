@@ -1,0 +1,195 @@
+// .admin-books-wrapper {
+//     display: grid;
+//     // grid-template-columns: 1fr 3fr;
+// }
+// .admin-books-list {
+//     display: flex;
+//     flex-direction: column;
+//     width: 90%;
+//     margin: auto;
+
+//     .book-card-inventory {
+//         // height: 16em;
+//         width: 100%;
+//         display: grid;
+//         grid-template-columns: 1fr 5fr 1fr;
+//         margin-bottom: 1em;
+
+//         border-radius: 5px;
+//         box-shadow: 5px 5px 8px #0d0d0d17;
+//         transition: 0.4s;
+
+
+//         .last {
+//             margin-right: 0;
+//         }
+
+//         .book-card-cover {
+//             padding: 1.5em;
+
+//             background-color: $navColour;
+//             border-radius: 5px;
+
+//             .book-cover {
+//                 border-radius: 5px;
+//                 margin: auto;
+//                 transition: 0.4s;
+//             }
+//         }
+
+//         &:hover {
+//             box-shadow: 2px 2px 8px #0d0d0d3e;
+//         }
+
+//         .book-card-info {
+//             padding: 1.5em;
+//             display: grid;
+//             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+//             column-gap: 1em;
+//         }
+
+//         p {
+//             padding: 0.2rem;
+//         }
+
+//         .book-card-btns {
+//             border-radius: 10px;
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: space-around;
+
+//             .btn {
+//                 width: 100%;
+//                 height: 100%;
+//                 font-size: medium;
+//                 text-transform: uppercase;
+//                 font-weight: 500;
+//             }
+
+//             #editBtn {
+//                 background-color: $btn1;
+//                 transition: 0.4s;
+
+//                 &:hover {
+//                     background-color: $btn1hover;
+//                 }
+//             }
+
+//             #deleteBtn {
+//                 background-color: $btn2;
+//                 transition: 0.4s;
+
+//                 &:hover {
+//                     background-color: $btn2hover;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+// .admin-books-wrapper {
+//     display: grid;
+//     // grid-template-columns: 1fr 3fr;
+// }
+
+.admin-books-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+
+    table {
+        // display: grid;
+        // grid-template-columns: 1fr 2fr 2fr ;
+        border-collapse: collapse;
+        width: 100%;
+
+
+        td {
+            // padding: 0;
+            padding-left: 1em;
+            height: 2em;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            padding: 1em;
+            text-align: left;
+            background-color: $btn1;
+            color: white;
+            cursor: pointer;
+
+            .with-svg {
+                display: flex;
+                justify-content: space-between;
+
+                .sort-icon {
+                    width: 1.5em;
+                }
+            }
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .attention-needed {
+            background-color: #fce7e1!important;
+        }
+        
+        #book-table-img {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+
+            img {
+                box-shadow: none;
+            }
+        }
+
+        #book-table-btns {
+            padding: 0;
+        }
+    }
+
+    .book-card-btns {
+        border-radius: 10px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+
+        .btn {
+            width: 100%;
+            height: 100%;
+            font-size: medium;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+
+        #editBtn {
+            background-color: $btn1;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $btn1hover;
+            }
+        }
+
+        #deleteBtn {
+            background-color: $btn2;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+
+}

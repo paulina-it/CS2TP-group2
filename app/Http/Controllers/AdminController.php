@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Guest;
 use App\Models\Order;
+use App\Models\CustomerQuery;
 
 class AdminController extends Controller
 {
@@ -71,5 +72,23 @@ class AdminController extends Controller
         $order->status = request("status");
         $order->save();
         return redirect('admin/orders');
+    }
+
+    public function dashboard() {
+        $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
+        $queries = CustomerQuery::where('status', '=', 'not reviewed')->get()->count();
+        $orders = Order::where('status', '=', 'pending')->get()->count();
+        return view('admin/admin-dashboard', [
+            'outOfStock' => $outOfStock,
+            'queries' => $queries,
+            'orders' => $orders,
+        ]);
+    }
+
+    public function queries() {
+        $queries = CustomerQuery::all();
+        return view('admin/queries', [
+            'queries'=> $queries,
+        ]);
     }
 }
