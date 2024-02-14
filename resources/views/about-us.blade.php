@@ -10,6 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
+<div class="wrapper-about">
         <head>
           <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         </head>
@@ -68,7 +69,7 @@
             </div>
           </div>
         </section>
+</div>
 
-        <script src="app.js"></script>
       
 @endsection

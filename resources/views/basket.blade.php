@@ -10,6 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
+<div class = "wrapper-basket">
     <div class="main">
 
         @if (\Session::has('success'))
