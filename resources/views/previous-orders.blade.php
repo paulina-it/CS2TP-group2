@@ -15,35 +15,32 @@
         <div class="prev-orders-list">
             <table>
                 <tr>
-                    <th>Product</th>
+                    <th>Product(s)</th>
                     <th>Quantity</th>
                     <th>Total</th>
                     <th>Date Ordered</th>
                 </tr>
-                <tr>
+                <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
-                        <div class="prev-order">
-                            <img class="book-img" src="/images/Anna-Karenina.jpg">
-                            <div>
-                                <p class="name">Anna Karenina</p>
-                                <small>Price: £12.90</small>
-                                <br>
+                        <div class="prev-order-info">
+                            <div class="prev-single">
+                                <img class="book-img" src="/images/Anna-Karenina.jpg">
+                            </div>
+                            <div class="prev-single">
+                                <img class="book-img" src="/images/Anna-Karenina.jpg">
                             </div>
                         </div>
                     </td>
-                    <td><p>1</p></td>
-                    <td>£12.90</td>
+                    <td><p>2</p></td>
+                    <td>£25.80</td>
                     <td>2024-01-05</td>
                 </tr>
 
-                <tr>
+                <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
-                        <div class="prev-order">
-                            <img class="book-img" src="/images/Eugene-Onegin.jpg">
-                            <div>
-                                <p class="name">Eugene Onegin</p>
-                                <small>Price: £12.90</small>
-                                <br>
+                        <div class="prev-order-info">
+                            <div class="prev-single">
+                                <img class="book-img" src="/images/Eugene-Onegin.jpg">
                             </div>
                         </div>
                     </td>
