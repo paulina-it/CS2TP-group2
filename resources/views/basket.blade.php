@@ -56,8 +56,14 @@
                                 </a>
                             </td>
                             <td>
-                                <p>{{ $amounts[$i] }}</p>
-                                {{-- <input type="number" value="{{ $amounts[$i] }}"> --}}
+                                <div class="qty-input">
+                                    <form action="{{ route('basket.update', $books[$i][0]['id']) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="product-qty" type="number" name="product-qty" min="0" 
+                                    max="10" value="{{$amounts[$i]}}">
+                                    </form>
+                                </div>
                             </td>
                             <td>
                                 <p>£{{ $books[$i][0]['price'] * $amounts[$i] }}</p>

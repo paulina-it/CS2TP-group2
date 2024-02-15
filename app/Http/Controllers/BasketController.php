@@ -81,6 +81,30 @@ class BasketController extends Controller
 
         return redirect('basket');
     }
+
+    public function update($id, Request $request) {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $basket = cart::where('book_id', $id)->where('user_id', $user_id)->get();
+            $basket = $basket[0];
+            $basket->quantity = request('product-qty');
+            $basket->save();
+        } else {
+            $books = $request->session()->get('books');
+            $i = 0;
+            foreach ($books as $book) {
+                if ($book['book_id'] == $id) {
+                    array_splice($books, $i, 1);
+                    $book['quantity'] = request('product-qty');
+                    array_push($books, $book);
+                    $request->session()->put('books', $books);
+                }
+                $i++;
+            }
+        }
+        return redirect('basket');
+    }
+
     public function destroy($book_id, Request $request) {
         if (Auth::check()){
             $user_id = Auth::id();

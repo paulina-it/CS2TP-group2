@@ -37,6 +37,7 @@ Route::get('/books/category/{category_slug}', [BookController::class, 'indexCate
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');
+Route::put('/basket/{id}', [BasketController::class, 'update'])->name('basket.update');
 Route::delete('/basket/{id}', [BasketController::class, 'destroy'])->name('basket.destroy');
 
 Route::post('/wishlist/{id}', [WishlistController::class, 'store'])->name('wishlist.store');
