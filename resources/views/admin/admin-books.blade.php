@@ -200,12 +200,12 @@
                                     <div class="book-card-btns">
                                         <button class="btn" id="editBtn"
                                             onclick="window.location='{{ route('books.edit', $book['id']) }}'">Edit</button>
-                                        <button class="btn openModalBtn" id="deleteBtn"
+                                        <button class="btn openModalBtn" id="deleteBtn" style="display: block"
                                             data-modal-target="modal{{ $book['id'] }}"
                                             data-modal-toggle="modal{{ $book['id'] }}">
                                             Delete
                                         </button>
-                                        {{-- <div class="modal-overlay"></div> --}}
+                                        {{-- Popup Modal --}}
                                         <div id="modal{{ $book['id'] }}" tabindex="-1"
                                             class="modalWindow hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                             <div class="relative p-4 w-full max-w-md max-h-full">

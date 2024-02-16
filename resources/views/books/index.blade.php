@@ -29,7 +29,9 @@
                                 <img class="book-cover" src="{{ asset('storage/' . $book['mainImage']) }}"
                                     alt="{{ $book['book_name'] }}">
                             @else
-                                <p>Main image not found</p>
+                            <div class="dummy-book-cover">
+                                <p>Image not available</p>
+                            </div>
                             @endif
                         </div>
                         <div class="book-card-info">
