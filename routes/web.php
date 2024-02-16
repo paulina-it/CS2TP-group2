@@ -33,6 +33,7 @@ Route::get('/wishlist', function() {return view('wishlist');})->name('wishlist')
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
 Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
+Route::get('/books/search/', [BookController::class, 'indexFilter'])->name('books.filter');
 
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');

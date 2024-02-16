@@ -39,9 +39,44 @@ class BookController extends Controller
         return view('books/index', [
             'books' => $books,
             'category' => $category_slug,
-            'search' => null
+            'search' => null,
+            'selectedLanguages' => [],
+            'selectedStock' => []
         ]);
     }
+
+    public function indexFilter() {
+        $stock = request('stock');
+        $languages = request('lang');
+        $selectedLanguages = request('lang') ?? []; // Retrieve selected languages or default to an empty array
+        $selectedStock = request('stock') ?? 'all-stock'; // Retrieve selected stock or default to 'all-stock'
+    
+    
+        $query = Book::query();
+    
+        if (is_array($languages) && count($languages) > 0) {
+            $query->whereIn('language', $languages);
+        }
+    
+        if ($stock == 'in-stock') {
+            $query->where('quantity', '>', 0);
+        } elseif ($stock == 'not-in-stock') {
+            $query->where('quantity', '<=', 0);
+        }
+    
+        $books = $query->get();
+    
+        return view('books/index', [
+            'books' => $books,
+            'category' => null,
+            'search' => null,
+            'selectedLanguages' => $selectedLanguages,
+            'selectedStock' => $selectedStock
+        ]);
+    }
+    
+
+    
 
     public function show($id) {
         $book = Book::findOrFail($id);
