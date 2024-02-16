@@ -23,29 +23,30 @@
                 <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
                         <div class="prev-order-info">
-                            <div class="prev-single">
-                                <img class="book-img" src="/images/Anna-Karenina.jpg">
-                            </div>
-                            <div class="prev-single">
-                                <img class="book-img" src="/images/Anna-Karenina.jpg">
-                            </div>
+                            @for ($i = 0; $i < 8; $i++)
+                                <div class="prev-single">
+                                    <img class="book-img" src="/images/Anna-Karenina.jpg">
+                                </div>
+                            @endfor
                         </div>
                     </td>
-                    <td><p>2</p></td>
-                    <td>£25.80</td>
+                    <td><p>{{$i}}</p></td>
+                    <td>{{"£" . number_format((float)$i * 12.9, 2, '.', '')}}</td>
                     <td>2024-01-05</td>
                 </tr>
 
                 <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
                         <div class="prev-order-info">
-                            <div class="prev-single">
-                                <img class="book-img" src="/images/Eugene-Onegin.jpg">
-                            </div>
+                            @for ($i = 0; $i < 1; $i++)
+                                <div class="prev-single">
+                                    <img class="book-img" src="/images/Eugene-Onegin.jpg">
+                                </div>
+                            @endfor
                         </div>
                     </td>
-                    <td><p>1</p></td>
-                    <td>£12.90</td>
+                    <td><p>{{$i}}</p></td>
+                    <td>{{"£" . number_format((float)$i * 12.9, 2, '.', '')}}</td>
                     <td>2023-11-17</td>
                 </tr>
             </table>
