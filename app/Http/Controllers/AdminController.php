@@ -91,4 +91,11 @@ class AdminController extends Controller
             'queries'=> $queries,
         ]);
     }
+
+    public function queriesStatus($id) {
+        $querie = CustomerQuery::findOrFail($id);
+        $querie->status = request('status');
+        $querie->save();
+        return redirect('admin/queries');
+    }
 }

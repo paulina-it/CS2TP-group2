@@ -14,8 +14,17 @@
                         <p class="query-message"><u>Message:</u> <br><br>{{ $query['message'] }}</p>
                     </div>
                     <div class="query-card-btns">
-                        <button class="btn">Change Status</button>
-                        <button class="btn">Respond</button>
+                        <form action="{{ route('queries.status', $query['id']) }}" method="POST">
+                            @csrf
+                        <select name="status">
+                            <option value="not reviewed" <?php if($query['status'] == "not reviewed"){echo("selected");} ?>>Not Reviewed</option>
+                            <option value="open" <?php if($query['status'] == "open"){echo("selected");} ?>>Open</option>
+                            <option value="closed" <?php if($query['status'] == "closed"){echo("selected");} ?>>Closed</option>
+                        </select>
+                        
+                            <button class="btn">Change Status</button>
+                        </form>
+                        <button class="btn"><a href="mailto:{{$query['email']}}">Respond</a></button>
                     </div>
                 </div>
             @endforeach

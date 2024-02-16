@@ -71,6 +71,7 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
     Route::get('/admin/queries', [AdminController::class, 'queries'])->name('queries');
+    Route::post('/admin/queries/{id}', [AdminController::class, 'queriesStatus'])->name('queries.status');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
 });
