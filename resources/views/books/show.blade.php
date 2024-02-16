@@ -22,8 +22,14 @@
                             @endforeach
                         @endif
                     </div>
-                    <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
-                        class="book-cover">
+                    @if (Storage::disk('public')->exists($book['mainImage']))
+                        <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
+                            class="book-cover">
+                    @else
+                        <div class="dummy-book-cover">
+                            <p>Image not available</p>
+                        </div>
+                    @endif
                 </div>
                 <!-- Book information and buttons -->
                 <div class="book-info-div flex flex-col justify-around">
@@ -141,7 +147,8 @@
                                             <p class="book-author">{{ $otherBook['author'] }}</p>
                                             <p class="book-language">{{ ucfirst(trans($otherBook['language'])) }}</p>
                                             <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <p class="book-price">£{{ number_format((float) $otherBook['price'], 2, '.', '') }}
+                                            <p class="book-price">
+                                                £{{ number_format((float) $otherBook['price'], 2, '.', '') }}
                                             </p>
                                         </div>
                                     </div>

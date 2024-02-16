@@ -4,22 +4,7 @@ document.getElementById("books-table").addEventListener("click", function (event
         let colIndex = thElement.cellIndex;
         sortTable(colIndex);
     }
-    if (event.target.classList.contains('openModalBtn')) {
-        // event.target.nextElementSibling.style.display = 'block';
-    }
 });
-
-const modalWindows = document.querySelectorAll('.modalWindow');
-
-modalWindows.forEach(function (modalWindow) {
-    modalWindow.addEventListener('click', function (event) {
-        if (event.target.classList.contains('closeModal') || !modalWindow.contains(event.target)) {
-            modalWindow.previousElementSibling.style.display = 'none';
-        }
-    });
-});
-
-
 
 function sortTable(colIndex) {
     if (colIndex === 0 || colIndex === 7) {
