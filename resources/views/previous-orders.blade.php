@@ -23,7 +23,11 @@
                 <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
                         <div class="prev-order-info">
-                            @for ($i = 0; $i < 8; $i++)
+                            @for ($i = 0; $i < 9; $i++)
+                                @if ($i > 7)
+                                    <p>...</p>
+                                    @break
+                                @endif
                                 <div class="prev-single">
                                     <img class="book-img" src="/images/Anna-Karenina.jpg">
                                 </div>
@@ -39,6 +43,10 @@
                     <td>
                         <div class="prev-order-info">
                             @for ($i = 0; $i < 1; $i++)
+                                @if ($i > 7)
+                                    <p>...</p>
+                                    @break
+                                @endif
                                 <div class="prev-single">
                                     <img class="book-img" src="/images/Eugene-Onegin.jpg">
                                 </div>
