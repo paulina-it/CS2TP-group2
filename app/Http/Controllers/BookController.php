@@ -26,7 +26,9 @@ class BookController extends Controller
         return view('books/index', [
             'books' => $books,
             'search' => $search,
-            'category' => null
+            'category' => null,
+            'selectedLanguages' => [],
+            'selectedStock' => []
         ]);
     }
 
@@ -74,10 +76,32 @@ class BookController extends Controller
             'selectedStock' => $selectedStock
         ]);
     }
-    
 
-    
+    public function sort() {
+        $sortType = request('sort');
+        $books = Book::query();
 
+        $sort = explode('-', $sortType);
+        $field = $sort[0]; 
+        $order = $sort[1]; 
+
+        if ($field === 'price') {
+            $books->orderBy('price', $order);
+        } elseif ($field === 'date') {
+            $books->orderBy('created_at', $order);
+        }
+
+        $sortedBooks = $books->get();
+
+        return view('books/index', [
+            'books' => $sortedBooks,
+            'category' => null,
+            'search' => null,
+            'selectedLanguages' => [],
+            'selectedStock' => []
+        ]);
+    }
+    
     public function show($id) {
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->get();
@@ -85,9 +109,11 @@ class BookController extends Controller
             'book' => $book
         ], compact('book', 'otherBooksInLanguage'));
     }
+
     public function create() {
         return view('books/create');
     }
+
     public function store(Request $request) {
         $image = $request->file('mainImage');
         $imageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName());
@@ -191,4 +217,5 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('admin-books');
     }
+
 }

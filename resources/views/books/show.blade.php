@@ -140,7 +140,7 @@
                         @for ($i = 0; $i < 3; $i++)
                             @foreach ($otherBooksInLanguage as $otherBook)
                                 <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card">
+                                    <div class="book-card book-card-common">
                                         <div class="book-card-cover">
                                             <img class="book-cover"
                                                 src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">

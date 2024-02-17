@@ -5,7 +5,9 @@
     margin: auto;
     // margin-left: 2em;
     // margin-top: 2em;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     grid-column-gap: 10px;
 
     .book-card {
@@ -26,6 +28,13 @@
         }
     }
 }
+
+// .books-rows {
+//     display: flex;
+//     flex-direction: column;
+
+    
+// }
 
 .dummy-book-cover {
     height: 100%;
