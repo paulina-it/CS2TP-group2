@@ -116,10 +116,12 @@
                 $genres = explode(', ', $book['genre']);
                 ?>
                 @foreach ($genres as $genre)
-                    <div
-                        class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
-                        {{ ucfirst(trans($genre)) }}
-                    </div>
+                    <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
+                        <div
+                            class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
+                            {{ ucfirst(trans($genre)) }}
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -138,7 +140,7 @@
                         @for ($i = 0; $i < 3; $i++)
                             @foreach ($otherBooksInLanguage as $otherBook)
                                 <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card">
+                                    <div class="book-card book-card-common">
                                         <div class="book-card-cover">
                                             <img class="book-cover"
                                                 src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
