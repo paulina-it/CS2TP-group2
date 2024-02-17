@@ -4,58 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Pagination;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use Carbon\Carbon;
 
 class BookController extends Controller
 {
-    public function index() {
-        $search = request('search');
-        if (empty($search)) {
-            $books = Book::all();
-        } else {
-            $books = Book::where(function ($query) use($search) {
-                $query->where('book_name', 'like', '%' . $search . '%')
-                ->orWhere('author', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('genre', 'like', '%' . $search . '%')
-                ->orWhere('language', 'like', '%' . $search . '%');
-            })->get();
+    public function index($category_slug = null) {
+        if (session()->get('sort') != null ) {
+            $sortType = session()->get('sort', 'price-asc'); }
+        else {
+            $sortType = 'price-asc';
         }
-        return view('books/index', [
-            'books' => $books,
-            'search' => $search,
-            'category' => null,
-            'selectedLanguages' => [],
-            'selectedStock' => []
-        ]);
-    }
-
-    public function indexCategory($category_slug) {
-        $books = Book::where(function ($query) use($category_slug) {
-            $query->where('language', 'like', '%' . $category_slug . '%')
-            ->orWhere('genre', 'like', '%' . $category_slug . '%');
-        })->get();
-        
-        return view('books/index', [
-            'books' => $books,
-            'category' => $category_slug,
-            'search' => null,
-            'selectedLanguages' => [],
-            'selectedStock' => []
-        ]);
-    }
-
-    public function indexFilter() {
+        $search = request('search');
+        if ($category_slug === null) {
+            $category_slug = Session::get('category');
+        } else if ($category_slug == '') {
+            $this->setCategory('');
+        }
         $stock = request('stock');
         $languages = request('lang');
-        $selectedLanguages = request('lang') ?? []; // Retrieve selected languages or default to an empty array
-        $selectedStock = request('stock') ?? 'all-stock'; // Retrieve selected stock or default to 'all-stock'
-    
+        $selectedLanguages = request('lang') ?? []; 
+        $selectedStock = request('stock') ?? 'all-stock'; 
     
         $query = Book::query();
     
+        if (!empty($search)) {
+                $query->where('book_name', 'like', '%' . $search . '%')
+                    ->orWhere('author', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+                    // ->orWhere('genre', 'like', '%' . $search . '%')
+                    // ->orWhere('language', 'like', '%' . $search . '%');
+            
+        } 
+
+        if ($category_slug != null) {
+            $query->where(function($query) use ($category_slug) {
+                $query->where('language', 'like', '%' . $category_slug . '%')
+                    ->orWhere('genre', 'like', '%' . $category_slug . '%');
+            });
+        }
+
         if (is_array($languages) && count($languages) > 0) {
             $query->whereIn('language', $languages);
         }
@@ -63,44 +54,61 @@ class BookController extends Controller
         if ($stock == 'in-stock') {
             $query->where('quantity', '>', 0);
         } elseif ($stock == 'not-in-stock') {
-            $query->where('quantity', '<=', 0);
+            $query->where('quantity', '<=', 0)->paginate(10);
         }
-    
-        $books = $query->get();
+
+        // $books = $query->get();
+        $sortedBooks = $this->sort($query, $sortType);
     
         return view('books/index', [
-            'books' => $books,
-            'category' => null,
-            'search' => null,
+            'books' => $sortedBooks,
+            'category' => $category_slug,
+            'search' => $search,
             'selectedLanguages' => $selectedLanguages,
-            'selectedStock' => $selectedStock
+            'selectedStock' => $selectedStock,
+            'sort' => $sortType
         ]);
     }
-
-    public function sort() {
-        $sortType = request('sort');
-        $books = Book::query();
-
+    
+    public function sort($query, $sortType) {
         $sort = explode('-', $sortType);
         $field = $sort[0]; 
         $order = $sort[1]; 
 
         if ($field === 'price') {
-            $books->orderBy('price', $order);
+            $query->orderBy('price', $order);
         } elseif ($field === 'date') {
-            $books->orderBy('created_at', $order);
+            $query->orderBy('created_at', $order);
         }
 
-        $sortedBooks = $books->get();
+        $sortedBooks = $query->get();
 
-        return view('books/index', [
-            'books' => $sortedBooks,
-            'category' => null,
-            'search' => null,
-            'selectedLanguages' => [],
-            'selectedStock' => []
-        ]);
+        return $sortedBooks;
     }
+
+    public function setSortType() {
+        session(['sort' => request('sort')]);
+    
+        return redirect()->back();
+    }
+
+    public function indexCategory($category_slug) {
+        $this->setCategory($category_slug);
+        return $this->index($category_slug);
+    }
+
+    public function indexFilter() {
+        return $this->index();
+    }
+    public function indexClear() {
+        return $this->index('');
+    }
+
+    public function setCategory($category_slug) {
+        session(['category' => $category_slug]);
+        // return redirect()->back();
+    }
+
     
     public function show($id) {
         $book = Book::findOrFail($id);

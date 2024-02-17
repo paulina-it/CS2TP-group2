@@ -27,6 +27,10 @@
             }
         }
     }
+
+    &.hidden {
+        display: none !important;
+    }
 }
 
 // .books-rows {

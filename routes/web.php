@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,12 @@ Route::get('/checkout', function () {return view('checkout');})->name('checkout'
 Route::get('/previous', function () {return view('previous-orders');})->name('previous-orders');
 Route::get('/wishlist', function() {return view('wishlist');})->name('wishlist');
 
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books', [BookController::class, 'indexClear'])->name('books.index');
+Route::get('/books/sort', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BookController::class, 'show'])->where('id', '[0-9]+')->name('books.show');
 Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
 Route::get('/books/search/', [BookController::class, 'indexFilter'])->name('books.filter');
-Route::get('/books/sort/', [BookController::class, 'sort'])->name('books.sort');
+Route::get('/books/sort/', [BookController::class, 'setSortType'])->name('books.sort');
 
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');
@@ -77,10 +79,7 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
 });
-//Route::middleware('role:admin')->group(function () {
-    // Route::get('/admin', function () {return view('admin/admin-dashboard');})->name('admin-dashboard');
-    // Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
-    // Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
-    // Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
-//});
+
+Route::post('/save-view-choice', [SessionController::class, 'saveViewChoice'])->name('save.view.choice');
+
 require __DIR__.'/auth.php';

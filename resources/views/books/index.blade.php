@@ -28,24 +28,38 @@
                 <h4 class="mr-3">Sort by</h4>
                 <form action="{{ route('books.sort') }}" onchange="this.submit()" method="GET">
                     <select name="sort" id="sort-books">
-                        <option value="price-asc">Price (cheapest first)</option>
-                        <option value="price-desc">Price (expensive first)</option>
-                        <option value="date-asc">Date (newest first)</option>
-                        <option value="date-desc">Date (oldest first)</option>
+                        <option value="price-asc" {{ $sort === 'price-asc' ? 'selected' : '' }}>Price (cheapest first)
+                        </option>
+                        <option value="price-desc" {{ $sort === 'price-desc' ? 'selected' : '' }}>Price (expensive first)
+                        </option>
+                        <option value="date-desc" {{ $sort === 'date-desc' ? 'selected' : '' }}>Date (newest first)</option>
+                        <option value="date-asc" {{ $sort === 'date-asc' ? 'selected' : '' }}>Date (oldest first)</option>
                         {{-- <option value="rating">Rating</option> --}}
                     </select>
                 </form>
             </div>
             <div class="view-div flex">
                 <h4 class="ml-3">View</h4>
-                <img src="https://www.svgrepo.com/show/521918/view-rows.svg" alt="" class="view-icon"
-                    id="rows-view">
-                <img src="https://www.svgrepo.com/show/521915/view-grid.svg" alt="" class="view-icon"
-                    id="grid-view">
+                <form id="rows-form" action="{{ route('save.view.choice') }}" method="POST" style="display: hidden">
+                    <input type="hidden" name="view_choice" value="rows">
+                    @csrf<img src="https://www.svgrepo.com/show/521918/view-rows.svg" alt="" class="view-icon"
+                        id="rows-view">
+                </form>
+                <form id="grid-form" action="{{ route('save.view.choice') }}" method="POST" style="display: hidden">
+                    <input type="hidden" name="view_choice" value="grid">
+                    @csrf<img src="https://www.svgrepo.com/show/521915/view-grid.svg" alt="" class="view-icon"
+                        id="grid-view">
+                </form>
             </div>
         </div>
         <main class="book-search-wrapper">
-            <div class="books-rows">
+            @php
+                $viewChoice = session('view_choice');
+            @endphp
+            <div class="books-rows {{ $viewChoice == 'rows' ? '' : 'hidden' }}">
+                @if (count($books) <= 0)
+                    <h3 class="text-center">Sorry, we coulnd't find a suitable book</h3>
+                @endif
                 @foreach ($books as $book)
                     <a href="{{ route('books.show', $book['id']) }}">
                         <div class="book-card-common book-row-card">
@@ -69,8 +83,17 @@
                                 <div class="book-card-buttons">
                                     <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="book-button-icon">
+                                        <button type="submit"
+                                            class="book-button-icon
+                                        @guest @php
+                                        echo 'disabled-icon';
+                                        $disabled = true;
+                                    @endphp @endguest"
+                                            {{ $disabled ?? false ? ' disabled' : '' }}>
                                             <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="Add to Basket">
+                                            @guest
+                                                <span class="message">Please Login or Signup to Access Wishlist</span>
+                                            @endguest
                                         </button>
                                     </form>
                                     <form action="{{ route('basket.store', $book['id']) }}" method="POST">
@@ -80,6 +103,9 @@
                                         @if ($book['quantity'] <= 0) @php
                                                 echo 'disabled-icon';
                                                 $disabled = true;
+                                            @endphp 
+                                            @else @php
+                                                $disabled = false;
                                             @endphp @endif"
                                             {{ $disabled ?? false ? ' disabled' : '' }}>
                                             <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
@@ -99,7 +125,7 @@
                 @endforeach
 
             </div>
-            <div class="books-list" style="display: none">
+            <div class="books-list {{ $viewChoice == 'grid' ? '' : 'hidden' }}">
                 @foreach ($books as $book)
                     <a href="{{ route('books.show', $book['id']) }}">
                         <div class="book-card book-card-common">
