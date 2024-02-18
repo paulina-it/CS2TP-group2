@@ -20,7 +20,7 @@
                         <!-- Book cards -->
                         @foreach ($books as $book)
                             <a href="{{ route('books.show', $book['id']) }}">
-                                <div class="book-card">
+                                <div class="book-card book-card-common">
                                     <div class="book-card-cover">
                                         @if (Storage::disk('public')->exists($book['mainImage']))
                                             <img class="book-cover" src="{{ asset('storage/' . $book['mainImage']) }}"
