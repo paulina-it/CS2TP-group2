@@ -67,14 +67,17 @@ Route::post('/books/{id}', [BookController::class, 'save'])->middleware('role:ad
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('role:admin')->name('books.destroy');
 Route::post('/books', [BookController::class, 'store'])->middleware('role:admin')->name('books.store');
 
-Route::middleware('role:admin')->group(function () {
+//Route::middleware('role:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');
     Route::get('/admin/queries', [AdminController::class, 'queries'])->name('queries');
     Route::post('/admin/queries/{id}', [AdminController::class, 'queriesStatus'])->name('queries.status');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin-users');
+    Route::get('/admin/users/edit/{id}', [AdminController::class, 'edit'])->name('admin-users-edit');
+    Route::post('/admin/users/edit/{id}', [AdminController::class, 'save'])->name('admin-users-save');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
-});
+//});
 //Route::middleware('role:admin')->group(function () {
     // Route::get('/admin', function () {return view('admin/admin-dashboard');})->name('admin-dashboard');
     // Route::get('/admin/books', [AdminController::class, 'books'])->name('admin-books');

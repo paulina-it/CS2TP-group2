@@ -98,4 +98,29 @@ class AdminController extends Controller
         $querie->save();
         return redirect('admin/queries');
     }
+
+    public function users() {
+        $users = User::all();
+        return view('admin/admin-users',[
+            'users' => $users,
+        ]);
+    }
+
+    public function edit($id) {
+        $user = User::findOrFail($id);
+        return view('admin/admin-users-edit',[
+            'user' => $user,
+        ]);
+    }
+
+    public function save($id) {
+        $user = User::findOrFail($id);
+        $user->firstName = request('firstName');
+        $user->lastName = request('lastName');
+        $user->email = request('email');
+        $user->phone = request('phone');
+        $user->role = request('role');
+        $user->save();
+        return redirect('admin/users');
+    }
 }
