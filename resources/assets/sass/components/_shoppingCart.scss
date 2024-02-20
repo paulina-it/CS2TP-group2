@@ -23,14 +23,14 @@ table {
 
 th {
     text-align: left;
-    padding: 2px;
+    padding: 3px 15px 6px;
     background: #633A31;
     color: #fff;
     font-weight: 500px;
 }
 
 td {
-    padding: 10px 5px;
+    padding: 15px 20px;
 }
 
 td input {
@@ -70,25 +70,30 @@ th:last-child {
 .totalPrice {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-right: -740px;
+    justify-content: left;
+    width: 100%;
+    margin: 10px 50px;
 }
 
 .totalPrice table {
     border-top: 3px solid #ff523b;
-    width: 220px;
-    max-width: 350px;
+    width: 100%;
 }
 
 .checkout-button {
     text-align: center;
     margin-top: 20px;
-    margin-right: -790px;
+    margin-left: 100px;
+}
+
+.cartSummary {
+    padding: 20px 150px 20px;
+    padding-left: 50%;
 }
 
 .checkout-button button {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     background-color: #873921;
     color: #fff;
