@@ -55,7 +55,7 @@
                     <label>{{ $orders[$i]['status'] }}</label>
                     </td>
                     <td>
-                    <form action="{{ route('order.return', $orders[$i]['order_id']) }}" method="POST">
+                    <form action="{{ route('order.return', $orders[$i]['id']) }}" method="POST">
                         @csrf
                         @method('delete')
                         <input type="submit" value="Return">
