@@ -4,6 +4,7 @@
 }
 
 .cart-page {
+    width: 75%;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@
 }
 
 table {
-    width: 75%;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -66,13 +67,21 @@ th:last-child {
     text-align: right;
 }
 
+th:nth-child(2) {
+    padding: 0px 20px;
+}
+
+.qty-input {
+    width: 4em;
+}
 
 .totalPrice {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    width: 100%;
-    margin: 10px 50px;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    width: 20em;
 }
 
 .totalPrice table {
@@ -83,12 +92,10 @@ th:last-child {
 .checkout-button {
     text-align: center;
     margin-top: 20px;
-    margin-left: 100px;
 }
 
 .cartSummary {
     padding: 20px 150px 20px;
-    padding-left: 50%;
 }
 
 .checkout-button button {
@@ -99,7 +106,7 @@ th:last-child {
     color: #fff;
     transition: background-color 0.3s;
     border: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .checkout-button button:hover {
