@@ -81,7 +81,7 @@
                 <input type="text" name="last-name" id="ln-input">
             </div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="">
+            <input type="email" name="email" id="" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
             @else
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>

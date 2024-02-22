@@ -4,6 +4,7 @@
 }
 
 .cart-page {
+    width: 75%;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@
 }
 
 table {
-    width: 75%;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -23,14 +24,14 @@ table {
 
 th {
     text-align: left;
-    padding: 2px;
+    padding: 3px 15px 6px;
     background: #633A31;
     color: #fff;
     font-weight: 500px;
 }
 
 td {
-    padding: 10px 5px;
+    padding: 15px 20px;
 }
 
 td input {
@@ -66,35 +67,46 @@ th:last-child {
     text-align: right;
 }
 
+th:nth-child(2) {
+    padding: 0px 20px;
+}
+
+.qty-input {
+    width: 4em;
+}
 
 .totalPrice {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: -740px;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    width: 20em;
 }
 
 .totalPrice table {
     border-top: 3px solid #ff523b;
-    width: 220px;
-    max-width: 350px;
+    width: 100%;
 }
 
 .checkout-button {
     text-align: center;
     margin-top: 20px;
-    margin-right: -790px;
+}
+
+.cartSummary {
+    padding: 20px 150px 20px;
 }
 
 .checkout-button button {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     background-color: #873921;
     color: #fff;
     transition: background-color 0.3s;
     border: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .checkout-button button:hover {

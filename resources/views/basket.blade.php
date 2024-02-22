@@ -116,24 +116,26 @@
                     </td>
                 @endif
             </table>
-            <div class="totalPrice flex flex-col">
-                <table>
-                    <tr>
-                        <td>Total</td>
-                        <td>£{{ $total }}</td>
-                    </tr>
-                    {{-- <tr>
-                        <td>Shipping</td>
-                        <td>£7.99</td>
-                    </tr> --}}
-                </table>
-            </div>
-            <form action="{{ route('order.index') }}" method="GET">
-                @csrf
-                <div class="checkout-button">
-                    <button>Go To Checkout</button>
+            <div class="cartSummary">
+                <div class="totalPrice flex flex-col">
+                    <table>
+                        <tr>
+                            <td>Total</td>
+                            <td>£{{ $total }}</td>
+                        </tr>
+                        {{-- <tr>
+                            <td>Shipping</td>
+                            <td>£7.99</td>
+                        </tr> --}}
+                    </table>
                 </div>
-            </form>
+                <form action="{{ route('order.index') }}" method="GET">
+                    @csrf
+                    <div class="checkout-button">
+                        <button>Go To Checkout</button>
+                    </div>
+                </form>
+            </div>
 
         </div>
         {{-- <div class="recommendedItems">
