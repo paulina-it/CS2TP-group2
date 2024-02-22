@@ -33,7 +33,7 @@
             <x-nav-link :href="route('admin-orders')">
                 <p>Orders</p>
             </x-nav-link>
-            <x-nav-link :href="route('admin-dashboard')">
+            <x-nav-link :href="route('admin-users')">
                 <p>Users</p>
             </x-nav-link>
             <x-nav-link :href="route('queries')">

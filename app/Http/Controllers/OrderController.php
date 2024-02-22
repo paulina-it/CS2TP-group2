@@ -107,7 +107,7 @@ class OrderController extends Controller
         $orderItems = array();
         $books = array();
         for ($i = 0; $i < count($orders); $i++) {
-            array_push($orderItems, OrderItem::where('order_id', $orders[$i]['order_id'])->get());
+            array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
             foreach($orderItems[$i] as $item) {
                 array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
             }
@@ -119,9 +119,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function return($order_id) {
-        $order = Order::where('order_id', $order_id)->delete();
-        
+    public function return($id) {
+        $order = Order::where('id', $id)->delete();
         return redirect(route('order.previous'));
     }
 }
