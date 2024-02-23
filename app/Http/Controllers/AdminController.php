@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Guest;
 use App\Models\Order;
 use App\Models\CustomerQuery;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -75,15 +77,51 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
-        $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
-        $queries = CustomerQuery::where('status', '=', 'not reviewed')->get()->count();
-        $orders = Order::where('status', '=', 'pending')->get()->count();
-        return view('admin/admin-dashboard', [
-            'outOfStock' => $outOfStock,
-            'queries' => $queries,
-            'orders' => $orders,
-        ]);
+        // $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
+        // $queriesPending = CustomerQuery::where('status', '=', 'not reviewed')->get()->count();
+        // $orders = Order::where('status', '=', 'pending')->get()->count();
+        // return view('admin/admin-dashboard', [
+        //     'outOfStock' => $outOfStock,
+        //     'queries' => $queries,
+        //     'orders' => $orders,
+        // ]);
+    $dates = [];
+    $queries = [];
+    $outOfStock = [];
+    $orders = [];
+    $booksSold = [];
+
+    $endDate = Carbon::now();
+
+    $startDate = Carbon::now()->subDays(7);
+
+    while ($startDate <= $endDate) {
+        $dates[] = $startDate->format('Y-m-d');
+        $startDate->addDay();
     }
+
+    foreach ($dates as $date) {
+        $queries[] = CustomerQuery::whereDate('created_at', $date)->count();
+        $queriesPending = CustomerQuery::where('status', '=', 'not reviewed')->get()->count();
+        $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
+        $orders[] = Order::whereDate('created_at', $date)->count();
+        $ordersPending = Order::where('status', '=', 'pending')->get()->count();
+        $booksSold[] = DB::table('order_item')
+        ->join('orders', 'order_item.id', '=', 'orders.id')
+        ->whereDate('orders.created_at', $date)
+        ->sum('order_item.quantity');
+    }
+
+    return view('admin/admin-dashboard', [
+        'dates' => $dates,
+        'queries' => $queries,
+        'queriesPending' => $queriesPending,
+        'outOfStock' => $outOfStock,
+        'orders' => $orders,
+        'ordersPending' => $ordersPending,
+        'booksSold' => $booksSold,
+    ]);    
+}
 
     public function queries() {
         $queries = CustomerQuery::all();
