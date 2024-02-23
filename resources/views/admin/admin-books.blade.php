@@ -7,25 +7,15 @@
     <div class="admin-books-wrapper">
         {{-- @include('layouts.admin-sidebar') --}}
         <div class="main-search m-auto">
-            @if ($search != null)
-                @if (count($books) == 0)
-                    <h2 class="m-9 text-center">No books were found</h2>
-                @elseif (count($books) == 1)
-                    <script>
-                        window.location = "/books/edit" + {{ $books[0]->id }};
-                    </script>
-                @else
-                    <h2 class="m-5">Search results for "{{ $search }}":</h2>
-                @endif
-            @else
-                <h2 class="m-9 text-center">List of all
-                    @if ($category != null)
-                        {{ ucfirst($category) }}
-                    @endif
-                    books
+            <div class="books-inventory-header">
+                <h2 class="m-9 text-center">
+                    List of all books
                 </h2>
-            @endif
-            <div class="admin-books-list">
+                <div class="inventory-buttons">
+                    <button class="py-2 px-4 rounded btn add-book-btn" onclick="window.location='{{ route('books.create') }}'">Add a Book</button>
+                </div>
+            </div>
+            <div class="admin-books-list admin-table">
                 <table class="sortable" id="books-table">
                     <thead>
                         <tr>
@@ -155,32 +145,7 @@
                     </thead>
                     <tbody>
                         @foreach ($books as $book)
-                            {{-- <div class="book-card-inventory">
-                        <div class="book-card-cover">
-                            @if (Storage::disk('public')->exists($book['mainImage']))
-                                <img class="book-cover" src="{{ asset('storage/' . $book['mainImage']) }}"
-                                    alt="{{ $book['book_name'] }}">
-                            @else
-                                <p>Main image not found</p>
-                            @endif
-                        </div>
-                        <div class="book-card-info">
-                            <p class="book-author"><u>Author:</u> <br><br> {{ $book['author'] }}</p>
-                            <p class="book-author"><u>Language:</u> <br><br> {{ $book['language'] }}</p>
-                            <p class="book-title"><u>Name:</u> <br><br>{{ $book['book_name'] }}</p>
-                            <p class="book-price"><u>Price:</u> <br><br>
-                                £{{ number_format((float) $book['price'], 2, '.', '') }}</p>
-                            <p class="book-title"><u>Stock:</u> <br><br>{{ $book['quantity'] }}</p>
-                        </div>
-                        <div class="book-card-btns">
-                            <button class="btn" id="editBtn"
-                                onclick="window.location='{{ route('books.edit', $book['id']) }}'">Edit</button>
-                            <button class="btn" id="deleteBtn">Delete</button>
-                        </div>
-                    </div> --}}
-
                             {{-- table option --}}
-
                             <tr @if ($book['quantity'] <= 0) class="attention-needed" @endif>
                                 <td id="book-table-img">
                                     @if (Storage::disk('public')->exists($book['mainImage']))
@@ -244,25 +209,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div id="modal{{ $book['id'] }}"tabindex="-1" aria-hidden="true"
-                                            class="modal delete-modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                            <div class="relative p-4 w-full max-w-2xl max-h-full ">
-                                                <div
-                                                    class="modal-content relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <span data-modal-hide="modal{{ $book['id'] }}"
-                                                        class="close">&times;</span>
-                                                    <h4>Are you sure you want to delete {{ $book['book_name'] }} from
-                                                        inventory?</h4>
-                                                    <form action="{{ route('books.destroy', $book->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" value="Delete"
-                                                            id="red-btn">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -272,5 +218,4 @@
             </div>
         </div>
     </div>
-    <script></script>
 @endsection
