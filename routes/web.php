@@ -53,6 +53,7 @@ Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 Route::get('/previous', function () {return view('previous-orders');})->name('previous-orders');
 Route::get('/order/previous', [OrderController::class, 'previous'])->name('order.previous');
+Route::get('/order/previous/{id}', [OrderController::class, 'show'])->name('order.show');
 Route::delete('/order/{id}', [OrderController::class, 'return'])->name('order.return');
 
 Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
