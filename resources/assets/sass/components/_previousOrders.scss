@@ -15,6 +15,27 @@
         background-color: $navColour;
     }
 
+    .prev-orders-single-list {
+        width: 75%;
+        margin: 20px auto;
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        background-color: $navColour;
+        padding: 40px;
+    }
+
+    .prev-single-details {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .prev-single-mini {
+        //margin-right: 10px;
+        width: 10em;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;

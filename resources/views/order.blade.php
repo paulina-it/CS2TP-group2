@@ -45,12 +45,12 @@
                 <label for="lName">Last Name</label>
                 <input name="lName" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="text" required>
+                <input name="phone" type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$" required>
                 <label for="email">Email</label>
-                <input name="email" type="text" required>
+                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="number" required>
+            <input name="credit_card_no" type="number" pattern="[0-9\s]{13,19}" maxlength="19" required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
     </div>Í
