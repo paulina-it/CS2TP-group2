@@ -25,11 +25,6 @@
             $total += $book[0]['price'];
             ?>
             <p>£{{$book[0]['price']}}</p>
-            <form action="{{ route('order.return', $book[0]['id']) }}" method="POST">
-                @csrf
-                @method('delete')
-                <input type="submit" value="Return">
-            </form>
             </td>
             @endforeach
             <?php
@@ -39,6 +34,11 @@
             <p>£{{ $total }}</p>
             <label>{{ $order[0]['status'] }}</label>
             <p>{{ $dt->format('Y-m-d') }}</p>
+            <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" value="Return">
+            </form>
         </div>
     </div>
 @endsection
