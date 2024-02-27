@@ -19,8 +19,8 @@
                     <th>Quantity</th>
                     <th>Total</th>
                     <th>Date Ordered</th>
-                    {{--<th>Status</th>
-                    <th>Return</th>--}}
+                    <th>Status</th>
+                    <th>Return</th>
                 </tr>
                 @for ($i = 0; $i < count($orders); $i++)
                 <tr class="prev-order" onclick="location.href='{{ route('order.show', $orders[$i]['id']) }}'">
@@ -70,16 +70,16 @@
                     $count++
                     ?>
                     <td>{{ $dt->format('Y-m-d') }}</td>
-                    {{--<td>
+                    <td>
                     <label>{{ $orders[$i]['status'] }}</label>
                     </td>
                     <td>
                     <form action="{{ route('order.return', $orders[$i]['id']) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <input type="submit" value="Return">
+                        <input class="return-btn" type="submit" value="Return">
                     </form>
-                    </td>--}}
+                    </td>
                 </tr>
                 @endfor
             </table>

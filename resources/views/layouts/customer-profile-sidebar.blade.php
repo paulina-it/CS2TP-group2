@@ -10,7 +10,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('previous-orders')}}"
+            <a href="{{ route('order.previous')}}"
             @if (Request::is('previous-orders'))
                 class="highlight"
             @endif>

@@ -10,8 +10,9 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
+    {{--OLD PREV ORDERS, SEE previousOrders---}}
     <div class="prev-orders-main">
-        <h1 class="title">Previous Orders</h1>
+        <h1 class="title">Previous Orders (OLD)</h1>
         <div class="prev-orders-list">
             <table>
                 <tr>
