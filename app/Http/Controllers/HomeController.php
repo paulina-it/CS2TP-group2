@@ -15,8 +15,7 @@ class HomeController extends Controller
             })->take(12)->get();
         
         return view('index', [
-            'books' => $books->reverse(),
-            'ratings' => $ratings
+            'books' => $books->reverse()
         ]);
     }
 }
