@@ -160,6 +160,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="pagination">
+                {{ $users->links() }}
+            </div>
         {{-- @endforeach
     </div> --}}
 @endsection

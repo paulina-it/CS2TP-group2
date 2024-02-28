@@ -1,27 +1,11 @@
-.query-card {
-    display: flex;
-    flex-direction: column;
+.open-query {
+    background-color: rgb(252, 249, 224) !important;
+}
 
-    margin-bottom: 1em;
-    padding: 2em;
-    background-color: $loginBtn;
+.queries-list {
 
-    border-radius: 5px;
-    box-shadow: 5px 5px 8px #0d0d0d17;
-    transition: 0.4s;
-
-    .query-card-info {
-        display: grid;
-        grid-template-columns: 2fr 2fr 2fr 2fr;
-        grid-template-rows: 2fr 3fr;
-        row-gap: 1em;
-        column-gap: 1em;
-
-        .query-message {
-            grid-column: 1/5;
-            border-radius: 5px;
-            padding: 1em;
-            background-color: $navColour;
-        }
+    .modal-main {
+        // width: 70em !important;
+        max-width: 50vw !important;
     }
 }

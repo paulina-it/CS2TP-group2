@@ -54,10 +54,11 @@ class BookController extends Controller
         if ($stock == 'in-stock') {
             $query->where('quantity', '>', 0);
         } elseif ($stock == 'not-in-stock') {
-            $query->where('quantity', '<=', 0)->paginate(10);
+            $query->where('quantity', '<=', 0);
         }
 
         // $books = $query->get();
+        // $query->paginate(12);
         $sortedBooks = $this->sort($query, $sortType);
     
         return view('books/index', [
@@ -81,7 +82,7 @@ class BookController extends Controller
             $query->orderBy('created_at', $order);
         }
 
-        $sortedBooks = $query->get();
+        $sortedBooks = $query->paginate(12);
 
         return $sortedBooks;
     }
@@ -112,7 +113,7 @@ class BookController extends Controller
     
     public function show($id) {
         $book = Book::findOrFail($id);
-        $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->get();
+        $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->take(12)->get();
         return view('books/show', [
             'book' => $book
         ], compact('book', 'otherBooksInLanguage'));
