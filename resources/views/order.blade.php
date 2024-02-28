@@ -45,9 +45,9 @@
                 <label for="lName">Last Name</label>
                 <input name="lName" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$" required>
+                <input name="phone" type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$" oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')" required>
                 <label for="email">Email</label>
-                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
+                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" >
             @endif
             <label for="credit_card_no">Credit Card Number</label>
             <input name="credit_card_no" type="number" pattern="[0-9\s]{13,19}" maxlength="19" required>
