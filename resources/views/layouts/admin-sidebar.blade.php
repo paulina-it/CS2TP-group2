@@ -29,7 +29,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('wishlist') }}" @if (Request::is('wishlist')) class="highlight" @endif>
+            <a href="{{ route('admin-orders') }}" @if (Request::is('admin-orders')) class="highlight" @endif>
                 <img src="https://www.svgrepo.com/show/383791/parcel.svg" alt="Orders Icon" class="sidebar-icon">
                 <p class="font-semibold">Order Management</p>
             </a>

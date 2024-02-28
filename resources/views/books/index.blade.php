@@ -189,7 +189,6 @@
                     </a>
                 @endforeach
             </div>
-
             <div>
                 <div class="ml-5 flex">
                     <img src="https://www.svgrepo.com/show/532169/filter.svg" alt="filter-icon" class="w-5 mr-1">
@@ -232,6 +231,9 @@
                         <button class="py-2 px-4 rounded btn" type="submit">Submit</button>
                     </form>
                 </div>
+            </div>
+            <div class="pagination">
+                {{ $books->links() }}
             </div>
         </main>
     </div>
