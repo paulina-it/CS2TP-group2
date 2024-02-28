@@ -93,7 +93,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="qty-input">
+                                <div class="qty-input" onchange="this.submit()">
                                     <form action="{{ route('basket.update', $books[$i][0]['id']) }}" method="POST">
                                         @csrf
                                         @method('PUT')

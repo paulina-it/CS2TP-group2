@@ -59,6 +59,7 @@
     margin: 2em;
     display: grid;
     grid-template-columns: 4fr 1fr;
+    // grid-template-rows: 10fr 1fr;
 }
 
 .search-sidebar,
@@ -127,5 +128,22 @@
 
     .lang-checkboxes {
         margin-bottom: 1em;
+    }
+}
+
+.pagination {
+
+    nav {
+        color: $btn2hover !important;
+        box-shadow: none !important;
+        width: 90%;
+        margin: auto;
+        justify-content: space-around;
+
+        &:nth-child(1) {
+            display: flex;
+            justify-content: center;
+
+        }
     }
 }

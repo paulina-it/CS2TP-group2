@@ -15,7 +15,6 @@
 @import './components/book/bookPage';
 @import './components/book/booksIndex';
 @import './components/book/bookCard';
-@import './components/admin/booksCreate';
 @import './components/home';
 @import './components/aboutUs';
 @import './components/shoppingCart';
@@ -26,13 +25,19 @@
 @import './components/wishlist';
 @import './components/admin/adminDashboard';
 @import './components/admin/queries';
+@import './components/admin/booksCreate';
 @import './components/admin/booksInventory';
+@import './components/auth/auth';
 
 body {
     background-color: $mainColour;
     color: $textColour;
     // z-index: auto;
     position: relative;
+
+    a {
+        // text-decoration: none;
+    }
 }
 html,body
 {

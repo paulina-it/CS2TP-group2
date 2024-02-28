@@ -68,7 +68,6 @@ class OrderController extends Controller
         }
         $order = new Order;
         $order->status = "pending";
-        $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
         } else {
@@ -93,7 +92,7 @@ class OrderController extends Controller
         if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
         } else {
-             $request->session()->put('books', []);
+            $request->session()->put('books', []);
         }
         return redirect('basket')->with('success', 'Order Complete');
     }
