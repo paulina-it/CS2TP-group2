@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use Carbon\Carbon;
+use App\Models\ProductRating;
 
 class BookController extends Controller
 {
@@ -114,8 +115,11 @@ class BookController extends Controller
     public function show($id) {
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->take(12)->get();
+        
+        $ratings = ProductRating::where('book_id', $id)->get();
         return view('books/show', [
-            'book' => $book
+            'book' => $book,
+            'ratings' => $ratings
         ], compact('book', 'otherBooksInLanguage'));
     }
 

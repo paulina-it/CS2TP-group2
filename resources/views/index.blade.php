@@ -133,5 +133,25 @@
                     online bookshop is your portal to a world of stories, ideas, and knowledge.</p>
             </div>
         </div>
+        <div class="website_rating">
+            @foreach($ratings as $rating)
+                <label>{{$rating['score']}}</label>
+                <label>{{$rating['review']}}</label>
+            @endforeach
+            <form action="{{ route('website-rating.create') }}" method="POST">
+                @csrf
+                <select name="score">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <textarea name="review">
+                </textarea>
+                <input type="text">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 @endsection
