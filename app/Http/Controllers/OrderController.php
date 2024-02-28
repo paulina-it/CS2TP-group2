@@ -92,7 +92,7 @@ class OrderController extends Controller
         if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
         } else {
-             $request->session()->put('books', []);
+            $request->session()->put('books', []);
         }
         return redirect('basket')->with('success', 'Order Complete');
     }

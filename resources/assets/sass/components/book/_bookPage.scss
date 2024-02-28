@@ -117,6 +117,12 @@
                 background-color: $btn2hover;
             }
         }
+
+        .addToWishlistBtn:disabled {
+            background-color: $btn2;
+            opacity: 0.4;
+            height: 2.5em;
+        }
     }
 
 }
@@ -212,7 +218,8 @@
 }
 
 .similar-books-list {
-    padding: 1em;
+    padding: 3em;
+    padding-top: 1em;
     overflow: scroll;
 
     &::-webkit-scrollbar {

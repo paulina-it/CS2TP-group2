@@ -16,12 +16,14 @@ class EnsureUserHasRole
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next, string $role): Response
-    {
-        
-        if (User::where("id", Auth::id())->get('role')[0]['role'] != $role) {
-            return redirect('dashboard');
-        }
- 
-        return $next($request);
+{
+    $user = User::find(Auth::id());
+
+    if (!$user || !isset($user->role) || $user->role !== $role) {
+        return redirect('dashboard');
     }
+
+    return $next($request);
+}
+
 }

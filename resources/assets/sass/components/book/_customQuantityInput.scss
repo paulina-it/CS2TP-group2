@@ -1,6 +1,6 @@
 .qty-input {
     height: 2.5em;
-    width: 8.7em;
+    width: 10em;
     color: black;
     background: white;
     display: flex;
@@ -23,9 +23,8 @@
         border: none;
         display: inline-block;
         min-width: 0;
-        // height: 2.5rem;
+        height: 2.5rem;
         line-height: 1;
-
 
         &:focus {
             outline: none;

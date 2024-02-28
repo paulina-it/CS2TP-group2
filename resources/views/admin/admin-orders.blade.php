@@ -4,7 +4,7 @@
 @endsection
 
 @section('main')
-<h2 class="text-center">Orders Management</h2>
+    <h2 class="text-center">Orders Management</h2>
     <form action="{{ route('admin-orders') }}" method="GET">
         <label>Filter</label>
         <select name="filter">
@@ -148,56 +148,55 @@
                             </svg>
                         </div>
                     </th>
-                    <th>Buttons</th>
+                    {{-- <th>Buttons</th> --}}
                 </tr>
             </thead>
             <tbody>
                 @for ($i = 0; $i < count($orders); $i++)
                     <tr>
-                        <form action="{{ route('admin-process', $orders[$i]['id']) }}" method="POST">
-                            @csrf
-                            <td>
-                                <label>{{ $orders[$i]['id'] }}</label>
-                            </td>
-                            <td>
-                                <label>{{ $users[$i][0]['firstName'].' '.$users[$i][0]['lastName'] }}</label>
-                            </td>
-                            <td>
-                                <label>{{ $users[$i][0]['email'] }}</label>
-                            </td>
-                            <td>
-                                <label>{{ $users[$i][0]['phone'] }}</label>
-                            </td>
-                            <td>
-                                <label>{{ $orders[$i]['created_at'] }}</label>
-                            </td>
-                            <td>
-                                {{-- add onchange --}}
-                                <select name="status">
-                                    <option value="pending" <?php if ($orders[$i]['status'] == 'pending') {
-                                        echo 'selected';
-                                    } ?>>Pending</option>
-                                    <option value="processed" <?php if ($orders[$i]['status'] == 'processed') {
-                                        echo 'selected';
-                                    } ?>>Processed</option>
-                                    <option value="completed" <?php if ($orders[$i]['status'] == 'completed') {
-                                        echo 'selected';
-                                    } ?>>Completed</option>
-                                    <option value="shipping" <?php if ($orders[$i]['status'] == 'shipping') {
-                                        echo 'selected';
-                                    } ?>>Shipping</option>
-                                    <option value="canceled" <?php if ($orders[$i]['status'] == 'canceled') {
-                                        echo 'selected';
-                                    } ?>>Canceled</option>
-                                    <option value="refunded" <?php if ($orders[$i]['status'] == 'refunded') {
-                                        echo 'selected';
-                                    } ?>>Refunded</option>
+                        <td>
+                            <label>{{ $orders[$i]['id'] }}</label>
+                        </td>
+                        <td>
+                            <label>{{ $users[$i][0]['firstName'] . ' ' . $users[$i][0]['lastName'] }}</label>
+                        </td>
+                        <td>
+                            <label>{{ $users[$i][0]['email'] }}</label>
+                        </td>
+                        <td>
+                            <label>{{ $users[$i][0]['phone'] }}</label>
+                        </td>
+                        <td>
+                            <label>{{ $orders[$i]['created_at'] }}</label>
+                        </td>
+                        <td>
+                            <form action="{{ route('admin-process', $orders[$i]['id']) }}" method="POST">
+                                @csrf
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="pending" @if ($orders[$i]['status'] == 'pending') selected @endif>
+                                        Pending
+                                    </option>
+                                    <option value="processed" @if ($orders[$i]['status'] == 'processed') selected @endif>
+                                        Processed
+                                    </option>
+                                    <option value="shipped" @if ($orders[$i]['status'] == 'shipped') selected @endif>
+                                        Shipped
+                                    </option>
+                                    <option value="completed" @if ($orders[$i]['status'] == 'completed') selected @endif>
+                                        Completed
+                                    </option>
+                                    <option value="cancelled" @if ($orders[$i]['status'] == 'cancelled') selected @endif>
+                                        Cancelled
+                                    </option>
+                                    <option value="refunded" @if ($orders[$i]['status'] == 'refunded') selected @endif>
+                                        Refunded
+                                    </option>
                                 </select>
-                            </td>
-                            <td>
-                                <button type="submit" value="">Process</button>
-                            </td>
-                        </form>
+                            </form>
+                        </td>
+                        {{-- <td>
+                            <button type="submit" value="">Process</button>
+                        </td> --}}
                     </tr>
                 @endfor
             </tbody>

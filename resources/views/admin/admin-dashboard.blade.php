@@ -22,7 +22,7 @@
                 </div>
                 {{-- //add sales, graph with amount of books sold,  --}}
                 <h4>Last Week's Insight</h4>
-                <canvas id="stats-chart" width="400" height="400"></canvas>
+                <canvas id="stats-chart" width="400" height="250"></canvas>
             </div>
         </div>
     </div>
@@ -61,7 +61,8 @@
                     y: {
                         beginAtZero: true
                     }
-                }
+                },
+                // maintainAspectRatio: false,
             }
         });
     </script>

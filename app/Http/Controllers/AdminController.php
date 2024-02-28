@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function books() {
         $search = request('search');
         if (empty($search)) {
-            $books = Book::all();
+            $books = Book::paginate(10);
         } else {
             $books = Book::where(function ($query) use($search) {
                 $query->where('book_name', 'like', '%' . $search . '%')
@@ -24,7 +24,7 @@ class AdminController extends Controller
                 ->orWhere('description', 'like', '%' . $search . '%')
                 ->orWhere('genre', 'like', '%' . $search . '%')
                 ->orWhere('language', 'like', '%' . $search . '%');
-            })->get();
+            })->paginate(10);
         }
         return view('admin/admin-books', [
             'books' => $books,
@@ -33,13 +33,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function orders() {
+    public function orders($filter = null) {
         if (request('idSearch')) {
             $orders = Order::where('user_id', request('idSearch'))->orWhere('guest_id', request('idSearch'))->get();
         } else {
             $orders = Order::all();
         } 
-        if (request('filter') && request('filter') != "none") {
+        $filter = request('filter') ?? null;
+        if ($filter && $filter != null) {
             $orders = $orders->filter(function($item)
                 {
                     if($item['status'] == request('filter'))
@@ -66,6 +67,7 @@ class AdminController extends Controller
         return view('admin/admin-orders', [
             'orders' => $orders,
             'users' => $users,
+            'filter' => $filter
         ]);
     }
 
@@ -138,7 +140,7 @@ class AdminController extends Controller
     }
 
     public function users() {
-        $users = User::all();
+        $users = User::paginate(20);
         return view('admin/admin-users',[
             'users' => $users,
         ]);
