@@ -22,6 +22,8 @@
                 </a>
             </div>
 
+    <button class="home-btn btn px-10 py-3" onclick="window.location='{{ route('home') }}'">Back to Home</button>
+
             <div class="auth-form w-full sm:max-w-md mt-6 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>

@@ -91,7 +91,10 @@
                         </form>
                         <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
                             @csrf
-                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn" 
+                            @guest
+                            disabled
+                            @endguest>
                                 Add to Wishlist
                             </button>
                         </form>
