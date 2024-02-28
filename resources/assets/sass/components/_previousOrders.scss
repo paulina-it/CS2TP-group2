@@ -27,13 +27,16 @@
     }
 
     .prev-single-details {
-        flex-direction: column;
+        flex-direction: row;
         padding: 20px;
     }
 
     .prev-single-mini {
-        //margin-right: 10px;
-        width: 10em;
+        width: 20em;
+        .book-img {
+            margin: 5px 5px;
+            box-shadow: 5px 5px 10px #0d0d0d3d;
+        }
     }
 
     table {
@@ -71,7 +74,7 @@
     }
     
     .book-img {
-        margin: 5px 10px 0px 5px;
+        margin: 5px 5px;
     }
 
     .name {
