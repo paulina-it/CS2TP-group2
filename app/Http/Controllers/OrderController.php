@@ -102,24 +102,44 @@ class OrderController extends Controller
             $user_id = Auth::id();
         }
         $orders = Order::where('user_id', $user_id)->get();
-        
         $orderItems = array();
         $books = array();
         for ($i = 0; $i < count($orders); $i++) {
             array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
             foreach($orderItems[$i] as $item) {
-                array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+                for ($j = 0; $j < $item['quantity']; $j++) {
+                    array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+                }
             }
         }
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
-            'items' => $orderItems,
+            'items' => $orderItems
+        ]);
+    }
+
+    public function show($id) {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+        }
+        $order = Order::where('id', $id)->get();
+        $books = array();
+        $orderItems = OrderItem::where('order_id', $order[0]['id'])->get();
+        foreach($orderItems as $item) {
+            for ($j = 0; $j < $item['quantity']; $j++) {
+                array_push($books, Book::where('id', $item['book_id'])->get());
+            }
+        }
+        return view('previousOrdersShow', [
+            'books' => $books,
+            'order' => $order,
+            'items' => $orderItems
         ]);
     }
 
     public function return($id) {
-        $order = Order::where('id', $id)->delete();
+        $order = Order::where('id', $id)->get();
         return redirect(route('order.previous'));
     }
 }
