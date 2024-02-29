@@ -11,7 +11,7 @@
         </li>
         <li>
             <a href="{{ route('order.previous')}}"
-            @if (Request::is('previous-orders'))
+            @if (Request::is('order.previous'))
                 class="highlight"
             @endif>
                 <img src="https://www.svgrepo.com/show/493951/order.svg" alt="" class="sidebar-icon">

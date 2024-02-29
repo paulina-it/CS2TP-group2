@@ -10,7 +10,7 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-    <div class="main">
+    <div class="shopping-cart-main">
 
         @if (\Session::has('success'))
             <div class="alert alert-success">

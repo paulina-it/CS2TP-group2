@@ -21,18 +21,11 @@
                 <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
                     alt="{{ $book[0]['book_name'] }}">
             </div>
-            <div class="prev-single-details">
-                <?php 
-                $total += $book[0]['price'];
-                ?>
-                <p>£{{$book[0]['price']}}</p>
-                <form action="{{ route('order.return', $book[0]['id']) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <input type="submit" value="Return">
-                </form>
-                </td>
-            </div>
+            <?php 
+            $total += $book[0]['price'];
+            ?>
+            <p>£{{$book[0]['price']}}</p>
+            </td>
             @endforeach
             <?php
             $date = DATE($items[0]['created_at']);
@@ -41,6 +34,11 @@
             <p>£{{ $total }}</p>
             <label>{{ $order[0]['status'] }}</label>
             <p>{{ $dt->format('Y-m-d') }}</p>
+            <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" value="Return">
+            </form>
         </div>
     </div>
 @endsection

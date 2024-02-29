@@ -105,13 +105,17 @@ class OrderController extends Controller
         $orderItems = array();
         $books = array();
         for ($i = 0; $i < count($orders); $i++) {
-            array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
-            foreach($orderItems[$i] as $item) {
-                for ($j = 0; $j < $item['quantity']; $j++) {
-                    array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+            if (count(OrderItem::where('order_id', $orders[$i]['id'])->get()) != 0) {
+                
+                array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
+                foreach($orderItems[$i] as $item) {
+                    for ($j = 0; $j < $item['quantity']; $j++) {
+                        array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+                    }
                 }
-            }
+            } 
         }
+        
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
@@ -139,7 +143,11 @@ class OrderController extends Controller
     }
 
     public function return($id) {
+        //$orderItem = OrderItem::where('id', $id)->delete();
         $order = Order::where('id', $id)->get();
+        $order[0]->status = "refunded";
+        $order[0]->save();
+        
         return redirect(route('order.previous'));
     }
 }
