@@ -82,6 +82,7 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/admin/users/edit/{id}', [AdminController::class, 'edit'])->name('admin-users-edit');
     Route::post('/admin/users/edit/{id}', [AdminController::class, 'save'])->name('admin-users-save');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
+    Route::get('/admin/orders/{id}', [AdminController::class, 'order'])->name('admin-order-details');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
 });
 
