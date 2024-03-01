@@ -56,7 +56,10 @@ Route::get('/order/previous', [OrderController::class, 'previous'])->name('order
 Route::get('/order/previous/{id}', [OrderController::class, 'show'])->name('order.show');
 Route::delete('/order/{id}', [OrderController::class, 'return'])->name('order.return');
 
-Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    BasketController::getQty(); 
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

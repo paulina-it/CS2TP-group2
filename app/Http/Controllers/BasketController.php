@@ -9,10 +9,12 @@ use App\Models\cart;
 use App\Models\Book;
 use App\Models\Price;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BasketController extends Controller
 {
     public function index(Request $request) {
+        $this->getQty();
         $books = collect();
         if (Auth::check()) {
             $user_id = Auth::id();
@@ -122,5 +124,27 @@ class BasketController extends Controller
         }
         return redirect('basket');
     }
+
+    public static function getQty() {
+        $qty = 0;
+        
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $basket = Cart::where('user_id', $user_id)->get();
+        } elseif (session()->has('books')) {
+            $basket = session()->get('books');
+        } else {
+            $basket = [];
+        }
+    
+        foreach ($basket as $item) {
+            $qty += $item['quantity'];     
+        }
+
+        Session::put('basket_qty', $qty);
+    
+        return $qty;
+    }
+    
 }
 

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 class HomeController extends Controller
 {
     public function index() {
+        BasketController::getQty();
         // $date = Carbon::now()->subMonth();
             // $books = Book::where(function ($query) use($date) {
             //     $query->whereDate('created_at', '>', $date->toDateString());
