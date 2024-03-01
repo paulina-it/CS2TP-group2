@@ -77,21 +77,21 @@
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>
                 <label for="last-name" id="ln-label">Last Name</label>
-                <input type="text" name="first-name" id="fn-input">
-                <input type="text" name="last-name" id="ln-input">
+                <input type="text" name="first-name" id="fn-input" oninvalid="setCustomValidity('Please enter your first name.')" oninput="setCustomValidity('')" required>
+                <input type="text" name="last-name" id="ln-input" oninvalid="setCustomValidity('Please enter your last name.')" oninput="setCustomValidity('')" required>
             </div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
+            <input type="email" name="email" id="" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
             @else
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>
                 <label for="last-name" id="ln-label">Last Name</label>
                 {{-- fix after register --}}
-                <input type="text" name="first-name" id="fn-input" value="{{Auth::user()->firstName}}">
-                <input type="text" name="last-name" id="ln-input" value="{{Auth::user()->lastName}}">
+                <input type="text" name="first-name" id="fn-input" value="{{Auth::user()->firstName}}" oninvalid="setCustomValidity('Please enter your first name.')" oninput="setCustomValidity('')" required>
+                <input type="text" name="last-name" id="ln-input" value="{{Auth::user()->lastName}}" oninvalid="setCustomValidity('Please enter your last name.')" oninput="setCustomValidity('')" required>
             </div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="" value="{{Auth::user()->email}}">
+            <input type="email" name="email" id="" value="{{Auth::user()->email}}" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
             @endguest
             <label for="query-type">Type of query</label>
             <select name="query-type" id="">
@@ -102,7 +102,7 @@
                 <option value="other">Other</option>
             </select>
             <label for="message">Message</label>
-            <textarea id="message" rows="4" name="message" placeholder="Write your thoughts here..."></textarea>
+            <textarea id="message" rows="4" name="message" placeholder="Write your thoughts here..." oninvalid="setCustomValidity('Please enter your query.')" oninput="setCustomValidity('')" required></textarea>
             <button id="contact-submit-btn" type="submit" class="text-white py-2 px-4 rounded">Send</button>
         </form>
     </div>

@@ -12,12 +12,12 @@
 @section('main')
     <div class="prev-orders-main">
         <h1 class="title">Previous Order</h1>
-        <div class="prev-orders-list">
+        <div class="prev-orders-single-list">
             <?php 
             $total = 0;
             ?>
             @foreach ($books as $book)
-            <div class="prev-single">
+            <div class="prev-single-mini">
                 <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
                     alt="{{ $book[0]['book_name'] }}">
             </div>
