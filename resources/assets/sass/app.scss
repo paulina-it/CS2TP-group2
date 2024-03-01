@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 // general
 @import './variables';
 @import './components/typograpgy';
@@ -15,7 +16,7 @@
 @import './components/admin/booksCreate';
 @import './components/home';
 @import './components/aboutUs';
-@import './components/shoppingCart';
+@import './components/basket';
 @import './components/checkOut';
 @import './components/contact';
 @import './components/screens/appMedia';
@@ -28,7 +29,7 @@
 body {
     background-color: $mainColour;
     color: $textColour;
-    // z-index: auto;
+    /* z-index: auto; */
     position: relative;
 }
 html,body
