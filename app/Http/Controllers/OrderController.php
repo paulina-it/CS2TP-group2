@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
 use App\Models\OrderItem;
 use App\Models\Order;
+use App\Models\Coupon;
 use App\Models\Book;
 use App\Models\Guest;
 use App\Models\Payment;
@@ -40,9 +41,14 @@ class OrderController extends Controller
             }
             array_push($amounts, $elem['quantity']);     
         }
+        $coupon = null;
+        if ($request->session()->has('coupon')) {
+            $coupon = $request->session()->get('coupon');
+        }
         return view('/order', [
             'books' => $books,
             'amounts' => $amounts,
+            'coupon' => $coupon
         ]);
     }
 
@@ -73,6 +79,13 @@ class OrderController extends Controller
         } else {
             $order->guest_id = $guest->id;
         }
+        /*if ($request->session()->get('coupon')) {
+            $order->discount = $request->session()->get('coupon')['discount'];
+            $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
+        } else {
+            $order->discount = 0;
+        }
+        */
         $order->save();
         $order_id = $order->id;
         foreach($books as $book) {

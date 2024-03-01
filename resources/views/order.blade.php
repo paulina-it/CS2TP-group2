@@ -29,9 +29,28 @@
                 </div>
                 @php
                     $total += $books[$i][0]['price'] * $amounts[$i];
+                    if ($coupon) {
+                        $discount = $coupon['discount'] / 100 * $total;
+                        $total = $total - $discount;
+                    }
                 @endphp
             @endfor
         </div>
+        @if (!$coupon)
+        <form action="{{ route('coupons.store') }}" method="POST">
+            @csrf
+            <input type="text" name="name">
+            <input type="submit" value="Submit">
+        </form>
+        @else
+        <h4 class="text-end font-bold">{{$coupon['name']}} : -£{{$discount}}</h4>
+        
+        <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Remove">
+        </form>
+        @endif
         <h4 class="text-end font-bold">Total: £{{ $total }}</h4>
         <div class="delivery mb-5">
             <h3>Delivery:</h3>

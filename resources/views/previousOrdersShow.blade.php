@@ -34,11 +34,13 @@
             <p>£{{ $total }}</p>
             <label>{{ $order[0]['status'] }}</label>
             <p>{{ $dt->format('Y-m-d') }}</p>
+            @if ($order[0]['status'] != "refunded") 
             <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" value="Return">
             </form>
+            @endif
         </div>
     </div>
 @endsection
