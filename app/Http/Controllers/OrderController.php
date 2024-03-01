@@ -79,13 +79,13 @@ class OrderController extends Controller
         } else {
             $order->guest_id = $guest->id;
         }
-        /*if ($request->session()->get('coupon')) {
-            $order->discount = $request->session()->get('coupon')['discount'];
+        if ($request->session()->get('coupon')) {
+            $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->get('id');
+            $order->coupon_id = $couponId;
             $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
         } else {
             $order->discount = 0;
         }
-        */
         $order->save();
         $order_id = $order->id;
         foreach($books as $book) {
