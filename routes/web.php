@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ProductRatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,6 @@ Route::get('/about', function () {return view('about-us');})->name('about-us');
 Route::get('/cart', function () {return view('shopping-cart');})->name('shopping-cart');
 Route::get('/checkout', function () {return view('checkout');})->name('checkout');
 
-
 Route::get('/wishlist', function() {return view('wishlist');})->name('wishlist');
 
 Route::get('/books', [BookController::class, 'indexClear'])->name('books.index');
@@ -38,6 +38,7 @@ Route::get('/books/category/{category_slug}', [BookController::class, 'indexCate
 Route::get('/books/search/', [BookController::class, 'indexFilter'])->name('books.filter');
 Route::get('/books/sort/', [BookController::class, 'setSortType'])->name('books.sort');
 
+Route::post('/books/rating/{id}', [ProductRatingController::class, 'create'])->name('product-rating.create');
 
 Route::post('/basket/{id}', [BasketController::class, 'store'])->name('basket.store');
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');
