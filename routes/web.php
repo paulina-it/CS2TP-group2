@@ -11,6 +11,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ProductRatingController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,9 @@ Route::post('/basket/wishlist/{id}', [WishlistController::class, 'basket'])->nam
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
 
+Route::post('/order/coupon', [CouponController::class, 'store'])->name('coupons.store');
+Route::delete('/order/coupon', [CouponController::class, 'delete'])->name('coupons.delete');
+
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 Route::get('/previous', function () {return view('previous-orders');})->name('previous-orders');
@@ -84,6 +88,8 @@ Route::middleware('role:admin')->group(function () {
     Route::post('/admin/users/edit/{id}', [AdminController::class, 'save'])->name('admin-users-save');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
+    Route::get('/admin/coupons', [CouponController::class, 'index'])->name('admin-coupons');
+    Route::post('/admin/coupons', [CouponController::class, 'create'])->name('admin-coupons-create');
 });
 
 Route::post('/save-view-choice', [SessionController::class, 'saveViewChoice'])->name('save.view.choice');
