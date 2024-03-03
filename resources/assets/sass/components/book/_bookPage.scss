@@ -200,6 +200,8 @@
         width: 3em;
         height: 3em;
         text-align: center;
+        background-color: $btn2;
+        position: absolute;
 
         &.back {
             margin-left: -2em;
@@ -209,11 +211,6 @@
             right: 0;
             margin-right: -2em;
         }
-    }
-
-    .scroll-btn {
-        background-color: $btn2;
-        position: absolute;
     }
 }
 

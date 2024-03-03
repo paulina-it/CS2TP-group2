@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('localVite')
-    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js'])
+    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js', 'resources/assets/js/aty-input.js'])
 @endsection
 @section('main')
     <div class="content">
