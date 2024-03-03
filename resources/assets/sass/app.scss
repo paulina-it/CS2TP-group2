@@ -6,14 +6,16 @@
 
 // general
 @import './variables';
-@import './components/typograpgy';
+@import './typograpgy';
+// @import './buttons';
 // pages and blocks
 @import './components/navbar';
 @import './components/footer';
 @import './components/profile';
+@import './components/modal';
 @import './components/book/bookPage';
 @import './components/book/booksIndex';
-@import './components/admin/booksCreate';
+@import './components/book/bookCard';
 @import './components/home';
 @import './components/aboutUs';
 @import './components/basket';
@@ -24,13 +26,19 @@
 @import './components/wishlist';
 @import './components/admin/adminDashboard';
 @import './components/admin/queries';
+@import './components/admin/booksCreate';
 @import './components/admin/booksInventory';
+@import './components/auth/auth';
 
 body {
     background-color: $mainColour;
     color: $textColour;
     /* z-index: auto; */
     position: relative;
+
+    a {
+        // text-decoration: none;
+    }
 }
 html,body
 {

@@ -13,13 +13,9 @@
                 {{-- {{ __('Profile') }} --}}
                 <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
             </x-nav-link>
-            <form method="POST" action="{{ route('logout') }}" class="m-0 ">
-                @csrf
-                <x-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                    class="mt-2.5 pb-2.5">
-                    <img src="https://www.svgrepo.com/show/502760/logout.svg" alt="" class="nav-icon">
-                </x-nav-link>
-            </form>
+            <x-nav-link data-modal-toggle="modal-logout" data-modal-target="modal-logout" class="mt-2.5 pb-2.5">
+                <img src="https://www.svgrepo.com/show/502760/logout.svg" alt="" class="nav-icon">
+            </x-nav-link>
         </div>
     </div>
     <!-- Navigation Links -->
@@ -37,7 +33,7 @@
             <x-nav-link :href="route('admin-orders')">
                 <p>Orders</p>
             </x-nav-link>
-            <x-nav-link :href="route('admin-dashboard')">
+            <x-nav-link :href="route('admin-users')">
                 <p>Users</p>
             </x-nav-link>
             <x-nav-link :href="route('queries')">

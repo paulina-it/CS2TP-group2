@@ -18,6 +18,7 @@
 <body class="flex flex-col">
     @include('layouts.navigation')
     <div class="main-content">
+        @include('layouts.logout-modal')
         @yield('main')
     </div>
     @include('layouts.footer')

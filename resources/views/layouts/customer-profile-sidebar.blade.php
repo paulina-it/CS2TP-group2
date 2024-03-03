@@ -10,8 +10,8 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('previous-orders')}}"
-            @if (Request::is('previous-orders'))
+            <a href="{{ route('order.previous')}}"
+            @if (Request::is('order.previous'))
                 class="highlight"
             @endif>
                 <img src="https://www.svgrepo.com/show/493951/order.svg" alt="" class="sidebar-icon">

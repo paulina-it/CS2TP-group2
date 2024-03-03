@@ -9,10 +9,13 @@
             </a>
         </div>
         <div class="account-nav flex">
-            <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
-                {{-- <p>Wishlist</p> --}}
-                <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="" class="nav-icon">
-            </x-nav-link>
+            @guest
+            @else
+                <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                    {{-- <p>Wishlist</p> --}}
+                    <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="" class="nav-icon">
+                </x-nav-link>
+            @endguest
             <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                 {{-- <p>Basket</p> --}}
                 <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon">
@@ -31,13 +34,10 @@
                     {{-- {{ __('Profile') }} --}}
                     <img src="https://www.svgrepo.com/show/361411/account.svg" alt="" class="nav-icon">
                 </x-nav-link>
-                <form method="POST" action="{{ route('logout') }}" class="m-0 ">
-                    @csrf
-                    <x-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
-                        class="mt-2.5 pb-2.5">
-                        <img src="https://www.svgrepo.com/show/502760/logout.svg" alt="" class="nav-icon">
-                    </x-nav-link>
-                </form>
+
+                <x-nav-link data-modal-toggle="modal-logout" data-modal-target="modal-logout" class="mt-2.5 pb-2.5">
+                    <img src="https://www.svgrepo.com/show/502760/logout.svg" alt="" class="nav-icon">
+                </x-nav-link>
             @endguest
         </div>
     </div>
@@ -52,7 +52,7 @@
             <x-nav-link :href="route('home')">
                 <p class="nav-link-text">Home</p>
             </x-nav-link>
-            <x-nav-link :href="route('books.index')">
+            <x-nav-link :href="route('books.index', ['category_slug' => 'null'])">
                 <p>Books</p>
             </x-nav-link>
             <x-nav-link :href="route('about-us')">
@@ -64,6 +64,7 @@
         </div>
         <div class="nav-search p-2">
             <form action="{{ route('books.index') }}" method="GET">
+                @csrf
                 <label for="default-search" class="sr-only">Search</label>
                 <div class="relative mt-0">
                     <input name="search" type="search" id="default-search"
