@@ -17,6 +17,28 @@ nav {
 
     .top-bar {
         background-color: $navTopColour;
+
+        #basket-icon {
+            // transform: scale(2) !important;
+        }
+
+        .basket-quantity {
+            position: relative;
+            width: 100%;
+
+            .qunatity-number {
+                position: absolute;
+                right: -5px;
+                bottom: 0;
+                width: 1.5em;
+                border-radius: 10px;
+                color: white;
+                background-color: $btn1;
+                text-align: center;
+
+                transform: scale(0.7);
+            }
+        }
     }
 
     .nav-links {
@@ -79,6 +101,7 @@ nav {
     #admin-navbar {
         background-color: $adminNavColour;
     }
+
     #admin-top-navbar {
         background-color: $adminNavTopColour;
     }

@@ -18,7 +18,10 @@
             @endguest
             <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                 {{-- <p>Basket</p> --}}
-                <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon">
+                <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon" id="basket-icon">
+                <div class="basket-quantity">
+                    <span class="qunatity-number">{{ Session::get('basket_qty') }}</span>
+                </div>
             </x-nav-link>
             @guest
                 <x-nav-link :href="route('login')" :active="request()->routeIs('login')">

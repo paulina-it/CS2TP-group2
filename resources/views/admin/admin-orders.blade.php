@@ -5,20 +5,22 @@
 
 @section('main')
     <h2 class="text-center">Orders Management</h2>
-    <form action="{{ route('admin-orders') }}" method="GET">
-        <label>Filter</label>
-        <select name="filter">
-            <option value="none">None</option>
-            <option value="pending">Pending</option>
-            <option value="processed">Processed</option>
-            <option value="completed">Completed</option>
-            <option value="shipping">Shipping</option>
-            <option value="canceled">Canceled</option>
-            <option value="refunded">Refunded</option>
-        </select>
-        <input type="text" name="idSearch">
-        <input type="submit" value="submit">
-    </form>
+    <div class="filter-orders-div">
+        <form action="{{ route('admin-orders') }}" method="GET" class="filter-orders">
+            <label for="filter">Filter</label>
+            <select name="filter">
+                <option value="none">None</option>
+                <option value="pending">Pending</option>
+                <option value="processed">Processed</option>
+                <option value="completed">Completed</option>
+                <option value="shipping">Shipping</option>
+                <option value="canceled">Canceled</option>
+                <option value="refunded">Refunded</option>
+            </select>
+            <input type="text" name="idSearch" placeholder="Search">
+            <button type="submit" value="submit" class="filter-btn">Submit</button>
+        </form>
+    </div>
     <div class="admin-table">
 
         <table class="sortable" id="books-table">
@@ -148,7 +150,7 @@
                             </svg>
                         </div>
                     </th>
-                    {{-- <th>Buttons</th> --}}
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -194,9 +196,9 @@
                                 </select>
                             </form>
                         </td>
-                        {{-- <td>
-                            <button type="submit" value="">Process</button>
-                        </td> --}}
+                        <td>
+                            <a href="{{ route('admin-order-details', $orders[$i]['id']) }}">Open Details</a>
+                        </td>
                     </tr>
                 @endfor
             </tbody>
