@@ -24,8 +24,10 @@
             <?php 
             $total += $book[0]['price'];
             ?>
-            <p>£{{$book[0]['price']}}</p>
-            </td>
+            <div class="prev-orders-single-list">
+                <p>£{{$book[0]['price']}}</p>
+            </div>
+            {{--</td>--}}
             @endforeach
             <?php
             $date = DATE($items[0]['created_at']);
