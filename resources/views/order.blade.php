@@ -29,9 +29,28 @@
                 </div>
                 @php
                     $total += $books[$i][0]['price'] * $amounts[$i];
+                    if ($coupon) {
+                        $discount = $coupon['discount'] / 100 * $total;
+                        $total = $total - $discount;
+                    }
                 @endphp
             @endfor
         </div>
+        @if (!$coupon)
+        <form action="{{ route('coupons.store') }}" method="POST">
+            @csrf
+            <input type="text" name="name">
+            <input type="submit" value="Submit">
+        </form>
+        @else
+        <h4 class="text-end font-bold">{{$coupon['name']}} : -£{{$discount}}</h4>
+        
+        <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Remove">
+        </form>
+        @endif
         <h4 class="text-end font-bold">Total: £{{ $total }}</h4>
         <div class="delivery mb-5">
             <h3>Delivery:</h3>
@@ -45,12 +64,12 @@
                 <label for="lName">Last Name</label>
                 <input name="lName" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="text" required>
+                <input name="phone" type="text" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$" oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')" required>
                 <label for="email">Email</label>
-                <input name="email" type="text" required>
+                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" >
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="number" required>
+            <input name="credit_card_no" type="number" pattern="[0-9\s]{13,19}" maxlength="19" required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
     </div>Í

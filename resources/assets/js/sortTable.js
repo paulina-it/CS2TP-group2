@@ -1,67 +1,52 @@
-document.getElementById("books-table").addEventListener("click", function (event) {
-    if (event.target.tagName === "TH" || event.target.parentElement.tagName === "TH") {
-        let thElement = event.target.tagName === "TH" ? event.target : event.target.parentElement;
+document.querySelector(".sortable").addEventListener("click", function (event) {
+    let thElement = event.target.tagName === "TH" ? event.target : event.target.closest("th");
+    if (thElement && (thElement.querySelector('div') || thElement.querySelector('svg'))) {
         let colIndex = thElement.cellIndex;
         sortTable(colIndex);
     }
-    if (event.target.classList.contains('openModalBtn')) {
-        // event.target.nextElementSibling.style.display = 'block';
-    }
 });
 
-const modalWindows = document.querySelectorAll('.modalWindow');
-
-modalWindows.forEach(function (modalWindow) {
-    modalWindow.addEventListener('click', function (event) {
-        if (event.target.classList.contains('closeModal') || !modalWindow.contains(event.target)) {
-            modalWindow.previousElementSibling.style.display = 'none';
-        }
-    });
-});
-
-
-
-function sortTable(colIndex) {
-    if (colIndex === 0 || colIndex === 7) {
-        return;
-    }
-
-    let table = document.getElementById("books-table");
+function sortTable(colIndex, direction = "asc") {
+    let table = document.querySelector(".sortable");
     let rows = table.rows;
     let switching = true;
     let shouldSwitch;
-    let direction = "asc"; // ascending by default
     let switchcount = 0;
 
     while (switching) {
         switching = false;
-        let i = 1;
+        let i, x, y;
         for (i = 1; i < rows.length - 1; i++) {
             shouldSwitch = false;
-            let x, y;
-            if (colIndex === 6) {
-                x = getDateValue(rows[i].getElementsByTagName("td")[colIndex].innerHTML);
-                y = getDateValue(rows[i + 1].getElementsByTagName("td")[colIndex].innerHTML);
+
+            // console.log(rows[i].getElementsByTagName("td")[colIndex].firstChild.tagName);
+            if (rows[i].getElementsByTagName("td")[colIndex].querySelector('select')) {
+                console.log(rows[i].getElementsByTagName("td")[colIndex].querySelector("select")[0].value);
+                x = rows[i].getElementsByTagName("td")[colIndex].querySelector("select").value;
+                y = rows[i + 1].getElementsByTagName("td")[colIndex].querySelector("select").value;
             } else {
                 x = rows[i].getElementsByTagName("td")[colIndex].innerHTML;
                 y = rows[i + 1].getElementsByTagName("td")[colIndex].innerHTML;
             }
-            // Convert x and y to numbers if they are numeric
-            if (!isNaN(parseFloat(x)) && !isNaN(parseFloat(y))) {
+
+            const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+            const isDateFormat = dateFormatRegex.test(x) && dateFormatRegex.test(y);
+
+            if (isDateFormat) {
+                x = getDateValue(x);
+                y = getDateValue(y);
+            }
+            else if (!isNaN(parseFloat(x)) && !isNaN(parseFloat(y))) {
                 x = parseFloat(x);
                 y = parseFloat(y);
+            } else {
+                x = x.toLowerCase();
+                y = y.toLowerCase();
             }
 
-            if (direction === "asc") {
-                if (x > y) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (direction === "desc") {
-                if (x < y) {
-                    shouldSwitch = true;
-                    break;
-                }
+            if ((direction === "asc" && x > y) || (direction === "desc" && x < y)) {
+                shouldSwitch = true;
+                break;
             }
         }
         if (shouldSwitch) {
@@ -76,6 +61,7 @@ function sortTable(colIndex) {
         }
     }
 }
+
 
 function getDateValue(dateString) {
     return new Date(dateString.replace(/-/g, '/')).getTime();

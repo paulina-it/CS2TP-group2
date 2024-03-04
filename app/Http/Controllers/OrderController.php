@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
 use App\Models\OrderItem;
 use App\Models\Order;
+use App\Models\Coupon;
 use App\Models\Book;
 use App\Models\Guest;
 use App\Models\Payment;
@@ -40,9 +41,14 @@ class OrderController extends Controller
             }
             array_push($amounts, $elem['quantity']);     
         }
+        $coupon = null;
+        if ($request->session()->has('coupon')) {
+            $coupon = $request->session()->get('coupon');
+        }
         return view('/order', [
             'books' => $books,
             'amounts' => $amounts,
+            'coupon' => $coupon
         ]);
     }
 
@@ -68,11 +74,17 @@ class OrderController extends Controller
         }
         $order = new Order;
         $order->status = "pending";
-        $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
         } else {
             $order->guest_id = $guest->id;
+        }
+        if ($request->session()->get('coupon')) {
+            $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->get('id');
+            $order->coupon_id = $couponId;
+            $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
+        } else {
+            $order->discount = 0;
         }
         $order->save();
         $order_id = $order->id;
@@ -93,7 +105,7 @@ class OrderController extends Controller
         if (Auth::check()) {
             cart::where('user_id', $user_id)->delete();
         } else {
-             $request->session()->put('books', []);
+            $request->session()->put('books', []);
         }
         return redirect('basket')->with('success', 'Order Complete');
     }
@@ -103,24 +115,51 @@ class OrderController extends Controller
             $user_id = Auth::id();
         }
         $orders = Order::where('user_id', $user_id)->get();
-        
         $orderItems = array();
         $books = array();
         for ($i = 0; $i < count($orders); $i++) {
-            array_push($orderItems, OrderItem::where('order_id', $orders[$i]['order_id'])->get());
-            foreach($orderItems[$i] as $item) {
-                array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
-            }
+            if (count(OrderItem::where('order_id', $orders[$i]['id'])->get()) != 0) {
+                
+                array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
+                foreach($orderItems[$i] as $item) {
+                    for ($j = 0; $j < $item['quantity']; $j++) {
+                        array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+                    }
+                }
+            } 
         }
+        
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
-            'items' => $orderItems,
+            'items' => $orderItems
         ]);
     }
 
-    public function return($order_id) {
-        $order = Order::where('order_id', $order_id)->delete();
+    public function show($id) {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+        }
+        $order = Order::where('id', $id)->get();
+        $books = array();
+        $orderItems = OrderItem::where('order_id', $order[0]['id'])->get();
+        foreach($orderItems as $item) {
+            for ($j = 0; $j < $item['quantity']; $j++) {
+                array_push($books, Book::where('id', $item['book_id'])->get());
+            }
+        }
+        return view('previousOrdersShow', [
+            'books' => $books,
+            'order' => $order,
+            'items' => $orderItems
+        ]);
+    }
+
+    public function return($id) {
+        //$orderItem = OrderItem::where('id', $id)->delete();
+        $order = Order::where('id', $id)->get();
+        $order[0]->status = "refunded";
+        $order[0]->save();
         
         return redirect(route('order.previous'));
     }

@@ -1,0 +1,29 @@
+.filter-orders-div {
+    width: 90%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1em;
+
+    .filter-orders {display: flex;
+        // flex-direction: column;
+
+        input,
+        select, button {
+            border-radius: 10px;
+            width: 10em;
+            margin-left: 0.5em;
+        }
+
+        label {
+            margin-top: 0.5em;
+            margin-right: 1em;
+            font-weight: 500;
+        }
+
+        .filter-btn {
+            background-color: $loginBtn;
+            width: 8em;
+            margin-left: 1em;
+        }
+    }
+}

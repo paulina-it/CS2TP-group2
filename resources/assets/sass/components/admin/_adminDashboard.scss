@@ -1,6 +1,27 @@
+.books-inventory-header {
+    position: relative;
+
+    .inventory-buttons {
+        position: absolute;
+        top: 0;
+        right: 10%;
+        
+        .add-book-btn {
+            background-color: $loginBtn;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $loginBtnhover;
+            }
+        }
+    }
+}
+
 .admin-dashboard-wrapper {
+    width: 100%;
     display: grid;
-    grid-template-columns: 3fr 6.5fr;
+    grid-template-columns: 2fr 6.5fr;
+
 
     .sidebar {
         max-height: 46em;
@@ -27,6 +48,7 @@
                 background-color: $loginBtnhover;
             }
         }
+
         .disabled-link {
             pointer-events: none;
 
@@ -46,8 +68,22 @@
 }
 
 .admin-dashboard-div {
+    width: 90%;
     margin-top: 2em;
     border-radius: 10px;
+    display: grid;
+    // grid-template-rows: 1fr 5fr;
+
+    canvas {
+        width: 100% !important;
+        // width: 40vw !important;
+        // height: 40vw !important;
+    }
+
+    .summary-div {
+        display: flex;
+        justify-content: space-around;
+    }
 
     .stats-card {
         height: 10em;

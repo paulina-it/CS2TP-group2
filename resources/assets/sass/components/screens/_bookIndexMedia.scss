@@ -1,7 +1,6 @@
 @media screen and (min-width: 1600px) {
     .books-list {
         width: 90vw;
-        grid-template-columns: repeat(6, 1fr);
     }
 }
 
@@ -9,27 +8,23 @@
     .books-list {
         // margin: 0;
         width: 90vw;
-        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1199px) {
     .books-list {
         width: 90vw;
-        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
     .books-list {
         width: 85vw;
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
     .books-list {
         width: 90vw;
-        grid-template-columns: repeat(1, 1fr);
     }
 }

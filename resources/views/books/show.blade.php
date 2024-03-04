@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('localVite')
-    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js'])
+    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js', 'resources/assets/js/aty-input.js'])
 @endsection
 @section('main')
     <div class="content">
@@ -22,8 +22,14 @@
                             @endforeach
                         @endif
                     </div>
-                    <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
-                        class="book-cover">
+                    @if (Storage::disk('public')->exists($book['mainImage']))
+                        <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
+                            class="book-cover">
+                    @else
+                        <div class="dummy-book-cover">
+                            <p>Image not available</p>
+                        </div>
+                    @endif
                 </div>
                 <!-- Book information and buttons -->
                 <div class="book-info-div flex flex-col justify-around">
@@ -85,7 +91,10 @@
                         </form>
                         <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
                             @csrf
-                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn" 
+                            @guest
+                            disabled
+                            @endguest>
                                 Add to Wishlist
                             </button>
                         </form>
@@ -110,10 +119,12 @@
                 $genres = explode(', ', $book['genre']);
                 ?>
                 @foreach ($genres as $genre)
-                    <div
-                        class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
-                        {{ ucfirst(trans($genre)) }}
-                    </div>
+                    <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
+                        <div
+                            class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
+                            {{ ucfirst(trans($genre)) }}
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -132,7 +143,7 @@
                         @for ($i = 0; $i < 3; $i++)
                             @foreach ($otherBooksInLanguage as $otherBook)
                                 <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card">
+                                    <div class="book-card book-card-common">
                                         <div class="book-card-cover">
                                             <img class="book-cover"
                                                 src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
@@ -141,8 +152,47 @@
                                             <p class="book-author">{{ $otherBook['author'] }}</p>
                                             <p class="book-language">{{ ucfirst(trans($otherBook['language'])) }}</p>
                                             <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <p class="book-price">£{{ number_format((float) $otherBook['price'], 2, '.', '') }}
-                                            </p>
+                                            <div class="grid-card-bottom">
+                                                <p class="book-price">£{{ number_format((float) $otherBook['price'], 2, '.', '') }}</p>
+                                                <div class="book-card-buttons">
+                                                    <form action="{{ route('wishlist.store', $otherBook['id']) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="book-button-icon
+                                                    @guest @php
+                                                    echo 'disabled-icon';
+                                                    $disabled = true;
+                                                @endphp @endguest"
+                                                            {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                            <img src="https://www.svgrepo.com/show/361197/heart.svg"
+                                                                alt="Add to Basket">
+                                                            @guest
+                                                                <span class="message">Please Login or Signup to Access Wishlist</span>
+                                                            @endguest
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('basket.store', $otherBook['id']) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="book-button-icon 
+                                                    @if ($otherBook['quantity'] <= 0) @php
+                                                            echo 'disabled-icon';
+                                                            $disabled = true;
+                                                        @endphp 
+                                                        @else @php
+                                                            $disabled = false;
+                                                        @endphp @endif"
+                                                            {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                            <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
+                                                                alt="Add to Wishlist">
+                                                            @if ($otherBook['quantity'] <= 0)
+                                                                <span class="message">This Book is Out of Stock</span>
+                                                            @endif
+                                                        </button>
+                                                    </form>
+                                                </div>
+            
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
@@ -150,6 +200,26 @@
                         @endfor
 
                     </div>
+        </div>
+
+        <div class="product_rating">
+            @foreach($ratings as $rating)
+                <label>{{$rating['score']}}</label>
+                <label>{{$rating['review']}}</label>
+            @endforeach
+            <form action="{{ route('product-rating.create', $book['id']) }}" method="POST">
+                @csrf
+                <select name="score">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <textarea name="review">
+                </textarea>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 @endsection

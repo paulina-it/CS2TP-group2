@@ -1,6 +1,6 @@
 .qty-input {
     height: 2.5em;
-    width: 8.7em;
+    width: 10em;
     color: black;
     background: white;
     display: flex;
@@ -23,9 +23,8 @@
         border: none;
         display: inline-block;
         min-width: 0;
-        // height: 2.5rem;
+        height: 2.5rem;
         line-height: 1;
-
 
         &:focus {
             outline: none;
@@ -100,4 +99,12 @@
 // 	border-radius: 4px;
 // 	box-shadow: 0 1em 2em -0.9em rgba(#000, 0.7);
 // 	transform: scale(1.5);
+// }
+
+// .basket-qty {
+//     display: flex;
+
+//     button {
+//         width: 1em !important;
+//     }
 // }
