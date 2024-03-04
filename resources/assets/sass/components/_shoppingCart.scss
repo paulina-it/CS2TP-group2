@@ -25,6 +25,9 @@
         img {
             margin-top: -1.8em;
         }
+        &:not(.disabled-icon):hover {
+            background-color: $signupBtnhover;
+        }
     }
 
     table {
