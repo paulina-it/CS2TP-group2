@@ -262,6 +262,12 @@
                                                     </button>
                                                 </form>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
         </div>
 
     @endsection
