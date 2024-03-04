@@ -45,6 +45,7 @@ class BasketController extends Controller
                 $basket = [];
             }
         }
+        $basket = collect($basket);
 
         if ($basket ) {
             $basketBookIds = $basket->pluck('book_id')->toArray();

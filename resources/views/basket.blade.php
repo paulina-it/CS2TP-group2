@@ -75,18 +75,15 @@
                                 <p>£{{ $books[$i]['price'] * $amounts[$i] }}</p>
                             </td>
                             <td class="flex justify-end">
+                                @auth
+                                    
                                 <form action="{{ route('wishlist.store', $books[$i]['id']) }}" method="POST">
                                     @csrf
-                                    <button type="submit"
-                                        class="cart-icon
-                                            @guest @php
-                                            echo 'disabled-icon';
-                                            $disabled = true;
-                                            @endphp @endguest"
-                                        {{ $disabled ?? false ? ' disabled' : '' }}>
+                                    <button type="submit" class="cart-icon">
                                         <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="Add to Basket">
                                     </button>
                                 </form>
+                                @endauth
                                 <button onclick="eventPreventDefault()" type="button" class="cart-icon"
                                     data-modal-toggle="modal{{ $books[$i]['id'] }}"
                                     data-modal-target="modal{{ $books[$i]['id'] }}">
