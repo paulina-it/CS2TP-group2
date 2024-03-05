@@ -207,6 +207,7 @@
                 <label>{{$rating['score']}}</label>
                 <label>{{$rating['review']}}</label>
             @endforeach
+            @if (Auth::check())
             <form action="{{ route('product-rating.create', $book['id']) }}" method="POST">
                 @csrf
                 <select name="score">
@@ -220,6 +221,9 @@
                 </textarea>
                 <input type="submit" value="Submit">
             </form>
+            @else
+            <label>Please log in to leave a review</label>
+            @endif
         </div>
     </div>
 @endsection

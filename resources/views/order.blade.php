@@ -25,7 +25,7 @@
                     </div>
                     <br>
                     <em>Amount: </em><p>{{ $amounts[$i] }}</p> 
-                    <em>Total price:</em> <p>£{{ $books[$i][0]['price'] * $amounts[$i] }}</p>
+                    <em>Total price:</em> <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i], 2) }}</p>
                 </div>
                 @php
                     $total += $books[$i][0]['price'] * $amounts[$i];
@@ -43,7 +43,7 @@
             <input type="submit" value="Submit">
         </form>
         @else
-        <h4 class="text-end font-bold">{{$coupon['name']}} : -£{{$discount}}</h4>
+        <h4 class="text-end font-bold">{{$coupon['name']}} : -£{{number_format($discount, 2)}}</h4>
         
         <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
             @csrf
@@ -51,7 +51,7 @@
             <input type="submit" value="Remove">
         </form>
         @endif
-        <h4 class="text-end font-bold">Total: £{{ $total }}</h4>
+        <h4 class="text-end font-bold">Total: £{{ number_format($total, 2) }}</h4>
         <div class="delivery mb-5">
             <h3>Delivery:</h3>
             <p>You will be able to pick up your order at our local store.</p>
