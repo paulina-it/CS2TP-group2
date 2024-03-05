@@ -78,10 +78,10 @@
                     required>
                 <label for="email">Email</label>
                 <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"
-                    oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')">
+                    oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="number" pattern="[0-9\s]{13,19}" maxlength="19" required>
+            <input name="credit_card_no" type="number" pattern="[0-9\s]{13,19}" minlength="8" maxlength="19" required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
     </div>Í
