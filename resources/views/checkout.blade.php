@@ -22,7 +22,7 @@
                         <em>Amount: </em>
                         <p>{{ $amounts[$i] }}</p>
                         <em>Total price:</em>
-                        <p>£{{ $books[$i][0]['price'] * $amounts[$i] }}</p>
+                        <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i],2) }}</p>
                     </div>
                     @php
                         $total += $books[$i][0]['price'] * $amounts[$i];
@@ -33,7 +33,7 @@
                     @endphp
                 @endfor
             </div>
-            <h4 class="text-end font-bold mt-2">Total: £{{ $total }}</h4>
+            <h4 class="text-end font-bold mt-2">Total: £{{ number_format($total, 2) }}</h4>
             @if (!$coupon)
                 <form action="{{ route('coupons.store') }}" method="POST" class="coupon-form">
                     <h4>Use a Coupon:</h4>

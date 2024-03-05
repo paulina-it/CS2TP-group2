@@ -17,6 +17,9 @@
 
 <body class="flex flex-col">
     @include('layouts.navigation')
+    @if($errors->any())
+        <h4>{{$errors->first()}}</h4>
+    @endif
     <div class="main-content">
         @include('layouts.logout-modal')
         @yield('main')
