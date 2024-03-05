@@ -45,7 +45,7 @@ class OrderController extends Controller
         if ($request->session()->has('coupon')) {
             $coupon = $request->session()->get('coupon');
         }
-        return view('/order', [
+        return view('/checkout', [
             'books' => $books,
             'amounts' => $amounts,
             'coupon' => $coupon
