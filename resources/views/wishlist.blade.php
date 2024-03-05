@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('main')
 
-<div class="main">
+<div class="wishlist-main">
 
     @if (\Session::has('success'))
         <div class="alert alert-success">
@@ -14,7 +14,7 @@
 
     <h1 class="title">Wishlist</h1>
 
-    <div class="small-container cart-page">
+    <div class="small-container wishlist">
         <table>
             <tr>
                 <th>Product</th>

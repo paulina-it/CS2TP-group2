@@ -10,8 +10,9 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
+    {{--OLD PREV ORDERS, SEE previousOrders---}}
     <div class="prev-orders-main">
-        <h1 class="title">Previous Orders</h1>
+        <h1 class="title">Previous Orders (OLD)</h1>
         <div class="prev-orders-list">
             <table>
                 <tr>
@@ -19,6 +20,7 @@
                     <th>Quantity</th>
                     <th>Total</th>
                     <th>Date Ordered</th>
+                    <th>Status</th>
                 </tr>
                 <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
                     <td>
@@ -37,6 +39,7 @@
                     <td><p>{{$i}}</p></td>
                     <td>{{"£" . number_format((float)$i * 12.9, 2, '.', '')}}</td>
                     <td>2024-01-05</td>
+                    <td>pending</td>
                 </tr>
 
                 <tr class="prev-order" onclick="location.href='{{ route('order.previous') }}'">
@@ -56,6 +59,7 @@
                     <td><p>{{$i}}</p></td>
                     <td>{{"£" . number_format((float)$i * 12.9, 2, '.', '')}}</td>
                     <td>2023-11-17</td>
+                    <td>completed</td>
                 </tr>
             </table>
             {{-- <h3 class="m-9 text-center">No previous orders</h3> --}}

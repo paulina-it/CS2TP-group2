@@ -61,7 +61,10 @@ Route::get('/order/previous', [OrderController::class, 'previous'])->name('order
 Route::get('/order/previous/{id}', [OrderController::class, 'show'])->name('order.show');
 Route::delete('/order/{id}', [OrderController::class, 'return'])->name('order.return');
 
-Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    BasketController::getQty(); 
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -87,6 +90,7 @@ Route::middleware('role:admin')->group(function () {
     Route::get('/admin/users/edit/{id}', [AdminController::class, 'edit'])->name('admin-users-edit');
     Route::post('/admin/users/edit/{id}', [AdminController::class, 'save'])->name('admin-users-save');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin-orders');
+    Route::get('/admin/orders/{id}', [AdminController::class, 'order'])->name('admin-order-details');
     Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
     Route::get('/admin/coupons', [CouponController::class, 'index'])->name('admin-coupons');
     Route::post('/admin/coupons', [CouponController::class, 'create'])->name('admin-coupons-create');

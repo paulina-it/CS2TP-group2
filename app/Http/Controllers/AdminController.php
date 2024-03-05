@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Guest;
 use App\Models\Order;
 use App\Models\CustomerQuery;
+use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -78,6 +79,34 @@ class AdminController extends Controller
         return redirect('admin/orders');
     }
 
+    public function order($id) {
+        $order = Order::findOrFail($id);
+        $books = array();
+        $orderItems = OrderItem::where('order_id', $id)->get();
+        foreach($orderItems as $item) {
+            for ($j = 0; $j < $item['quantity']; $j++) {
+                array_push($books, Book::where('id', $item['book_id'])->get());
+            }
+        }
+        if ($order['user_id']) {
+            $user = User::where('id', $order['user_id'])->get();
+        } else if ($order['guest_id']) {
+            $user = Guest::where('id', $order['guest_id'])->get();
+        } else {
+            $user = [["id" => null,
+            "firstName" => null,
+            "lastName" => null,
+            "phone" => null,
+            "email" => null,]];
+        }
+        return view('admin/admin-order-details', [
+            'order' => $order,
+            'user' => $user,
+            'books' => $books
+        ]);
+
+    }
+
     public function dashboard() {
         // $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
         // $queriesPending = CustomerQuery::where('status', '=', 'not reviewed')->get()->count();
@@ -108,9 +137,7 @@ class AdminController extends Controller
         $outOfStock = Book::where('quantity', '<=', 0)->get()->count();
         $orders[] = Order::whereDate('created_at', $date)->count();
         $ordersPending = Order::where('status', '=', 'pending')->get()->count();
-        $booksSold[] = DB::table('order_item')
-        ->join('orders', 'order_item.id', '=', 'orders.id')
-        ->whereDate('orders.created_at', $date)
+        $booksSold[] = OrderItem::whereDate('order_item.created_at', $date)
         ->sum('order_item.quantity');
     }
 
