@@ -51,6 +51,11 @@
                             @endfor
                         </div>
                     </td>
+                    <?php
+                    if ($coupons[$i]) {
+                        $total -= $total * $coupons[$i]['discount'] / 100;
+                    }
+                    ?>
                     <td>
                         <p>
                             @for ($j = 0; $j < count($books); $j++)
@@ -63,7 +68,7 @@
                             {{$quantity}}
                         </p>
                     </td>
-                    <td> £{{$total}} </td>
+                    <td> £{{number_format($total,2)}} </td>
                     <?php
                     $date = DATE($items[$i][$count]['created_at']);
                     $dt = new DateTime($date);

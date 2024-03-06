@@ -22,7 +22,7 @@
         </form>
         <form action="{{ route('admin-orders') }}" method="GET">
             @csrf
-            @if (request('idSearch'))
+            @if (request('idSearch') || request('filter'))
                 <button type="submit">Clear Search</button>
             @endif
         </form>

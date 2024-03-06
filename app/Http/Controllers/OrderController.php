@@ -123,9 +123,14 @@ class OrderController extends Controller
         $orders = Order::where('user_id', $user_id)->get();
         $orderItems = array();
         $books = array();
+        $coupons = array();
         for ($i = 0; $i < count($orders); $i++) {
+            if ($orders[$i]['coupon_id']) {
+                array_push($coupons, Coupon::where('id', $orders[$i]['coupon_id'])->first());
+            }  else {
+                array_push($coupons, null);
+            }
             if (count(OrderItem::where('order_id', $orders[$i]['id'])->get()) != 0) {
-                
                 array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
                 foreach($orderItems[$i] as $item) {
                     for ($j = 0; $j < $item['quantity']; $j++) {
@@ -134,11 +139,11 @@ class OrderController extends Controller
                 }
             } 
         }
-        
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
-            'items' => $orderItems
+            'items' => $orderItems,
+            'coupons' => $coupons
         ]);
     }
 
@@ -147,6 +152,10 @@ class OrderController extends Controller
             $user_id = Auth::id();
         }
         $order = Order::where('id', $id)->get();
+        $coupon = null;
+        if ($order[0]['coupon_id']) {
+            $coupon = Coupon::where('id', $order[0]['coupon_id'])->first();
+        } 
         $books = array();
         $orderItems = OrderItem::where('order_id', $order[0]['id'])->get();
         foreach($orderItems as $item) {
@@ -157,7 +166,8 @@ class OrderController extends Controller
         return view('previousOrdersShow', [
             'books' => $books,
             'order' => $order,
-            'items' => $orderItems
+            'items' => $orderItems,
+            'coupon' => $coupon
         ]);
     }
 
