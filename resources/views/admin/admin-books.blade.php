@@ -15,6 +15,18 @@
                     <button class="py-2 px-4 rounded btn add-book-btn" onclick="window.location='{{ route('books.create') }}'">Add a Book</button>
                 </div>
             </div>
+            <div>
+            <form action="{{ route('admin-books') }}" method="GET">
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit" value="submit" class="filter-btn">Submit</button>
+            </form>
+            <form action="{{ route('admin-books') }}" method="GET">
+                @csrf
+                @if (request('search'))
+                    <button type="submit">Clear Search</button>
+                @endif
+            </form>
+            </div>
             <div class="admin-books-list admin-table">
                 <table class="sortable" id="books-table">
                     <thead>

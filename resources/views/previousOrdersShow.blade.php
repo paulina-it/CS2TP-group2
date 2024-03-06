@@ -24,14 +24,22 @@
             <?php 
             $total += $book[0]['price'];
             ?>
-            <p>£{{$book[0]['price']}}</p>
+            <p>£{{number_format($book[0]['price'],2)}}</p>
             </td>
             @endforeach
             <?php
             $date = DATE($items[0]['created_at']);
             $dt = new DateTime($date);
+            $discount = null;
+            if ($coupon) {
+            $discount = $total * $coupon['discount'] / 100;
+            $total -= $discount;
+            }
             ?>
-            <p>£{{ $total }}</p>
+            @if ($discount)
+            <p>Discount: £{{ number_format($discount,2) }}</p>
+            @endif
+            <p>Total: £{{ number_format($total,2) }}</p>
             <label>{{ $order[0]['status'] }}</label>
             <p>{{ $dt->format('Y-m-d') }}</p>
             @if ($order[0]['status'] != "refunded") 

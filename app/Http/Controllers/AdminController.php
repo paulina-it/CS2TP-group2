@@ -36,12 +36,12 @@ class AdminController extends Controller
 
     public function orders($filter = null) {
         if (request('idSearch')) {
-            $orders = Order::where('user_id', request('idSearch'))->orWhere('guest_id', request('idSearch'))->get();
+            $orders = Order::where('id', request('idSearch'))->get();
         } else {
             $orders = Order::all();
         } 
         $filter = request('filter') ?? null;
-        if ($filter && $filter != null) {
+        if ($filter && $filter != 'none') {
             $orders = $orders->filter(function($item)
                 {
                     if($item['status'] == request('filter'))
@@ -50,6 +50,7 @@ class AdminController extends Controller
                     }
             });
         }
+        
         $orders = $orders->values();
         $users = array();
         foreach ($orders as $order) {
@@ -89,15 +90,15 @@ class AdminController extends Controller
             }
         }
         if ($order['user_id']) {
-            $user = User::where('id', $order['user_id'])->get();
+            $user = User::where('id', $order['user_id'])->first();
         } else if ($order['guest_id']) {
-            $user = Guest::where('id', $order['guest_id'])->get();
+            $user = Guest::where('id', $order['guest_id'])->first();
         } else {
-            $user = [["id" => null,
+            $user = ["id" => null,
             "firstName" => null,
             "lastName" => null,
             "phone" => null,
-            "email" => null,]];
+            "email" => null];
         }
         return view('admin/admin-order-details', [
             'order' => $order,
