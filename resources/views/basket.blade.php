@@ -40,7 +40,7 @@
                                         <a href="{{ route('books.show', $books[$i]['id']) }}">
                                             <p>{{ $books[$i]['book_name'] }}</p>
                                         </a>
-                                        <small>£{{ $books[$i]['price'] }}</small>
+                                        <small>£{{ number_format($books[$i]['price'],2) }}</small>
                                         <br>
 
                                     </div>
@@ -72,7 +72,7 @@
                                 </div>
                             </td>
                             <td>
-                                <p>£{{ $books[$i]['price'] * $amounts[$i] }}</p>
+                                <p>£{{ number_format($books[$i]['price'] * $amounts[$i],2) }}</p>
                             </td>
                             <td class="flex justify-end">
                                 @auth
@@ -139,11 +139,11 @@
             </table>
             <div class="cartSummary">
                 <div class="totalPrice flex flex-col">
-                    <strong class="text-left w-full ml-10">Total: £{{ $total + 2.99 }}</strong>
+                    <strong class="text-left w-full ml-10">Total: £{{ number_format($total + 2.99,2) }}</strong>
                     <table>
                         <tr>
                             <td>Subotal ({{ $books->count() }} items)</td>
-                            <td>£{{ $total }}</td>
+                            <td>£{{ number_format($total, 2) }}</td>
                         </tr>
                         <tr>
                             <td>Shipping</td>
