@@ -166,7 +166,7 @@
                                     <img src="{{ asset('storage/' . $wishlist[$i][0]['mainImage']) }}" alt=""
                                         class="w-10">
                                     <p>{{ $wishlist[$i][0]['book_name'] }}</p>
-                                    <form action="{{ route('basket.store', $wishlist[$i][0]['id']) }}" method="POST">
+                                    <form action="{{ route('wishlist.basket', $wishlist[$i][0]['id']) }}" method="POST">
                                         @csrf
                                         <button type="submit"
                                             class="book-button-icon">

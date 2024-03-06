@@ -29,7 +29,7 @@ class OrderController extends Controller
             }
         }
         if (Count($basket) == 0) {
-            return redirect('basket');
+            return redirect('basket')->withErrors(['msg' => 'Please add items to basket']);
         }
         $amounts = array();
 
@@ -64,6 +64,12 @@ class OrderController extends Controller
                 $payment->save();
             }
         } else {
+            $request->validate([
+                'fName' => ['required', 'string', 'max:255'],
+                'lName' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255']
+            ]);
             $guest = new Guest;
             $guest->firstName = request('fName');
             $guest->lastName = request('lName');
@@ -84,7 +90,7 @@ class OrderController extends Controller
             $order->coupon_id = $couponId['id'];
             $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
         } else {
-            $order->discount = 0;
+            $order->coupon_id = null;
         }
         $order->save();
         $order_id = $order->id;

@@ -31,7 +31,7 @@
                                     alt="{{ $books[$i][0]['book_name'] }}">
                                 <div>
                                     <p class="name">{{ $books[$i][0]['book_name'] }}</p>
-                                    <small>Price: £{{ $books[$i][0]['price'] }}</small>
+                                    <small>Price: £{{ number_format($books[$i][0]['price'],2) }}</small>
                                     <br>
                                 </div>
                             </div>
