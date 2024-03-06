@@ -20,6 +20,12 @@
             <input type="text" name="idSearch" placeholder="Search">
             <button type="submit" value="submit" class="filter-btn">Submit</button>
         </form>
+        <form action="{{ route('admin-orders') }}" method="GET">
+            @csrf
+            @if (request('idSearch'))
+                <button type="submit">Clear Search</button>
+            @endif
+        </form>
     </div>
     <div class="admin-table">
 
