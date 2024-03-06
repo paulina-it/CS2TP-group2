@@ -81,8 +81,8 @@ class OrderController extends Controller
             $order->guest_id = $guest->id;
         }
         if ($request->session()->get('coupon')) {
-            $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->get('id');
-            $order->coupon_id = $couponId;
+            $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->first();
+            $order->coupon_id = $couponId['id'];
             $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
         } else {
             $order->discount = 0;
