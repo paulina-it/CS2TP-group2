@@ -86,6 +86,8 @@
                             </div>
                         @endif
                     </div>
+
+
                     <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
                         <form action="{{ route('basket.store', $book['id']) }}" method="POST">
@@ -117,6 +119,30 @@ disabled @endguest>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        {{-- MODAL ZOOM --}}
+        <div id="zoomModal" class="modal hidden">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content flex">
+                <div class="book-previews-div-modal flex flex-col">
+                    <img class="opened-preview book-img-mini-modal" src="{{ asset('storage/' . $book['mainImage']) }}"
+                        alt="{{ $book['book_name'] }}">
+                    @if ($otherImages != null)
+                        @foreach ($otherImages as $otherImage)
+                            <img class="book-img-mini-modal" src="{{ asset('storage/' . $otherImage) }}" alt="">
+                        @endforeach
+                    @endif
+                </div>
+                @if (Storage::disk('public')->exists($book['mainImage']))
+                    <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
+                        class="book-cover-modal">
+                @else
+                    <div class="dummy-book-cover">
+                        <p>Image not available</p>
+                    </div>
+                @endif
+
             </div>
         </div>
 
