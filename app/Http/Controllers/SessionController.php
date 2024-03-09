@@ -11,7 +11,12 @@ class SessionController extends Controller
     {
         $viewChoice = $request->input('view_choice') ?? 'rows';
         Session::put('view_choice', $viewChoice);
-        // return response()->json(['success' => true]);
-        return redirect()->route('books.index');
+
+        $sort = session()->get('sort', 'price-asc');
+        $selectedLanguages = request('lang') ?? [];
+        $selectedStock = request('stock') ?? 'all-stock';
+        $search = request('search');
+
+        return redirect()->route('books.index', ['sort' => $sort, 'search' => $search, 'selectedLanguages' => $selectedLanguages, 'selectedStock' => $selectedStock]);
     }
 }

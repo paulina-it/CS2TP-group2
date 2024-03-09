@@ -230,6 +230,11 @@
                         </div>
                         <button class="py-2 px-4 rounded btn" type="submit">Submit</button>
                     </form>
+                    <form action="{{ route('books.clearSearchAndFilters') }}" method="POST">
+                        @csrf
+                        <button class="py-2 px-4 rounded btn clear-btn" id="clear-search-filters" type="submit">Clear
+                            Search</button>
+                    </form>
                 </div>
             </div>
             <div class="pagination">

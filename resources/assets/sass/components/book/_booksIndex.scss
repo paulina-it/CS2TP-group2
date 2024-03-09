@@ -89,6 +89,17 @@
             background-color: $btn2hover;
         }
     }
+
+    .clear-btn {
+        background-color: $loginBtn;
+        width: 90%;
+        margin: auto;
+        margin-left: 5%;
+
+        &:hover {
+            background-color: $loginBtnhover;
+        }
+    }
 }
 
 .books-top-settings {
@@ -123,7 +134,7 @@
 .search-sidebar {
     background-color: $navTopColour;
     margin: 1em;
-    height: 23em;
+    height: 25em;
     padding: 1em;
 
     .lang-checkboxes {

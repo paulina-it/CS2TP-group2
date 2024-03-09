@@ -20,16 +20,20 @@ class BookController extends Controller
         else {
             $sortType = 'price-asc';
         }
-        $search = request('search');
+        $search = request('search') ?? session()->get('search');
+        session(['search' => $search]);
+
         if ($category_slug === null) {
             $category_slug = Session::get('category');
         } else if ($category_slug == '') {
             $this->setCategory('');
         }
-        $stock = request('stock');
-        $languages = request('lang');
-        $selectedLanguages = request('lang') ?? []; 
-        $selectedStock = request('stock') ?? 'all-stock'; 
+        // $stock = request('stock');
+        // $languages = request('lang');
+        $selectedLanguages = request('lang') ?? session()->get('selectedLanguages') ?? []; 
+        session(['selectedLanguages' => $selectedLanguages]);
+        $selectedStock = request('stock') ?? session()->get('selectedStock') ?? 'all-stock'; 
+        session(['selectedStock' => $selectedStock]);
     
         $query = Book::query();
     
@@ -37,8 +41,6 @@ class BookController extends Controller
                 $query->where('book_name', 'like', '%' . $search . '%')
                     ->orWhere('author', 'like', '%' . $search . '%')
                     ->orWhere('description', 'like', '%' . $search . '%');
-                    // ->orWhere('genre', 'like', '%' . $search . '%')
-                    // ->orWhere('language', 'like', '%' . $search . '%');
             
         } 
 
@@ -49,18 +51,16 @@ class BookController extends Controller
             });
         }
 
-        if (is_array($languages) && count($languages) > 0) {
-            $query->whereIn('language', $languages);
+        if (is_array($selectedLanguages) && count($selectedLanguages) > 0) {
+            $query->whereIn('language', $selectedLanguages);
         }
     
-        if ($stock == 'in-stock') {
+        if ($selectedStock == 'in-stock') {
             $query->where('quantity', '>', 0);
-        } elseif ($stock == 'not-in-stock') {
+        } elseif ($selectedStock == 'not-in-stock') {
             $query->where('quantity', '<=', 0);
         }
 
-        // $books = $query->get();
-        // $query->paginate(12);
         $sortedBooks = $this->sort($query, $sortType);
     
         return view('books/index', [
@@ -111,7 +111,14 @@ class BookController extends Controller
         session(['category' => $category_slug]);
         // return redirect()->back();
     }
+    public function clearSearchAndFilters(Request $request)
+    {
+        Session::forget('search');
+        Session::forget('selectedLanguages');
+        Session::forget('selectedStock');
 
+        return redirect()->route('books.index');
+    }
     
     public function show($id) {
         $book = Book::findOrFail($id);
