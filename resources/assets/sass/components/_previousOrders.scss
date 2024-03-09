@@ -124,3 +124,8 @@
         }
     }
 }
+
+.wrapper-with-navbar {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}

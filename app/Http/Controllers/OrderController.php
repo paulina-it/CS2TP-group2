@@ -53,6 +53,7 @@ class OrderController extends Controller
     }
 
     public function create(Request $request) {
+        BasketController::getQty();
         if (Auth::check()) {
             $user_id = Auth::id();
             $books = cart::where('user_id', $user_id)->get();

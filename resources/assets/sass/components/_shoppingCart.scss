@@ -50,13 +50,9 @@
     }
 
     td {
-        padding: 15px 20px;
-    }
-
-    td input {
-        height: 50px;
-        width: 60px;
-        padding: 10px;
+        // padding: 15px 20px;
+        padding: 1em;
+        padding-top: 0;
     }
 
     td img {
@@ -90,12 +86,19 @@
         }
     }
 
+    .basket-item-btns {
+        height: 100%;
+        margin-top: 2em;
+    }
+
     .cartSummary {
+        display: inline-block;
         background-color: $navTopColour;
+        height: 100%;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        // justify-content: center;
         padding-top: 1em;
 
         strong {
@@ -123,6 +126,7 @@
 
         .wishlist-books {
             margin-top: 2em;
+
             .wish-card {
                 margin: 1.5em;
                 margin-top: 0.5em;

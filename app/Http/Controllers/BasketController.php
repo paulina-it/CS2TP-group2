@@ -61,6 +61,7 @@ class BasketController extends Controller
         
         if (Auth::check()) {
             $recs = Book::whereNotIn('id', $basketBookIds)
+                        ->where('quantity', '>', 0)
                         ->whereIn('language', $books->pluck('language')->unique())
                         ->take(12) 
                         ->get();
