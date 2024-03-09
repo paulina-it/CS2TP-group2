@@ -51,6 +51,19 @@
         border-radius: 10px;
     }
 
+    .book-info-top {
+        display: flex;
+
+        .book-rating {
+            display: flex;
+
+            .rating-icon {
+                width: 3em;
+                height: 3em;
+            }
+        }
+    }
+
     .book-info,
     .book-btns {
         width: 97%;
@@ -101,6 +114,7 @@
                 background-color: $btn1hover;
             }
         }
+
         .addToCartBtn:disabled {
             background-color: $btn1;
             opacity: 0.4;
@@ -158,11 +172,14 @@
     }
 
     .category-title {
+        position: relative;
         background-color: $mainColour;
         text-align: center;
+        margin: auto;
         margin-bottom: 2em;
         z-index: 7;
         min-width: 8rem;
+        max-width: 14em;
         align-self: center;
     }
 }
@@ -233,3 +250,33 @@
     }
 }
 
+
+.product-rating {
+
+    .review-div {
+        margin-bottom: 1em;
+        padding: 1em;
+        width: 100%;
+        background-color: $navTopColour;
+        border-radius: 10px;
+
+        .review-text {
+            margin-top: 1em;
+        }
+    }
+
+    .no-reviews {
+        width: 100%;
+        background-color: $navColour;
+        padding: 2em;
+        border-radius: 10px;
+        justify-content: space-around;
+
+        img {
+            width: 6em;
+        }
+        p {
+            margin: auto;
+        }
+    }
+}

@@ -8,6 +8,7 @@ use Illuminate\Pagination;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
+use App\Models\User;
 use Carbon\Carbon;
 use App\Models\ProductRating;
 
@@ -117,9 +118,14 @@ class BookController extends Controller
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->take(12)->get();
         
         $ratings = ProductRating::where('book_id', $id)->get();
+        $ratingAuthors = array();
+        foreach ($ratings as $rating) {
+            array_push($ratingAuthors, User::findOrFail($rating->user_id));
+        }
         return view('books/show', [
             'book' => $book,
-            'ratings' => $ratings
+            'ratings' => $ratings,
+            'ratingAuthors' => $ratingAuthors
         ], compact('book', 'otherBooksInLanguage'));
     }
 
@@ -195,14 +201,14 @@ class BookController extends Controller
     public function save($id, Request $request) {
         if ($request->file('mainImage') != null) {
             $image = $request->file('mainImage');
-            $imageName = $image->getClientOriginalName();
+            $imageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName());
             $request->file('mainImage')->storeAs('public', $imageName);
         }
         if (request('otherImages') != null) {
             $otherImageNames = array();
             foreach(request('otherImages') as $otherImage) {
-                $otherImage->storeAs('public', $otherImage->getClientOriginalName());
-                array_push($otherImageNames, $otherImage->getClientOriginalName());
+                $otherImage->storeAs('public', str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName()));
+                array_push($otherImageNames, str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName()));
             }
         }
         $book = Book::findOrFail($id);
