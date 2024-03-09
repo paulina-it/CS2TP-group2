@@ -13,9 +13,9 @@ class SessionController extends Controller
         Session::put('view_choice', $viewChoice);
 
         $sort = session()->get('sort', 'price-asc');
-        $selectedLanguages = request('lang') ?? [];
-        $selectedStock = request('stock') ?? 'all-stock';
-        $search = request('search');
+        $selectedLanguages = $request->input('lang', session()->get('selectedLanguages', []));
+        $selectedStock = $request->input('stock', session()->get('selectedStock', 'all-stock'));
+        $search = $request->input('search');
 
         return redirect()->route('books.index', ['sort' => $sort, 'search' => $search, 'selectedLanguages' => $selectedLanguages, 'selectedStock' => $selectedStock]);
     }

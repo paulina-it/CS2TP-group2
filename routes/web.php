@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web', 'clear.search.term']], function () {
     Route::get('/books/category/{category_slug}', [BookController::class, 'indexCategory'])->name('books.category');
     Route::get('/books/search/', [BookController::class, 'indexFilter'])->name('books.filter');
     Route::get('/books/sort/', [BookController::class, 'setSortType'])->name('books.sort');
+    Route::post('books/save-view-choice', [SessionController::class, 'saveViewChoice'])->name('books.save.view.choice');
     Route::post('/books/clear', [BookController::class, 'clearSearchAndFilters'])->name('books.clearSearchAndFilters');
 
     Route::post('/books/rating/{id}', [ProductRatingController::class, 'create'])->name('product-rating.create');
@@ -98,8 +99,6 @@ Route::group(['middleware' => ['web', 'clear.search.term']], function () {
         Route::post('/admin/coupons', [CouponController::class, 'create'])->name('admin-coupons-create');
     });
 
-    Route::post('/save-view-choice', [SessionController::class, 'saveViewChoice'])->name('save.view.choice');
-        
 });
 
 

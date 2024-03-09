@@ -28,15 +28,14 @@ class BookController extends Controller
         } else if ($category_slug == '') {
             $this->setCategory('');
         }
-        // $stock = request('stock');
-        // $languages = request('lang');
+
         $selectedLanguages = request('lang') ?? session()->get('selectedLanguages') ?? []; 
         session(['selectedLanguages' => $selectedLanguages]);
         $selectedStock = request('stock') ?? session()->get('selectedStock') ?? 'all-stock'; 
         session(['selectedStock' => $selectedStock]);
     
         $query = Book::query();
-    
+
         if (!empty($search)) {
                 $query->where('book_name', 'like', '%' . $search . '%')
                     ->orWhere('author', 'like', '%' . $search . '%')
@@ -97,10 +96,12 @@ class BookController extends Controller
 
     public function indexCategory($category_slug) {
         $this->setCategory($category_slug);
+        
         return $this->index($category_slug);
     }
 
     public function indexFilter() {
+        
         return $this->index();
     }
     public function indexClear() {
@@ -109,7 +110,6 @@ class BookController extends Controller
 
     public function setCategory($category_slug) {
         session(['category' => $category_slug]);
-        // return redirect()->back();
     }
     public function clearSearchAndFilters(Request $request)
     {
