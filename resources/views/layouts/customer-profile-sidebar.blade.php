@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar customer-sidebar">
     <ul>
         <li>
             <a href="{{ route('profile.edit')}}"
@@ -11,7 +11,7 @@
         </li>
         <li>
             <a href="{{ route('order.previous')}}"
-            @if (Request::is('order.previous'))
+            @if (Request::is('order/previous'))
                 class="highlight"
             @endif>
                 <img src="https://www.svgrepo.com/show/493951/order.svg" alt="" class="sidebar-icon">
@@ -27,7 +27,7 @@
                 <p>Wishlist</p>
             </a>
         </li>
-        <li id="coupons">
+        {{-- <li id="coupons">
             <a href="{{ route('wishlist' )}}"
             @if (Request::is('wishlist'))
                 class="highlight"
@@ -35,6 +35,6 @@
                 <img src="https://www.svgrepo.com/show/428556/coupon.svg" alt="" class="sidebar-icon" id="coupon-icon">
                 <p>Coupons</p>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </div>
