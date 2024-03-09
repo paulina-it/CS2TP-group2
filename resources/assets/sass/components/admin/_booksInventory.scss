@@ -1,8 +1,5 @@
+.admin-books-list,
 .admin-table {
-
-}
-
-.admin-books-list, .admin-table {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +11,6 @@
         // grid-template-columns: 1fr 2fr 2fr ;
         border-collapse: collapse;
         width: 100%;
-
 
         td {
             // padding: 0;
@@ -49,9 +45,9 @@
         }
 
         .attention-needed {
-            background-color: #fce7e1!important;
+            background-color: #fce7e1 !important;
         }
-        
+
         #book-table-img {
             height: 100%;
             width: 7em;

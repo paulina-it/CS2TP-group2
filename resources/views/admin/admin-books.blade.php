@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('localVite')
-    @vite(['resources/assets/js/sortTable.js', 'resources/assets/js/modal.js'])
+    @vite(['resources/assets/js/modal.js'])
 @endsection
 @section('main')
     <div class="admin-books-wrapper">
@@ -12,20 +12,40 @@
                     List of all books
                 </h2>
                 <div class="inventory-buttons">
-                    <button class="py-2 px-4 rounded btn add-book-btn" onclick="window.location='{{ route('books.create') }}'">Add a Book</button>
+                    <button class="py-2 px-4 rounded btn add-book-btn"
+                        onclick="window.location='{{ route('books.create') }}'">Add a Book</button>
                 </div>
             </div>
-            <div>
-            <form action="{{ route('admin-books') }}" method="GET">
-                <input type="text" name="search" placeholder="Search">
-                <button type="submit" value="submit" class="filter-btn">Submit</button>
-            </form>
-            <form action="{{ route('admin-books') }}" method="GET">
-                @csrf
-                @if (request('search'))
-                    <button type="submit">Clear Search</button>
-                @endif
-            </form>
+            <div class="sort-and-search flex justify-between ">
+                <form action="{{ route('admin-books') }}" method="GET" class="flex justify-between">
+                    <label for="sort">Sort by:</label>
+                    <select name="sort" id="sort-inventory" onchange="this.form.submit()">
+                        <option value="created_at" {{ $sort == 'created_at' ? 'selected' : '' }}>Created At Date</option>
+                        <option value="author" {{ $sort == 'author' ? 'selected' : '' }}>Author</option>
+                        <option value="book_name" {{ $sort == 'book_name' ? 'selected' : '' }}>Book Name</option>
+                        <option value="language" {{ $sort == 'language' ? 'selected' : '' }}>Language</option>
+                        <option value="price" {{ $sort == 'price' ? 'selected' : '' }}>Price</option>
+                        <option value="quantity" {{ $sort == 'quantity' ? 'selected' : '' }}>Stock</option>
+                    </select>
+                    <label for="order">Order:</label>
+                    <select name="order" id="order" onchange="this.form.submit()">
+                        <option value="asc" {{ $order == 'asc' ? 'selected' : '' }}>Ascending</option>
+                        <option value="desc" {{ $order == 'desc' ? 'selected' : '' }}>Descending</option>
+                    </select>
+                    {{-- <button type="submit">Sort</button> --}}
+                </form>
+
+                <div class="flex">
+                    <form action="{{ route('admin-books') }}" method="GET" class="mr-2">
+                        <input type="text" name="search" placeholder="Search">
+                        <button type="submit" value="submit" class="filter-btn py-2 px-4 rounded btn">Submit</button>
+                    </form>
+                    {{-- <br> --}}
+                    <form action="{{ route('admin-books') }}" method="GET" class="flex justify-end">
+                        @csrf
+                            <button type="submit" class="clear-btn py-2 px-4 rounded btn">Clear Search</button>
+                    </form>
+                </div>
             </div>
             <div class="admin-books-list admin-table">
                 <table class="sortable" id="books-table">
@@ -35,7 +55,7 @@
                             <th>
                                 <div class="with-svg">
                                     Author
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -49,13 +69,13 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>
                                 <div class="with-svg">
                                     Book Name
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -69,13 +89,13 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>
                                 <div class="with-svg">
                                     Language
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -89,13 +109,13 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>
                                 <div class="with-svg">
                                     Price
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -109,13 +129,13 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>
                                 <div class="with-svg">
                                     Stock
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -129,13 +149,13 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>
                                 <div class="with-svg">
                                     Created At
-                                    <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
+                                    {{-- <svg class="sort-icon" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -149,7 +169,7 @@
                                                 stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round"></path>
                                         </g>
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                             </th>
                             <th>Buttons</th>
@@ -227,8 +247,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <br>
                 <div class="pagination">
-                    {{ $books->links() }}
+                    {{ $books->appends(['sort' => $sort, 'order' => $order])->links() }}
                 </div>
             </div>
         </div>

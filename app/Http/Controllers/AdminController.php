@@ -16,62 +16,88 @@ class AdminController extends Controller
 {
     public function books() {
         $search = request('search');
-        if (empty($search)) {
-            $books = Book::paginate(10);
-        } else {
-            $books = Book::where(function ($query) use($search) {
+        $sort = request('sort');
+        $order = request('order');
+    
+        $query = Book::query();
+    
+        if (!empty($search)) {
+            $query->where(function ($query) use ($search) {
                 $query->where('book_name', 'like', '%' . $search . '%')
-                ->orWhere('author', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('genre', 'like', '%' . $search . '%')
-                ->orWhere('language', 'like', '%' . $search . '%');
-            })->paginate(10);
+                    ->orWhere('author', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhere('genre', 'like', '%' . $search . '%')
+                    ->orWhere('language', 'like', '%' . $search . '%');
+            });
         }
-        return view('admin/admin-books', [
+    
+        if (!empty($sort)) {
+            if ($order == 'desc') {
+                $query->orderByDesc($sort);
+            } else {
+                $query->orderBy($sort);
+            }
+        }
+    
+        $books = $query->paginate(10);
+    
+        $books->appends(['sort' => $sort, 'order' => $order]);
+
+        return view('admin.admin-books', [
             'books' => $books,
             'search' => $search,
+            'sort' => $sort,
+            'order' => $order,
             'category' => null
         ]);
     }
+    
 
-    public function orders($filter = null) {
-        if (request('idSearch')) {
-            $orders = Order::where('id', request('idSearch'))->get();
-        } else {
-            $orders = Order::all();
-        } 
+    public function orders() {
+        $query = Order::query();
+    
+        if (request()->filled('idSearch')) {
+            $query->where('id', request('idSearch'));
+        }
+    
         $filter = request('filter') ?? null;
-        if ($filter && $filter != 'none') {
-            $orders = $orders->filter(function($item)
-                {
-                    if($item['status'] == request('filter'))
-                    {
-                        return $item;
-                    }
-            });
+        if ($filter && $filter !== 'none') {
+            $query->where('status', $filter);
         }
-        
-        $orders = $orders->values();
-        $users = array();
+    
+        $sortField = request('sort') ?? 'created_at';
+        $sortOrder = request('order') ?? 'desc'; 
+    
+        $orders = $query->orderBy($sortField, $sortOrder)->paginate(20);;
+    
+        $users = [];
         foreach ($orders as $order) {
-            if ($order['user_id']) {
-                array_push($users, User::where('id', $order['user_id'])->get());
-            } else if ($order['guest_id']) {
-                array_push($users, Guest::where('id', $order['guest_id'])->get());
-            } else {
-                array_push($users, [["id" => null,
-                "firstName" => null,
-                "lastName" => null,
-                "phone" => null,
-                "email" => null,]]);
-            }
+            $user = User::where('id', $order['user_id'])->first();
+            $users[] = $user ? $user : (object)[
+                'id' => null,
+                'firstName' => null,
+                'lastName' => null,
+                'phone' => null,
+                'email' => null,
+            ];
         }
-        return view('admin/admin-orders', [
+
+        $orders->appends([
+            'idSearch' => request('idSearch'),
+            'filter' => $filter,
+            'sort' => $sortField,
+            'order' => $sortOrder
+        ]);
+    
+        return view('admin.admin-orders', [
             'orders' => $orders,
             'users' => $users,
-            'filter' => $filter
+            'filter' => $filter,
+            'sort' => $sortField,
+            'order' => $sortOrder
         ]);
     }
+    
 
     public function process($id) {
         $order = Order::findOrFail($id);
@@ -153,12 +179,26 @@ class AdminController extends Controller
     ]);    
 }
 
-    public function queries() {
-        $queries = CustomerQuery::all();
-        return view('admin/queries', [
-            'queries'=> $queries,
-        ]);
+public function queries() {
+    $query = CustomerQuery::query();
+
+    $sortField = request('sort') ?? 'created_at';
+    $sortOrder = request('order') ?? 'desc';
+    $sortableFields = ['id', 'first_name', 'last_name', 'email', 'type', 'status', 'created_at'];
+
+    if (in_array($sortField, $sortableFields)) {
+        $query->orderBy($sortField, $sortOrder);
     }
+
+    $queries = $query->paginate(20);
+
+    return view('admin.queries', [
+        'queries' => $queries,
+        'sort' => $sortField,
+        'order' => $sortOrder
+    ]);
+}
+
 
     public function queriesStatus($id) {
         $querie = CustomerQuery::findOrFail($id);
@@ -168,10 +208,43 @@ class AdminController extends Controller
     }
 
     public function users() {
-        $users = User::paginate(20);
-        return view('admin/admin-users',[
+        $query = User::query();
+    
+        $filter = request('filter');
+        if ($filter && in_array($filter, ['admin', 'user'])) {
+            $query->where('role', $filter);
+        }
+    
+        $idSearch = request('idSearch');
+        if ($idSearch) {
+            $query->where('id', $idSearch);
+        }
+    
+        $sortField = request('sort') ?? 'created_at';
+        $sortOrder = request('order') ?? 'desc';
+        $sortableFields = ['first_name', 'last_name', 'email', 'created_at', 'role'];
+    
+        if (in_array($sortField, $sortableFields)) {
+            $query->orderBy($sortField, $sortOrder);
+        }
+    
+        $users = $query->paginate(20);
+    
+        return view('admin.admin-users', [
             'users' => $users,
+            'filter' => $filter,
+            'idSearch' => $idSearch,
+            'sort' => $sortField,
+            'order' => $sortOrder
         ]);
+    }
+    
+
+    public function userDestroy($id) {
+        $user = User::findOrFail($id);
+        $user->delete();
+    
+        return redirect()->route('admin-users')->with('success', 'User deleted successfully.');
     }
 
     public function edit($id) {

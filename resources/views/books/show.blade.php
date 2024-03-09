@@ -49,7 +49,7 @@
                             <h2 class="book-title">{{ $book['book_name'] }}</h2>
                             @if ($totalReviews > 0)
                                 <div class="book-rating"><img class="rating-icon"
-                                        src="https://i.postimg.cc/W38hQ5v4/star-sharp-svgrepo-com.png"
+                                        src="https://i.postimg.cc/NGymHksh/star-svgrepo-com.png"
                                         alt="">{{ $averageRating }}
                                 </div>
                             @endif
