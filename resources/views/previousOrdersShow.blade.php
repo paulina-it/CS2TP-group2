@@ -10,23 +10,33 @@
     <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
 @endsection
 @section('main')
-    <div class="prev-orders-main">
+    <div class="prev-orders-show">
         <h1 class="title">Previous Order</h1>
         <div class="prev-orders-single-list">
             <?php 
             $total = 0;
             ?>
-            @foreach ($books as $book)
-            <div class="prev-single-mini">
-                <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
-                    alt="{{ $book[0]['book_name'] }}">
-            </div>
-            <?php 
-            $total += $book[0]['price'];
-            ?>
-            <p>£{{number_format($book[0]['price'],2)}}</p>
-            </td>
-            @endforeach
+            <table>
+                @foreach ($books as $book)
+                <tr>
+                    <td>
+                        <div class="prev-single-mini">
+                            <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
+                                alt="{{ $book[0]['book_name'] }}">
+                        </div>
+                    </td>
+                    <?php 
+                    $total += $book[0]['price'];
+                    ?>
+                    <td>
+                        <p>{{$book[0]['book_name']}}</p>
+                    </td>
+                    <td>
+                        <p>£{{number_format($book[0]['price'],2)}}</p>
+                    </td>
+                </tr>
+                @endforeach
+            </table>
             <?php
             $date = DATE($items[0]['created_at']);
             $dt = new DateTime($date);
@@ -46,7 +56,7 @@
             <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
                 @csrf
                 @method('delete')
-                <input type="submit" value="Return">
+                <input class="prev-return-btn" type="submit" value="Return">
             </form>
             @endif
         </div>
