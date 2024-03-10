@@ -15,7 +15,12 @@ class CouponController extends Controller
         ]);
     }
 
-    public function create() {
+    public function create(Request $request) {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'discount' => ['required', 'int'],
+            'date' => ['required', 'date'],
+        ]);
         $coupon = new Coupon;
         $coupon->coupon_name = request('name');
         $coupon->discount = request('discount');

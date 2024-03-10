@@ -25,6 +25,8 @@ class WishlistController extends Controller
                     $books->push(Book::where('id', $elem['book_id'])->get());  
                 }
             }
+        } else {
+            return redirect('/');
         }
         return view('/wishlist', [
             'books' => $books,

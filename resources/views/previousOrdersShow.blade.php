@@ -16,51 +16,39 @@
             <?php 
             $total = 0;
             ?>
-            <table class="prev-indiv-table">
-                @foreach ($books as $book)
-                <tr>
-                    <td>
-                        <div class="prev-single-mini">
-                            <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
-                                alt="{{ $book[0]['book_name'] }}">
-                        </div>
-                    </td>
-                    <?php 
-                    $total += $book[0]['price'];
-                    ?>
-                    <td>
-                        <div class="prev-single-details">
-                            <h4>{{$book[0]['book_name']}}</h4>
-                            <p>£{{$book[0]['price']}}</p>
-                        </div>
-                    </td>
-                    @endforeach
-                </tr>
-                <tr>
-                    <?php
-                    $date = DATE($items[0]['created_at']);
-                    $dt = new DateTime($date);
-                    ?>
-                    <td>
-                        <p>£{{ $total }}</p>
-                    </td>
-                    <td>
-                        <label>{{ $order[0]['status'] }}</label>
-                    </td>
-                    <td>
-                        <p>{{ $dt->format('Y-m-d') }}</p>
-                    </td>
-                    @if ($order[0]['status'] != "refunded") 
-                    <td>
-                        <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <input class="prev-return-btn" type="submit" value="Return">
-                        </form>
-                    </td>
-                    @endif
-                </tr>
-            </table>
+            @foreach ($books as $book)
+            <div class="prev-single-mini">
+                <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
+                    alt="{{ $book[0]['book_name'] }}">
+            </div>
+            <?php 
+            $total += $book[0]['price'];
+            ?>
+            <p>£{{number_format($book[0]['price'],2)}}</p>
+            </td>
+            @endforeach
+            <?php
+            $date = DATE($items[0]['created_at']);
+            $dt = new DateTime($date);
+            $discount = null;
+            if ($coupon) {
+            $discount = $total * $coupon['discount'] / 100;
+            $total -= $discount;
+            }
+            ?>
+            @if ($discount)
+            <p>Discount: £{{ number_format($discount,2) }}</p>
+            @endif
+            <p>Total: £{{ number_format($total,2) }}</p>
+            <label>{{ $order[0]['status'] }}</label>
+            <p>{{ $dt->format('Y-m-d') }}</p>
+            @if ($order[0]['status'] != "refunded") 
+            <form action="{{ route('order.return', $order[0]['id']) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" value="Return">
+            </form>
+            @endif
         </div>
     </div>
 @endsection

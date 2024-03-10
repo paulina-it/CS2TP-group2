@@ -62,13 +62,12 @@
                         <p>Meet the people who have created this platform: <br>
                             <br>
                             Polina Bovykina - Project Leader<br>
-                            Joel Campbell - Front-end Developer<br>
                             Mubtasim Bepari - Front-end Developer<br>
                             Nihar Priyadarshi - Back-end Developer<br>
                             Oliver Burnett-Kiernan - Back-end Developer<br>
-                            Saiya Begum - Back-end Developer<br>
+                            Sayira Begum - Back-end Developer<br>
                             <br>
-                            With our combined experiences in literature and technology, we have brought you flippinpages,
+                            With our combined experiences in literature and technology, we have brought to you  <strong>flippinpages</strong>,
                             with the goal of changing the way you discover new books and find other book enthusiasts like
                             you.
                         </p>

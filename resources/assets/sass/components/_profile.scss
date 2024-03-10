@@ -1,6 +1,6 @@
 #profile-wrapper {
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 1fr 4fr;
     color: $textColour;
     height: 100%;
 
@@ -15,16 +15,9 @@
 }
 
 .sidebar {
-    // padding: 0em 2em;
     margin: 2em 1em;
-    max-height: 16em;
-    background-color: $loginBtn;
-    border-radius: 10px;
 
     li {
-        border-radius: 10px;
-        background-color: $loginBtn;
-
         a {
             padding: 1.5em;
             display: flex;
@@ -43,7 +36,6 @@
         }
 
         .highlight {
-            border-radius: 10px;
             background-color: $loginBtnhover;
         }
 
@@ -51,6 +43,22 @@
 
         &:hover {
             background-color: $loginBtnhover;
+        }
+    }
+}
+.customer-sidebar {
+    // background-color: $navTopColour; 
+
+    li {
+        background-color: $navTopColour;
+
+        .highlight {
+            background-color: $dummyBook;
+            border-radius: 0;
+        }
+
+        &:hover {
+            background-color: $dummyBook;
         }
     }
 }

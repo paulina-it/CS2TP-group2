@@ -8,6 +8,7 @@ use Illuminate\Pagination;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
+use App\Models\User;
 use Carbon\Carbon;
 use App\Models\ProductRating;
 
@@ -19,25 +20,26 @@ class BookController extends Controller
         else {
             $sortType = 'price-asc';
         }
-        $search = request('search');
+        $search = request('search') ?? session()->get('search');
+        session(['search' => $search]);
+
         if ($category_slug === null) {
             $category_slug = Session::get('category');
         } else if ($category_slug == '') {
             $this->setCategory('');
         }
-        $stock = request('stock');
-        $languages = request('lang');
-        $selectedLanguages = request('lang') ?? []; 
-        $selectedStock = request('stock') ?? 'all-stock'; 
+
+        $selectedLanguages = request('lang') ?? session()->get('selectedLanguages') ?? []; 
+        session(['selectedLanguages' => $selectedLanguages]);
+        $selectedStock = request('stock') ?? session()->get('selectedStock') ?? 'all-stock'; 
+        session(['selectedStock' => $selectedStock]);
     
         $query = Book::query();
-    
+
         if (!empty($search)) {
                 $query->where('book_name', 'like', '%' . $search . '%')
                     ->orWhere('author', 'like', '%' . $search . '%')
                     ->orWhere('description', 'like', '%' . $search . '%');
-                    // ->orWhere('genre', 'like', '%' . $search . '%')
-                    // ->orWhere('language', 'like', '%' . $search . '%');
             
         } 
 
@@ -48,18 +50,16 @@ class BookController extends Controller
             });
         }
 
-        if (is_array($languages) && count($languages) > 0) {
-            $query->whereIn('language', $languages);
+        if (is_array($selectedLanguages) && count($selectedLanguages) > 0) {
+            $query->whereIn('language', $selectedLanguages);
         }
     
-        if ($stock == 'in-stock') {
+        if ($selectedStock == 'in-stock') {
             $query->where('quantity', '>', 0);
-        } elseif ($stock == 'not-in-stock') {
+        } elseif ($selectedStock == 'not-in-stock') {
             $query->where('quantity', '<=', 0);
         }
 
-        // $books = $query->get();
-        // $query->paginate(12);
         $sortedBooks = $this->sort($query, $sortType);
     
         return view('books/index', [
@@ -96,10 +96,12 @@ class BookController extends Controller
 
     public function indexCategory($category_slug) {
         $this->setCategory($category_slug);
+        
         return $this->index($category_slug);
     }
 
     public function indexFilter() {
+        
         return $this->index();
     }
     public function indexClear() {
@@ -108,18 +110,29 @@ class BookController extends Controller
 
     public function setCategory($category_slug) {
         session(['category' => $category_slug]);
-        // return redirect()->back();
     }
+    public function clearSearchAndFilters(Request $request)
+    {
+        Session::forget('search');
+        Session::forget('selectedLanguages');
+        Session::forget('selectedStock');
 
+        return redirect()->route('books.index');
+    }
     
     public function show($id) {
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->take(12)->get();
         
         $ratings = ProductRating::where('book_id', $id)->get();
+        $ratingAuthors = array();
+        foreach ($ratings as $rating) {
+            array_push($ratingAuthors, User::findOrFail($rating->user_id));
+        }
         return view('books/show', [
             'book' => $book,
-            'ratings' => $ratings
+            'ratings' => $ratings,
+            'ratingAuthors' => $ratingAuthors
         ], compact('book', 'otherBooksInLanguage'));
     }
 
@@ -195,14 +208,14 @@ class BookController extends Controller
     public function save($id, Request $request) {
         if ($request->file('mainImage') != null) {
             $image = $request->file('mainImage');
-            $imageName = $image->getClientOriginalName();
+            $imageName = str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName());
             $request->file('mainImage')->storeAs('public', $imageName);
         }
         if (request('otherImages') != null) {
             $otherImageNames = array();
             foreach(request('otherImages') as $otherImage) {
-                $otherImage->storeAs('public', $otherImage->getClientOriginalName());
-                array_push($otherImageNames, $otherImage->getClientOriginalName());
+                $otherImage->storeAs('public', str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName()));
+                array_push($otherImageNames, str_replace(' ', '', request('author').Carbon::now()->toDateString().$image->getClientOriginalName()));
             }
         }
         $book = Book::findOrFail($id);

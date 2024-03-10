@@ -18,7 +18,8 @@
             @endguest
             <x-nav-link :href="route('basket')" :active="request()->routeIs('basket')">
                 {{-- <p>Basket</p> --}}
-                <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon" id="basket-icon">
+                <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg" alt="" class="nav-icon"
+                    id="basket-icon">
                 <div class="basket-quantity">
                     <span class="qunatity-number">{{ Session::get('basket_qty') }}</span>
                 </div>
@@ -71,8 +72,9 @@
                 <label for="default-search" class="sr-only">Search</label>
                 <div class="relative mt-0">
                     <input name="search" type="search" id="default-search"
-                        class="block w-full text-sm text-gray-400 rounded-lg" placeholder="Search for books..."
-                        required>
+                        class="block w-full text-sm text-gray-800 rounded-lg" placeholder="Search for books..." required
+                        @if (session()->get('search') !== null) value="{{ session()->get('search') }}" @endif>
+
                     <button type="submit"
                         class="search-btn text-white absolute bg-white font-medium rounded-lg text-sm px-2">
                         <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon">
