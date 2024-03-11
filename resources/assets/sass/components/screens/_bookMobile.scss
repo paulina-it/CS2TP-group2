@@ -21,13 +21,13 @@
 
             .book-rating {
                 margin-top: 1.5em;
-        
+
                 .rating-icon {
                     margin-top: -0.9em;
                 }
             }
         }
-        
+
         .book-img-div {
             margin-right: 1em;
         }
@@ -57,6 +57,7 @@
             .cart {
                 display: flex;
             }
+
             .addToCartBtn {
                 width: 80%;
             }
@@ -82,7 +83,7 @@
 
             .book-rating {
                 margin-top: 1.5em;
-        
+
                 .rating-icon {
                     margin-top: -0.9em;
                 }
@@ -123,6 +124,7 @@
             .cart {
                 display: flex;
             }
+
             .addToCartBtn {
                 width: 80%;
             }
@@ -231,10 +233,11 @@
         .book-info-top {
             flex-direction: row;
             justify-content: center;
-            
+
             .book-rating {
                 margin-top: 1.5em;
                 margin-left: 1em;
+
                 .rating-icon {
                     margin-top: -1em;
                 }
@@ -294,6 +297,7 @@
             }
         }
     }
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -312,13 +316,15 @@
             margin: auto;
             text-align: center;
         }
+
         .book-info-top {
             flex-direction: row;
             justify-content: center;
-            
+
             .book-rating {
                 margin-top: 0.9em;
                 margin-left: 1em;
+
                 .rating-icon {
                     margin-top: -0.8em;
                 }
@@ -376,6 +382,29 @@
             }
         }
     }
+
+    #zoomModal {
+
+        .modal-content {
+            flex-direction: column;
+
+            .book-previews-div-modal {
+                flex-direction: row;
+                height: 8em;
+
+                img {
+                    width: 5em;
+                    height: 7em;
+                }
+            }
+
+            .book-cover-modal {
+                width: 100%;
+                max-width: 100%;
+                height: 70vh;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
@@ -399,10 +428,11 @@
         .book-info-top {
             flex-direction: row;
             justify-content: center;
-            
+
             .book-rating {
                 margin-top: 0.55em;
                 margin-left: 1em;
+
                 .rating-icon {
                     margin-top: -0.5em;
                 }
@@ -457,6 +487,29 @@
 
             .addToWishlistBtn {
                 width: 100%;
+            }
+        }
+    }
+
+    #zoomModal {
+
+        .modal-content {
+            flex-direction: column;
+
+            .book-previews-div-modal {
+                flex-direction: row;
+                height: 8em;
+
+                img {
+                    width: 5em;
+                    height: 7em;
+                }
+            }
+
+            .book-cover-modal {
+                width: 100%;
+                max-width: 100%;
+                height: 120vw;
             }
         }
     }
