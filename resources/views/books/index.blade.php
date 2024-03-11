@@ -40,12 +40,12 @@
             </div>
             <div class="view-div flex">
                 <h4 class="ml-3">View</h4>
-                <form id="rows-form" action="{{ route('save.view.choice') }}" method="POST" style="display: hidden">
+                <form id="rows-form" action="{{ route('books.save.view.choice') }}" method="POST" style="display: hidden">
                     <input type="hidden" name="view_choice" value="rows">
                     @csrf<img src="https://www.svgrepo.com/show/521918/view-rows.svg" alt="" class="view-icon"
                         id="rows-view">
                 </form>
-                <form id="grid-form" action="{{ route('save.view.choice') }}" method="POST" style="display: hidden">
+                <form id="grid-form" action="{{ route('books.save.view.choice') }}" method="POST" style="display: hidden">
                     <input type="hidden" name="view_choice" value="grid">
                     @csrf<img src="https://www.svgrepo.com/show/521915/view-grid.svg" alt="" class="view-icon"
                         id="grid-view">
@@ -229,6 +229,11 @@
                             </select>
                         </div>
                         <button class="py-2 px-4 rounded btn" type="submit">Submit</button>
+                    </form>
+                    <form action="{{ route('books.clearSearchAndFilters') }}" method="POST">
+                        @csrf
+                        <button class="py-2 px-4 rounded btn clear-btn" id="clear-search-filters" type="submit">Clear
+                            Search</button>
                     </form>
                 </div>
             </div>

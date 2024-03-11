@@ -1,0 +1,56 @@
+.prev-orders-show {
+    .prev-orders-single-list {
+        width: 60%;
+        margin: 20px auto;
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: $navColour;
+        padding: 10px 0px 20px 20px;
+        border-radius: 1em;
+        
+        @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+            //font-size: 3.25vw;
+            width: 90%
+        }
+    }
+
+    .prev-single-mini {
+        width: 6em;
+        .book-img {
+            margin: 5px 5px;
+            box-shadow: 5px 5px 10px #0d0d0d3d;
+            border-radius: 10px;
+        }
+    }
+
+    .prev-return-btn:hover {
+        cursor: pointer;
+    }
+
+    table {
+        width: 90%;
+        align-items: center;
+        text-align: center;
+        margin-right: 1.5em;
+        padding: 20px;
+    }
+
+    td {
+        //padding: 15px 10px;
+        padding: 1.5em 1.5em;
+    }
+
+    td img {
+        //width: 500px;
+        border-radius: 5px;
+    }
+
+    td:nth-child(2) {
+        text-align: center;
+    }
+}

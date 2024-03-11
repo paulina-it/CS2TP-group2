@@ -40,7 +40,7 @@
                                         <a href="{{ route('books.show', $books[$i]['id']) }}">
                                             <p>{{ $books[$i]['book_name'] }}</p>
                                         </a>
-                                        <small>£{{ number_format($books[$i]['price'],2) }}</small>
+                                        <small>£{{ number_format($books[$i]['price'], 2) }}</small>
                                         <br>
 
                                     </div>
@@ -72,17 +72,17 @@
                                 </div>
                             </td>
                             <td>
-                                <p>£{{ number_format($books[$i]['price'] * $amounts[$i],2) }}</p>
+                                <p>£{{ number_format($books[$i]['price'] * $amounts[$i], 2) }}</p>
                             </td>
-                            <td class="flex justify-end">
+                            <td class="basket-item-btns flex justify-end">
                                 @auth
-                                    
-                                <form action="{{ route('wishlist.store', $books[$i]['id']) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="cart-icon">
-                                        <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="Add to Basket">
-                                    </button>
-                                </form>
+
+                                    <form action="{{ route('wishlist.store', $books[$i]['id']) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="cart-icon">
+                                            <img src="https://www.svgrepo.com/show/361197/heart.svg" alt="Add to Basket">
+                                        </button>
+                                    </form>
                                 @endauth
                                 <button onclick="eventPreventDefault()" type="button" class="cart-icon"
                                     data-modal-toggle="modal{{ $books[$i]['id'] }}"
@@ -139,7 +139,7 @@
             </table>
             <div class="cartSummary">
                 <div class="totalPrice flex flex-col">
-                    <strong class="text-left w-full ml-10">Total: £{{ number_format($total + 2.99,2) }}</strong>
+                    <strong class="text-left w-full ml-10">Total: £{{ number_format($total + 2.99, 2) }}</strong>
                     <table>
                         <tr>
                             <td>Subotal ({{ $books->count() }} items)</td>
@@ -158,7 +158,7 @@
                     </div>
                 </form>
                 @auth
-                    @if ($wishlist != null)
+                    @if (count($wishlist) > 0)
                         <div class="wishlist-books w-full">
                             <strong class="text-left w-full ml-6">Items from your wishlist:</strong>
                             @for ($i = 0; $i < count($wishlist); $i++)
@@ -168,8 +168,7 @@
                                     <p>{{ $wishlist[$i][0]['book_name'] }}</p>
                                     <form action="{{ route('wishlist.basket', $wishlist[$i][0]['id']) }}" method="POST">
                                         @csrf
-                                        <button type="submit"
-                                            class="book-button-icon">
+                                        <button type="submit" class="book-button-icon">
                                             <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
                                                 alt="Add to Wishlist">
                                         </button>
