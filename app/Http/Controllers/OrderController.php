@@ -59,6 +59,9 @@ class OrderController extends Controller
             $books = cart::where('user_id', $user_id)->get();
             $payment = Payment::where('credit_card_no', request('credit_card_no'))->get();
             if (count($payment) == 0) {
+                if (intval(request('credit_card_no')) > 2147483647) {
+                    return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
+                }
                 $payment = new Payment;
                 $payment->credit_card_no = request('credit_card_no');
                 $payment->user_id = $user_id;
