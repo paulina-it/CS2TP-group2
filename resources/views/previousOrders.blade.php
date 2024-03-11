@@ -15,7 +15,7 @@
         <div class="prev-orders-main">
             <h1 class="title">Previous Orders</h1>
             <div class="prev-orders-list">
-                <table>
+                <table class = "prev-table">
                     <tr>
                         <th>Product(s)</th>
                         <th>Quantity</th>
