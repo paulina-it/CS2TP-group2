@@ -42,7 +42,7 @@
                     <button type="submit" value="Submit" class="px-5 py-2 rounded">Submit</button>
                 </form>
             @else
-                <h4 class="text-end font-bold">{{ $coupon['name'] }} : -£{{ $discount }}</h4>
+                <h4 class="text-end font-bold">{{ $coupon['name'] }} : -£{{ number_format($discount,2) }}</h4>
 
                 <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
                     @csrf
