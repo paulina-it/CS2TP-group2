@@ -59,6 +59,9 @@ class OrderController extends Controller
             $books = cart::where('user_id', $user_id)->get();
             $payment = Payment::where('credit_card_no', request('credit_card_no'))->get();
             if (count($payment) == 0) {
+                if (intval(request('credit_card_no')) > 2147483647) {
+                    return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
+                }
                 $payment = new Payment;
                 $payment->credit_card_no = request('credit_card_no');
                 $payment->user_id = $user_id;
@@ -89,7 +92,7 @@ class OrderController extends Controller
         if ($request->session()->get('coupon')) {
             $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->first();
             $order->coupon_id = $couponId['id'];
-            $coupon = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->delete();
+            $request->session()->forget('coupon');
         } else {
             $order->coupon_id = null;
         }
@@ -173,10 +176,23 @@ class OrderController extends Controller
     }
 
     public function return($id) {
-        //$orderItem = OrderItem::where('id', $id)->delete();
-        $order = Order::where('id', $id)->get();
-        $order[0]->status = "refunded";
-        $order[0]->save();
+        $orderItem = OrderItem::where('id', $id)->first();
+        $bookId = $orderItem['book_id'];
+        if ($orderItem['quantity'] > 1) {
+            $orderItem->quantity --;
+            $orderItem->save();
+        } else {
+            $order = Order::where('id', $orderItem['order_id'])->first();
+            $items = OrderItem::where('order_id', $order['id'])->get();
+            if (count($items) == 1) {
+                $order = Order::where('id', $orderItem['order_id'])->delete();
+            } else {
+                $orderItem = OrderItem::where('id', $id)->delete();
+            }
+        }
+        $book = Book::where('id', $bookId)->first();
+        $book->quantity += 1;
+        $book->save();
         
         return redirect(route('order.previous'));
     }
