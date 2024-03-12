@@ -102,6 +102,14 @@ class AdminController extends Controller
     public function process($id) {
         $order = Order::findOrFail($id);
         $order->status = request("status");
+        if (request("status") == "processed") {
+            $orderItems = OrderItem::where('order_id', $id)->get();
+            foreach ($orderItems as $item) {
+                $book = Book::where('id', $item['book_id'])->first();
+                $book->quantity -= 1;
+                $book->save();
+            }
+        }
         $order->save();
         return redirect('admin/orders');
     }
