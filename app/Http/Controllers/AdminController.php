@@ -16,8 +16,8 @@ class AdminController extends Controller
 {
     public function books() {
         $search = request('search');
-        $sort = request('sort');
-        $order = request('order');
+        $sort = request('sort') ?? 'created_at';
+        $order = request('order') ?? 'desc';
     
         $query = Book::query();
     
@@ -73,6 +73,9 @@ class AdminController extends Controller
         $users = [];
         foreach ($orders as $order) {
             $user = User::where('id', $order['user_id'])->first();
+            if (!$user) {
+                $user = Guest::where('id', $order['guest_id'])->first();
+            }
             $users[] = $user ? $user : (object)[
                 'id' => null,
                 'firstName' => null,
@@ -106,7 +109,7 @@ class AdminController extends Controller
             $orderItems = OrderItem::where('order_id', $id)->get();
             foreach ($orderItems as $item) {
                 $book = Book::where('id', $item['book_id'])->first();
-                $book->quantity -= 1;
+                $book->quantity -= $item['quantity'];
                 $book->save();
             }
         }

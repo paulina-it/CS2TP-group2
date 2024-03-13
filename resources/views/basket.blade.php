@@ -19,7 +19,9 @@
         <h1 class="title">Shopping Cart</h1>
 
         <div class="small-container cart-page">
-            <table>
+            <div class="basket-table">
+                
+            <table class="">
                 <tr>
                     <th>Product</th>
                     <th>Quantity</th>
@@ -29,8 +31,8 @@
                 @if (count($books) > 0)
                     @for ($i = 0; $i < count($books); $i++)
                         <tr>
-                            <td>
-                                <div class="cart-info">
+                            <td class="sticky">
+                                <div class="cart-info legend">
                                     <a href="{{ route('books.show', $books[$i]['id']) }}">
                                         <img class="opened-preview book-img-mini"
                                             src="{{ asset('storage/' . $books[$i]['mainImage']) }}"
@@ -61,7 +63,7 @@
                                                 $j = $books[$i]['quantity'];
                                                 ?>
                                             @endif
-                                            @for ($k = 1; $k < $j; $k++)
+                                            @for ($k = 1; $k <= $j; $k++)
                                                 <option value="{{ $k }}"
                                                     @if ($amounts[$i] == $k) selected @endif>
                                                     {{ $k }}
@@ -137,6 +139,7 @@
                     </td>
                 @endif
             </table>
+            </div>
             <div class="cartSummary">
                 <div class="totalPrice flex flex-col">
                     <strong class="text-left w-full ml-10">Total: £{{ number_format($total + 2.99, 2) }}</strong>

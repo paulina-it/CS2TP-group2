@@ -96,7 +96,7 @@
                                 <div class="qty-input">
                                     <button class="qty-count qty-count--minus" type="button">-</button>
                                     <input class="product-qty" type="number" name="product-qty" min="0"
-                                        max="10" value="1">
+                                        max="{{ $book['quantity'] }}" value="1">
                                     <button class="qty-count qty-count--add" type="button">+</button>
                                 </div>
                                 @if ($book['quantity'] <= 0)
@@ -183,45 +183,44 @@ disabled @endguest>
                         > </button>
                     <div class="similar-books-list flex justify-between">
                         <!-- Book cards -->
-                        @for ($i = 0; $i < 3; $i++)
-                            @foreach ($otherBooksInLanguage as $otherBook)
-                                <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card book-card-common">
-                                        <div class="book-card-cover">
-                                            <img class="book-cover"
-                                                src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
-                                        </div>
-                                        <div class="book-card-info">
-                                            <p class="book-author">{{ $otherBook['author'] }}</p>
-                                            <p class="book-language">{{ ucfirst(trans($otherBook['language'])) }}</p>
-                                            <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <div class="grid-card-bottom">
-                                                <p class="book-price">
-                                                    £{{ number_format((float) $otherBook['price'], 2, '.', '') }}</p>
-                                                <div class="book-card-buttons">
-                                                    <form action="{{ route('wishlist.store', $otherBook['id']) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                            class="book-button-icon
+                        @foreach ($otherBooksInLanguage as $otherBook)
+                            <a href="{{ route('books.show', $otherBook['id']) }}">
+                                <div class="book-card book-card-common">
+                                    <div class="book-card-cover">
+                                        <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
+                                            alt="">
+                                    </div>
+                                    <div class="book-card-info">
+                                        <p class="book-author">{{ $otherBook['author'] }}</p>
+                                        <p class="book-language">{{ ucfirst(trans($otherBook['language'])) }}</p>
+                                        <p class="book-title">{{ $otherBook['book_name'] }}</p>
+                                        <div class="grid-card-bottom">
+                                            <p class="book-price">
+                                                £{{ number_format((float) $otherBook['price'], 2, '.', '') }}</p>
+                                            <div class="book-card-buttons">
+                                                <form action="{{ route('wishlist.store', $otherBook['id']) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="book-button-icon
                                                     @guest @php
                                                     echo 'disabled-icon';
                                                     $disabled = true;
                                                 @endphp @endguest"
-                                                            {{ $disabled ?? false ? ' disabled' : '' }}>
-                                                            <img src="https://www.svgrepo.com/show/361197/heart.svg"
-                                                                alt="Add to Basket">
-                                                            @guest
-                                                                <span class="message">Please Login or Signup to Access
-                                                                    Wishlist</span>
-                                                            @endguest
-                                                        </button>
-                                                    </form>
-                                                    <form action="{{ route('basket.store', $otherBook['id']) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="submit"
-                                                            class="book-button-icon 
+                                                        {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                        <img src="https://www.svgrepo.com/show/361197/heart.svg"
+                                                            alt="Add to Basket">
+                                                        @guest
+                                                            <span class="message">Please Login or Signup to Access
+                                                                Wishlist</span>
+                                                        @endguest
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('basket.store', $otherBook['id']) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="book-button-icon 
                                                     @if ($otherBook['quantity'] <= 0) @php
                                                             echo 'disabled-icon';
                                                             $disabled = true;
@@ -229,22 +228,21 @@ disabled @endguest>
                                                         @else @php
                                                             $disabled = false;
                                                         @endphp @endif"
-                                                            {{ $disabled ?? false ? ' disabled' : '' }}>
-                                                            <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
-                                                                alt="Add to Wishlist">
-                                                            @if ($otherBook['quantity'] <= 0)
-                                                                <span class="message">This Book is Out of Stock</span>
-                                                            @endif
-                                                        </button>
-                                                    </form>
-                                                </div>
-
+                                                        {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                        <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
+                                                            alt="Add to Wishlist">
+                                                        @if ($otherBook['quantity'] <= 0)
+                                                            <span class="message">This Book is Out of Stock</span>
+                                                        @endif
+                                                    </button>
+                                                </form>
                                             </div>
+
                                         </div>
                                     </div>
-                                </a>
-                            @endforeach
-                        @endfor
+                                </div>
+                            </a>
+                        @endforeach
 
                     </div>
         </div>

@@ -166,7 +166,7 @@ class BookController extends Controller
         $book->otherImages = json_encode($otherImageNames);
         $book->ISBN = request('isbn');
         $book->save();
-        return redirect('admin/');
+        return redirect('admin/books');
     }
 
     //hosted previous version 

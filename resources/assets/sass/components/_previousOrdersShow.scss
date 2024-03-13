@@ -10,10 +10,9 @@
         background-color: $navColour;
         padding: 10px 0px 20px 20px;
         border-radius: 1em;
-        
-        @media 
-    only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        @media only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px) {
             //font-size: 3.25vw;
             width: 90%
         }
@@ -21,6 +20,7 @@
 
     .prev-single-mini {
         width: 6em;
+
         .book-img {
             margin: 5px 5px;
             box-shadow: 5px 5px 10px #0d0d0d3d;
@@ -28,9 +28,55 @@
         }
     }
 
-    .prev-return-btn:hover {
-        cursor: pointer;
+    .prev-return-btn {
+        background-color: $signupBtn;
+        transition: 0.4s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $signupBtnhover;
+        }
     }
+
+    .review-btn {
+        background-color: $loginBtn;
+        transition: 0.4s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $loginBtnhover;
+        }
+    }
+
+    .review-form {
+        margin: auto;
+        padding-top: 4em;
+        // margin-bottom: 8em;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        text-align: left;
+
+        h2 {
+            margin-bottom: 1em;
+            text-align: center;
+        }
+    }
+
+    input,
+    select,
+    textarea {
+        border-radius: 5px;
+        border: none;
+        background-color: $navColour;
+        // width: 40%;
+    }
+
+    input,
+    label {
+        margin: 0.7em;
+    }
+
 
     table {
         width: 90%;
