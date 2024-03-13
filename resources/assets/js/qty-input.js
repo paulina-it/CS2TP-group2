@@ -7,7 +7,11 @@ document.querySelector('.qty-count--minus').addEventListener('click', () => {
 });
 
 document.querySelector('.qty-count--add').addEventListener('click', () => {
-let qtySelector = document.querySelector('.product-qty');
-qtySelector.value++;
+    let qtySelector = document.querySelector('.product-qty');
+    let maxValue = parseInt(qtySelector.getAttribute('max'));
+
+    if (qtySelector.value < maxValue) {
+        qtySelector.value++;
+    }
 });
 
