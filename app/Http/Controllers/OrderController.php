@@ -178,11 +178,14 @@ class OrderController extends Controller
     public function return($id) {
         $orderItem = OrderItem::where('id', $id)->first();
         $bookId = $orderItem['book_id'];
+        $order = Order::where('id', $orderItem['order_id'])->first();
+        $order->status = "partially refunded";
+        $order->save();
         if ($orderItem['quantity'] > 1) {
             $orderItem->quantity --;
             $orderItem->save();
         } else {
-            $order = Order::where('id', $orderItem['order_id'])->first();
+            
             $items = OrderItem::where('order_id', $order['id'])->get();
             if (count($items) == 1) {
                 $order = Order::where('id', $orderItem['order_id'])->delete();
