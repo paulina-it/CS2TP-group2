@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('main')
-<h2 class="text-center">Checkout</h2>
+    <h2 class="text-center">Checkout</h2>
     <div class="main" id="checkout-div">
         @php
             $total = 0;
@@ -22,7 +22,7 @@
                         <em>Amount: </em>
                         <p>{{ $amounts[$i] }}</p>
                         <em>Total price:</em>
-                        <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i],2) }}</p>
+                        <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i], 2) }}</p>
                     </div>
                     @php
                         $total += $books[$i][0]['price'] * $amounts[$i];
@@ -42,7 +42,7 @@
                     <button type="submit" value="Submit" class="px-5 py-2 rounded">Submit</button>
                 </form>
             @else
-                <h4 class="text-end font-bold">{{ $coupon['name'] }} : -£{{ number_format($discount,2) }}</h4>
+                <h4 class="text-end font-bold">{{ $coupon['name'] }} : -£{{ number_format($discount, 2) }}</h4>
 
                 <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
                     @csrf
@@ -57,13 +57,14 @@
                     <div class="image-section">
                         <p><iframe class="m-auto"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9718.706562870428!2d-1.912077069282534!3d52.48499024451066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bde61d75f16b%3A0xf002564bfd828e35!2sWHSmith!5e0!3m2!1sen!2suk!4v1707905131077!5m2!1sen!2suk"
-                                width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                                width="90%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe></p>
                     </div>
                 </div>
             </div>
         </div>
         <form action="{{ route('order.create') }}" method="POST" class="checkout flex flex-col">
+            <h3>Final Step</h3>
             @csrf
             @if (!Auth::check())
                 <h4>Personal details:</h4>
@@ -74,14 +75,17 @@
                 <label for="phone">Phone Number</label>
                 <input name="phone" type="text"
                     pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
-                    oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')" required>
+                    oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')"
+                    required>
                 <label for="email">Email</label>
                 <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"
-                    oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
+                    oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
+                    required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="text" pattern="[0-9\s]{13,19}" 
-            oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')" required>
+            <input name="credit_card_no" type="text" pattern="[0-9\s]{13,19}"
+                oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')"
+                required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
     </div>Í

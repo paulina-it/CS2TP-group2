@@ -39,6 +39,9 @@
             <x-nav-link :href="route('queries')">
                 <p>Queries</p>
             </x-nav-link>
+            <x-nav-link :href="route('admin-coupons')">
+                <p>Coupons</p>
+            </x-nav-link>
         </div>
     </div>
 

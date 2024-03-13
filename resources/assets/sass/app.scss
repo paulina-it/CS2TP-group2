@@ -94,3 +94,15 @@ html,body
 .modalWindow {
     z-index: 1000;
 }
+
+.success-message {
+    position: absolute;
+    top: -1em;
+    left: 20%;
+    padding: 1em;
+    width: 60%;
+    text-align: center;
+    background-color: $btn1;
+    border-radius: 5px;
+    color: white;
+}

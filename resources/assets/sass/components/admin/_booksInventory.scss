@@ -7,13 +7,10 @@
     margin: auto;
 
     table {
-        // display: grid;
-        // grid-template-columns: 1fr 2fr 2fr ;
         border-collapse: collapse;
         width: 100%;
 
         td {
-            // padding: 0;
             padding-left: 1em;
             height: 2em;
         }
@@ -97,4 +94,35 @@
         }
     }
 
+    form {
+        input,
+    select,
+    textarea {
+        border-radius: 5px;
+        border: none;
+        background-color: $navColour;
+        // width: 40%;
+    }
+
+    input,
+    label {
+        margin: 0.7em;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.3em;
+    }
+
+    button {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+    }
+    }
 }

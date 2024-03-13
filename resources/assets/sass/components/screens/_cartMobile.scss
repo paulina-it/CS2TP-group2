@@ -6,6 +6,11 @@
             grid-column-gap: 1em;
         }
     }
+
+    #checkout-div {
+        display: grid;
+        grid-template-columns: 4fr 2fr;
+    }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1599px) {
@@ -15,6 +20,11 @@
             grid-template-columns: 3fr 1fr;
             grid-column-gap: 1em;
         }
+    }
+
+    #checkout-div {
+        display: grid;
+        grid-template-columns: 4fr 2fr;
     }
 }
 
@@ -26,6 +36,11 @@
             grid-column-gap: 1em;
         }
     }
+
+    #checkout-div {
+        display: grid;
+        grid-template-columns: 4fr 2fr;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -34,11 +49,46 @@
             display: grid;
         }
     }
+
+    .basket-table {
+        width: 90%;
+    }
+
+    #checkout-div {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
     .shopping-cart-main {
         .cart-page {
             display: grid;
+            width: 90%;
+            // 
         }
-    }}
+
+        .basket-table {
+            width: 87vw;
+            overflow: scroll;
+        }
+
+        .cartSummary {
+            width: 87vw;
+        }
+    }
+
+    #checkout-div {
+        display: flex;
+        flex-direction: column;
+
+        .book-basket-preview {
+            width: 87vw;
+        }
+
+        .checkout-book {
+            flex-direction: column;
+            width: 90vw;
+        }
+    }
+}

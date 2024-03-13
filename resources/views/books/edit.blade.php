@@ -3,7 +3,7 @@
 @section('main')
     <div class="main">
         <div class="edit-form-wrapper">
-            @include('layouts.admin-sidebar')
+            {{-- @include('layouts.admin-sidebar') --}}
             <div class="add-book-div flex flex-col p-4">
                 <form action="{{ route('books.save', $book->id) }}" method="POST" enctype="multipart/form-data"
                     class="flex flex-col">
