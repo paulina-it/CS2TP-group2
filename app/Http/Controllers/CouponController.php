@@ -9,7 +9,7 @@ use App\Models\Coupon;
 class CouponController extends Controller
 {
     public function index() {
-        $coupons = Coupon::all();
+        $coupons = Coupon::paginate(20);
         return view('admin/admin-coupons',[
             'coupons' => $coupons
         ]);

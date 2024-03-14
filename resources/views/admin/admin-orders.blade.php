@@ -107,24 +107,62 @@
                             <form action="{{ route('admin-process', $orders[$i]['id']) }}" method="POST">
                                 @csrf
                                 <select name="status" onchange="this.form.submit()">
-                                    <option value="pending" @if ($orders[$i]['status'] == 'pending') selected @endif>
-                                        Pending
-                                    </option>
-                                    <option value="processed" @if ($orders[$i]['status'] == 'processed') selected @endif>
-                                        Processed
-                                    </option>
-                                    <option value="shipped" @if ($orders[$i]['status'] == 'shipped') selected @endif>
-                                        Shipped
-                                    </option>
-                                    <option value="completed" @if ($orders[$i]['status'] == 'completed') selected @endif>
-                                        Completed
-                                    </option>
-                                    <option value="cancelled" @if ($orders[$i]['status'] == 'cancelled') selected @endif>
-                                        Cancelled
-                                    </option>
-                                    <option value="refunded" @if ($orders[$i]['status'] == 'refunded') selected @endif>
-                                        Refunded
-                                    </option>
+                                    @if ($orders[$i]['status'] == 'pending')
+                                        <option value="pending" @if ($orders[$i]['status'] == 'pending') selected @endif>
+                                            Pending
+                                        </option>
+                                        <option value="processed" @if ($orders[$i]['status'] == 'processed') selected @endif>
+                                            Processed
+                                        </option>
+                                        <option value="cancelled" @if ($orders[$i]['status'] == 'cancelled') selected @endif>
+                                            Cancelled
+                                        </option>
+                                    @elseif ($orders[$i]['status'] == 'processed' || $orders[$i]['status'] == 'shipped')
+                                        <option value="processed" @if ($orders[$i]['status'] == 'processed') selected @endif>
+                                            Processed
+                                        </option>
+                                        <option value="shipped" @if ($orders[$i]['status'] == 'shipped') selected @endif>
+                                            Shipped
+                                        </option>
+                                        <option value="completed" @if ($orders[$i]['status'] == 'completed') selected @endif>
+                                            Completed
+                                        </option>
+                                        <option value="cancelled" @if ($orders[$i]['status'] == 'cancelled') selected @endif>
+                                            Cancelled
+                                        </option>
+                                        <option value="refunded" @if ($orders[$i]['status'] == 'refunded') selected @endif>
+                                            Refunded
+                                        </option>
+                                        <option value="partially refunded"
+                                            @if ($orders[$i]['status'] == 'partially refunded') selected @endif>
+                                            Partially Refunded
+                                        </option>
+                                    @elseif ($orders[$i]['status'] == 'completed')
+                                        <option value="completed" @if ($orders[$i]['status'] == 'completed') selected @endif>
+                                            Completed
+                                        </option>
+                                        <option value="refunded" @if ($orders[$i]['status'] == 'refunded') selected @endif>
+                                            Refunded
+                                        </option>
+                                        <option value="partially refunded"
+                                            @if ($orders[$i]['status'] == 'partially refunded') selected @endif>
+                                            Partially Refunded
+                                        </option>
+                                    @elseif (
+                                        $orders[$i]['status'] == 'cancelled' ||
+                                            $orders[$i]['status'] == 'refunded' ||
+                                            $orders[$i]['status'] == 'partially refunded')
+                                        <option value="cancelled" @if ($orders[$i]['status'] == 'cancelled') selected @endif>
+                                            Cancelled
+                                        </option>
+                                        <option value="refunded" @if ($orders[$i]['status'] == 'refunded') selected @endif>
+                                            Refunded
+                                        </option>
+                                        <option value="partially refunded"
+                                            @if ($orders[$i]['status'] == 'partially refunded') selected @endif>
+                                            Partially Refunded
+                                        </option>
+                                    @endif
                                 </select>
                             </form>
                         </td>
@@ -139,6 +177,6 @@
         <br>
         <div class="pagination-links">
             {{ $orders->appends(['idSearch' => request('idSearch'), 'filter' => request('filter'), 'sort' => request('sort'), 'order' => request('order')])->links() }}
-        </div>        
+        </div>
     </div>
 @endsection
