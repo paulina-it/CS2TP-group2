@@ -95,34 +95,38 @@
     }
 
     form {
-        input,
-    select,
-    textarea {
-        border-radius: 5px;
-        border: none;
-        background-color: $navColour;
-        // width: 40%;
-    }
-
-    input,
-    label {
-        margin: 0.7em;
-    }
-
-    label {
-        font-weight: 600;
-        margin-bottom: 0.3em;
-    }
-
-    button {
-        background-color: $btn2;
-        transition: 0.4s;
-        font-weight: 600;
-        text-transform: uppercase;
-
-        &:hover {
-            background-color: $btn2hover;
+        select {
+            width: 15em;
         }
-    }
+
+        input,
+        select,
+        textarea {
+            border-radius: 5px;
+            border: none;
+            background-color: $navColour;
+            // width: 40%;
+        }
+
+        input,
+        label {
+            margin: 0.7em;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+
+        button {
+            background-color: $btn2;
+            transition: 0.4s;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
     }
 }

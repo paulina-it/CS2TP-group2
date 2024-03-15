@@ -4,9 +4,10 @@
     <div class="admin-order-div">
         <div class="admin-table">
             <h1>Order #{{ $order['id'] }}</h1>
-            <div class="order-details">
+            <div class="order-details w-full flex justify-around">
                 <p>Ordered By: {{ $user['firstName'] . ' ' . $user['lastName'] }}</p>
-                <p>Status: {{ $order['status'] }}</p>
+                <p>Contact Details: {{ $user['email'] }}</p>
+                <p>Order Status: {{ $order['status'] }}</p>
             </div>
             <table class="sortable" id="books-table">
                 <thead>
@@ -21,18 +22,18 @@
                         <tr>
                             <td>
                                 <div class="prev-single-mini w-24">
-                                    <img class="book-img" src="{{ asset('storage/' . $book[0]['mainImage']) }}"
-                                        alt="{{ $book[0]['book_name'] }}" class="w-2/3">
+                                    <img class="book-img" src="{{ asset('storage/' . $book['book']['mainImage']) }}"
+                                        alt="{{ $book['book']['book_name'] }}" class="w-2/3">
                                 </div>
                             </td>
                             <?php
                             // $total += $book[0]['price'];
                             ?>
                             <td>
-                                <p>{{ $book[0]['book_name'] }}</p>
+                                <p>{{ $book['book']['book_name'] }}</p>
                             </td>
                             <td>
-                                <p>£{{ number_format($book[0]['price'], 2) }}</p>
+                                <p>£{{ number_format($book['book']['price'], 2) }}</p>
                             </td>
                         </tr>
                     @endforeach
@@ -41,3 +42,4 @@
         </div>
     </div>
 @endsection
+ 

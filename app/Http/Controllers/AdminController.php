@@ -104,15 +104,27 @@ class AdminController extends Controller
 
     public function process($id) {
         $order = Order::findOrFail($id);
-        $order->status = request("status");
-        if (request("status") == "processed") {
+        if (request("status") == "processed" && $order->status == 'pending') {
+            $orderItems = OrderItem::where('order_id', $id)->get();
+            foreach ($orderItems as $item) {
+                // $book = Book::where('id', $item['book_id'])->first();
+                // $book->quantity -= $item['quantity'];
+                // $book->save();
+                $item->status = 'sold';
+                $item->save();
+            }
+        }
+        else if ((request("status") == "cancelled" || request("status") == "refunded") && ($order->status == 'processed' || request("status") == "shipped")) {
             $orderItems = OrderItem::where('order_id', $id)->get();
             foreach ($orderItems as $item) {
                 $book = Book::where('id', $item['book_id'])->first();
-                $book->quantity -= $item['quantity'];
+                $book->quantity += $item['quantity'];
                 $book->save();
+                $item->status = 'returned';
+                $item->save();
             }
         }
+        $order->status = request("status");
         $order->save();
         return redirect('admin/orders');
     }
@@ -122,8 +134,12 @@ class AdminController extends Controller
         $books = array();
         $orderItems = OrderItem::where('order_id', $id)->get();
         foreach($orderItems as $item) {
-            for ($j = 0; $j < $item['quantity']; $j++) {
-                array_push($books, Book::where('id', $item['book_id'])->get());
+            $book = Book::find($item->book_id);
+            
+            for ($j = 0; $j < $item->quantity; $j++) {
+                $books[] = [
+                    'book' => $book
+                ];
             }
         }
         if ($order['user_id']) {

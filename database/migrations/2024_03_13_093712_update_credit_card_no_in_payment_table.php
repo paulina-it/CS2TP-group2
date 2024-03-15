@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('payment', function (Blueprint $table) {
-            $table->integer('credit_card_no')->chnage();
+            $table->integer('credit_card_no')->change();
         });
     }
 };

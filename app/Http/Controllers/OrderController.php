@@ -106,10 +106,12 @@ class OrderController extends Controller
                 $quantity = (int)$request->session()->get('books')[0]['quantity'];
                 $book = (int)$request->session()->get('books')[0]['book_id'];
             }
+            Book::where('id', $book)->decrement('quantity', $quantity);
             $orderItem = new OrderItem;
             $orderItem->book_id = $book;
             $orderItem->order_id = $order_id;
             $orderItem->quantity = $quantity;
+            $orderItem->status = 'reserved';
             $orderItem->save();
         }
         if (Auth::check()) {
@@ -177,24 +179,27 @@ class OrderController extends Controller
 
     public function return($id) {
         $orderItem = OrderItem::where('id', $id)->first();
-        $bookId = $orderItem['book_id'];
         $order = Order::where('id', $orderItem['order_id'])->first();
-        $order->status = "partially refunded";
-        $order->save();
+        $bookId = $orderItem['book_id'];
+        // $order->status = "partially refunded";
         if ($orderItem['quantity'] > 1) {
-            $orderItem->quantity --;
-            $orderItem->save();
+            $orderItem->quantity--;
+            $order->status = 'partially refunded';
         } else {
-            
             $items = OrderItem::where('order_id', $order['id'])->get();
             if (count($items) == 1) {
-                $order = Order::where('id', $orderItem['order_id'])->delete();
+                // $order = Order::where('id', $orderItem['order_id']);
+                $order->status = 'refunded';
             } else {
-                $orderItem = OrderItem::where('id', $id)->delete();
+                // $orderItem->delete();
+                $order->status = 'partially refunded';
             }
         }
         $book = Book::where('id', $bookId)->first();
-        $book->quantity += 1;
+        $book->quantity++;
+
+        $order->save();
+        $orderItem->save();
         $book->save();
         
         return redirect(route('order.previous'));

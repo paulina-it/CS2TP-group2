@@ -49,6 +49,14 @@
         font-weight: 500px;
     }
 
+    .outOfStock-table {
+
+        th {
+            color: rgb(130, 99, 99);
+            background: $navTopColour;
+        }
+    }
+
     td {
         // padding: 15px 20px;
         padding: 1em;
