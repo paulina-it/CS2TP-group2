@@ -83,7 +83,7 @@
                     required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="text" pattern="[0-9\s]{13,19}"
+            <input name="credit_card_no" type="text" pattern="[0-9]{9,19}"
                 oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')"
                 required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
