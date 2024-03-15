@@ -13,6 +13,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ProductRatingController;
 use App\Http\Controllers\CouponController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,7 +97,10 @@ Route::group(['middleware' => ['web', 'clear.search.term']], function () {
         Route::get('/admin/orders/{id}', [AdminController::class, 'order'])->name('admin-order-details');
         Route::post('/admin/orders/{id}', [AdminController::class, 'process'])->name('admin-process');
         Route::get('/admin/coupons', [CouponController::class, 'index'])->name('admin-coupons');
+        Route::get('/admin/report', [AdminController::class, 'report'])->name('report');
         Route::post('/admin/coupons', [CouponController::class, 'create'])->name('admin-coupons-create');
+        Route::get('/admin/report-pdf', [AdminController::class, 'saveReportPdf'])->name('report-pdf');
+        
     });
 
 });

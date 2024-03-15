@@ -48,20 +48,47 @@
                                 </td>
                                 <td>
                                     @if ($order[0]['status'] == 'completed' || $order[0]['status'] == 'partially refunded')
-                                        <form action="{{ route('order.return', $items[$i]['id']) }}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="prev-return-btn py-2 px-4 rounded btn mb-3" type="submit"
-                                                value="Return">Return</button>
-                                        </form>
-                                        {{-- <button type="button" class="review-btn py-2 px-4 rounded btn" data-toggle="modal"
-                                    data-target="#modal{{ $items[$i]['id'] }}">Review</button> --}}
-                                        {{-- <div class="modal" id="modal{{ $items[$i]['id'] }}">
-                                    <span class="close">&times;</span>
-                                    <div class="modal-content">
-                                        
-                                    </div>
-                                </div> --}}
+                                        <button onclick="eventPreventDefault()" type="button" class="prev-return-btn py-2 px-4 rounded btn mb-3"
+                                            data-modal-toggle="modalReturn{{ $items[$i]['id'] }}"
+                                            data-modal-target="modalReturn{{ $items[$i]['id'] }}">Return
+                                        </button>
+                                        <div id="modalReturn{{ $items[$i]['id'] }}" tabindex="-1"
+                                            class="modalWindow hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                            <div class="relative p-4 w-full max-w-md max-h-full">
+                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                    <button type="button"
+                                                        class="closeModal absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        data-modal-hide="modalReturn{{ $items[$i]['id'] }}">
+                                                        <svg class="w-3 h-3" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                        </svg>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                    <div class="p-4 md:p-5 text-center">
+                                                        <h4 class="m-5">
+                                                            Are you sure you want to return
+                                                            "{{ $books[$bookCount][0]['book_name'] }}"?</h4>
+
+                                                        <form action="{{ route('order.return', $items[$i]['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="prev-return-btn py-2 px-4 rounded btn mb-3"
+                                                                type="submit" value="Return">Return</button>
+                                                        </form>
+
+                                                        <button data-modal-hide="modalReturn{{ $items[$i]['id'] }}"
+                                                            type="button"
+                                                            class="closeModal text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
+                                                            cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <button onclick="eventPreventDefault()" type="button"
                                             class="review-btn py-2 px-4 rounded btn"
                                             data-modal-toggle="modal{{ $items[$i]['id'] }}"
@@ -85,10 +112,10 @@
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
                                                     <div class="p-4 md:p-5 text-center">
-                                                        <h3>Leave a Review</h3>
-                                                        <h4>{{ $items[$i]['book_name'] }}</h4>
+                                                        <h3>Leave a Review of</h3>
+                                                        <h4 class="mb-[-2em]">{{ $books[$bookCount][0]['book_name'] }}</h4>
                                                         <form
-                                                            action="{{ route('product-rating.create', $items[$i]['id']) }}"
+                                                            action="{{ route('product-rating.create', $items[$i]['book_id']) }}"
                                                             class="review-form" method="POST">
                                                             @csrf
                                                             <label for="score">Rating</label>
