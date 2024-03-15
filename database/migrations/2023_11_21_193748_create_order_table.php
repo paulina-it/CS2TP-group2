@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('orders', function (Blueprint $table) {
-        $table->id('order_id');
+        $table->id('id');
         $table->enum('status', ['pending', 'processed', 'completed', 'shipped', 'cancelled', 'refunded']);
         $table->date('ordered_date');
         $table->bigInteger('user_id')->unsigned()->nullable();
