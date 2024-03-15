@@ -181,7 +181,9 @@ class BasketController extends Controller
         }
     
         foreach ($basket as $item) {
-            $qty += $item['quantity'];     
+            if (Book::find($item['book_id'])->quantity > 0) {
+                $qty += $item['quantity'];     
+            }
         }
 
         Session::put('basket_qty', $qty);

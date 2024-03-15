@@ -48,9 +48,8 @@
                         <div class="book-info-top">
                             <h2 class="book-title">{{ $book['book_name'] }}</h2>
                             @if ($totalReviews > 0)
-                                <div class="book-rating"><img class="rating-icon"
-                                        src="https://i.postimg.cc/NGymHksh/star-svgrepo-com.png"
-                                        alt="">{{ $averageRating }}
+                                <div class="book-rating">
+                                    <span class="fa fa-star checked text-[1.5em]"></span>{{ $averageRating }}
                                 </div>
                             @endif
                         </div>
@@ -112,8 +111,7 @@
                         <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
                             @csrf
                             <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn"
-                                @guest
-disabled @endguest>
+                                @guest disabled @endguest>
                                 Add to Wishlist
                             </button>
                         </form>
@@ -246,44 +244,38 @@ disabled @endguest>
 
                     </div>
         </div>
-
         <div class="product-rating section w-2/3">
             <span class="text-line"></span>
             <h2 class="text-2xl category-title">Reviews</h2>
             @if (count($ratings) > 0)
                 @for ($i = 0; $i < count($ratings); $i++)
-                    <div class="review-div">
-                        <p><strong>{{ $ratingAuthors[$i]['firstName'] . ' ' . $ratingAuthors[$i]['lastName'] }}</strong>
-                            rated
-                            this book as {{ $ratings[$i]['score'] }}/5.</p>
+                    <div class="w-full review-div">
+                        <div class="review-top w-full flex justify-between">
+                            <p><strong>{{ $ratingAuthors[$i]['firstName'] . ' ' . $ratingAuthors[$i]['lastName'] }}</strong>
+                            <div class="star-rating">
+                                @php
+                                    $n = $ratings[$i]['score'];
+                                @endphp
+                                @for ($j = 0; $j < $n; $j++)
+                                    <span class="fa fa-star checked"></span>
+                                @endfor
+                                @for ($j = $n; $j < 5; $j++)
+                                    <span class="fa fa-star unchecked"></span>
+                                @endfor
+                            </div>
+                        </div>
                         <hr class="border-amber-900 bg-amber-900">
                         <p class="review-text">{{ $ratings[$i]['review'] }}</p>
+                        <br>
+                        <hr class="border-amber-900 bg-amber-900">
+                        <p class="text-end text-amber-800">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ratings[$i]['created_at'])->format('d/m/Y')  }}</p>
                     </div>
                 @endfor
             @else
                 <div class="no-reviews flex">
-                    {{-- <img src="https://i.postimg.cc/BQhd7HPB/write-book-svgrepo-com.png" alt=""> --}}
                     <p>There are currently no reviews, you can be the first to leave it.</p>
                 </div>
             @endif
-            {{-- @if (Auth::check())
-                <form action="{{ route('product-rating.create', $book['id']) }}" method="POST">
-                    @csrf
-                    <h3>Leave a review</h3>
-                    <select name="score">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select> 
-                    <textarea name="review">
-                </textarea>
-                    <input type="submit" value="Submit">
-                </form>
-            @else
-                <label>Please log in to leave a review</label>
-            @endif --}}
         </div>
     </div>
 @endsection
