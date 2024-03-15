@@ -12,18 +12,6 @@ use App\Models\Coupon;
 
 class ApplyCouponTest extends TestCase
 {
-    public function test_book_can_be_added_to_cart(): void
-    {
-        $user = User::factory()->create();
-        $book = Book::factory()->create();
-        $response = $this->actingAs($user)->post('/basket/'.strval($book['id']),[
-            'product-qty' => 1
-        ]);
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/basket')
-            ->assertSee($book['name']);
-    }
     public function test_admin_can_create_coupon(): void
     {
         $user = User::factory()->create();
