@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('localVite')
-    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js'])
+    @vite(['resources/assets/js/scroll.js', 'resources/assets/js/bookPage.js', 'resources/assets/js/qty-input.js'])
 @endsection
 @section('main')
     <div class="content">
@@ -10,9 +10,9 @@
                 <!-- Book cover and previews -->
                 <div class="flex book-img-div">
                     <div class="book-previews-div flex flex-col">
-                        <?php
-                        $otherImages = json_decode($book['otherImages']);
-                        ?>
+                        @php
+                            $otherImages = json_decode($book['otherImages']);
+                        @endphp
                         <!-- Book previews -->
                         <img class="opened-preview book-img-mini" src="{{ asset('storage/' . $book['mainImage']) }}"
                             alt="{{ $book['book_name'] }}">
@@ -22,14 +22,38 @@
                             @endforeach
                         @endif
                     </div>
-                    <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
-                        class="book-cover">
+                    @if (Storage::disk('public')->exists($book['mainImage']))
+                        <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
+                            class="book-cover">
+                    @else
+                        <div class="dummy-book-cover">
+                            <p>Image not available</p>
+                        </div>
+                    @endif
                 </div>
                 <!-- Book information and buttons -->
                 <div class="book-info-div flex flex-col justify-around">
                     <div class="book-info">
                         <!-- Book title, author, language, type and price -->
-                        <h2 class="book-title">{{ $book['book_name'] }}</h2>
+                        @php
+                            $totalRating = 0;
+                            $totalReviews = count($ratings);
+
+                            foreach ($ratings as $rating) {
+                                $totalRating += $rating['score'];
+                            }
+
+                            $averageRating = $totalReviews > 0 ? $totalRating / $totalReviews : 0;
+                        @endphp
+                        <div class="book-info-top">
+                            <h2 class="book-title">{{ $book['book_name'] }}</h2>
+                            @if ($totalReviews > 0)
+                                <div class="book-rating"><img class="rating-icon"
+                                        src="https://i.postimg.cc/NGymHksh/star-svgrepo-com.png"
+                                        alt="">{{ $averageRating }}
+                                </div>
+                            @endif
+                        </div>
                         <h4 class="book-author">{{ $book['author'] }}</h4>
                         <p class="book-language">{{ ucfirst(trans($book['language'])) }}</p>
                         <p class="book-type" class="text-gray">{{ ucfirst(trans($book['type'])) }}</p>
@@ -62,6 +86,8 @@
                             </div>
                         @endif
                     </div>
+
+
                     <div class="book-btns mb-10">
                         <!-- Quantity input and buttons -->
                         <form action="{{ route('basket.store', $book['id']) }}" method="POST">
@@ -70,26 +96,53 @@
                                 <div class="qty-input">
                                     <button class="qty-count qty-count--minus" type="button">-</button>
                                     <input class="product-qty" type="number" name="product-qty" min="0"
-                                        max="10" value="1">
+                                        max="{{ $book['quantity'] }}" value="1">
                                     <button class="qty-count qty-count--add" type="button">+</button>
                                 </div>
-                                @if ($book['quantity'] <= 0) 
-                                @php
-                                    $disabled = true;
-                                @endphp
+                                @if ($book['quantity'] <= 0)
+                                    @php
+                                        $disabled = true;
+                                    @endphp
                                 @endif
                                 <button type="submit" id="addToCartBtn" class="py-2 px-4 rounded btn addToCartBtn"
-                                    value="Add to Cart" {{$disabled ?? false ? ' disabled' :''}}>Add
+                                    value="Add to Cart" {{ $disabled ?? false ? ' disabled' : '' }}>Add
                                     to Cart</button>
                             </div>
                         </form>
-                        {{-- <form action="" method="post">
-                            <button id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn">
+                        <form action="{{ route('wishlist.store', $book['id']) }}" method="POST">
+                            @csrf
+                            <button type="submit" id="addToWishlistBtn" class="py-2 px-4 rounded btn addToWishlistBtn"
+                                @guest
+disabled @endguest>
                                 Add to Wishlist
-                            </button> --}}
-                        {{-- </form> --}}
+                            </button>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        {{-- MODAL ZOOM --}}
+        <div id="zoomModal" class="modal hidden">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content flex">
+                <div class="book-previews-div-modal flex flex-col">
+                    <img class="opened-preview book-img-mini-modal" src="{{ asset('storage/' . $book['mainImage']) }}"
+                        alt="{{ $book['book_name'] }}">
+                    @if ($otherImages != null)
+                        @foreach ($otherImages as $otherImage)
+                            <img class="book-img-mini-modal" src="{{ asset('storage/' . $otherImage) }}" alt="">
+                        @endforeach
+                    @endif
+                </div>
+                @if (Storage::disk('public')->exists($book['mainImage']))
+                    <img src="{{ asset('storage/' . $book['mainImage']) }}" alt="{{ $book['book_name'] }}"
+                        class="book-cover-modal">
+                @else
+                    <div class="dummy-book-cover">
+                        <p>Image not available</p>
+                    </div>
+                @endif
+
             </div>
         </div>
 
@@ -109,10 +162,12 @@
                 $genres = explode(', ', $book['genre']);
                 ?>
                 @foreach ($genres as $genre)
-                    <div
-                        class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
-                        {{ ucfirst(trans($genre)) }}
-                    </div>
+                    <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
+                        <div
+                            class="genre w-40 text-white font-bold py-2 px-4 rounded-full rounded-full flex justify-center m-4">
+                            {{ ucfirst(trans($genre)) }}
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -128,26 +183,107 @@
                         > </button>
                     <div class="similar-books-list flex justify-between">
                         <!-- Book cards -->
-                        @for ($i = 0; $i < 3; $i++)
-                            @foreach ($otherBooksInLanguage as $otherBook)
-                                <a href="{{ route('books.show', $otherBook['id']) }}">
-                                    <div class="book-card">
-                                        <div class="book-card-cover">
-                                            <img class="book-cover"
-                                                src="{{ asset('storage/' . $otherBook['mainImage']) }}" alt="">
-                                        </div>
-                                        <div class="book-card-info">
-                                            <p class="book-author">{{ $otherBook['author'] }}</p>
-                                            <p class="book-title">{{ $otherBook['book_name'] }}</p>
-                                            <p class="book-price">£{{ number_format((float) $otherBook['price'], 2, '.', '') }}
-                                            </p>
+                        @foreach ($otherBooksInLanguage as $otherBook)
+                            <a href="{{ route('books.show', $otherBook['id']) }}">
+                                <div class="book-card book-card-common">
+                                    <div class="book-card-cover">
+                                        <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
+                                            alt="">
+                                    </div>
+                                    <div class="book-card-info">
+                                        <p class="book-author">{{ $otherBook['author'] }}</p>
+                                        <p class="book-language">{{ ucfirst(trans($otherBook['language'])) }}</p>
+                                        <p class="book-title">{{ $otherBook['book_name'] }}</p>
+                                        <div class="grid-card-bottom">
+                                            <p class="book-price">
+                                                £{{ number_format((float) $otherBook['price'], 2, '.', '') }}</p>
+                                            <div class="book-card-buttons">
+                                                <form action="{{ route('wishlist.store', $otherBook['id']) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="book-button-icon
+                                                    @guest @php
+                                                    echo 'disabled-icon';
+                                                    $disabled = true;
+                                                @endphp @endguest"
+                                                        {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                        <img src="https://www.svgrepo.com/show/361197/heart.svg"
+                                                            alt="Add to Basket">
+                                                        @guest
+                                                            <span class="message">Please Login or Signup to Access
+                                                                Wishlist</span>
+                                                        @endguest
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('basket.store', $otherBook['id']) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="book-button-icon 
+                                                    @if ($otherBook['quantity'] <= 0) @php
+                                                            echo 'disabled-icon';
+                                                            $disabled = true;
+                                                        @endphp 
+                                                        @else @php
+                                                            $disabled = false;
+                                                        @endphp @endif"
+                                                        {{ $disabled ?? false ? ' disabled' : '' }}>
+                                                        <img src="https://www.svgrepo.com/show/506558/shopping-cart.svg"
+                                                            alt="Add to Wishlist">
+                                                        @if ($otherBook['quantity'] <= 0)
+                                                            <span class="message">This Book is Out of Stock</span>
+                                                        @endif
+                                                    </button>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
-                                </a>
-                            @endforeach
-                        @endfor
+                                </div>
+                            </a>
+                        @endforeach
 
                     </div>
+        </div>
+
+        <div class="product-rating section w-2/3">
+            <span class="text-line"></span>
+            <h2 class="text-2xl category-title">Reviews</h2>
+            @if (count($ratings) > 0)
+                @for ($i = 0; $i < count($ratings); $i++)
+                    <div class="review-div">
+                        <p><strong>{{ $ratingAuthors[$i]['firstName'] . ' ' . $ratingAuthors[$i]['lastName'] }}</strong>
+                            rated
+                            this book as {{ $ratings[$i]['score'] }}/5.</p>
+                        <hr class="border-amber-900 bg-amber-900">
+                        <p class="review-text">{{ $ratings[$i]['review'] }}</p>
+                    </div>
+                @endfor
+            @else
+                <div class="no-reviews flex">
+                    {{-- <img src="https://i.postimg.cc/BQhd7HPB/write-book-svgrepo-com.png" alt=""> --}}
+                    <p>There are currently no reviews, you can be the first to leave it.</p>
+                </div>
+            @endif
+            {{-- @if (Auth::check())
+                <form action="{{ route('product-rating.create', $book['id']) }}" method="POST">
+                    @csrf
+                    <h3>Leave a review</h3>
+                    <select name="score">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select> 
+                    <textarea name="review">
+                </textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            @else
+                <label>Please log in to leave a review</label>
+            @endif --}}
         </div>
     </div>
 @endsection

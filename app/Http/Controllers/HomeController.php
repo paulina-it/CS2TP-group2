@@ -9,12 +9,11 @@ use Carbon\Carbon;
 class HomeController extends Controller
 {
     public function index() {
-        $date = Carbon::now()->subMonth();
-            $books = Book::where(function ($query) use($date) {
-                $query->whereDate('created_at', '>', $date->toDateString());
-            })->get();
+        BasketController::getQty();
+        $books = Book::latest()->take(10)->get();
+        $books = collect($books)->shuffle();
         return view('index', [
-            'books' => $books->reverse()
+            'books' => $books
         ]);
     }
 }

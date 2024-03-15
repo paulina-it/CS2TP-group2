@@ -25,23 +25,53 @@
                     </div>
                     <br>
                     <em>Amount: </em><p>{{ $amounts[$i] }}</p> 
-                    <em>Total price:</em> <p>£{{ $books[$i][0]['price'] * $amounts[$i] }}</p>
+                    <em>Total price:</em> <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i], 2) }}</p>
                 </div>
                 @php
                     $total += $books[$i][0]['price'] * $amounts[$i];
+                    if ($coupon) {
+                        $discount = $coupon['discount'] / 100 * $total;
+                        $total = $total - $discount;
+                    }
                 @endphp
             @endfor
         </div>
-        <h4 class="text-end font-bold">Total: £{{ $total }}</h4>
+        @if (!$coupon)
+        <form action="{{ route('coupons.store') }}" method="POST">
+            @csrf
+            <input type="text" name="name">
+            <input type="submit" value="Submit">
+        </form>
+        @else
+        <h4 class="text-end font-bold">{{$coupon['name']}} : -£{{number_format($discount, 2)}}</h4>
+        
+        <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Remove">
+        </form>
+        @endif
+        <h4 class="text-end font-bold">Total: £{{ number_format($total, 2) }}</h4>
         <div class="delivery mb-5">
             <h3>Delivery:</h3>
             <p>You will be able to pick up your order at our local store.</p>
         </div>
         <form action="{{ route('order.create') }}" method="POST" class="checkout">
             @csrf
+            @if (!Auth::check()) 
+                <label for="fName">First Name</label>
+                <input name="fName" type="text" required>
+                <label for="lName">Last Name</label>
+                <input name="lName" type="text" required>
+                <label for="phone">Phone Number</label>
+                <input name="phone" type="text" required>
+                <label for="email">Email</label>
+                <input name="email" type="text" required>
+            @endif
             <label for="credit_card_no">Credit Card Number</label>
             <input name="credit_card_no" type="number" required>
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
     </div>Í
 @endsection
+

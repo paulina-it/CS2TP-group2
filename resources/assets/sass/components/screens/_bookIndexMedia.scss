@@ -1,0 +1,30 @@
+@media screen and (min-width: 1600px) {
+    .books-list {
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1599px) {
+    .books-list {
+        // margin: 0;
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    .books-list {
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .books-list {
+        width: 85vw;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+    .books-list {
+        width: 90vw;
+    }
+}

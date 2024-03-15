@@ -3,8 +3,8 @@
     <div class="footer-info flex">
         <div class="footer-discovery footer-section flex flex-col">
             <h3 class="footer-title">Discovery</h3>
-            <a href="{{ route('home', ['scrollTo' => 'similar-books-list']) }}">New books</a>
-            <a href="{{ route('home', ['scrollTo' => 'languages-container']) }}">New languages</a>
+            <a href="{{ route('home').'#new-books' }}">New books</a>
+            <a href="{{ route('home').'#languages' }}">New languages</a>
             <a href="{{ route('home') }}">Most sold</a>
         </div>
         <div class="footer-about footer-section flex flex-col">

@@ -11,6 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+<<<<<<< HEAD
+=======
+        Schema::table('order_item', function (Blueprint $table) {
+            $table->dropForeign('order_item_order_id_foreign');
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->renameColumn('order_id', 'id');
+        });
+
+        Schema::table('order_item', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        });
+>>>>>>> origin/develop
     }
 
     /**
@@ -18,5 +32,19 @@ return new class extends Migration
      */
     public function down(): void
     {
+<<<<<<< HEAD
+=======
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign('order_item_id_foreign');
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->renameColumn('id', 'order_id');
+        });
+
+        Schema::table('order_item', function (Blueprint $table) {
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade');
+        });
+>>>>>>> origin/develop
     }
 };

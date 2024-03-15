@@ -1,0 +1,61 @@
+#checkout-div {
+
+    .book-basket-preview {
+        padding: 2em;
+        background-color: $navColour;
+        border-radius: 10px;
+
+        .basket-books-list {
+            background-color: $navTopColour;
+            border-radius: 10px;
+            padding: 1em;
+            .checkout-book {
+                display: flex;
+                margin: 1em;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .coupon-form {
+        input {
+            background-color: white;
+            border: solid 1px $navTopColour;
+            margin-left: 0;
+        }
+    }
+
+    .checkout {
+        padding: 2em;
+    }
+
+    input,
+    select,
+    textarea {
+        border-radius: 5px;
+        border: none;
+        background-color: $navColour;
+        // width: 40%;
+    }
+
+    input,
+    label {
+        margin: 0.7em;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.3em;
+    }
+
+    button {
+        background-color: $btn2;
+        transition: 0.4s;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+    }
+}
