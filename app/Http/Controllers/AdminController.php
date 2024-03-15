@@ -10,7 +10,8 @@ use App\Models\Order;
 use App\Models\CustomerQuery;
 use App\Models\OrderItem;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class AdminController extends Controller
 {
@@ -290,5 +291,57 @@ public function queries() {
         $user->role = request('role');
         $user->save();
         return redirect('admin/users');
+    }
+
+    public function report() {
+        $books = Book::all();
+        $orderedItems = OrderItem::all();
+        $orderCounts = [];
+        $orders = Order::all();
+
+        foreach ($orderedItems as $item) {
+            $bookId = $item->book_id;
+            if (isset($orderCounts[$bookId])) {
+                $orderCounts[$bookId]++;
+            } else {
+                $orderCounts[$bookId] = 1;
+            }
+        }
+
+        foreach ($books as $book) {
+            $bookId = $book->id;
+            if (isset($orderCounts[$bookId])) {
+                $book->orders_count = $orderCounts[$bookId];
+            } else {
+                $book->orders_count = 0;
+            }
+        }
+
+        foreach ($orders as $order) {
+            $user = User::find($order['user_id']) ?? Guest::find($order['guest_id']);
+            $order->user = $user['firstName'].' '.$user['lastName'];
+        }
+
+        return view('admin/report',[
+            'books' => $books,
+            'orders' => $orders,
+        ]);
+    }
+
+    public function saveReportPdf() {
+        $view = $this->report(); 
+    
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+    
+        $html = $view->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $filename = 'report_' . Carbon::now()->format('Y-m-d') . '.pdf';
+    
+        return $dompdf->stream($filename);
     }
 }

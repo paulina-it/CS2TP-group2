@@ -28,6 +28,7 @@
 @import './components/admin/booksCreate';
 @import './components/admin/booksInventory';
 @import './components/admin/adminOrders';
+@import './components/admin/report';
 @import './components/auth/auth';
 
 body {
@@ -94,7 +95,7 @@ html,body
     z-index: 1000;
 }
 
-.success-message {
+.success-message, .errors-div {
     position: absolute;
     top: -1em;
     left: 20%;

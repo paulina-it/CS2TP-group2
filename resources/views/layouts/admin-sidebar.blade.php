@@ -34,12 +34,12 @@
                 <p class="font-semibold">Order Management</p>
             </a>
         </li>
-        <ul>
+        {{-- <ul>
             <li class="sub-list-item">
                 <a href="{{ route('books.create') }}" @if (Request::is('books.create')) class="highlight" @endif>
                     <img src="https://www.svgrepo.com/show/383784/online-delivery.svg" alt="Add Icon"
                         class="sidebar-icon">
-                    <p>Process Orders</p>
+                    <p>Orders List</p>
                 </a>
             </li>
             <li class="sub-list-item">
@@ -49,7 +49,7 @@
                     <p>Process Returns</p>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
         <li>
             <a href="{{ route('queries') }}" @if (Request::is('queries')) class="highlight" @endif>
                 <img src="https://www.svgrepo.com/show/340875/query.svg" alt="Query Icon" class="sidebar-icon">
@@ -57,9 +57,9 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('wishlist') }}" @if (Request::is('wishlist')) class="highlight" @endif>
+            <a href="{{ route('report-pdf') }}">
                 <img src="https://www.svgrepo.com/show/381827/report-analytics-business-office.svg" alt="Query Icon" class="sidebar-icon">
-                <p class="font-semibold">Reports</p>
+                <p class="font-semibold">Download a Report</p>
             </a>
         </li>
     </ul>
