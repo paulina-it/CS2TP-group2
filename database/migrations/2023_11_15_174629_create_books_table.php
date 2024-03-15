@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('language', ['latin', 'polish', 'punjabi', 'romanian', 'russian', 'spanish', 'urdu']);
             $table->string('mainImage');
             $table->string('otherImages');
-            $table->integer('quantity')->default(1);
+            $table->unsignedInteger('quantity')->default(1)->change();
             $table->enum('type', ['ebook', 'hardcover', 'paperback']);
             $table->float('price', 5, 2);
             $table->timestamps();
