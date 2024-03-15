@@ -31,7 +31,9 @@ class CouponController extends Controller
 
     public function store(Request $request) {
         $coupon = Coupon::where('coupon_name', request('name'))->first();
-        
+        if (!$coupon) {
+            return redirect('order')->withErrors(['msg' => 'Please enter valid code']);
+        }
         $date = $coupon['expiry_date'];
         $today = date("Y-m-d");
         if ($date < $today) {
@@ -39,7 +41,7 @@ class CouponController extends Controller
         } else {
             $expired = false;
         }
-        if (!$coupon || $expired) {
+        if ($expired) {
             return redirect('order')->withErrors(['msg' => 'Please enter valid code']);
         } 
         $request->session()->put('coupon', [
