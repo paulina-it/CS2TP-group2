@@ -36,7 +36,7 @@
                     </select>
                 </form>
             </div>
-            <div class="view-div flex">
+            <div class="view-div hidden md:flex">
                 <h4 class="ml-3">View</h4>
                 <form id="rows-form" action="{{ route('books.save.view.choice') }}" method="POST" style="display: hidden">
                     <input type="hidden" name="view_choice" value="rows">
@@ -121,10 +121,6 @@
                         </div>
                     </a>
                 @endforeach
-
-                <div class="pagination">
-                    {{ $books->links() }}
-                </div>
             </div>
             <div class="books-list {{ $viewChoice == 'grid' ? '' : 'hidden' }}">
                 @foreach ($books as $book)
@@ -189,11 +185,8 @@
                         </div>
                     </a>
                 @endforeach
-                <div class="pagination">
-                    {{ $books->links() }}
-                </div>
             </div>
-            <div class="mt-[-2em] md:m-0">
+            <div class="mt-[-2em] mb-[2em] md:m-0">
                 <div class="filters-header ml-5 flex">
                     <img src="https://www.svgrepo.com/show/532169/filter.svg" alt="filter-icon" class="w-5 mr-1">
                     <h4>Apply filters</h4>
@@ -242,5 +235,18 @@
                 </div>
             </div>
         </main>
+
+        <div class="pagination">
+            {{ $books->links() }}
+        </div>
     </div>
+    <script>
+        window.onload = function() {
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if (screenWidth <= 768) {
+                <?php session(['view_choice' => 'grid']); ?>
+            }
+        };
+    </script>
+    
 @endsection
