@@ -240,13 +240,13 @@
             {{ $books->links() }}
         </div>
     </div>
-    <script>
-        window.onload = function() {
-            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if (screenWidth <= 768) {
-                <?php session(['view_choice' => 'grid']); ?>
-            }
-        };
-    </script>
     
 @endsection
+<script>
+    window.onload = function() {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (screenWidth <= 768) {
+            <?php session(['view_choice' => 'grid']); ?>
+        }
+    };
+</script>

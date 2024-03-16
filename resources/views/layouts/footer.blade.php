@@ -12,11 +12,5 @@
             <a href="{{ route('about-us') }}">About company</a>
             <a href="{{ route('contact.show') }}">Contact us</a>
         </div>
-        {{-- <div class="footer-info footer-section flex flex-col">
-            <h3 class="footer-title">Info</h3>
-            <a href="">Help</a>
-            <a href="">Shipping</a>
-            <a href="">Terms & Conditions</a>
-        </div> --}}
     </div>
 </footer>
