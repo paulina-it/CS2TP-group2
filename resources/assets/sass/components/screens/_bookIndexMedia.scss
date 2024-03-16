@@ -2,12 +2,26 @@
     .books-list {
         width: 90vw;
     }
+
+    .book-search-wrapper {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+    }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1599px) {
     .books-list {
-        // margin: 0;
         width: 90vw;
+    }
+
+    .book-search-wrapper {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+        .book-row-card {
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+        }
     }
 }
 
@@ -15,16 +29,47 @@
     .books-list {
         width: 90vw;
     }
+
+    .book-search-wrapper {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+
+        .book-row-card {
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+        }
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
     .books-list {
         width: 85vw;
     }
+
+    .book-search-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .book-row-card {
+            display: grid;
+            // grid-template-columns: 1fr 5fr;
+        }
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
     .books-list {
         width: 90vw;
+    }
+
+    .book-search-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .book-row-card {
+            display: grid;
+            // grid-template-columns: 1fr 5fr;
+        }
     }
 }

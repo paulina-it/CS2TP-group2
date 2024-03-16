@@ -1,16 +1,22 @@
 let saveViewChoiceRoute = "{{ route('save.view.choice') }}";
 
-let rows = document.querySelector('#rows-view'); 
+let rows = document.querySelector('#rows-view');
 let grid = document.querySelector('#grid-view');
+let filtersBtn = document.querySelector('.filters-header');
 
-rows.addEventListener('click', (event) => {
-    // document.querySelector('.books-rows').style.display = 'block';
-    // document.querySelector('.books-list').style.display = 'none';
+rows.addEventListener('click', () => {
     document.querySelector('#rows-form').submit();
 });
 
-grid.addEventListener('click', (event) => {
-    // document.querySelector('.books-rows').style.display = 'none';
-    // document.querySelector('.books-list').style.display = 'flex';
+grid.addEventListener('click', () => {
     document.querySelector('#grid-form').submit();
 });
+
+filtersBtn.addEventListener('click', () => {
+    let filtersDiv = document.querySelector('.search-sidebar');
+    if (filtersDiv.style.display == 'none') {
+        filtersDiv.style.display = 'flex';
+    } else {
+        filtersDiv.style.display = 'none';
+    }
+})
