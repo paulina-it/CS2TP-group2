@@ -4,6 +4,9 @@
 @endsection
 @section('main')
     <div class="main-search m-auto">
+        {{-- @php
+            $category = Session::get('category');
+        @endphp --}}
         @if ($search != null)
             @if (count($books) == 0)
                 <h2 class="m-9 text-center">No books were found</h2>

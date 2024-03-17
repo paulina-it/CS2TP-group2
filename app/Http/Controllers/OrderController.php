@@ -98,27 +98,35 @@ class OrderController extends Controller
         }
         $order->save();
         $order_id = $order->id;
-        foreach($books as $book) {
-            if (Auth::check()) {
-                $quantity = $book['quantity'];
-                $book = $book['book_id'];
-            } else {
-                $quantity = (int)$request->session()->get('books')[0]['quantity'];
-                $book = (int)$request->session()->get('books')[0]['book_id'];
+        
+        foreach ($books as $bookItem) {
+            $bookId = $bookItem['book_id'];
+            $quantity = $bookItem['quantity'];
+            $inventoryBook = Book::find($bookId);
+        
+            if (!$inventoryBook) {
+                continue;
             }
-            Book::where('id', $book)->decrement('quantity', $quantity);
-            $orderItem = new OrderItem;
-            $orderItem->book_id = $book;
-            $orderItem->order_id = $order_id;
-            $orderItem->quantity = $quantity;
-            $orderItem->status = 'reserved';
-            $orderItem->save();
+
+            if ($inventoryBook->quantity >= $quantity) {
+                $inventoryBook->decrement('quantity', $quantity);
+        
+                $orderItem = new OrderItem;
+                $orderItem->book_id = $bookId;
+                $orderItem->order_id = $order_id;
+                $orderItem->quantity = $quantity;
+                $orderItem->save();
+        
+                if (Auth::check()) {
+                    cart::where('book_id', $bookId)->delete();
+                } else {
+                    $request->session()->put('books', []);
+                }
+            } else {
+                error_log('out of stock');
+            }
         }
-        if (Auth::check()) {
-            cart::where('user_id', $user_id)->delete();
-        } else {
-            $request->session()->put('books', []);
-        }
+
         return redirect('basket')->with('success', 'Order Complete');
     }
 
@@ -181,17 +189,14 @@ class OrderController extends Controller
         $orderItem = OrderItem::where('id', $id)->first();
         $order = Order::where('id', $orderItem['order_id'])->first();
         $bookId = $orderItem['book_id'];
-        // $order->status = "partially refunded";
         if ($orderItem['quantity'] > 1) {
             $orderItem->quantity--;
             $order->status = 'partially refunded';
         } else {
             $items = OrderItem::where('order_id', $order['id'])->get();
             if (count($items) == 1) {
-                // $order = Order::where('id', $orderItem['order_id']);
                 $order->status = 'refunded';
             } else {
-                // $orderItem->delete();
                 $order->status = 'partially refunded';
             }
         }

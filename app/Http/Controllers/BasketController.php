@@ -20,7 +20,6 @@ class BasketController extends Controller
         $books = collect();
         $maxQtyArr = collect();
         $recs = collect();
-        $amounts = array();
         $wishes = collect();
         
         if (Auth::check()) {
@@ -29,10 +28,8 @@ class BasketController extends Controller
             $wishlist = wishlist::where('user_id', $user_id)->get();
             if (count($wishlist) != 0) {
                         $wish = Wish::where('wishlist_id', $wishlist[0]['id'])->get();
-                        error_log(json_encode($wishlist));
                         foreach ($wish as $wishElem) {
                             $book = Book::where('id', $wishElem['book_id'])->where('quantity', '>', 0)->get();
-                            error_log(json_encode($book));
                             if ($book->isNotEmpty()) {
                                 $wishes->push($book);
                             }
@@ -53,11 +50,10 @@ class BasketController extends Controller
         foreach ($basket as $elem) {
             $book = Book::find($elem['book_id']);
             if ($book) {
+                $book->amount = $elem['quantity'];
                 $books->push($book);
-                $amounts[] = $elem['quantity'];
             }
         }
-        
         
         if (Auth::check()) {
             $recs = Book::whereNotIn('id', $basketBookIds)
@@ -74,7 +70,6 @@ class BasketController extends Controller
         
         return view('/basket', [
             'books' => $books,
-            'amounts' => $amounts,
             'maxQty' => $maxQtyArr,
             'recommended' => $recs,
             'wishlist' => $wishes
@@ -134,6 +129,7 @@ class BasketController extends Controller
             $basket = $basket[0];
             $basket->quantity = request('product-qty');
             $basket->save();
+            error_log($basket->quantity);
         } else {
             $books = $request->session()->get('books');
             $i = 0;

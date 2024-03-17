@@ -116,7 +116,6 @@
                     <?php
                     $genres = ['romance', 'sci-fi', 'fiction', 'fantasy', 'novel', 'non-fiction'];
                     $genresBg = ['https://i.postimg.cc/SN4nCD0M/genre1.jpg', 'https://i.postimg.cc/P5rNFJ5f/genre2.jpg', 'https://i.postimg.cc/kXyBcK9h/genre3.jpg', 'https://i.postimg.cc/KcBK1CWb/genre4.jpg', 'https://i.postimg.cc/wBnvvkc3/genre5.jpg', 'https://i.postimg.cc/NMT0rrpD/genre6.jpg', 'https://i.postimg.cc/xT1smRg1/genre7.jpg', 'https://i.postimg.cc/L6Qx310B/genre8.jpg'];
-                    // $i = 1;
                     ?>
                     @foreach ($genres as $index => $genre)
                         <a href="{{ route('books.category', ['category_slug' => $genre]) }}">
@@ -127,7 +126,6 @@
                                 <img class="genre-bg" src="{{ $genresBg[$index] }}" alt="{{ $genre }}">
                             </div>
                         </a>
-                        {{-- ?php $i++; ?> --}}
                     @endforeach
                 </div>
                 <p class="block-of-text mt-10">Delve into the complexities of the human experience with our literary
