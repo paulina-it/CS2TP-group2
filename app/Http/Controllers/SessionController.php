@@ -16,7 +16,13 @@ class SessionController extends Controller
         $selectedLanguages = $request->input('lang', session()->get('selectedLanguages', []));
         $selectedStock = $request->input('stock', session()->get('selectedStock', 'all-stock'));
         $search = $request->input('search');
+        $categorySlug = session()->get('category');
 
-        return redirect()->route('books.index', ['sort' => $sort, 'search' => $search, 'selectedLanguages' => $selectedLanguages, 'selectedStock' => $selectedStock]);
+        return redirect()->route('books.index', 
+        ['sort' => $sort, 
+        'search' => $search, 
+        'selectedLanguages' => $selectedLanguages, 
+        'selectedStock' => $selectedStock,
+        'category' => $categorySlug,]);
     }
 }

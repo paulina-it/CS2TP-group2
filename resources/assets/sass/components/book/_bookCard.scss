@@ -47,7 +47,6 @@
 
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
 
 
     .last {
@@ -87,7 +86,6 @@
         padding: 1.5em;
         display: grid;
         grid-template-rows: 1fr 1fr 2fr;
-        // justify-content: space-between;
 
         .grid-card-bottom {
             display: flex;
@@ -103,8 +101,6 @@
 }
 
 .book-row-card {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
     margin: 1em;
     padding: 1em;
     background-color: $navColour;
@@ -116,7 +112,8 @@
         justify-content: center;
 
         .book-cover {
-            height: 85%;
+            max-height: 85%;
+            max-width: 100%;
             margin: auto;
             // margin-top: 0.5em;
         }
@@ -126,7 +123,6 @@
         margin: 1em;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        // grid-template-rows: 1fr 1fr;
 
         .book-title {
             font-size: 20px;
@@ -148,7 +144,6 @@
         display: -webkit-box;
         max-height: 4.4em;
         -webkit-line-clamp: 3;
-        /* number of lines to show */
         line-clamp: 3;
         -webkit-box-orient: vertical;
     }

@@ -4,6 +4,9 @@
 @endsection
 @section('main')
     <div class="main-search m-auto">
+        {{-- @php
+            $category = Session::get('category');
+        @endphp --}}
         @if ($search != null)
             @if (count($books) == 0)
                 <h2 class="m-9 text-center">No books were found</h2>
@@ -22,9 +25,8 @@
                 Books
             </h2>
         @endif
-        {{-- FINISH WHEN RATINGS IMPLEMENTED --}}
-        <div class="books-top-settings flex">
-            <div class="sort-div flex">
+        <div class="books-top-settings flex lg:flex-row flex-col">
+            <div class="sort-div flex mb-5">
                 <h4 class="mr-3">Sort by</h4>
                 <form action="{{ route('books.sort') }}" onchange="this.submit()" method="GET">
                     <select name="sort" id="sort-books">
@@ -34,11 +36,10 @@
                         </option>
                         <option value="date-desc" {{ $sort === 'date-desc' ? 'selected' : '' }}>Date (newest first)</option>
                         <option value="date-asc" {{ $sort === 'date-asc' ? 'selected' : '' }}>Date (oldest first)</option>
-                        {{-- <option value="rating">Rating</option> --}}
                     </select>
                 </form>
             </div>
-            <div class="view-div flex">
+            <div class="view-div hidden md:flex">
                 <h4 class="ml-3">View</h4>
                 <form id="rows-form" action="{{ route('books.save.view.choice') }}" method="POST" style="display: hidden">
                     <input type="hidden" name="view_choice" value="rows">
@@ -52,7 +53,7 @@
                 </form>
             </div>
         </div>
-        <main class="book-search-wrapper">
+        <main class="book-search-wrapper ">
             @php
                 $viewChoice = session('view_choice') ?? 'rows';
             @endphp
@@ -123,7 +124,6 @@
                         </div>
                     </a>
                 @endforeach
-
             </div>
             <div class="books-list {{ $viewChoice == 'grid' ? '' : 'hidden' }}">
                 @foreach ($books as $book)
@@ -189,12 +189,12 @@
                     </a>
                 @endforeach
             </div>
-            <div>
-                <div class="ml-5 flex">
+            <div class="mt-[-2em] mb-[2em] md:m-0">
+                <div class="filters-header ml-5 flex">
                     <img src="https://www.svgrepo.com/show/532169/filter.svg" alt="filter-icon" class="w-5 mr-1">
                     <h4>Apply filters</h4>
                 </div>
-                <div class="search-sidebar">
+                <div class="search-sidebar hidden md:flex flex-col">
                     <form action="{{ route('books.filter') }}" method="GET" class="flex flex-col m-3">
                         <div class="lang-checkboxes">
                             <h5>Languages:</h5>
@@ -237,9 +237,19 @@
                     </form>
                 </div>
             </div>
-            <div class="pagination">
-                {{ $books->links() }}
-            </div>
         </main>
+
+        <div class="pagination">
+            {{ $books->links() }}
+        </div>
     </div>
+    
 @endsection
+<script>
+    window.onload = function() {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (screenWidth <= 768) {
+            <?php session(['view_choice' => 'grid']); ?>
+        }
+    };
+</script>

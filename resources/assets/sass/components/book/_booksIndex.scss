@@ -3,12 +3,9 @@
 .books-list {
     width: 100%;
     margin: auto;
-    // margin-left: 2em;
-    // margin-top: 2em;
-    display: flex;
+    display: flex; 
     flex-wrap: wrap;
     justify-content: space-around;
-    grid-column-gap: 10px;
 
     .book-card {
         max-width: 15em;
@@ -33,13 +30,6 @@
     }
 }
 
-// .books-rows {
-//     display: flex;
-//     flex-direction: column;
-
-    
-// }
-
 .dummy-book-cover {
     height: 100%;
     width: 80%;
@@ -57,9 +47,6 @@
 
 .book-search-wrapper {
     margin: 2em;
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    // grid-template-rows: 10fr 1fr;
 }
 
 .search-sidebar,
@@ -143,6 +130,7 @@
 }
 
 .pagination {
+    width: 80%;
 
     nav {
         color: $btn2hover !important;

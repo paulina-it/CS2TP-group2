@@ -108,9 +108,6 @@ class AdminController extends Controller
         if (request("status") == "processed" && $order->status == 'pending') {
             $orderItems = OrderItem::where('order_id', $id)->get();
             foreach ($orderItems as $item) {
-                // $book = Book::where('id', $item['book_id'])->first();
-                // $book->quantity -= $item['quantity'];
-                // $book->save();
                 $item->status = 'sold';
                 $item->save();
             }
