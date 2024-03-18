@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="https://i.postimg.cc/bvSyKtcP/No-text-white-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>{{ config('app.name', 'flippinpages') }}</title>
 
@@ -17,7 +18,13 @@
 
 <body class="flex flex-col">
     @include('layouts.navigation')
+    @if ($errors->any())
+        <div class="errors-div">
+            <h4>{{ $errors->first() }}</h4>
+        </div>
+    @endif
     <div class="main-content">
+        @include('layouts.logout-modal')
         @yield('main')
     </div>
     @include('layouts.footer')

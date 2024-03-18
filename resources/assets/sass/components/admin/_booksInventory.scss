@@ -1,0 +1,132 @@
+.admin-books-list,
+.admin-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+        td {
+            padding-left: 1em;
+            height: 2em;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            padding: 1em;
+            text-align: left;
+            background-color: $btn1;
+            color: white;
+            cursor: pointer;
+
+            .with-svg {
+                display: flex;
+                justify-content: space-between;
+
+                .sort-icon {
+                    width: 1.5em;
+                }
+            }
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .attention-needed {
+            background-color: #fce7e1 !important;
+        }
+
+        #book-table-img {
+            height: 100%;
+            width: 7em;
+            margin-right: 1em;
+
+            img {
+                box-shadow: none;
+            }
+        }
+
+        #book-table-btns {
+            padding: 0;
+        }
+    }
+
+    .book-card-btns {
+        border-radius: 10px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+
+        .btn {
+            width: 100%;
+            height: 100%;
+            font-size: medium;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+
+        #editBtn {
+            background-color: $btn1;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $btn1hover;
+            }
+        }
+
+        #deleteBtn {
+            background-color: $btn2;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+
+    form {
+        select {
+            width: 15em;
+        }
+
+        input,
+        select,
+        textarea {
+            border-radius: 5px;
+            border: none;
+            background-color: $navColour;
+            // width: 40%;
+        }
+
+        input,
+        label {
+            margin: 0.7em;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+
+        button {
+            background-color: $btn2;
+            transition: 0.4s;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &:hover {
+                background-color: $btn2hover;
+            }
+        }
+    }
+}

@@ -1,0 +1,138 @@
+.books-inventory-header {
+    position: relative;
+
+    .inventory-buttons {
+        position: absolute;
+        top: 0;
+        right: 10%;
+
+        .add-book-btn {
+            background-color: $loginBtn;
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $loginBtnhover;
+            }
+        }
+    }
+}
+
+.admin-dashboard-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 6.5fr;
+
+
+    .sidebar {
+        max-height: 46em;
+        border-radius: 10px;
+
+
+        li {
+            border-radius: 10px;
+            background-color: $loginBtn;
+            border-bottom: 2px solid $loginBtnhover;
+
+            a {
+                padding: 1.5em;
+
+                .sidebar-icon {
+                    width: 1.5em;
+                    margin-right: 0.5em;
+                }
+            }
+
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $loginBtnhover;
+            }
+        }
+
+        .disabled-link {
+            pointer-events: none;
+
+            &:hover {
+                background-color: $loginBtn
+            }
+        }
+    }
+
+    .sub-list-item {
+        border-bottom: 2px solid $loginBtnhover;
+        padding-left: 2em;
+        // margin-top: -1.5em;
+        // margin-bottom: -1em;
+        z-index: -1;
+    }
+}
+
+.admin-dashboard-div {
+    width: 90%;
+    margin-top: 2em;
+    border-radius: 10px;
+    display: grid;
+    // grid-template-rows: 1fr 5fr;
+
+    canvas {
+        width: 100% !important;
+        // width: 40vw !important;
+        // height: 40vw !important;
+    }
+
+    .summary-div {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .stats-card {
+        height: 10em;
+        width: 15.5em;
+        margin: 1em;
+        margin-top: 0;
+        box-shadow: 1px 4px 10px #0d0d0d22;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        transition: 0.4s;
+        background-color: $navTopColour;
+
+        &:hover {
+            box-shadow: 2px 2px 8px #0d0d0d3e;
+        }
+
+        p {
+            font-size: 32px;
+            font-weight: 600;
+            margin-top: -1em;
+        }
+    }
+}
+
+.sidebar {
+
+    .highlight {
+        border-radius: 10px;
+        background-color: $loginBtnhover;
+    }
+}
+
+.add-coupon {
+    width: 70%;
+    margin: 3em;
+}
+
+.coupons-header {
+    button {
+        background-color: $loginBtn;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $loginBtnhover;
+        }
+    }
+}

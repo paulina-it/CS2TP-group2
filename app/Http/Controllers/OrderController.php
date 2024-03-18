@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
 use App\Models\OrderItem;
 use App\Models\Order;
+use App\Models\Coupon;
 use App\Models\Book;
+use App\Models\Guest;
 use App\Models\Payment;
 
 class OrderController extends Controller
@@ -27,7 +29,7 @@ class OrderController extends Controller
             }
         }
         if (Count($basket) == 0) {
-            return redirect('basket');
+            return redirect('basket')->withErrors(['msg' => 'Please add items to basket']);
         }
         $amounts = array();
 
@@ -39,52 +41,172 @@ class OrderController extends Controller
             }
             array_push($amounts, $elem['quantity']);     
         }
-        return view('/order', [
+        $coupon = null;
+        if ($request->session()->has('coupon')) {
+            $coupon = $request->session()->get('coupon');
+        }
+        return view('/checkout', [
             'books' => $books,
             'amounts' => $amounts,
+            'coupon' => $coupon
         ]);
     }
 
     public function create(Request $request) {
+        BasketController::getQty();
         if (Auth::check()) {
             $user_id = Auth::id();
-            $books = cart::where('user_id', $user_id)->get('book_id');
+            $books = cart::where('user_id', $user_id)->get();
             $payment = Payment::where('credit_card_no', request('credit_card_no'))->get();
             if (count($payment) == 0) {
+                if (intval(request('credit_card_no')) > 2147483647) {
+                    return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
+                }
                 $payment = new Payment;
                 $payment->credit_card_no = request('credit_card_no');
                 $payment->user_id = $user_id;
                 $payment->save();
             }
         } else {
+            $request->validate([
+                'fName' => ['required', 'string', 'max:255'],
+                'lName' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255']
+            ]);
+            $guest = new Guest;
+            $guest->firstName = request('fName');
+            $guest->lastName = request('lName');
+            $guest->phone = request('phone');
+            $guest->email = request('email');
+            $guest->save();
             $books = $request->session()->get('books');
         }
         $order = new Order;
         $order->status = "pending";
-        $order->ordered_date = "2023-12-09";
         if (Auth::check()) {
             $order->user_id = $user_id;
-        
-        $order->save();
-
-        $order_id = $order->id;
-
-        foreach($books as $book) {
-            if (Auth::check()) {
-                $book = $book['book_id'];
-            }
-            $orderItem = new OrderItem;
-            $orderItem->book_id = $book;
-            $orderItem->order_id = $order_id;
-            $orderItem->save();
-        }
-        // if (Auth::check()) {
-            cart::where('user_id', $user_id)->delete();
-        // } else {
-        //     $request->session()->put('books', []);
         } else {
-            return redirect('login')->with('message', 'Please, login to place an order');
+            $order->guest_id = $guest->id;
         }
+        if ($request->session()->get('coupon')) {
+            $couponId = Coupon::where('coupon_name', $request->session()->get('coupon')['name'])->first();
+            $order->coupon_id = $couponId['id'];
+            $request->session()->forget('coupon');
+        } else {
+            $order->coupon_id = null;
+        }
+        $order->save();
+        $order_id = $order->id;
+        
+        foreach ($books as $bookItem) {
+            $bookId = $bookItem['book_id'];
+            $quantity = $bookItem['quantity'];
+            $inventoryBook = Book::find($bookId);
+        
+            if (!$inventoryBook) {
+                continue;
+            }
+
+            if ($inventoryBook->quantity >= $quantity) {
+                $inventoryBook->decrement('quantity', $quantity);
+        
+                $orderItem = new OrderItem;
+                $orderItem->book_id = $bookId;
+                $orderItem->order_id = $order_id;
+                $orderItem->quantity = $quantity;
+                $orderItem->save();
+        
+                if (Auth::check()) {
+                    cart::where('book_id', $bookId)->delete();
+                } else {
+                    $request->session()->put('books', []);
+                }
+            } else {
+                error_log('out of stock');
+            }
+        }
+
         return redirect('basket')->with('success', 'Order Complete');
+    }
+
+    public function previous() {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+        }
+        $orders = Order::where('user_id', $user_id)->get();
+        $orderItems = array();
+        $books = array();
+        $coupons = array();
+        for ($i = 0; $i < count($orders); $i++) {
+            if ($orders[$i]['coupon_id']) {
+                array_push($coupons, Coupon::where('id', $orders[$i]['coupon_id'])->first());
+            }  else {
+                array_push($coupons, null);
+            }
+            if (count(OrderItem::where('order_id', $orders[$i]['id'])->get()) != 0) {
+                array_push($orderItems, OrderItem::where('order_id', $orders[$i]['id'])->get());
+                foreach($orderItems[$i] as $item) {
+                    for ($j = 0; $j < $item['quantity']; $j++) {
+                        array_push($books, [$i, Book::where('id', $item['book_id'])->get()]);
+                    }
+                }
+            } 
+        }
+        return view('previousOrders', [
+            'books' => $books,
+            'orders' => $orders,
+            'items' => $orderItems,
+            'coupons' => $coupons
+        ]);
+    }
+
+    public function show($id) {
+        if (Auth::check()) {
+            $user_id = Auth::id();
+        }
+        $order = Order::where('id', $id)->get();
+        $coupon = null;
+        if ($order[0]['coupon_id']) {
+            $coupon = Coupon::where('id', $order[0]['coupon_id'])->first();
+        } 
+        $books = array();
+        $orderItems = OrderItem::where('order_id', $order[0]['id'])->get();
+        foreach($orderItems as $item) {
+            for ($j = 0; $j < $item['quantity']; $j++) {
+                array_push($books, Book::where('id', $item['book_id'])->get());
+            }
+        }
+        return view('previousOrdersShow', [
+            'books' => $books,
+            'order' => $order,
+            'items' => $orderItems,
+            'coupon' => $coupon
+        ]);
+    }
+
+    public function return($id) {
+        $orderItem = OrderItem::where('id', $id)->first();
+        $order = Order::where('id', $orderItem['order_id'])->first();
+        $bookId = $orderItem['book_id'];
+        if ($orderItem['quantity'] > 1) {
+            $orderItem->quantity--;
+            $order->status = 'partially refunded';
+        } else {
+            $items = OrderItem::where('order_id', $order['id'])->get();
+            if (count($items) == 1) {
+                $order->status = 'refunded';
+            } else {
+                $order->status = 'partially refunded';
+            }
+        }
+        $book = Book::where('id', $bookId)->first();
+        $book->quantity++;
+
+        $order->save();
+        $orderItem->save();
+        $book->save();
+        
+        return redirect(route('order.previous'));
     }
 }

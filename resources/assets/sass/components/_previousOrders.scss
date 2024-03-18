@@ -1,0 +1,129 @@
+.prev-orders-main {
+
+    .title {
+        text-align: center;
+        padding: 50px 0px 20px;
+    }
+
+    .prev-orders-list {
+        width: 75%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 100%;
+    }
+
+    .prev-single-details {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 100px;
+    }
+
+    td img {
+        margin-right: 10px;
+        width: 60px;
+        height: 80px;
+        border-radius: 5px;
+    }
+
+    tr {
+        max-height: 10px;
+    }
+    
+    th {
+        text-align: left;
+        background: #633A31;
+        color: $mainColour;
+        font-weight: normal;
+        padding: 3px 15px 6px;
+    }
+
+    td {
+        align-items: center;
+        padding: 15px 10px;
+    }
+
+    .prev-order-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .book-img {
+        margin: 5px 5px;
+        box-shadow: 5px 5px 10px #0d0d0d3d;
+    }
+
+    .name {
+        font-weight: 500;
+    }
+    
+    .prev-order {
+        transition: 0.6s;
+        background-color: $navColour;
+    }
+
+    .prev-order:hover {
+        cursor: pointer;
+        background-color: #ead6c0;
+    }
+
+    .return-btn {
+        width: 100%;
+    }
+
+    td:nth-child(2) {
+        text-align: left;
+        padding-left: 2.5em;
+    }
+    
+    td:nth-child(3) {
+        text-align: left;
+    }
+
+    th:nth-child(4) {
+        text-align: center;
+    }
+
+    td:nth-child(4) {
+        text-align: center;
+    }
+
+    td:nth-child(6) {
+        text-align: left;
+    }
+
+    th:first-of-type {
+        border-top-left-radius: 10px;
+    }
+    th:last-of-type {
+        border-top-right-radius: 10px;
+    }
+    tr:last-of-type td:first-of-type {
+        border-bottom-left-radius: 10px;
+    }
+    tr:last-of-type td:last-of-type {
+        border-bottom-right-radius: 10px;
+    }
+
+        @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+        .prev-orders-list {
+            //overflow-x: auto;
+            font-size: 2.5vw;
+        }
+    }
+}
+
+.wrapper-with-navbar {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}

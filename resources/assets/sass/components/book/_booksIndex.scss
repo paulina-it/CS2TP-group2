@@ -1,0 +1,148 @@
+@import '../screens/bookIndexMedia';
+
+.books-list {
+    width: 100%;
+    margin: auto;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .book-card {
+        max-width: 15em;
+        margin: auto;
+        margin-bottom: 2em;
+
+        .book-language {
+            font-size: 12px;
+            font-weight: 500;
+            color: $btn1;
+        }
+
+        &:hover {
+            .dummy-book-cover {
+                width: 85%;
+            }
+        }
+    }
+
+    &.hidden {
+        display: none !important;
+    }
+}
+
+.dummy-book-cover {
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: $dummyBook;
+    color: $complTextColour;
+    text-transform: uppercase;
+
+    p {
+        padding-top: 45%;
+    }
+}
+
+.book-search-wrapper {
+    margin: 2em;
+}
+
+.search-sidebar,
+.books-top-settings {
+    border-radius: 10px;
+
+    select {
+        border-radius: 10px;
+        border: none;
+    }
+
+    input {
+        border-radius: 1px;
+        border: none;
+
+        &:checked {
+            background-color: $btn1 !important;
+        }
+    }
+
+    button {
+        margin-top: 1em;
+        background-color: $btn2;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $btn2hover;
+        }
+    }
+
+    .clear-btn {
+        background-color: $loginBtn;
+        width: 90%;
+        margin: auto;
+        margin-left: 5%;
+
+        &:hover {
+            background-color: $loginBtnhover;
+        }
+    }
+}
+
+.books-top-settings {
+    margin: 3em;
+    margin-top: 0;
+    justify-content: space-between;
+
+    h4 {
+        padding-top: 0.2em;
+    }
+
+    select {
+        background-color: $navColour;
+    }
+
+    .view-icon {
+        width: 2.5em;
+        background-color: $navColour;
+        padding: 0.5em;
+        border-radius: 5px;
+        margin: 1em;
+        margin-top: 0;
+        margin-right: 0;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $loginBtn;
+        }
+    }
+}
+
+.search-sidebar {
+    background-color: $navTopColour;
+    margin: 1em;
+    height: 25em;
+    padding: 1em;
+
+    .lang-checkboxes {
+        margin-bottom: 1em;
+    }
+}
+
+.pagination {
+    width: 80%;
+
+    nav {
+        color: $btn2hover !important;
+        box-shadow: none !important;
+        width: 90%;
+        margin: auto;
+        justify-content: space-around;
+
+        &:nth-child(1) {
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+}
