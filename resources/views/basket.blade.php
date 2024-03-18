@@ -7,9 +7,7 @@
 
         @if (\Session::has('success'))
             <div class="alert alert-success">
-                <ul>
-                    <li>{!! \Session::get('success') !!}</li>
-                </ul>
+                <p>{!! \Session::get('success') !!}</p>
             </div>
         @endif
         @php
@@ -66,7 +64,8 @@
                                     </td>
                                     <td>
                                         <div class="qty-input basket-qty" onchange="this.submit()">
-                                            <form action="{{ route('basket.update', $filteredBooks[$i]['id']) }}" method="POST">
+                                            <form action="{{ route('basket.update', $filteredBooks[$i]['id']) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <select name="product-qty" onchange="this.form.submit()">
@@ -90,12 +89,14 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p>£{{ number_format($filteredBooks[$i]['price'] * $filteredBooks[$i]['amount'], 2) }}</p>
+                                        <p>£{{ number_format($filteredBooks[$i]['price'] * $filteredBooks[$i]['amount'], 2) }}
+                                        </p>
                                     </td>
                                     <td class="basket-item-btns flex justify-end">
                                         @auth
 
-                                            <form action="{{ route('wishlist.store', $filteredBooks[$i]['id']) }}" method="POST">
+                                            <form action="{{ route('wishlist.store', $filteredBooks[$i]['id']) }}"
+                                                method="POST">
                                                 @csrf
                                                 <button type="submit" class="cart-icon">
                                                     <img src="https://www.svgrepo.com/show/361197/heart.svg"
@@ -128,7 +129,8 @@
                                                         <h4 class="m-5">
                                                             Are you sure you want to remove
                                                             "{{ $filteredBooks[$i]['book_name'] }}" from your basket?</h4>
-                                                        <form action="{{ route('basket.destroy', $filteredBooks[$i]['id']) }}"
+                                                        <form
+                                                            action="{{ route('basket.destroy', $filteredBooks[$i]['id']) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('delete')
@@ -209,11 +211,11 @@
                     <strong class="text-left w-full ml-10">Total: £{{ number_format($total, 2) }}</strong>
                     <table>
                         @php
-                        $totalAmount = 0;
-                        
-                        foreach ($filteredBooks as $book) {
-                            $totalAmount += $book['amount'];
-                        }
+                            $totalAmount = 0;
+
+                            foreach ($filteredBooks as $book) {
+                                $totalAmount += $book['amount'];
+                            }
                         @endphp
                         <tr>
                             <td>Subtotal ({{ $totalAmount }} items)</td>
@@ -228,10 +230,8 @@
                 <form action="{{ route('order.index') }}" method="GET">
                     @csrf
                     <div class="checkout-button">
-                        <button 
-                        @if (count($filteredBooks) <=0)
-                            onclick="event.preventDefault()"
-                        @endif>Go To Checkout</button>
+                        <button @if (count($filteredBooks) <= 0) onclick="event.preventDefault()" @endif>Go To
+                            Checkout</button>
                     </div>
                 </form>
                 @auth

@@ -41,13 +41,14 @@ body {
         // text-decoration: none;
     }
 }
-html,body
-{
+
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -79,23 +80,28 @@ html,body
 #red-btn {
     background-color: rgb(199, 27, 27);
 }
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent gray */
-    backdrop-filter: blur(5px); /* Apply blur effect */
-    z-index: 999; /* Ensure the overlay is on top of everything else */
-    display: none; /* Initially hidden */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent gray */
+    backdrop-filter: blur(5px);
+    /* Apply blur effect */
+    z-index: 999;
+    /* Ensure the overlay is on top of everything else */
+    display: none;
+    /* Initially hidden */
 }
 
 .modalWindow {
     z-index: 1000;
 }
 
-.success-message, .errors-div, .alert-success {
+.success-message {
     position: absolute;
     top: -1em;
     left: 20%;
@@ -105,4 +111,24 @@ html,body
     background-color: $btn1;
     border-radius: 5px;
     color: white;
+}
+
+.alert-success, .errors-div {
+    color: white;
+    width: 12em;
+    height: 3em;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: -2em;
+    padding-top: 0.75em;
+}
+
+.alert-success {
+    background-color: $btn1;
+}
+
+.errors-div {
+    background-color: $btn2;
 }
