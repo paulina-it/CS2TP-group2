@@ -116,6 +116,7 @@ class BookController extends Controller
         Session::forget('search');
         Session::forget('selectedLanguages');
         Session::forget('selectedStock');
+        Session::forget('category');
 
         return redirect()->route('books.index');
     }
@@ -168,36 +169,7 @@ class BookController extends Controller
         $book->save();
         return redirect('admin/books');
     }
-
-    //hosted previous version 
-    // public function store(Request $request) {
-    //     $image = $request->file('mainImage');
-    //     $imageName = $image->getClientOriginalName();
-    //     $dest = '../images';
-    //     $image->storeAs('public', $imageName);
-    //     $image->move(public_path($dest), $imageName);
-    //     $otherImageNames = array();
-    //     foreach(request('otherImages') as $otherImage) {
-    //         $otherImage->storeAs('public', $otherImage->getClientOriginalName());
-    //         $otherImage->move(public_path($dest), $otherImage->getClientOriginalName());
-    //         array_push($otherImageNames, $otherImage->getClientOriginalName());
-    //     }
-    //     $book = new Book();
-    //     $book->book_name = request('name');
-    //     $book->genre = request('genre');
-    //     $book->description = request('description');
-    //     $book->author = request('author');
-    //     $book->language = request('language');
-    //     $book->type = request('type');
-    //     $book->price = request('price');
-    //     $book->quantity = request('stock');
-    //     $book->mainImage = $imageName;
-    //     $book->otherImages = json_encode($otherImageNames);
-    //     $book->ISBN = request('isbn');
-    //     $book->save();
-    //     return redirect('books');
-    // }
-
+    
     public function edit($id) {
         $book = Book::findOrFail($id);
         return view('books/edit', [

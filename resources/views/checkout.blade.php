@@ -9,28 +9,31 @@
             <h4>Summary</h4>
             <div class="basket-books-list">
                 @for ($i = 0; $i < count($books); $i++)
-                    <div class="cart-info flex checkout-book">
-                        <img class="opened-preview book-img-mini w-16"
-                            src="{{ asset('storage/' . $books[$i][0]['mainImage']) }}" alt="{{ $books[$i][0]['book_name'] }}">
-                        <div>
-                            <p> {{ $books[$i][0]['book_name'] }}</p>
-                            <small>{{ $books[$i][0]['author'] }}</small>
+                    @if ($books[$i][0]['quantity'] > 0)
+                        <div class="cart-info flex checkout-book">
+                            <img class="opened-preview book-img-mini w-16"
+                                src="{{ asset('storage/' . $books[$i][0]['mainImage']) }}"
+                                alt="{{ $books[$i][0]['book_name'] }}">
+                            <div>
+                                <p> {{ $books[$i][0]['book_name'] }}</p>
+                                <small>{{ $books[$i][0]['author'] }}</small>
+                                <br>
+                                <small class="text-lime-600">{{ $books[$i][0]['language'] }}</small>
+                            </div>
                             <br>
-                            <small class="text-lime-600">{{ $books[$i][0]['language'] }}</small>
+                            <em>Amount: </em>
+                            <p>{{ $amounts[$i] }}</p>
+                            <em>Total price:</em>
+                            <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i], 2) }}</p>
                         </div>
-                        <br>
-                        <em>Amount: </em>
-                        <p>{{ $amounts[$i] }}</p>
-                        <em>Total price:</em>
-                        <p>£{{ number_format($books[$i][0]['price'] * $amounts[$i], 2) }}</p>
-                    </div>
-                    @php
-                        $total += $books[$i][0]['price'] * $amounts[$i];
-                        if ($coupon) {
-                            $discount = ($coupon['discount'] / 100) * $total;
-                            $total = $total - $discount;
-                        }
-                    @endphp
+                        @php
+                            $total += $books[$i][0]['price'] * $amounts[$i];
+                            if ($coupon) {
+                                $discount = ($coupon['discount'] / 100) * $total;
+                                $total = $total - $discount;
+                            }
+                        @endphp
+                    @endif
                 @endfor
             </div>
             <h4 class="text-end font-bold mt-2">Total: £{{ number_format($total, 2) }}</h4>
