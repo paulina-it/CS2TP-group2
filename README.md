@@ -52,6 +52,6 @@ To get Flippinpages running locally, please make sure you have PHP, Composer, No
 
 1. Inside the main branch run 'php artisan serve' from a terminal. This may take a bit of time to execute.
 2. In another terminal instance run 'npm run dev'.
-3. Returning to the terminal for step 1, the terminal should state 'Server running on \[Localhost IP address\].' Right click + Ctrl key on the link and it should take you to Flippinpages.
+3. Returning to the terminal for step 1, the terminal should state 'Server running on \[Localhost IP address\].' Ctrl (key) + click on the link and it should take you to Flippinpages.
 
 (Note: To view the database in PHPmyAdmin, please make sure you are running Apache.)
