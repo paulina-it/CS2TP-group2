@@ -195,6 +195,7 @@ class OrderController extends Controller
                 }
             } 
         }
+        // dd(count($books));
         return view('previousOrders', [
             'books' => $books,
             'orders' => $orders,
@@ -213,14 +214,22 @@ class OrderController extends Controller
             $coupon = Coupon::where('id', $order[0]['coupon_id'])->first();
         } 
         $books = array();
-        $orderItems = OrderItem::where('order_id', $order[0]['id'])->get();
+        $returns = array();
+        $returnedItems = OrderItem::where('order_id', $order[0]['id'])->where('quantity', '==', 0)->get();
+        $orderItems = OrderItem::where('order_id', $order[0]['id'])->where('quantity', '>', 0)->get();
         foreach($orderItems as $item) {
             for ($j = 0; $j < $item['quantity']; $j++) {
                 array_push($books, Book::where('id', $item['book_id'])->get());
             }
         }
+        foreach($returnedItems as $item) {
+            array_push($returns, Book::where('id', $item['book_id'])->get());    
+        }
+        // dd(count($returns));
+        // dd(count($order));
         return view('previousOrdersShow', [
             'books' => $books,
+            'returns' => $returns,
             'order' => $order,
             'items' => $orderItems,
             'coupon' => $coupon
