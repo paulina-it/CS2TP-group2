@@ -76,20 +76,23 @@
                 <label for="lName">Last Name</label>
                 <input name="lName" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="text"
-                    pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
-                    oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')"
+                <input name="phone" type="tel" pattern="^\+?(?:\d\s?){10,14}$"
+                    oninvalid="setCustomValidity('Please enter a valid UK phone number.')" oninput="setCustomValidity('')"
                     required>
+
                 <label for="email">Email</label>
-                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"
+                <input name="email" type="email"
+                    pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
                     oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
                     required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="text" pattern="[0-9]{9,19}"
+            <input name="credit_card_no" type="text" pattern="^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$"
                 oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')"
                 required>
+
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
+
     </div>Í
 @endsection

@@ -54,26 +54,68 @@ class OrderController extends Controller
 
     public function create(Request $request) {
         BasketController::getQty();
+        
         if (Auth::check()) {
+            $validatedData = $request->validate([
+                'credit_card_no' => [
+                    'required',
+                    'regex:/^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$/',
+                ],
+            ]);
+            
+            if (!$validatedData) {
+                return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
+            }
+            
             $user_id = Auth::id();
             $books = cart::where('user_id', $user_id)->get();
             $payment = Payment::where('credit_card_no', request('credit_card_no'))->get();
             if (count($payment) == 0) {
-                if (intval(request('credit_card_no')) > 2147483647) {
-                    return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
-                }
+                // if (intval(request('credit_card_no')) > 2147483647) {
+                //     return redirect('order')->withErrors(['msg' => 'Please enter a valid credit card number']);
+                // }
                 $payment = new Payment;
                 $payment->credit_card_no = request('credit_card_no');
                 $payment->user_id = $user_id;
                 $payment->save();
             }
         } else {
-            $request->validate([
+            $validatedData = $request->validate([
                 'fName' => ['required', 'string', 'max:255'],
                 'lName' => ['required', 'string', 'max:255'],
-                'phone' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255']
+                'phone' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^\+?(?:\d\s?){10,14}$/', 
+                ],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    'regex:/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/',
+                ],
+                'credit_card_no' => [
+                    'required',
+                    'string',
+                    'regex:/^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$/',
+                ]
+            ], [
+                'fName.required' => 'Please enter your first name.',
+                'lName.required' => 'Please enter your last name.',
+                'phone.required' => 'Please enter your phone number.',
+                'phone.regex' => 'Please enter a valid UK phone number.',
+                'email.required' => 'Please enter your email address.',
+                'email.regex' => 'Please enter a valid email address.',
+                'credit_card_no.required' => 'Please enter your credit card number.',
+                'credit_card_no.regex' => 'Please enter a valid credit card number.',
             ]);
+            
+            if (!$validatedData) {
+                return redirect('order')->withErrors(['msg' => 'Please enter valid information']);
+            }
+            
             $guest = new Guest;
             $guest->firstName = request('fName');
             $guest->lastName = request('lName');
@@ -189,17 +231,18 @@ class OrderController extends Controller
         $orderItem = OrderItem::where('id', $id)->first();
         $order = Order::where('id', $orderItem['order_id'])->first();
         $bookId = $orderItem['book_id'];
-        if ($orderItem['quantity'] > 1) {
-            $orderItem->quantity--;
-            $order->status = 'partially refunded';
-        } else {
+        $orderItem->quantity--;
+        // if ($orderItem['quantity'] > 1) {
+        //     $order->status = 'partially refunded';
+        // } else 
             $items = OrderItem::where('order_id', $order['id'])->get();
-            if (count($items) == 1) {
-                $order->status = 'refunded';
-            } else {
+            if (count($items) > 1) {
+            	// $orderItem->delete();
                 $order->status = 'partially refunded';
+            } else {
+                $order->status = 'refunded';
             }
-        }
+        
         $book = Book::where('id', $bookId)->first();
         $book->quantity++;
 
