@@ -120,7 +120,7 @@
 
         .title {
             width: 95%;
-            height: 38%;
+            padding-left: 0.4em;
         }
 
         .prev-table {
@@ -128,7 +128,15 @@
         }
 
         th {
-            padding: 0.2em 1.2em 0.3em;
+            padding: 0.2em 0.6em 0.3em;
+        }
+
+        .book-img {
+            width: 50px;
+        }
+
+        th {
+            text-align: center;
         }
     }
 }
