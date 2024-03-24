@@ -43,7 +43,7 @@
     td img {
         margin-right: 10px;
         width: 60px;
-        height: 80px;
+        // height: 80px;
     }
     
     .book-img {
@@ -73,5 +73,20 @@
         cursor: pointer;
         background-color: #633A31;
         color: $navColour;
+    }
+
+    @media 
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+        .wishlist {
+            //overflow-x: auto;
+            font-size: 2.5vw;
+            width: 100%;
+            padding-right: 10px;
+        }
+
+        .book-img {
+            width: 50px;
+        }
     }
 }

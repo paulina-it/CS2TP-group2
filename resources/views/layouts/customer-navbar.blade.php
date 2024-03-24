@@ -67,7 +67,7 @@
             </x-nav-link>
         </div>
         <div class="nav-search p-2">
-            <form action="{{ route('books.index') }}" method="GET">
+            <form action="{{ route('books.index') }}" method="GET" class="m-0">
                 @csrf
                 <label for="default-search" class="sr-only">Search</label>
                 <div class="relative mt-0">
@@ -80,10 +80,6 @@
                         <img src="https://www.svgrepo.com/show/532555/search.svg" alt="" class="nav-icon">
                     </button>
                 </div>
-                {{-- @if (!empty($search))
-                <label style="color: black">Search results for {{ $search }}</label><br>
-                <a style="color: black" href="{{ route('books.index') }}">Clear Search</a>
-            @endif --}}
             </form>
         </div>
     </div>

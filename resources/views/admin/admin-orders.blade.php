@@ -167,7 +167,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href="{{ route('admin-order-details', $orders[$i]['id']) }}">Open Details</a>
+                            <a class="font-bold" href="{{ route('admin-order-details', $orders[$i]['id']) }}">Open Details</a>
                         </td>
                     </tr>
                 @endfor

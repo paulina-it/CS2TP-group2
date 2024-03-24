@@ -3,6 +3,9 @@
 @section('main')
     <div class="admin-order-div">
         <div class="admin-table">
+            <div class="back-btn flex self-start">
+                <button class="px-5 py-2 rounded mt-[1em] flex " id="back-btn" onclick="history.back()">Go Back</button>
+            </div>
             <h1>Order #{{ $order['id'] }}</h1>
             <div class="order-details w-full flex justify-around">
                 <p>Ordered By: {{ $user['firstName'] . ' ' . $user['lastName'] }}</p>

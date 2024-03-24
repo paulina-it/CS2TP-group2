@@ -3,6 +3,9 @@
 @section('main')
     <div class="main">
         <div class="edit-form-wrapper">
+            <div class="back-btn col-span-2">
+                <button class="px-5 py-2 rounded mt-[1em]" id="back-btn" onclick="history.back()">Go Back</button>
+            </div>
             {{-- @include('layouts.admin-sidebar') --}}
             <div class="add-book-div flex flex-col p-4">
                 <form action="{{ route('books.save', $book->id) }}" method="POST" enctype="multipart/form-data"
