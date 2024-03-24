@@ -2,6 +2,9 @@
 @section('main')
     <h2 class="text-center">Checkout</h2>
     <div class="main" id="checkout-div">
+        <div class="back-btn col-span-2">
+            <button class="px-5 py-2 rounded" id="back-btn" onclick="history.back()">Go Back</button>
+        </div>
         @php
             $total = 0;
         @endphp

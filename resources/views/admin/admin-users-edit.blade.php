@@ -2,6 +2,9 @@
 
 @section('main')
     <div class="main">
+        <div class="back-btn flex self-start">
+            <button class="px-5 py-2 rounded my-[1em] flex " id="back-btn" onclick="history.back()">Go Back</button>
+        </div>
         <div class="admin-user-edit">
             <form action="{{ route('admin-users-save', $user['id']) }}" method="POST" class="p-12">
                 <h1>Edit User Details</h1>
