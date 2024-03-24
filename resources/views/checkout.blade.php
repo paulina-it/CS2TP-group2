@@ -50,7 +50,7 @@
                 <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Remove">
+                    <button type="submit" value="Remove" class="py-2 px-4 rounded btn">Remove</button>
                 </form>
             @endif
             <div class="delivery mb-5">

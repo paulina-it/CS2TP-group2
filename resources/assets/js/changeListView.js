@@ -14,9 +14,13 @@ grid.addEventListener('click', () => {
 
 filtersBtn.addEventListener('click', () => {
     let filtersDiv = document.querySelector('.search-sidebar');
-    if (filtersDiv.style.display == 'none') {
-        filtersDiv.style.display = 'flex';
-    } else {
-        filtersDiv.style.display = 'none';
+    let isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+    
+    if (isSmallScreen) {
+        if (filtersDiv.style.display == 'none' || filtersDiv.style.display === '') {
+            filtersDiv.style.display = 'flex';
+        } else {
+            filtersDiv.style.display = 'none';
+        }
     }
 })

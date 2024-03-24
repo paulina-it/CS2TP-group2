@@ -61,6 +61,18 @@
             // grid-template-columns: 1fr 5fr;
         }
     }
+
+    .filters-header {
+        background-color: $loginBtn;
+        border-radius: 10px;
+        padding: 10px;
+        width: 10em;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $loginBtnhover;
+        }
+    }
 }
 
 @media screen and (min-width: 0px) and (max-width: 480px) {
@@ -75,6 +87,18 @@
         .book-row-card {
             display: grid;
             // grid-template-columns: 1fr 5fr;
+        }
+    }
+
+    .filters-header {
+        background-color: $loginBtn;
+        border-radius: 10px;
+        padding: 10px;
+        width: 8.2em;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: $loginBtnhover;
         }
     }
 }

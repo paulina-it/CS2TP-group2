@@ -205,9 +205,6 @@ class OrderController extends Controller
     }
 
     public function show($id) {
-        if (Auth::check()) {
-            $user_id = Auth::id();
-        }
         $order = Order::where('id', $id)->get();
         $coupon = null;
         if ($order[0]['coupon_id']) {
@@ -225,8 +222,7 @@ class OrderController extends Controller
         foreach($returnedItems as $item) {
             array_push($returns, Book::where('id', $item['book_id'])->get());    
         }
-        // dd(count($returns));
-        // dd(count($order));
+        
         return view('previousOrdersShow', [
             'books' => $books,
             'returns' => $returns,

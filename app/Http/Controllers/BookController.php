@@ -125,10 +125,11 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $otherBooksInLanguage = Book::where('language', $book['language'])->where('id', '!=', $id)->take(12)->get();
         
-        $ratings = ProductRating::where('book_id', $id)->get();
+        $ratings = ProductRating::where('book_id', $id)->paginate(5);
         $ratingAuthors = array();
         foreach ($ratings as $rating) {
-            array_push($ratingAuthors, User::findOrFail($rating->user_id));
+            $user = User::findOrFail($rating->user_id);
+            array_push($ratingAuthors, $user);
         }
         return view('books/show', [
             'book' => $book,

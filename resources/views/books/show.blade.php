@@ -34,7 +34,6 @@
                 <!-- Book information and buttons -->
                 <div class="book-info-div flex flex-col justify-around">
                     <div class="book-info">
-                        <!-- Book title, author, language, type and price -->
                         @php
                             $totalRating = 0;
                             $totalReviews = count($ratings);
@@ -185,8 +184,14 @@
                             <a href="{{ route('books.show', $otherBook['id']) }}">
                                 <div class="book-card book-card-common">
                                     <div class="book-card-cover">
-                                        <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
-                                            alt="">
+                                        @if (Storage::disk('public')->exists($otherBook['mainImage']))
+                                            <img class="book-cover" src="{{ asset('storage/' . $otherBook['mainImage']) }}"
+                                                alt="{{ $otherBook['book_name'] }}">
+                                        @else
+                                            <div class="dummy-book-cover">
+                                                <p>Image not available</p>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="book-card-info">
                                         <p class="book-author">{{ $otherBook['author'] }}</p>
@@ -251,7 +256,11 @@
                 @for ($i = 0; $i < count($ratings); $i++)
                     <div class="w-full review-div">
                         <div class="review-top w-full flex justify-between">
-                            <p><strong>{{ $ratingAuthors[$i]['firstName'] . ' ' . $ratingAuthors[$i]['lastName'] }}</strong>
+                            @if ($ratingAuthors[$i])
+                                <p><strong>{{ $ratingAuthors[$i]['firstName'] . ' ' . $ratingAuthors[$i]['lastName'] }}</strong>
+                            @else
+                                <p><strong>[Account Deleted]</strong>
+                            @endif
                             <div class="star-rating">
                                 @php
                                     $n = $ratings[$i]['score'];
@@ -268,7 +277,9 @@
                         <p class="review-text">{{ $ratings[$i]['review'] }}</p>
                         <br>
                         <hr class="border-amber-900 bg-amber-900">
-                        <p class="text-end text-amber-800">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ratings[$i]['created_at'])->format('d/m/Y')  }}</p>
+                        <p class="text-end text-amber-800">
+                            {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ratings[$i]['created_at'])->format('d/m/Y') }}
+                        </p>
                     </div>
                 @endfor
             @else
@@ -276,6 +287,9 @@
                     <p>There are currently no reviews, you can be the first to leave it.</p>
                 </div>
             @endif
+            <div class="pagination">
+                {{ $ratings->links() }}
+            </div>
         </div>
     </div>
 @endsection

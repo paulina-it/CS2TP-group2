@@ -26,8 +26,10 @@
                             <tr>
                                 <td>
                                     <div class="prev-single-mini">
+                                        <a href="{{ route('books.show', $returns[$k][0]['id']) }}">
                                         <img class="book-img" src="{{ asset('storage/' . $returns[$k][0]['mainImage']) }}"
                                             alt="{{ $returns[$k][0]['book_name'] }}">
+                                        </a>
                                     </div>
                                 </td>
                                 <td>
@@ -62,11 +64,13 @@
                             @for ($j = 0; $j < $items[$i]['quantity']; $j++)
                                 <tr>
                                     <td>
+                                        <a href="{{ route('books.show', $books[$bookCount][0]['id']) }}">
                                         <div class="prev-single-mini">
                                             <img class="book-img"
                                                 src="{{ asset('storage/' . $books[$bookCount][0]['mainImage']) }}"
                                                 alt="{{ $books[$bookCount][0]['book_name'] }}">
                                         </div>
+                                        </a>
                                     </td>
                                     <?php
                                     $total += $books[$bookCount][0]['price'];
