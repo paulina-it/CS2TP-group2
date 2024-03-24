@@ -20,7 +20,7 @@
     @include('layouts.navigation')
     @if ($errors->any())
         <div class="errors-div">
-            <h4>{{ $errors->first() }}</h4>
+            <p>{{ $errors->first() }}</p>
         </div>
     @endif
     <div class="main-content">

@@ -1,16 +1,6 @@
 @extends('layouts.app')
-@section('localVite')
-    <!-- Include Bootstrap CSS -->
-    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Include Bootstrap JS -->
-    <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
-@endsection
 @section('main')
-    <div class="prev-orders-wrapper wrapper-with-navbar">
+    <div class="prev-orders-wrapper wrapper-with-navbar min-h-[70vh]">
         @include('layouts.customer-profile-sidebar')
         <div class="prev-orders-main">
             <h1 class="title">Previous Orders</h1>
@@ -25,33 +15,40 @@
                     </tr>
                     @for ($i = 0; $i < count($orders); $i++)
                         <tr class="prev-order" onclick="location.href='{{ route('order.show', $orders[$i]['id']) }}'">
+
                             <?php
                             $count = 0;
                             $total = 0;
                             $maxBooks = 0;
                             $quantity = 0;
                             ?>
-
+                            @if ($orders[$i]['status'] == 'refunded')
                             <td>
-                                <div class="prev-order-info">
-                                    @for ($j = 0; $j < count($books); $j++)
-                                        @if ($books[$j][0] == $i)
-                                            @if ($maxBooks > 7)
-                                                <p>...</p>
-                                            @break
+                                <p>This order has been fully returned</p>
+                            </td>
+                            @else
+
+                                <td>
+                                    <div class="prev-order-info">
+                                        @for ($j = 0; $j < count($books); $j++)
+                                            @if ($books[$j][0] == $i)
+                                                @if ($maxBooks > 7)
+                                                    <p>...</p>
+                                                @break
+                                            @endif
+                                            <div class="prev-single">
+                                                <img class="book-img"
+                                                    src="{{ asset('storage/' . $books[$j][1][0]['mainImage']) }}"
+                                                    alt="{{ $books[$j][1][0]['book_name'] }}">
+                                                <?php
+                                                $total += $books[$j][1][0]['price'];
+                                                $maxBooks++;
+                                                ?>
+                                            </div>
                                         @endif
-                                        <div class="prev-single">
-                                            <img class="book-img"
-                                                src="{{ asset('storage/' . $books[$j][1][0]['mainImage']) }}"
-                                                alt="{{ $books[$j][1][0]['book_name'] }}">
-                                            <?php
-                                            $total += $books[$j][1][0]['price'];
-                                            $maxBooks++;
-                                            ?>
-                                        </div>
-                                    @endif
-                                @endfor
-                            </div>
+                                    @endfor
+                                </div>
+                        @endif
                         </td>
                         <?php
                         if ($coupons[$i]) {

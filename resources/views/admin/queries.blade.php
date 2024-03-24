@@ -111,7 +111,7 @@
                             </td>
                             <td>{{ explode(' ', $query['created_at'])[0] }}</td>
                             <td class="">
-                                <button class="btn openModalBtn" id="deleteBtn" style="display: block"
+                                <button class="btn openModalBtn font-semibold" id="deleteBtn" style="display: block"
                                     data-modal-target="modal{{ $query['id'] }}"
                                     data-modal-toggle="modal{{ $query['id'] }}">
                                     Details
