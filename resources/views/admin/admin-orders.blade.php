@@ -4,7 +4,7 @@
 @endsection
 
 @section('main')
-    <h2 class="text-center">Orders Management</h2>
+    <h2 class="text-center my-5">Orders Management</h2>
     <div class="sort-and-search flex justify-between">
         <form action="{{ route('admin-orders') }}" method="GET" class="flex">
             <label for="sort">Sort by:</label>
