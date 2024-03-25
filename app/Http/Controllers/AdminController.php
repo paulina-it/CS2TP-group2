@@ -240,7 +240,10 @@ public function queries() {
     
         $idSearch = request('idSearch');
         if ($idSearch) {
-            $query->where('id', $idSearch);
+            $query->where('id', $idSearch)
+            ->orWhere('firstName', $idSearch)
+            ->orWhere('lastName', $idSearch)
+            ->orWhere('email', $idSearch);
         }
     
         $sortField = request('sort') ?? 'created_at';
