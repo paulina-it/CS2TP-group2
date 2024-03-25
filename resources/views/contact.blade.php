@@ -77,11 +77,11 @@
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>
                 <label for="last-name" id="ln-label">Last Name</label>
-                <input type="text" name="first-name" id="fn-input" oninvalid="setCustomValidity('Please enter your first name.')" oninput="setCustomValidity('')" required>
-                <input type="text" name="last-name" id="ln-input" oninvalid="setCustomValidity('Please enter your last name.')" oninput="setCustomValidity('')" required>
+                <input type="text" placeholder="Ann" name="first-name" id="fn-input" value="{{ old('first-name') }}" oninvalid="setCustomValidity('Please enter your first name.')" oninput="setCustomValidity('')" required>
+                <input type="text" placeholder="Smith" name="last-name" id="ln-input" value="{{ old('last-name') }}" oninvalid="setCustomValidity('Please enter your last name.')" oninput="setCustomValidity('')" required>
             </div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
+            <input type="email" placeholder="annsmith@mail.com" name="email" id="" value="{{ old('email') }}" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')" required>
             @else
             <div class="names">
                 <label for="first-name" id="fn-label">First Name</label>
@@ -102,7 +102,7 @@
                 <option value="other">Other</option>
             </select>
             <label for="message">Message</label>
-            <textarea id="message" rows="4" name="message" placeholder="Write your thoughts here..." oninvalid="setCustomValidity('Please enter your query.')" oninput="setCustomValidity('')" required></textarea>
+            <textarea id="message" rows="4" name="message" placeholder="Write your thoughts here..." oninvalid="setCustomValidity('Please enter your query.')" oninput="setCustomValidity('')" required>{{ old('message') }}</textarea>
             <button id="contact-submit-btn" type="submit" class="text-white py-2 px-4 rounded">Send</button>
         </form>
     </div>

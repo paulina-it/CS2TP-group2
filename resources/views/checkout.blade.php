@@ -75,22 +75,22 @@
             @if (!Auth::check())
                 <h4>Personal details:</h4>
                 <label for="fName">First Name</label>
-                <input name="fName" type="text" required>
+                <input name="fName" value="{{ old('fName') }}" placeholder="Ann" type="text" required>
                 <label for="lName">Last Name</label>
-                <input name="lName" type="text" required>
+                <input name="lName" value="{{ old('lName') }}" placeholder="Smith" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="tel" pattern="^\+?(?:\d\s?){10,14}$"
+                <input name="phone" placeholder="077738273641" value="{{ old('phone') }}" type="tel" pattern="^\+?(?:\d\s?){10,14}$"
                     oninvalid="setCustomValidity('Please enter a valid UK phone number.')" oninput="setCustomValidity('')"
                     required>
 
                 <label for="email">Email</label>
-                <input name="email" type="email"
+                <input name="email" placeholder="annsmith@mail.com" value="{{ old('email') }}" type="email"
                     pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
                     oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
                     required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="text" pattern="^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$"
+            <input name="credit_card_no" placeholder="0000 1111 2222 3333" type="text" pattern="^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$"
                 oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')"
                 required>
 
