@@ -108,7 +108,6 @@ class AdminController extends Controller
         if (request("status") == "processed" && $order->status == 'pending') {
             $orderItems = OrderItem::where('order_id', $id)->get();
             foreach ($orderItems as $item) {
-                $item->status = 'sold';
                 $item->save();
             }
         }
@@ -118,7 +117,6 @@ class AdminController extends Controller
                 $book = Book::where('id', $item['book_id'])->first();
                 $book->quantity += $item['quantity'];
                 $book->save();
-                $item->status = 'returned';
                 $item->save();
             }
         }
@@ -242,7 +240,10 @@ public function queries() {
     
         $idSearch = request('idSearch');
         if ($idSearch) {
-            $query->where('id', $idSearch);
+            $query->where('id', $idSearch)
+            ->orWhere('firstName', $idSearch)
+            ->orWhere('lastName', $idSearch)
+            ->orWhere('email', $idSearch);
         }
     
         $sortField = request('sort') ?? 'created_at';

@@ -3,7 +3,7 @@
     @vite(['resources/assets/js/sortTable.js', 'resources/assets/js/modal.js'])
 @endsection
 @section('main')
-        <h2 class="text-center">User Management</h2>
+        <h2 class="text-center my-5">User Management</h2>
         <div class="sort-and-search flex">
             <form action="{{ route('admin-users') }}" method="GET" class="flex">
                 <label for="sort">Sort by:</label>
@@ -25,6 +25,7 @@
                 <form action="{{ route('admin-users') }}" method="GET" class="filter-orders">
                     <label for="filter">Filter</label>
                     <select name="filter">
+                        <option value="none">None</option>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>

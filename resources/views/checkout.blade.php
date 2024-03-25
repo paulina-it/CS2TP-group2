@@ -2,6 +2,9 @@
 @section('main')
     <h2 class="text-center">Checkout</h2>
     <div class="main" id="checkout-div">
+        <div class="back-btn col-span-2">
+            <button class="px-5 py-2 rounded" id="back-btn" onclick="history.back()">Go Back</button>
+        </div>
         @php
             $total = 0;
         @endphp
@@ -50,7 +53,7 @@
                 <form class="text-end" action="{{ route('coupons.delete') }}" method="POST">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="Remove">
+                    <button type="submit" value="Remove" class="py-2 px-4 rounded btn">Remove</button>
                 </form>
             @endif
             <div class="delivery mb-5">
@@ -72,24 +75,27 @@
             @if (!Auth::check())
                 <h4>Personal details:</h4>
                 <label for="fName">First Name</label>
-                <input name="fName" type="text" required>
+                <input name="fName" value="{{ old('fName') }}" placeholder="Ann" type="text" required>
                 <label for="lName">Last Name</label>
-                <input name="lName" type="text" required>
+                <input name="lName" value="{{ old('lName') }}" placeholder="Smith" type="text" required>
                 <label for="phone">Phone Number</label>
-                <input name="phone" type="text"
-                    pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
-                    oninvalid="setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')"
+                <input name="phone" placeholder="077738273641" value="{{ old('phone') }}" type="tel" pattern="^\+?(?:\d\s?){10,14}$"
+                    oninvalid="setCustomValidity('Please enter a valid UK phone number.')" oninput="setCustomValidity('')"
                     required>
+
                 <label for="email">Email</label>
-                <input name="email" type="email" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/"
+                <input name="email" placeholder="annsmith@mail.com" value="{{ old('email') }}" type="email"
+                    pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
                     oninvalid="setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
                     required>
             @endif
             <label for="credit_card_no">Credit Card Number</label>
-            <input name="credit_card_no" type="text" pattern="[0-9]{9,19}"
+            <input name="credit_card_no" placeholder="0000 1111 2222 3333" type="text" pattern="^(?:\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|\d{16})$"
                 oninvalid="setCustomValidity('Please enter a valid credit card number.')" oninput="setCustomValidity('')"
                 required>
+
             <button type="submit" class="blade-btn p-4 text-white" value="">Complete Order</button>
         </form>
+
     </div>Í
 @endsection
